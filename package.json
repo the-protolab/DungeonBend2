@@ -7,12 +7,12 @@
     "build:bend": "bun run scripts/build-bend.ts",
     "dev": "bun run build:bend && vite",
     "build": "bun run build:bend && vite build",
+    "build:pages": "vite build",
     "preview": "vite preview",
     "test": "bun run build:bend && bun test",
     "typecheck": "tsc --noEmit"
   },
   "devDependencies": {
-    "bend": "file:../Bend2",
     "typescript": "^5.7.3",
     "vite": "^5.4.14"
   }

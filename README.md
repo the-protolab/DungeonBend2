@@ -22,7 +22,14 @@ Balance tool: `http://localhost:5173/balance.html`
 
 ```bash
 bun run build:bend
+bun run build:pages
 bun run typecheck
 bun test
 bun run build
 ```
+
+## Bend Build Note
+
+Local Bend recompilation still expects a sibling checkout at `../Bend2`.
+
+GitHub Pages does not compile Bend during deploy. It publishes the already generated runtime in `src/generated/`, so the deployed game still runs the JS transpiled from the Bend source.

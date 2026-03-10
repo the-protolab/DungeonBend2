@@ -22,14 +22,6 @@ jobs:
     steps:
       - name: Checkout app
         uses: actions/checkout@v4
-        with:
-          path: app
-
-      - name: Checkout Bend2
-        uses: actions/checkout@v4
-        with:
-          repository: HigherOrderCO/Bend2
-          path: Bend2
 
       - name: Setup Bun
         uses: oven-sh/setup-bun@v2
@@ -38,17 +30,15 @@ jobs:
         uses: actions/configure-pages@v5
 
       - name: Install dependencies
-        working-directory: app
         run: bun install --frozen-lockfile
 
       - name: Build site
-        working-directory: app
-        run: bun run build
+        run: bun run build:pages
 
       - name: Upload Pages artifact
         uses: actions/upload-pages-artifact@v3
         with:
-          path: app/dist
+          path: dist
 
   deploy:
     needs: build
