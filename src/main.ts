@@ -2,6 +2,7 @@ import "./game.css";
 
 import { resolveSprite } from "./game/assets";
 import { loadNormalizedBalance } from "./game/balance-data";
+import { withBase } from "./game/base-url";
 import { applySwipe, startRun, upgradeHero } from "./game/core";
 import { nextUpgradeCost } from "./game/normalize";
 import { loadMetaState, saveMetaState } from "./game/storage";
@@ -182,7 +183,7 @@ function renderHub(balance: NormalizedBalance, meta: MetaState): string {
           <p class="eyebrow">DungeonBend</p>
           <h1 class="title">Dungeon setup</h1>
         </div>
-        <a class="link-button" href="/balance.html">Balance Tool</a>
+        <a class="link-button" href="${withBase("balance.html")}">Balance Tool</a>
       </header>
       <section class="hub">
         <div class="hub__hero">

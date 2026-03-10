@@ -1,6 +1,9 @@
 import { defineConfig } from "vite";
 
-export default defineConfig({
+var pagesBase = "/DungeonBend2/";
+
+export default defineConfig(({ command }) => ({
+  base: command === "build" ? pagesBase : "/",
   build: {
     rollupOptions: {
       input: {
@@ -9,4 +12,4 @@ export default defineConfig({
       },
     },
   },
-});
+}));

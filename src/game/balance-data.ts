@@ -1,9 +1,10 @@
+import { withBase } from "./base-url";
 import { normalizeBalanceData } from "./normalize";
 import type { BalanceData, NormalizedBalance } from "./types";
 import { parseBalanceData } from "./validation";
 
 export async function loadNormalizedBalance(): Promise<NormalizedBalance> {
-  var response = await fetch("/data/balance.json");
+  var response = await fetch(withBase("data/balance.json"));
   if (!response.ok) {
     throw new Error("Failed to load balance.json");
   }

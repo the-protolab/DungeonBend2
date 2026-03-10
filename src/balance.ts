@@ -1,6 +1,7 @@
 import "./balance.css";
 
 import { loadNormalizedBalance, serializeBalance, validateDraftBalance } from "./game/balance-data";
+import { withBase } from "./game/base-url";
 import type { BalanceData, ItemData } from "./game/types";
 
 type EditorState = {
@@ -280,7 +281,7 @@ function renderEditor(): string {
           <h1>Spreadsheet Editor</h1>
         </div>
         <div class="editor-topbar__actions">
-          <a class="editor-link" href="/">Game</a>
+          <a class="editor-link" href="${withBase()}">Game</a>
           <button class="editor-button" data-action="reset">Reset</button>
           <button class="editor-button editor-button--primary" data-action="export">Export JSON</button>
         </div>
