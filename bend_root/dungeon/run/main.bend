@@ -16,9 +16,9 @@ def _state_from_run(meta_state: Meta, run_value: Run, next_seed_value: U32) -> D
       current = (run{dungeon_level, hero_hp, hero_max_hp, hero_index, weapon, board_value, deck_blueprint, draw_counts, remaining, capacity, seed, status} :: Run);
       match status === 0:
         case 0:
-          (game_over{meta_state, current, next_seed_value} :: DungeonState)
+          (game_over{meta_state, current, next_seed_value, 0, 0} :: DungeonState)
         case _:
-          (run_screen{meta_state, current, next_seed_value} :: DungeonState)
+          (run_screen{meta_state, current, next_seed_value, 0, 0} :: DungeonState)
 
 def _initial_state(meta_state: Meta, seed: U32) -> DungeonState:
   next = next_seed(seed);

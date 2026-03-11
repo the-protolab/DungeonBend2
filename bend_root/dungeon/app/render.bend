@@ -17,21 +17,21 @@ import /dungeon/app/css
 def render(state: DungeonState) -> HTML(DungeonEvent):
   match state:
     case hub{meta_state, next_seed}:
-      _frame("shell shell--hub", _hub_children(meta_state))
-    case run_screen{meta_state, run_value, next_seed}:
-      _frame("shell shell--run", _run_children(meta_state, run_value, 0))
-    case game_over{meta_state, run_value, next_seed}:
-      _frame("shell shell--run", _run_children(meta_state, run_value, 1))
+      _frame("shell shell--hub", 0, 0, _hub_children(meta_state))
+    case run_screen{meta_state, run_value, next_seed, hp_fx, dmg_fx}:
+      _frame("shell shell--run", hp_fx, dmg_fx, _run_children(meta_state, run_value, 0, hp_fx, dmg_fx))
+    case game_over{meta_state, run_value, next_seed, hp_fx, dmg_fx}:
+      _frame("shell shell--run", hp_fx, dmg_fx, _run_children(meta_state, run_value, 1, hp_fx, dmg_fx))
 
-def _frame(shell_class: String, kids: List(HTML(DungeonEvent))) -> HTML(DungeonEvent):
+def _frame(shell_class: String, hp_fx: U32, dmg_fx: U32, kids: List(HTML(DungeonEvent))) -> HTML(DungeonEvent):
   <div class="page">
     <style>{text{css()}}</style>
-    <main {..._shell_attrs(shell_class)}>
+    <main {..._shell_attrs(shell_class, hp_fx, dmg_fx)}>
       {...kids}
     </main>
   </div>
 
-def _shell_attrs(shell_class: String) -> List(Attr(DungeonEvent)):
+def _shell_attrs(shell_class: String, hp_fx: U32, dmg_fx: U32) -> List(Attr(DungeonEvent)):
   [attr{"class", shell_class}, on_key_down{key_event}]
 
 def _hub_children(meta_state: Meta) -> List(HTML(DungeonEvent)):
@@ -65,18 +65,18 @@ def _hub_children(meta_state: Meta) -> List(HTML(DungeonEvent)):
     </section>
   ]
 
-def _run_children(meta_state: Meta, run_value: Run, is_game_over: U32) -> List(HTML(DungeonEvent)):
+def _run_children(meta_state: Meta, run_value: Run, is_game_over: U32, hp_fx: U32, dmg_fx: U32) -> List(HTML(DungeonEvent)):
   match is_game_over:
     case 0:
       [
         _run_header(meta_state, run_value),
-        _run_board(run_value),
+        _run_board(run_value, hp_fx, dmg_fx),
         _run_footer()
       ]
     case _:
       [
         _run_header(meta_state, run_value),
-        _run_board(run_value),
+        _run_board(run_value, hp_fx, dmg_fx),
         _run_footer(),
         _game_over_overlay()
       ]
@@ -95,9 +95,9 @@ def _run_header(meta_state: Meta, run_value: Run) -> HTML(DungeonEvent):
         </div>
       </header>
 
-def _run_board(run_value: Run) -> HTML(DungeonEvent):
+def _run_board(run_value: Run, hp_fx: U32, dmg_fx: U32) -> HTML(DungeonEvent):
   <section class="board-shell">
-    <div class="board">{..._board_cards(run_value, 0)}</div>
+    <div class="board">{..._board_cards(run_value, hp_fx, dmg_fx, 0)}</div>
   </section>
 
 def _run_footer() -> HTML(DungeonEvent):
@@ -117,21 +117,21 @@ def _game_over_overlay() -> HTML(DungeonEvent):
     </div>
   </div>
 
-def _board_cards(run_value: Run, idx: U32) -> List(HTML(DungeonEvent)):
+def _board_cards(run_value: Run, hp_fx: U32, dmg_fx: U32, idx: U32) -> List(HTML(DungeonEvent)):
   match idx === 9:
     case 0:
-      (_board_card(run_value, idx)<>_board_cards(run_value, idx + 1) :: List(HTML(DungeonEvent)))
+      (_board_card(run_value, hp_fx, dmg_fx, idx)<>_board_cards(run_value, hp_fx, dmg_fx, idx + 1) :: List(HTML(DungeonEvent)))
     case _:
       ([] :: List(HTML(DungeonEvent)))
 
-def _board_card(run_value: Run, idx: U32) -> HTML(DungeonEvent):
+def _board_card(run_value: Run, hp_fx: U32, dmg_fx: U32, idx: U32) -> HTML(DungeonEvent):
   match run_value:
     case run{dungeon_level, hero_hp, hero_max_hp, hero_index, weapon, board_value, deck_blueprint, draw_counts, remaining, capacity, seed, status}:
       match hero_index === idx:
         case 0:
           _tile_card(board_get(board_value, idx))
         case _:
-          _hero_card_values(hero_hp, hero_max_hp, weapon)
+          _hero_card_values(hero_hp, hero_max_hp, weapon, hp_fx, dmg_fx)
 
 def _hero_card_hub(meta_state: Meta) -> HTML(DungeonEvent):
   max_hp = _hero_max_hp(meta_state);
@@ -143,14 +143,40 @@ def _hero_card_hub(meta_state: Meta) -> HTML(DungeonEvent):
     <div class="card__label">{text{_hero_name()}}</div>
   </article>
 
-def _hero_card_values(hero_hp: U32, hero_max_hp: U32, weapon_value: Weapon) -> HTML(DungeonEvent):
-  <article class="card card--hero" data-dmg={_hero_damage_attr(weapon_value)}>
-    <div class="card__badge card__badge--hp">{text{"HP " ++ show(hero_hp) ++ "/" ++ show(hero_max_hp)}}</div>
+def _hero_card_values(hero_hp: U32, hero_max_hp: U32, weapon_value: Weapon, hp_fx: U32, dmg_fx: U32) -> HTML(DungeonEvent):
+  <article class={_hero_card_class(dmg_fx)} data-dmg={_hero_damage_attr(weapon_value)}>
+    <div class={_hero_hp_badge_class(hp_fx)}>{text{"HP " ++ show(hero_hp) ++ "/" ++ show(hero_max_hp)}}</div>
     <div class="card__art-wrap">
       <img class="card__art" src={_hero_sprite()} alt={_hero_name()} />
     </div>
     <div class="card__label">{text{_hero_name()}}</div>
   </article>
+
+def _hero_card_class(dmg_fx: U32) -> String:
+  match dmg_fx:
+    case 1:
+      "card card--hero card--hero-dmg-up-a"
+    case 2:
+      "card card--hero card--hero-dmg-up-b"
+    case 3:
+      "card card--hero card--hero-dmg-down-a"
+    case 4:
+      "card card--hero card--hero-dmg-down-b"
+    case _:
+      "card card--hero"
+
+def _hero_hp_badge_class(hp_fx: U32) -> String:
+  match hp_fx:
+    case 1:
+      "card__badge card__badge--hp card__badge--hp-heal-a"
+    case 2:
+      "card__badge card__badge--hp card__badge--hp-heal-b"
+    case 3:
+      "card__badge card__badge--hp card__badge--hp-hurt-a"
+    case 4:
+      "card__badge card__badge--hp card__badge--hp-hurt-b"
+    case _:
+      "card__badge card__badge--hp"
 
 def _hero_damage_attr(weapon_value: Weapon) -> String:
   match weapon_value:
