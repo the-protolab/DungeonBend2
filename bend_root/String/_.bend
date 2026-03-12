@@ -1,2 +1,0 @@
-String : Type =
-  List(Char)

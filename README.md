@@ -1,36 +1,35 @@
 # DungeonBend
 
-Pure Bend2 prototype for the dungeon crawler. The game now lives under [`bend_root/`](./bend_root) and the old JS/Vite host was removed.
+Single-file Bend2 dungeon crawler. The app now lives in [`src/main.bend`](./src/main.bend), uses the official Bend2 prelude directly, and no longer keeps local copies of `App`, `HTML`, `Attr`, `Char`, `List`, `String`, or `U32`.
 
 ## Requirements
 
 - [Bun](https://bun.sh)
 - A sibling checkout of `Bend2` at `../Bend2`
 
-## Workspace Layout
+## Layout
 
-- `bend_root/dungeon/logic`: game rules, board, combat, deck, run and meta state
-- `bend_root/dungeon/app`: Bend `App` state, events, render tree and CSS string
-- `bend_root/dungeon/data`: compiled game balance data
-- `bend_root/test`: Bend regression tests
+- `src/main.bend`: whole application in one Bend file
+- `src/test/regression.bend`: consolidated regression suite
+- `assets/`: images used by the UI
 
 ## Commands
 
 ```bash
-bun run check
-bun run test
-bun run build
+sh scripts/check.sh
+sh scripts/test.sh
+sh scripts/build.sh
 ```
 
-- `bun run check`: Bend typecheck for the app via `--to-chk`
-- `bun run test`: runs the Bend regression suite
-- `bun run build`: generates `dist/index.html`, `dist/dungeon.html` and static assets
+- `check`: typechecks the app and the regression file
+- `test`: runs the consolidated regression suite and expects a final `1`
+- `build`: emits `dist/index.html` plus `dist/assets/*`
 
-## Current Constraints
+The current Bend2 CLI in `../Bend2` requires `--no-strict` for this codebase because the game logic still uses expression-style matches like `x === 0` and `a < b`. The scripts already pass that flag.
 
-- Keyboard input is the supported play path right now: Arrow Keys and WASD.
-- `index.html` and `dungeon.html` are separated on purpose as a workaround for the current Bend2 same-root screen swap bug.
-- Swipe/touch, browser persistence and one-step local asset serving remain Bend2 demands.
-- The balance tool is intentionally out of this deliverable.
+If you have a global `bend` command installed, the direct equivalents are:
 
-See [`BEND2_DEMANDS.md`](./BEND2_DEMANDS.md) for the open requests to the Bend2 team.
+```bash
+bend src/main.bend --to-web --no-strict
+bend src/test/regression.bend --no-strict
+```

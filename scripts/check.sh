@@ -10,5 +10,5 @@ else
   exit 1
 fi
 
-bun "$cli" bend_root/dungeon/app/main.bend --to-chk > /dev/null
-bun "$cli" bend_root/dungeon/run/main.bend --to-chk > /dev/null
+bun "$cli" src/main.bend --to-chk --no-strict > /dev/null
+bun "$cli" src/test/regression.bend --to-chk --no-strict > /dev/null

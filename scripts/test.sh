@@ -10,17 +10,10 @@ else
   exit 1
 fi
 
-status=0
-
-for file in bend_root/test/test_*.bend; do
-  printf '==> %s\n' "$file"
-  out=$(bun "$cli" "$file") || status=1
-  printf '%s\n' "$out"
-  last=$(printf '%s\n' "$out" | tail -n 1)
-  if [ "$last" != "1" ]; then
-    printf 'Expected final line 1, got %s\n' "$last" >&2
-    status=1
-  fi
-done
-
-exit "$status"
+out=$(bun "$cli" src/test/regression.bend --no-strict) || exit 1
+printf '%s\n' "$out"
+last=$(printf '%s\n' "$out" | tail -n 1)
+if [ "$last" != "1" ]; then
+  printf 'Expected final line 1, got %s\n' "$last" >&2
+  exit 1
+fi

@@ -10,11 +10,9 @@ else
   exit 1
 fi
 
-menu_entry="bend_root/dungeon/app/main.bend"
-run_entry="bend_root/dungeon/run/main.bend"
+entry="src/main.bend"
 
 rm -rf dist
 mkdir -p dist/assets
-bun "$cli" "$menu_entry" --to-web > dist/index.html
-bun "$cli" "$run_entry" --to-web > dist/dungeon.html
+bun "$cli" "$entry" --to-web --no-strict > dist/index.html
 cp assets/* dist/assets/
