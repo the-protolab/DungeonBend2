@@ -255,7 +255,7 @@ def _hero_name() -> String:
   "Knight"
 
 def _hero_sprite() -> String:
-  "assets/hero.svg"
+  "assets/hero.png"
 
 def _gold_name() -> String:
   "Gold"
