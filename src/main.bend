@@ -1693,7 +1693,7 @@ def _hero_card_values(hero_hp: U32, hero_max_hp: U32, weapon_value: Weapon, hp_f
   <article class={_hero_card_class(dmg_fx)} data-dmg={_hero_damage_attr(weapon_value)}>
     <div class={_hero_hp_badge_class(hp_fx)}>{text{"HP " ++ U32.show(hero_hp) ++ "/" ++ U32.show(hero_max_hp)}}</div>
     <div class="card__art-wrap">
-      <img class="card__art" src={_hero_sprite()} alt={_hero_name()} />
+      <span class="card__art card__emoji">{text{_hero_emoji()}}</span>
     </div>
     <div class="card__label">{text{_hero_name()}}</div>
   </article>
@@ -1750,7 +1750,7 @@ def _filled_tile_card(tile: Tile, class_name: String) -> HTML(DungeonEvent):
   <article class={class_name}>
     {_tile_badge_node(tile)}
     <div class="card__art-wrap">
-      <img class="card__art" src={_tile_sprite(tile)} alt={_tile_name(tile)} />
+      <span class="card__art card__emoji">{text{_tile_emoji(tile)}}</span>
     </div>
     <div class="card__label card__label--tile">{text{_tile_name(tile)}}</div>
   </article>
@@ -1926,14 +1926,14 @@ def _upgrade_attrs(meta_state: Meta, current_run: RunSlot) -> List(Attr(DungeonE
 def _hero_name() -> String:
   "Knight"
 
-def _hero_sprite() -> String:
-  "assets/hero.png"
+def _hero_emoji() -> String:
+  "🥷"
 
 def _gold_name() -> String:
   "Gold"
 
-def _gold_sprite() -> String:
-  "assets/drop-gold-chest.png"
+def _gold_emoji() -> String:
+  "💰"
 
 def _monster_name(ref: U32) -> String:
   match ref:
@@ -1948,16 +1948,16 @@ def _monster_name(ref: U32) -> String:
     case _:
       "Monster"
 
-def _monster_sprite(ref: U32) -> String:
+def _monster_emoji(ref: U32) -> String:
   match ref:
     case 0:
-      "assets/mob1.png"
+      "🐲"
     case 1:
-      "assets/mob2.png"
+      "🧟"
     case 2:
-      "assets/mob3.png"
+      "👹"
     case 3:
-      "assets/mob4.png"
+      "👺"
     case _:
       ""
 
@@ -1972,22 +1972,14 @@ def _sword_name(ref: U32) -> String:
     case _:
       "Sword"
 
-def _sword_sprite(ref: U32) -> String:
-  match ref:
-    case 0:
-      "assets/sword1.png"
-    case 1:
-      "assets/sword2.png"
-    case 2:
-      "assets/sword3.png"
-    case _:
-      ""
+def _sword_emoji(ref: U32) -> String:
+  "🗡️"
 
 def _potion_name(ref: U32) -> String:
   "Potion"
 
-def _potion_sprite(ref: U32) -> String:
-  "assets/potion.png"
+def _potion_emoji(ref: U32) -> String:
+  "🧪"
 
 def _tile_name(tile: Tile) -> String:
   match tile:
@@ -2002,18 +1994,18 @@ def _tile_name(tile: Tile) -> String:
     case gold{amount}:
       _gold_name()
 
-def _tile_sprite(tile: Tile) -> String:
+def _tile_emoji(tile: Tile) -> String:
   match tile:
     case none{}:
       ""
     case monster{ref, hp}:
-      _monster_sprite(ref)
+      _monster_emoji(ref)
     case sword{ref, dmg}:
-      _sword_sprite(ref)
+      _sword_emoji(ref)
     case potion{ref, heal}:
-      _potion_sprite(ref)
+      _potion_emoji(ref)
     case gold{amount}:
-      _gold_sprite()
+      _gold_emoji()
 
 def _tile_badge(tile: Tile) -> String:
   match tile:
@@ -2058,7 +2050,7 @@ def _next_upgrade_cost(meta_state: Meta) -> U32:
 def base_css() -> String:
   ""
   ++ ":root{--bg:#ffffff;--surface:#f2f2f2;--surface-strong:#e3e3e3;--surface-border:#d2d2d2;--text:#111111;--text-muted:#555555;--accent:#202020;--danger:#c21c1c;--shadow:0 16px 40px rgba(17,17,17,0.08);--radius-lg:28px;--radius-md:20px;--radius-sm:14px;}"
-  ++ "*{box-sizing:border-box;}html,body{margin:0;height:100%;min-height:100%;background:var(--bg);color:var(--text);font-family:'Avenir Next','Trebuchet MS',sans-serif;overflow-x:hidden;}body{overflow:hidden;overscroll-behavior:none;}button,input,select{font:inherit;}button{cursor:pointer;}img{display:block;max-width:100%;}#app,.page{min-height:100svh;}"
+  ++ "*{box-sizing:border-box;}html,body{margin:0;height:100%;min-height:100%;background:var(--bg);color:var(--text);font-family:'Avenir Next','Trebuchet MS',sans-serif;overflow-x:hidden;}body{overflow:hidden;overscroll-behavior:none;}button,input,select{font:inherit;}button{cursor:pointer;}#app,.page{min-height:100svh;}"
 
 def layout_css() -> String:
   ""
@@ -2072,7 +2064,7 @@ def layout_css() -> String:
 
 def cards_css() -> String:
   ""
-  ++ ".board-slot{position:relative;}.board-slot>*{position:relative;z-index:1;}.board-slot::before{content:'';position:absolute;inset:-3px;border-radius:var(--radius-md);opacity:0;pointer-events:none;z-index:2;}.card{position:relative;display:flex;min-height:170px;flex-direction:column;justify-content:space-between;padding:12px;background:var(--surface);border:1px solid var(--surface-border);border-radius:var(--radius-md);box-shadow:var(--shadow);overflow:hidden;}.card--tile{justify-content:flex-start;}.board .card{min-height:0;aspect-ratio:1 / 1;padding:10px;}.card__art-wrap{display:flex;flex:1;align-items:center;justify-content:center;padding:16px 10px;}.card__art{width:100%;max-width:116px;max-height:116px;object-fit:contain;}.card__label{font-size:0.95rem;font-weight:700;text-align:center;}.card__label--tile{padding-right:6px;}.card__badge{position:absolute;display:inline-flex;align-items:center;justify-content:center;min-height:34px;padding:6px 10px;border-radius:999px;background:#fff;border:1px solid var(--surface-border);font-size:0.78rem;font-weight:700;}.card__badge--hp{top:10px;right:10px;color:var(--danger);}.card__badge--value{left:10px;bottom:10px;}.board .card__art-wrap{padding:18px 4px 10px;}.board .card__art{max-width:clamp(44px,16vw,80px);max-height:clamp(44px,16vw,80px);}.board .card__label{font-size:clamp(0.64rem,2vw,0.82rem);line-height:1.05;}.board .card__label--tile{margin-bottom:6px;}.board .card__badge{min-height:28px;padding:4px 8px;font-size:0.68rem;}.board .card__badge--hp{top:8px;right:8px;}.board .card__badge--value{left:8px;bottom:8px;}.board .card--hero[data-dmg]::after{content:attr(data-dmg);position:absolute;left:8px;bottom:8px;display:inline-flex;align-items:center;justify-content:center;min-height:28px;padding:4px 8px;border-radius:999px;background:#fff;border:1px solid var(--surface-border);font-size:0.68rem;font-weight:700;color:#0f63c9;}.board .card--hero[data-dmg='']::after{content:none;}.card__empty{display:grid;flex:1;place-items:center;color:var(--text-muted);font-weight:700;letter-spacing:0.06em;text-transform:uppercase;}.card--idle{background:linear-gradient(180deg,#f8f8f8,#ededed);}"
+  ++ ".board-slot{position:relative;}.board-slot>*{position:relative;z-index:1;}.board-slot::before{content:'';position:absolute;inset:-3px;border-radius:var(--radius-md);opacity:0;pointer-events:none;z-index:2;}.card{position:relative;display:flex;min-height:170px;flex-direction:column;justify-content:space-between;padding:12px;background:var(--surface);border:1px solid var(--surface-border);border-radius:var(--radius-md);box-shadow:var(--shadow);overflow:hidden;}.card--tile{justify-content:flex-start;}.board .card{min-height:0;aspect-ratio:1 / 1;padding:10px;}.card__art-wrap{display:flex;flex:1;align-items:center;justify-content:center;padding:16px 10px;}.card__art{display:block;text-align:center;line-height:1;}.card__emoji{font-size:3.5rem;}.card__label{font-size:0.95rem;font-weight:700;text-align:center;}.card__label--tile{padding-right:6px;}.card__badge{position:absolute;display:inline-flex;align-items:center;justify-content:center;min-height:34px;padding:6px 10px;border-radius:999px;background:#fff;border:1px solid var(--surface-border);font-size:0.78rem;font-weight:700;}.card__badge--hp{top:10px;right:10px;color:var(--danger);}.card__badge--value{left:10px;bottom:10px;}.board .card__art-wrap{padding:18px 4px 10px;}.board .card__emoji{font-size:clamp(1.8rem,8vw,3rem);}.board .card__label{font-size:clamp(0.64rem,2vw,0.82rem);line-height:1.05;}.board .card__label--tile{margin-bottom:6px;}.board .card__badge{min-height:28px;padding:4px 8px;font-size:0.68rem;}.board .card__badge--hp{top:8px;right:8px;}.board .card__badge--value{left:8px;bottom:8px;}.board .card--hero[data-dmg]::after{content:attr(data-dmg);position:absolute;left:8px;bottom:8px;display:inline-flex;align-items:center;justify-content:center;min-height:28px;padding:4px 8px;border-radius:999px;background:#fff;border:1px solid var(--surface-border);font-size:0.68rem;font-weight:700;color:#0f63c9;}.board .card--hero[data-dmg='']::after{content:none;}.card__empty{display:grid;flex:1;place-items:center;color:var(--text-muted);font-weight:700;letter-spacing:0.06em;text-transform:uppercase;}.card--idle{background:linear-gradient(180deg,#f8f8f8,#ededed);}"
 
 def fx_css() -> String:
   ""
