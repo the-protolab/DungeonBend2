@@ -136,7 +136,11 @@ type DungeonEvent {
 }
 
 type DungeonState {
-  dungeon{meta: Meta, current_run: RunSlot, next_seed: U32, hp_fx: U32, dmg_fx: U32}
+  dungeon{meta: Meta, current_run: RunSlot, next_seed: U32, hp_fx: U32, dmg_fx: U32, impact_idx: U32, impact_fx: U32}
+}
+
+type ImpactState {
+  impact_state{idx: U32, fx: U32}
 }
 
 type _PickResult {
@@ -1052,7 +1056,7 @@ def _apply_swipe_target(
 # App state
 
 init : DungeonState =
-  dungeon{default_meta(), idle_run{}, initial_seed(), 0, 0}
+  dungeon{default_meta(), idle_run{}, initial_seed(), 0, 0, 9, 0}
 
 def key_event(key: U32) -> DungeonEvent:
   match key:
@@ -1079,12 +1083,12 @@ def key_event(key: U32) -> DungeonEvent:
     case _:
       ignore{}
 
-def _state_from_run(meta_state: Meta, run_value: Run, next_seed_value: U32, hp_fx: U32, dmg_fx: U32) -> DungeonState:
-  dungeon{meta_state, run_slot{run_value}, next_seed_value, hp_fx, dmg_fx}
+def _state_from_run(meta_state: Meta, run_value: Run, next_seed_value: U32, hp_fx: U32, dmg_fx: U32, impact_idx: U32, impact_fx: U32) -> DungeonState:
+  dungeon{meta_state, run_slot{run_value}, next_seed_value, hp_fx, dmg_fx, impact_idx, impact_fx}
 
 def _start(meta_state: Meta, seed: U32) -> DungeonState:
   next = next_seed(seed);
-  _state_from_run(meta_state, start_run(config(), meta_state, seed), next, 0, 0)
+  _state_from_run(meta_state, start_run(config(), meta_state, seed), next, 0, 0, 9, 0)
 
 def _hero_hp(run_value: Run) -> U32:
   match run_value:
@@ -1219,20 +1223,90 @@ def _next_dmg_fx_values(current_dmg: U32, next_dmg: U32, current_dmg_fx: U32) ->
 def _next_dmg_fx(current_run: Run, next_run: Run, current_dmg_fx: U32) -> U32:
   _next_dmg_fx_values(_hero_dmg(current_run), _hero_dmg(next_run), current_dmg_fx)
 
-def _state_from_swipe(result: SwipeResult, current_run: Run, next_seed_value: U32, current_hp_fx: U32, current_dmg_fx: U32) -> DungeonState:
-  match result:
-    case swipe_result{next_meta, next_run}:
+def _toggle_impact_hit_fx(current_impact_fx: U32) -> U32:
+  match current_impact_fx === 1:
+    case 0:
+      1
+    case _:
+      2
+
+def _toggle_impact_kill_fx(current_impact_fx: U32) -> U32:
+  match current_impact_fx === 3:
+    case 0:
+      3
+    case _:
+      4
+
+def _run_hero_index(run_value: Run) -> U32:
+  match run_value:
+    case run{dungeon_level, hero_hp, hero_max_hp, hero_index, weapon, board_value, deck_blueprint, draw_counts, remaining, capacity, seed, status}:
+      hero_index
+
+def _run_board(run_value: Run) -> Board:
+  match run_value:
+    case run{dungeon_level, hero_hp, hero_max_hp, hero_index, weapon, board_value, deck_blueprint, draw_counts, remaining, capacity, seed, status}:
+      board_value
+
+def _impact_none() -> ImpactState:
+  impact_state{9, 0}
+
+def _impact_hit(target_idx: U32, current_impact_fx: U32) -> ImpactState:
+  impact_state{target_idx, _toggle_impact_hit_fx(current_impact_fx)}
+
+def _impact_kill(target_idx: U32, current_impact_fx: U32) -> ImpactState:
+  impact_state{target_idx, _toggle_impact_kill_fx(current_impact_fx)}
+
+def _impact_from_monster_hp(target_idx: U32, prev_hp: U32, next_hp: U32, current_impact_fx: U32) -> ImpactState:
+  match next_hp < prev_hp:
+    case 0:
+      _impact_none()
+    case _:
+      _impact_hit(target_idx, current_impact_fx)
+
+def _impact_from_monster_next(target_idx: U32, prev_hp: U32, next_tile: Tile, current_impact_fx: U32) -> ImpactState:
+  match next_tile:
+    case monster{next_ref, next_hp}:
+      _impact_from_monster_hp(target_idx, prev_hp, next_hp, current_impact_fx)
+    case gold{amount}:
+      _impact_kill(target_idx, current_impact_fx)
+    case _:
+      _impact_none()
+
+def _impact_from_target_tile(target_idx: U32, prev_tile: Tile, next_tile: Tile, current_impact_fx: U32) -> ImpactState:
+  match prev_tile:
+    case monster{ref, prev_hp}:
+      _impact_from_monster_next(target_idx, prev_hp, next_tile, current_impact_fx)
+    case _:
+      _impact_none()
+
+def _impact_from_turn(current_run: Run, next_run: Run, dir: U32, current_impact_fx: U32) -> ImpactState:
+  target_idx = adjacent_index(_run_hero_index(current_run), dir);
+  prev_tile = board_get(_run_board(current_run), target_idx);
+  next_tile = board_get(_run_board(next_run), target_idx);
+  _impact_from_target_tile(target_idx, prev_tile, next_tile, current_impact_fx)
+
+def _state_from_swipe_impact(next_meta: Meta, current_run: Run, next_run: Run, next_seed_value: U32, current_hp_fx: U32, current_dmg_fx: U32, impact: ImpactState) -> DungeonState:
+  match impact:
+    case impact_state{next_impact_idx, next_impact_fx}:
       _state_from_run(
         next_meta,
         next_run,
         next_seed_value,
         _next_hp_fx(current_run, next_run, current_hp_fx),
-        _next_dmg_fx(current_run, next_run, current_dmg_fx)
+        _next_dmg_fx(current_run, next_run, current_dmg_fx),
+        next_impact_idx,
+        next_impact_fx
       )
 
-def _apply_turn(meta_state: Meta, run_value: Run, next_seed_value: U32, dir: U32, current_hp_fx: U32, current_dmg_fx: U32) -> DungeonState:
+def _state_from_swipe(result: SwipeResult, current_run: Run, next_seed_value: U32, current_hp_fx: U32, current_dmg_fx: U32, current_impact_fx: U32, dir: U32) -> DungeonState:
+  match result:
+    case swipe_result{next_meta, next_run}:
+      impact = _impact_from_turn(current_run, next_run, dir, current_impact_fx);
+      _state_from_swipe_impact(next_meta, current_run, next_run, next_seed_value, current_hp_fx, current_dmg_fx, impact)
+
+def _apply_turn(meta_state: Meta, run_value: Run, next_seed_value: U32, dir: U32, current_hp_fx: U32, current_dmg_fx: U32, current_impact_fx: U32) -> DungeonState:
   result = apply_swipe(config(), meta_state, run_value, dir);
-  _state_from_swipe(result, run_value, next_seed_value, current_hp_fx, current_dmg_fx)
+  _state_from_swipe(result, run_value, next_seed_value, current_hp_fx, current_dmg_fx, current_impact_fx, dir)
 
 def _can_afford_upgrade(meta_state: Meta, cost: U32) -> U32:
   match meta_state:
@@ -1250,54 +1324,54 @@ def _can_afford_upgrade_gold(gold: U32, cost: U32) -> U32:
     case _:
       0
 
-def _idle_event(evt: DungeonEvent, meta_state: Meta, next_seed_value: U32, hp_fx: U32, dmg_fx: U32) -> DungeonState:
+def _idle_event(evt: DungeonEvent, meta_state: Meta, next_seed_value: U32, hp_fx: U32, dmg_fx: U32, impact_idx: U32, impact_fx: U32) -> DungeonState:
   match evt:
     case start{}:
       _start(meta_state, next_seed_value)
     case upgrade{}:
-      dungeon{upgrade_hero(config(), meta_state), idle_run{}, next_seed_value, 0, 0}
+      dungeon{upgrade_hero(config(), meta_state), idle_run{}, next_seed_value, 0, 0, 9, 0}
     case _:
-      dungeon{meta_state, idle_run{}, next_seed_value, hp_fx, dmg_fx}
+      dungeon{meta_state, idle_run{}, next_seed_value, hp_fx, dmg_fx, 9, 0}
 
-def _active_run_event(evt: DungeonEvent, meta_state: Meta, run_value: Run, next_seed_value: U32, hp_fx: U32, dmg_fx: U32) -> DungeonState:
+def _active_run_event(evt: DungeonEvent, meta_state: Meta, run_value: Run, next_seed_value: U32, hp_fx: U32, dmg_fx: U32, impact_idx: U32, impact_fx: U32) -> DungeonState:
   match evt:
     case turn_up{}:
-      _apply_turn(meta_state, run_value, next_seed_value, 0, hp_fx, dmg_fx)
+      _apply_turn(meta_state, run_value, next_seed_value, 0, hp_fx, dmg_fx, impact_fx)
     case turn_down{}:
-      _apply_turn(meta_state, run_value, next_seed_value, 1, hp_fx, dmg_fx)
+      _apply_turn(meta_state, run_value, next_seed_value, 1, hp_fx, dmg_fx, impact_fx)
     case turn_left{}:
-      _apply_turn(meta_state, run_value, next_seed_value, 2, hp_fx, dmg_fx)
+      _apply_turn(meta_state, run_value, next_seed_value, 2, hp_fx, dmg_fx, impact_fx)
     case turn_right{}:
-      _apply_turn(meta_state, run_value, next_seed_value, 3, hp_fx, dmg_fx)
+      _apply_turn(meta_state, run_value, next_seed_value, 3, hp_fx, dmg_fx, impact_fx)
     case _:
-      _state_from_run(meta_state, run_value, next_seed_value, hp_fx, dmg_fx)
+      _state_from_run(meta_state, run_value, next_seed_value, hp_fx, dmg_fx, impact_idx, impact_fx)
 
-def _ended_run_event(evt: DungeonEvent, meta_state: Meta, run_value: Run, next_seed_value: U32, hp_fx: U32, dmg_fx: U32) -> DungeonState:
+def _ended_run_event(evt: DungeonEvent, meta_state: Meta, run_value: Run, next_seed_value: U32, hp_fx: U32, dmg_fx: U32, impact_idx: U32, impact_fx: U32) -> DungeonState:
   match evt:
     case ok{}:
-      dungeon{meta_state, idle_run{}, next_seed_value, 0, 0}
+      dungeon{meta_state, idle_run{}, next_seed_value, 0, 0, 9, 0}
     case _:
-      _state_from_run(meta_state, run_value, next_seed_value, hp_fx, dmg_fx)
+      _state_from_run(meta_state, run_value, next_seed_value, hp_fx, dmg_fx, impact_idx, impact_fx)
 
 def on_event(evt: DungeonEvent, state: DungeonState) -> DungeonState:
   match state:
-    case dungeon{meta_state, idle_run{}, next_seed_value, hp_fx, dmg_fx}:
-      _idle_event(evt, meta_state, next_seed_value, hp_fx, dmg_fx)
-    case dungeon{meta_state, run_slot{run_value}, next_seed_value, hp_fx, dmg_fx}:
+    case dungeon{meta_state, idle_run{}, next_seed_value, hp_fx, dmg_fx, impact_idx, impact_fx}:
+      _idle_event(evt, meta_state, next_seed_value, hp_fx, dmg_fx, impact_idx, impact_fx)
+    case dungeon{meta_state, run_slot{run_value}, next_seed_value, hp_fx, dmg_fx, impact_idx, impact_fx}:
       match _run_status(run_value) === 0:
         case 0:
-          _ended_run_event(evt, meta_state, run_value, next_seed_value, hp_fx, dmg_fx)
+          _ended_run_event(evt, meta_state, run_value, next_seed_value, hp_fx, dmg_fx, impact_idx, impact_fx)
         case _:
-          _active_run_event(evt, meta_state, run_value, next_seed_value, hp_fx, dmg_fx)
+          _active_run_event(evt, meta_state, run_value, next_seed_value, hp_fx, dmg_fx, impact_idx, impact_fx)
 
 # Rendering
 
 def render(state: DungeonState) -> HTML(DungeonEvent):
   match state:
-    case dungeon{meta_state, idle_run{}, next_seed_value, hp_fx, dmg_fx}:
-      _frame(_shell_children(meta_state, idle_run{}, 0, 0))
-    case dungeon{meta_state, run_slot{run_value}, next_seed_value, hp_fx, dmg_fx}:
-      _frame(_shell_children(meta_state, run_slot{run_value}, hp_fx, dmg_fx))
+    case dungeon{meta_state, idle_run{}, next_seed_value, hp_fx, dmg_fx, impact_idx, impact_fx}:
+      _frame(_shell_children(meta_state, idle_run{}, 0, 0, 9, 0))
+    case dungeon{meta_state, run_slot{run_value}, next_seed_value, hp_fx, dmg_fx, impact_idx, impact_fx}:
+      _frame(_shell_children(meta_state, run_slot{run_value}, hp_fx, dmg_fx, impact_idx, impact_fx))
 
 def _frame(kids: List(HTML(DungeonEvent))) -> HTML(DungeonEvent):
   <div class="page">
@@ -1307,12 +1381,12 @@ def _frame(kids: List(HTML(DungeonEvent))) -> HTML(DungeonEvent):
     </main>
   </div>
 
-def _shell_children(meta_state: Meta, current_run: RunSlot, hp_fx: U32, dmg_fx: U32) -> List(HTML(DungeonEvent)):
+def _shell_children(meta_state: Meta, current_run: RunSlot, hp_fx: U32, dmg_fx: U32, impact_idx: U32, impact_fx: U32) -> List(HTML(DungeonEvent)):
   [
     _dashboard_header(meta_state),
     _status_panel(current_run),
     _controls_panel(meta_state, current_run),
-    _board_node(current_run, meta_state, hp_fx, dmg_fx)
+    _board_node(current_run, meta_state, hp_fx, dmg_fx, impact_idx, impact_fx)
   ]
 
 def _dashboard_header(meta_state: Meta) -> HTML(DungeonEvent):
@@ -1357,16 +1431,16 @@ def _controls_panel(meta_state: Meta, current_run: RunSlot) -> HTML(DungeonEvent
     </div>
   </section>
 
-def _board_node(current_run: RunSlot, meta_state: Meta, hp_fx: U32, dmg_fx: U32) -> HTML(DungeonEvent):
+def _board_node(current_run: RunSlot, meta_state: Meta, hp_fx: U32, dmg_fx: U32, impact_idx: U32, impact_fx: U32) -> HTML(DungeonEvent):
   match current_run:
     case idle_run{}:
-      cells = U32.grid(HTML(DungeonEvent), 3, 3, _idle_board_card(meta_state));
+      cells = U32.grid(HTML(DungeonEvent), 3, 3, _idle_board_slot(meta_state));
       <section class={_board_shell_class_idle()}>
         <div class="board">{...cells}</div>
         {_board_overlay_idle()}
       </section>
     case run_slot{run_value}:
-      cells = U32.grid(HTML(DungeonEvent), 3, 3, _board_card(run_value, hp_fx, dmg_fx));
+      cells = U32.grid(HTML(DungeonEvent), 3, 3, _board_slot(run_value, hp_fx, dmg_fx, impact_idx, impact_fx));
       <section class={_board_shell_class_run(run_value)}>
         <div class="board">{...cells}</div>
         {_board_overlay_run(run_value)}
@@ -1428,6 +1502,12 @@ def _hero_card_idle(meta_state: Meta) -> HTML(DungeonEvent):
   max_hp = _hero_max_hp(meta_state);
   _hero_card_values(max_hp, max_hp, no_weapon{}, 0, 0)
 
+def _idle_board_slot(meta_state: Meta, x: U32, y: U32) -> HTML(DungeonEvent):
+  idx = x + (y * 3);
+  <div class={_board_slot_class(idx, 9, 0)}>
+    {_idle_board_card(meta_state, x, y)}
+  </div>
+
 def _board_card_at(run_value: Run, hp_fx: U32, dmg_fx: U32, idx: U32) -> HTML(DungeonEvent):
   match run_value:
     case run{dungeon_level, hero_hp, hero_max_hp, hero_index, weapon, board_value, deck_blueprint, draw_counts, remaining, capacity, seed, status}:
@@ -1439,6 +1519,36 @@ def _board_card_at(run_value: Run, hp_fx: U32, dmg_fx: U32, idx: U32) -> HTML(Du
 
 def _board_card(run_value: Run, hp_fx: U32, dmg_fx: U32, x: U32, y: U32) -> HTML(DungeonEvent):
   _board_card_at(run_value, hp_fx, dmg_fx, x + (y * 3))
+
+def _board_slot(run_value: Run, hp_fx: U32, dmg_fx: U32, impact_idx: U32, impact_fx: U32, x: U32, y: U32) -> HTML(DungeonEvent):
+  idx = x + (y * 3);
+  <div class={_board_slot_class(idx, impact_idx, impact_fx)}>
+    {_board_card_at(run_value, hp_fx, dmg_fx, idx)}
+  </div>
+
+def _board_slot_class(idx: U32, impact_idx: U32, impact_fx: U32) -> String:
+  matched = idx === impact_idx;
+  _board_slot_class_matched(matched, impact_fx)
+
+def _board_slot_class_matched(matched: U32, impact_fx: U32) -> String:
+  match matched:
+    case 0:
+      "board-slot"
+    case _:
+      _board_slot_impact_class(impact_fx)
+
+def _board_slot_impact_class(impact_fx: U32) -> String:
+  match impact_fx:
+    case 1:
+      "board-slot board-slot--impact-a"
+    case 2:
+      "board-slot board-slot--impact-b"
+    case 3:
+      "board-slot board-slot--kill-a"
+    case 4:
+      "board-slot board-slot--kill-b"
+    case _:
+      "board-slot"
 
 def _hero_card_values(hero_hp: U32, hero_max_hp: U32, weapon_value: Weapon, hp_fx: U32, dmg_fx: U32) -> HTML(DungeonEvent):
   <article class={_hero_card_class(dmg_fx)} data-dmg={_hero_damage_attr(weapon_value)}>
@@ -1791,12 +1901,16 @@ def layout_css() -> String:
 
 def cards_css() -> String:
   ""
-  ++ ".card{position:relative;display:flex;min-height:170px;flex-direction:column;justify-content:space-between;padding:12px;background:var(--surface);border:1px solid var(--surface-border);border-radius:var(--radius-md);box-shadow:var(--shadow);overflow:hidden;}.board .card{min-height:0;aspect-ratio:1 / 1;padding:10px;}.card__art-wrap{display:flex;flex:1;align-items:center;justify-content:center;padding:16px 10px;}.card__art{width:100%;max-width:116px;max-height:116px;object-fit:contain;}.card__label{font-size:0.95rem;font-weight:700;text-align:center;}.card__badge{position:absolute;display:inline-flex;align-items:center;justify-content:center;min-height:34px;padding:6px 10px;border-radius:999px;background:#fff;border:1px solid var(--surface-border);font-size:0.78rem;font-weight:700;}.card__badge--hp{top:10px;right:10px;color:var(--danger);}.card__badge--value{left:10px;bottom:10px;}.board .card__art-wrap{padding:18px 4px 10px;}.board .card__art{max-width:clamp(44px,16vw,80px);max-height:clamp(44px,16vw,80px);}.board .card__label{font-size:clamp(0.64rem,2vw,0.82rem);line-height:1.05;}.board .card__badge{min-height:28px;padding:4px 8px;font-size:0.68rem;}.board .card__badge--hp{top:8px;right:8px;}.board .card__badge--value{left:8px;bottom:8px;}.board .card--hero[data-dmg]::after{content:attr(data-dmg);position:absolute;left:8px;bottom:8px;display:inline-flex;align-items:center;justify-content:center;min-height:28px;padding:4px 8px;border-radius:999px;background:#fff;border:1px solid var(--surface-border);font-size:0.68rem;font-weight:700;color:#0f63c9;}.board .card--hero[data-dmg='']::after{content:none;}.card__empty{display:grid;flex:1;place-items:center;color:var(--text-muted);font-weight:700;letter-spacing:0.06em;text-transform:uppercase;}.card--idle{background:linear-gradient(180deg,#f8f8f8,#ededed);}"
+  ++ ".board-slot{position:relative;}.board-slot>*{position:relative;z-index:1;}.board-slot::before{content:'';position:absolute;inset:-3px;border-radius:var(--radius-md);opacity:0;pointer-events:none;z-index:2;}.card{position:relative;display:flex;min-height:170px;flex-direction:column;justify-content:space-between;padding:12px;background:var(--surface);border:1px solid var(--surface-border);border-radius:var(--radius-md);box-shadow:var(--shadow);overflow:hidden;}.board .card{min-height:0;aspect-ratio:1 / 1;padding:10px;}.card__art-wrap{display:flex;flex:1;align-items:center;justify-content:center;padding:16px 10px;}.card__art{width:100%;max-width:116px;max-height:116px;object-fit:contain;}.card__label{font-size:0.95rem;font-weight:700;text-align:center;}.card__badge{position:absolute;display:inline-flex;align-items:center;justify-content:center;min-height:34px;padding:6px 10px;border-radius:999px;background:#fff;border:1px solid var(--surface-border);font-size:0.78rem;font-weight:700;}.card__badge--hp{top:10px;right:10px;color:var(--danger);}.card__badge--value{left:10px;bottom:10px;}.board .card__art-wrap{padding:18px 4px 10px;}.board .card__art{max-width:clamp(44px,16vw,80px);max-height:clamp(44px,16vw,80px);}.board .card__label{font-size:clamp(0.64rem,2vw,0.82rem);line-height:1.05;}.board .card__badge{min-height:28px;padding:4px 8px;font-size:0.68rem;}.board .card__badge--hp{top:8px;right:8px;}.board .card__badge--value{left:8px;bottom:8px;}.board .card--hero[data-dmg]::after{content:attr(data-dmg);position:absolute;left:8px;bottom:8px;display:inline-flex;align-items:center;justify-content:center;min-height:28px;padding:4px 8px;border-radius:999px;background:#fff;border:1px solid var(--surface-border);font-size:0.68rem;font-weight:700;color:#0f63c9;}.board .card--hero[data-dmg='']::after{content:none;}.card__empty{display:grid;flex:1;place-items:center;color:var(--text-muted);font-weight:700;letter-spacing:0.06em;text-transform:uppercase;}.card--idle{background:linear-gradient(180deg,#f8f8f8,#ededed);}"
 
 def fx_css() -> String:
   ""
   ++ ".button{transition:transform 120ms ease,background-color 120ms ease,opacity 120ms ease,color 120ms ease;}.button:not(:disabled):hover{transform:translateY(-1px);}"
-  ++ ".card__badge--hp-heal-a{animation:badge-heal-pulse-a 320ms ease-out;}.card__badge--hp-heal-b{animation:badge-heal-pulse-b 320ms ease-out;}.card__badge--hp-hurt-a{animation:badge-hurt-pulse-a 300ms ease-out;}.card__badge--hp-hurt-b{animation:badge-hurt-pulse-b 300ms ease-out;}.card--hero-dmg-up-a,.card--hero-dmg-up-b,.card--hero-dmg-down-a,.card--hero-dmg-down-b{will-change:transform;}.card--hero-dmg-up-a::after{animation:dmg-badge-up-a 280ms ease-out;}.card--hero-dmg-up-b::after{animation:dmg-badge-up-b 280ms ease-out;}.card--hero-dmg-down-a::after{animation:dmg-badge-down-a 260ms ease-out;}.card--hero-dmg-down-b::after{animation:dmg-badge-down-b 260ms ease-out;}"
+  ++ ".board-slot--impact-a::before{animation:slot-impact-a 280ms ease-out;border:2px solid rgba(194,28,28,0.62);}.board-slot--impact-b::before{animation:slot-impact-b 280ms ease-out;border:2px solid rgba(194,28,28,0.62);}.board-slot--kill-a::before{animation:slot-kill-a 360ms ease-out;border:2px solid rgba(194,28,28,0.8);}.board-slot--kill-b::before{animation:slot-kill-b 360ms ease-out;border:2px solid rgba(194,28,28,0.8);}.card__badge--hp-heal-a{animation:badge-heal-pulse-a 320ms ease-out;}.card__badge--hp-heal-b{animation:badge-heal-pulse-b 320ms ease-out;}.card__badge--hp-hurt-a{animation:badge-hurt-pulse-a 300ms ease-out;}.card__badge--hp-hurt-b{animation:badge-hurt-pulse-b 300ms ease-out;}.card--hero-dmg-up-a,.card--hero-dmg-up-b,.card--hero-dmg-down-a,.card--hero-dmg-down-b{will-change:transform;}.card--hero-dmg-up-a::after{animation:dmg-badge-up-a 280ms ease-out;}.card--hero-dmg-up-b::after{animation:dmg-badge-up-b 280ms ease-out;}.card--hero-dmg-down-a::after{animation:dmg-badge-down-a 260ms ease-out;}.card--hero-dmg-down-b::after{animation:dmg-badge-down-b 260ms ease-out;}"
+  ++ "@keyframes slot-impact-a{0%{opacity:0;transform:scale(0.98);box-shadow:0 0 0 0 rgba(194,28,28,0);}30%{opacity:1;transform:scale(1.01);box-shadow:0 0 0 7px rgba(194,28,28,0.14);}100%{opacity:0;transform:scale(1.02);box-shadow:0 0 0 12px rgba(194,28,28,0);}}"
+  ++ "@keyframes slot-impact-b{0%{opacity:0;transform:scale(0.98);box-shadow:0 0 0 0 rgba(194,28,28,0);}30%{opacity:1;transform:scale(1.01);box-shadow:0 0 0 7px rgba(194,28,28,0.14);}100%{opacity:0;transform:scale(1.02);box-shadow:0 0 0 12px rgba(194,28,28,0);}}"
+  ++ "@keyframes slot-kill-a{0%{opacity:0;transform:scale(0.96);box-shadow:0 0 0 0 rgba(194,28,28,0);}24%{opacity:1;transform:scale(1.02);box-shadow:0 0 0 10px rgba(194,28,28,0.18);}100%{opacity:0;transform:scale(1.05);box-shadow:0 0 0 16px rgba(194,28,28,0);}}"
+  ++ "@keyframes slot-kill-b{0%{opacity:0;transform:scale(0.96);box-shadow:0 0 0 0 rgba(194,28,28,0);}24%{opacity:1;transform:scale(1.02);box-shadow:0 0 0 10px rgba(194,28,28,0.18);}100%{opacity:0;transform:scale(1.05);box-shadow:0 0 0 16px rgba(194,28,28,0);}}"
   ++ "@keyframes badge-heal-pulse-a{0%{transform:scale(1);box-shadow:0 0 0 rgba(15,99,201,0);}35%{transform:scale(1.08);box-shadow:0 0 0 8px rgba(15,99,201,0.14);}100%{transform:scale(1);box-shadow:0 0 0 rgba(15,99,201,0);}}"
   ++ "@keyframes badge-heal-pulse-b{0%{transform:scale(1);box-shadow:0 0 0 rgba(15,99,201,0);}35%{transform:scale(1.08);box-shadow:0 0 0 8px rgba(15,99,201,0.14);}100%{transform:scale(1);box-shadow:0 0 0 rgba(15,99,201,0);}}"
   ++ "@keyframes badge-hurt-pulse-a{0%{transform:scale(1);box-shadow:0 0 0 rgba(194,28,28,0);}35%{transform:scale(0.96);box-shadow:0 0 0 9px rgba(194,28,28,0.16);}100%{transform:scale(1);box-shadow:0 0 0 rgba(194,28,28,0);}}"
