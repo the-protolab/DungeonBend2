@@ -131,7 +131,7 @@ type DungeonEvent {
   turn_down{}
   turn_left{}
   turn_right{}
-  restart{}
+  ok{}
   ignore{}
 }
 
@@ -1073,9 +1073,9 @@ def key_event(key: U32) -> DungeonEvent:
     case 83:
       turn_down{}
     case 32:
-      restart{}
+      ignore{}
     case 82:
-      restart{}
+      ignore{}
     case _:
       ignore{}
 
@@ -1143,12 +1143,25 @@ def _is_active_run(current_run: RunSlot) -> U32:
     case _:
       1
 
-def _can_upgrade(current_run: RunSlot) -> U32:
-  match _is_active_run(current_run):
+def _is_game_over(current_run: RunSlot) -> U32:
+  match current_run:
+    case idle_run{}:
+      0
+    case run_slot{run_value}:
+      _is_game_over_run(run_value)
+
+def _is_game_over_run(run_value: Run) -> U32:
+  _is_game_over_status(_run_status(run_value))
+
+def _is_game_over_status(status: U32) -> U32:
+  match status === 0:
     case 0:
       1
     case _:
       0
+
+def _can_upgrade(current_run: RunSlot) -> U32:
+  _is_idle(current_run)
 
 def _toggle_heal_fx(hp_fx: U32) -> U32:
   match hp_fx === 1:
@@ -1256,17 +1269,13 @@ def _active_run_event(evt: DungeonEvent, meta_state: Meta, run_value: Run, next_
       _apply_turn(meta_state, run_value, next_seed_value, 2, hp_fx, dmg_fx)
     case turn_right{}:
       _apply_turn(meta_state, run_value, next_seed_value, 3, hp_fx, dmg_fx)
-    case restart{}:
-      _start(meta_state, next_seed_value)
     case _:
       _state_from_run(meta_state, run_value, next_seed_value, hp_fx, dmg_fx)
 
 def _ended_run_event(evt: DungeonEvent, meta_state: Meta, run_value: Run, next_seed_value: U32, hp_fx: U32, dmg_fx: U32) -> DungeonState:
   match evt:
-    case restart{}:
-      _start(meta_state, next_seed_value)
-    case upgrade{}:
-      dungeon{upgrade_hero(config(), meta_state), run_slot{run_value}, next_seed_value, 0, 0}
+    case ok{}:
+      dungeon{meta_state, idle_run{}, next_seed_value, 0, 0}
     case _:
       _state_from_run(meta_state, run_value, next_seed_value, hp_fx, dmg_fx)
 
@@ -1340,9 +1349,6 @@ def _controls_panel(meta_state: Meta, current_run: RunSlot) -> HTML(DungeonEvent
     <button {..._start_attrs(current_run)}>
       {text{"Start"}}
     </button>
-    <button {..._restart_attrs(current_run)}>
-      {text{"Restart"}}
-    </button>
     <div class="upgrade-slot">
       <button {..._upgrade_attrs(meta_state, current_run)}>
         {text{_upgrade_label(meta_state)}}
@@ -1355,14 +1361,55 @@ def _board_node(current_run: RunSlot, meta_state: Meta, hp_fx: U32, dmg_fx: U32)
   match current_run:
     case idle_run{}:
       cells = U32.grid(HTML(DungeonEvent), 3, 3, _idle_board_card(meta_state));
-      <section class="board-shell">
+      <section class={_board_shell_class_idle()}>
         <div class="board">{...cells}</div>
+        {_board_overlay_idle()}
       </section>
     case run_slot{run_value}:
       cells = U32.grid(HTML(DungeonEvent), 3, 3, _board_card(run_value, hp_fx, dmg_fx));
-      <section class="board-shell">
+      <section class={_board_shell_class_run(run_value)}>
         <div class="board">{...cells}</div>
+        {_board_overlay_run(run_value)}
       </section>
+
+def _board_shell_class_idle() -> String:
+  "board-shell"
+
+def _board_shell_class_run(run_value: Run) -> String:
+  over = _is_game_over_run(run_value);
+  _board_shell_class_flag(over)
+
+def _board_shell_class_flag(over: U32) -> String:
+  match over:
+    case 0:
+      "board-shell"
+    case _:
+      "board-shell board-shell--over"
+
+def _board_overlay_idle() -> HTML(DungeonEvent):
+  <div class="game-over-modal"></div>
+
+def _board_overlay_run(run_value: Run) -> HTML(DungeonEvent):
+  <div class={_game_over_modal_class(run_value)}>
+    <div class="game-over-card">
+      <p class="game-over-card__eyebrow">{text{"Run encerrada"}}</p>
+      <h2 class="game-over-card__title">{text{"Game Over"}}</h2>
+      <button {..._button_attrs("button", ok{}, 1)}>
+        {text{"OK"}}
+      </button>
+    </div>
+  </div>
+
+def _game_over_modal_class(run_value: Run) -> String:
+  over = _is_game_over_run(run_value);
+  _game_over_modal_class_flag(over)
+
+def _game_over_modal_class_flag(over: U32) -> String:
+  match over:
+    case 0:
+      "game-over-modal"
+    case _:
+      "game-over-modal game-over-modal--visible"
 
 def _idle_board_card(meta_state: Meta, x: U32, y: U32) -> HTML(DungeonEvent):
   idx = x + (y * 3);
@@ -1574,9 +1621,6 @@ def _button_attrs(class_name: String, evt: DungeonEvent, enabled: U32) -> List(A
 def _start_attrs(current_run: RunSlot) -> List(Attr(DungeonEvent)):
   _button_attrs("button", start{}, _is_idle(current_run))
 
-def _restart_attrs(current_run: RunSlot) -> List(Attr(DungeonEvent)):
-  _button_attrs("button button--secondary", restart{}, _has_run(current_run))
-
 def _upgrade_enabled(meta_state: Meta, current_run: RunSlot, cost: U32) -> U32:
   match _can_upgrade(current_run):
     case 0:
@@ -1741,9 +1785,9 @@ def layout_css() -> String:
   ++ ".topbar{display:flex;align-items:center;justify-content:flex-start;min-height:0;}.resource-bar{margin:0;display:inline-flex;align-items:baseline;gap:8px;color:var(--text-muted);font-size:0.78rem;font-weight:700;letter-spacing:0.06em;text-transform:uppercase;}.resource-bar__value{color:var(--text);font-size:1rem;letter-spacing:0;}"
   ++ ".button{display:inline-flex;align-items:center;justify-content:center;border:0;border-radius:999px;padding:14px 18px;font-weight:700;background:var(--accent);color:#fff;}.button--secondary{background:var(--surface);color:var(--text);}.button:disabled{opacity:0.45;cursor:not-allowed;}"
   ++ ".status-panel{display:grid;gap:10px;}.status-panel__head{display:flex;align-items:center;justify-content:flex-start;gap:10px;}.status-chip{margin:0;display:inline-flex;align-items:center;justify-content:center;padding:7px 10px;border-radius:999px;border:1px solid var(--surface-border);font-size:0.74rem;font-weight:700;letter-spacing:0.06em;text-transform:uppercase;background:#fff;}.status-chip--idle{color:#1f5db2;background:#edf4ff;}.status-chip--active{color:#0f6c4c;background:#ebfff5;}.status-chip--over{color:#8f1d1d;background:#fff1f1;}.status-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:10px;}"
-  ++ ".controls{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:10px;align-items:start;}.upgrade-slot{display:grid;gap:6px;}.upgrade-slot__meta{margin:0;color:var(--text-muted);font-size:0.78rem;font-weight:700;letter-spacing:0.04em;text-transform:uppercase;text-align:center;}.stat-panel{padding:10px 12px;background:#fff;border:1px solid var(--surface-border);border-radius:var(--radius-sm);}.stat-panel__label{display:block;margin-bottom:6px;color:var(--text-muted);font-size:0.78rem;font-weight:700;letter-spacing:0.04em;text-transform:uppercase;}.stat-panel__value{font-size:0.98rem;line-height:1.2;}"
-  ++ ".board-shell{display:grid;min-height:0;place-items:center;}.board{position:relative;display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:10px;width:min(100%,420px);touch-action:none;}"
-  ++ "@media (max-width:800px){.shell{padding-inline:12px;gap:10px;}.status-grid,.controls{grid-template-columns:1fr;}.upgrade-slot__meta{text-align:left;}.board{gap:8px;width:min(100%,380px);}}"
+  ++ ".controls{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:10px;align-items:start;}.upgrade-slot{display:grid;gap:6px;}.upgrade-slot__meta{margin:0;color:var(--text-muted);font-size:0.78rem;font-weight:700;letter-spacing:0.04em;text-transform:uppercase;text-align:center;}.stat-panel{padding:10px 12px;background:#fff;border:1px solid var(--surface-border);border-radius:var(--radius-sm);}.stat-panel__label{display:block;margin-bottom:6px;color:var(--text-muted);font-size:0.78rem;font-weight:700;letter-spacing:0.04em;text-transform:uppercase;}.stat-panel__value{font-size:0.98rem;line-height:1.2;}"
+  ++ ".board-shell{position:relative;display:grid;min-height:0;place-items:center;}.board-shell--over .board{transform:scale(0.985);filter:blur(1px);}.board{position:relative;display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:10px;width:min(100%,420px);touch-action:none;transition:transform 140ms ease,filter 140ms ease;}.game-over-modal{position:absolute;inset:0;display:grid;place-items:center;padding:16px;opacity:0;pointer-events:none;background:rgba(17,17,17,0);transition:opacity 140ms ease,background-color 140ms ease;}.game-over-modal--visible{opacity:1;pointer-events:auto;background:rgba(17,17,17,0.32);}.game-over-card{width:min(100%,280px);display:grid;gap:12px;justify-items:center;padding:20px 18px;background:#fff;border:1px solid var(--surface-border);border-radius:var(--radius-md);box-shadow:var(--shadow);text-align:center;}.game-over-card__eyebrow{margin:0;color:var(--danger);font-size:0.74rem;font-weight:700;letter-spacing:0.06em;text-transform:uppercase;}.game-over-card__title{margin:0;font-size:1.4rem;line-height:1;}"
+  ++ "@media (max-width:800px){.shell{padding-inline:12px;gap:10px;}.status-grid,.controls{grid-template-columns:1fr;}.upgrade-slot__meta{text-align:left;}.board{gap:8px;width:min(100%,380px);}.game-over-card{width:min(100%,240px);padding:18px 16px;}}"
 
 def cards_css() -> String:
   ""
