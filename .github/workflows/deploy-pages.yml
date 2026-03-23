@@ -28,8 +28,14 @@ jobs:
         with:
           node-version: 20
 
-      - name: Install Bend CLI
-        run: npm install -g bend
+      - name: Setup Bun
+        uses: oven-sh/setup-bun@v2
+
+      - name: Checkout Bend2
+        uses: actions/checkout@v4
+        with:
+          repository: HigherOrderCO/Bend2
+          path: ../Bend2
 
       - name: Build site
         run: ./scripts/build.sh
