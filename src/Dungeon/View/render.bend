@@ -123,22 +123,19 @@ def _status_panel(current_run: RunSlot) -> HTML(DungeonEvent):
   <section class="status-panel">
     <div class="status-panel__head">
       <p class={_phase_chip_class(current_run)}>{text{_phase_badge(current_run)}}</p>
-    </div>
-    <div class="status-grid">
-      <div class="stat-panel">
-        <span class="stat-panel__label">Dungeon Lv</span>
-        <strong class="stat-panel__value">{text{_dungeon_level_value(current_run)}}</strong>
-      </div>
-      <div class="stat-panel">
-        <span class="stat-panel__label">Cards Remaining</span>
-        <strong class="stat-panel__value">{text{_remaining_value(current_run)}}</strong>
-      </div>
-      <div class="stat-panel">
-        <span class="stat-panel__label">Weapon</span>
-        <strong class="stat-panel__value">{text{_weapon_value(current_run)}}</strong>
+      <div class="status-meta-row">
+        {_status_meta_chip("Lv", _dungeon_level_value(current_run))}
+        {_status_meta_chip("Cards", _remaining_value(current_run))}
+        {_status_meta_chip("Weapon", _weapon_value(current_run))}
       </div>
     </div>
   </section>
+
+def _status_meta_chip(label: String, value: String) -> HTML(DungeonEvent):
+  <p class="status-meta-chip">
+    <span class="status-meta-chip__label">{text{label}}</span>
+    <strong class="status-meta-chip__value">{text{value}}</strong>
+  </p>
 
 def _controls_panel(meta_state: Meta, current_run: RunSlot) -> HTML(DungeonEvent):
   <section class="controls">
