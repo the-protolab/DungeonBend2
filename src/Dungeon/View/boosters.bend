@@ -57,8 +57,8 @@ def _topbar_stat(label: String, value: String) -> HTML(DungeonEvent):
 def _booster_visual(reward: PackReward, reveal_index: U32) -> HTML(DungeonEvent):
   match reward:
     case no_pack_reward{}:
-      <div class="booster-visual">
-        <div class="booster-visual__placeholder"></div>
+      <div class="booster-visual booster-visual--pack">
+        <img class="booster-visual__pack-img" src="assets/booster-pack.png" alt="Booster Pack" />
       </div>
     case pack_reward{cards}:
       <div class="booster-visual booster-visual--revealed">
