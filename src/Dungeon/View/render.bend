@@ -1,5 +1,4 @@
 import /HTML/
-import /HTML/Attr
 import /U32/ as U32
 import /Dungeon/Weapon as Weapon
 import /Dungeon/Tile as Tile
@@ -20,9 +19,6 @@ import /Dungeon/App/key_event as key_event
 import /Dungeon/View/css as css
 import /Dungeon/View/selectors/meta_gold as meta_gold
 import /Dungeon/View/selectors/hero_level_text as hero_level_text
-import /Dungeon/View/selectors/dungeon_level_value as dungeon_level_value
-import /Dungeon/View/selectors/remaining_value as remaining_value
-import /Dungeon/View/selectors/weapon_value as weapon_value
 import /Dungeon/View/selectors/ultimate_label as ultimate_label
 import /Dungeon/View/selectors/ultimate_enabled as ultimate_enabled
 import /Dungeon/View/selectors/start_enabled as start_enabled
@@ -33,6 +29,8 @@ import /Dungeon/View/selectors/hero_max_hp_value as hero_max_hp_value
 import /Dungeon/View/selectors/board_shell_class as board_shell_class
 import /Dungeon/View/selectors/game_over_modal_class as game_over_modal_class
 import /Midum/screen as screen
+import /Midum/Button/ as Button
+import /Midum/Button/Size
 import /Midum/Card/ as Card
 import /Dungeon/View/assets_and_labels/_hero_name as _hero_name
 import /Dungeon/View/assets_and_labels/_hero_sprite as _hero_sprite
@@ -67,27 +65,28 @@ def _render_menu(meta_state: Meta) -> HTML(DungeonEvent):
   <section class="shell shell--menu">
     {_dashboard_header(meta_state)}
     <section class="menu-stage">
-      <div class="menu-stage__hero">
-        {_hero_card_idle(meta_state)}
+      <div class="menu-stage__content">
+        <div class="menu-stage__hero">
+          {_hero_card_idle(meta_state)}
+        </div>
+        <div class="menu-upgrade-row">
+          <div class="menu-upgrade-row__action">
+            {_menu_upgrade_button(meta_state)}
+          </div>
+          <p class="menu-upgrade-row__meta">{text{hero_level_text(meta_state)}}</p>
+        </div>
       </div>
     </section>
     <section class="menu-actions">
-      <div class="menu-upgrade-row">
-        <button {..._menu_upgrade_attrs(meta_state)}>
-          {text{upgrade_label(meta_state)}}
-        </button>
-        <p class="menu-upgrade-row__meta">{text{hero_level_text(meta_state)}}</p>
+      <div class="menu-start-action">
+        {_menu_start_button()}
       </div>
-      <button {..._menu_start_attrs()}>
-        {text{"Start"}}
-      </button>
     </section>
   </section>
 
 def _render_dungeon(meta_state: Meta, scene_value: Scene, run_value: Run, ui_value: UiState) -> HTML(DungeonEvent):
   <section class="shell shell--dungeon">
     {_dashboard_header(meta_state)}
-    {_status_panel(scene_value)}
     {_run_board_node(scene_value, run_value, ui_value)}
   </section>
 
@@ -99,26 +98,13 @@ def _dashboard_header(meta_state: Meta) -> HTML(DungeonEvent):
     </p>
   </header>
 
-def _status_panel(scene_value: Scene) -> HTML(DungeonEvent):
-  <section class="status-panel">
-    <div class="status-meta-row">
-      {_status_meta_chip("Lv", dungeon_level_value(scene_value))}
-      {_status_meta_chip("Cards", remaining_value(scene_value))}
-      {_status_meta_chip("Weapon", weapon_value(scene_value))}
-    </div>
-  </section>
-
-def _status_meta_chip(label: String, value: String) -> HTML(DungeonEvent):
-  <p class="status-meta-chip">
-    <span class="status-meta-chip__label">{text{label}}</span>
-    <strong class="status-meta-chip__value">{text{value}}</strong>
-  </p>
-
 def _run_board_node(scene_value: Scene, run_value: Run, ui_value: UiState) -> HTML(DungeonEvent):
   cells = U32.grid(HTML(DungeonEvent), 3, 3, _board_slot(run_value, ui_value));
   <section class={board_shell_class(scene_value)}>
     <div class="board">{...cells}</div>
-    {_ultimate_button(scene_value)}
+    <div class="ultimate-action">
+      {_ultimate_button(scene_value)}
+    </div>
     {_board_overlay(scene_value)}
   </section>
 
@@ -135,9 +121,9 @@ def _board_overlay(scene_value: Scene) -> HTML(DungeonEvent):
           <div class="game-over-card">
             <p class="game-over-card__eyebrow">{text{"Run encerrada"}}</p>
             <h2 class="game-over-card__title">{text{"Game Over"}}</h2>
-            <button {..._button_attrs("button", ok{}, 1)}>
-              {text{"OK"}}
-            </button>
+            <div class="game-over-card__action">
+              {_game_over_ok_button()}
+            </div>
           </div>,
           [padding_md{}]
         )}
@@ -280,29 +266,46 @@ def _standard_tile_card(tile: Tile, class_name: String) -> HTML(DungeonEvent):
 def _tile_badge_node(tile: Tile) -> HTML(DungeonEvent):
   <div class="card__badge card__badge--value">{text{_tile_badge(tile)}}</div>
 
-def _ultimate_attrs(scene_value: Scene) -> List(Attr(DungeonEvent)):
-  _button_attrs("button button--ultimate", ultimate{}, ultimate_enabled(scene_value))
-
 def _ultimate_button(scene_value: Scene) -> HTML(DungeonEvent):
-  <button {..._ultimate_attrs(scene_value)}>
-    {text{ultimate_label(scene_value)}}
-  </button>
+  Button.primary(
+    DungeonEvent,
+    ultimate{},
+    large{},
+    ultimate_label(scene_value),
+    _full_button_overrides(ultimate_enabled(scene_value))
+  )
 
-def _button_attrs_enabled(class_name: String, evt: DungeonEvent) -> List(Attr(DungeonEvent)):
-  [attr{"type", "button"}, attr{"class", class_name}, on_click{evt}]
+def _game_over_ok_button() -> HTML(DungeonEvent):
+  Button.primary(DungeonEvent, ok{}, medium{}, "OK", [width_full{}])
 
-def _button_attrs_disabled(class_name: String) -> List(Attr(DungeonEvent)):
-  [attr{"type", "button"}, attr{"class", class_name ++ " button--disabled"}, on_click{ignore{}}]
+def _menu_start_button() -> HTML(DungeonEvent):
+  Button.primary(
+    DungeonEvent,
+    start{},
+    large{},
+    "Start",
+    _full_button_overrides(start_enabled(setup{}))
+  )
 
-def _button_attrs(class_name: String, evt: DungeonEvent, enabled: U32) -> List(Attr(DungeonEvent)):
+def _menu_upgrade_button(meta_state: Meta) -> HTML(DungeonEvent):
+  Button.secondary(
+    DungeonEvent,
+    upgrade{},
+    medium{},
+    upgrade_label(meta_state),
+    _fit_button_overrides(upgrade_enabled(meta_state, setup{}, next_upgrade_cost(meta_state)))
+  )
+
+def _full_button_overrides(enabled: U32) -> List(Midum/Button/Override):
   match enabled:
     case 0:
-      _button_attrs_disabled(class_name)
+      [width_full{} state_disabled{}]
     case _:
-      _button_attrs_enabled(class_name, evt)
+      [width_full{}]
 
-def _menu_start_attrs() -> List(Attr(DungeonEvent)):
-  _button_attrs("button button--start", start{}, start_enabled(setup{}))
-
-def _menu_upgrade_attrs(meta_state: Meta) -> List(Attr(DungeonEvent)):
-  _button_attrs("button button--secondary button--upgrade", upgrade{}, upgrade_enabled(meta_state, setup{}, next_upgrade_cost(meta_state)))
+def _fit_button_overrides(enabled: U32) -> List(Midum/Button/Override):
+  match enabled:
+    case 0:
+      [state_disabled{}]
+    case _:
+      []
