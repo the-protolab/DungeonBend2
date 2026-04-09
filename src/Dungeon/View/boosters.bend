@@ -9,7 +9,6 @@ import /Dungeon/View/selectors/meta_pack_total as meta_pack_total
 import /Dungeon/View/selectors/active_pack_price as active_pack_price
 import /Dungeon/View/selectors/booster_buy_enabled as booster_buy_enabled
 import /Dungeon/View/selectors/booster_open_enabled as booster_open_enabled
-import /Dungeon/View/selectors/booster_reward_position_text as booster_reward_position_text
 import /Dungeon/View/selectors/booster_is_last_card as booster_is_last_card
 import /Dungeon/View/selectors/card_copies as card_copies
 import /Dungeon/View/menu/_full_button_overrides as _full_button_overrides
@@ -17,6 +16,7 @@ import /Dungeon/View/menu/_fit_button_overrides as _fit_button_overrides
 import /Dungeon/View/assets_and_labels/_card_name as _card_name
 import /Dungeon/View/assets_and_labels/_card_sprite as _card_sprite
 import /Dungeon/View/assets_and_labels/_card_stat_range as _card_stat_range
+import /Midum/Card/ as Card
 import /Midum/Button/ as Button
 import /Midum/Button/Size
 
@@ -53,13 +53,9 @@ def _render_boosters_reveal(meta_state: Meta, reward: PackReward, reveal_index: 
             {_reveal_card(card)}
           </div>
           <div class="booster-reveal-panel__meta">
-            <div class="reveal-stats">
-              {_reveal_stat_left(card)}
-              <p class="reveal-stat">{text{"COPIES: " ++ card_copies(meta_state, card)}}</p>
-            </div>
+            {_reveal_meta(meta_state, card)}
           </div>
           <div class="booster-reveal-panel__footer">
-            <p class="reveal-position">{text{booster_reward_position_text(reward, reveal_index)}}</p>
             <div class="booster-reveal-panel__action">
               {_reveal_action_button(reward, reveal_index)}
             </div>
@@ -69,28 +65,60 @@ def _render_boosters_reveal(meta_state: Meta, reward: PackReward, reveal_index: 
     </section>
   </section>
 
+def _reveal_meta(meta_state: Meta, card: CardRef) -> HTML(DungeonEvent):
+  <div class="reveal-meta">
+    <div class="reveal-meta__top">
+      <p class="reveal-name">{text{_card_name(card)}}</p>
+      <p class="reveal-copies">{text{"COPIES: " ++ card_copies(meta_state, card)}}</p>
+    </div>
+    {_reveal_stat_left(card)}
+  </div>
+
 def _reveal_stat_left(card: CardRef) -> HTML(DungeonEvent):
   match card:
     case hero_card{}:
       <span class="reveal-stat--empty"></span>
     case _:
-      <p class="reveal-stat">{text{_card_stat_range(card)}}</p>
+      <p class="reveal-stat reveal-stat--detail">{text{_card_stat_range(card)}}</p>
 
 def _reveal_card(card: CardRef) -> HTML(DungeonEvent):
-  <div class="booster-visual booster-visual--revealed">
-    <div class="booster-visual__detail">
-      <div class="booster-visual__image-wrap">
-        <img class="booster-visual__image" src={_card_sprite(card)} alt={_card_name(card)} />
-      </div>
-    </div>
+  <div class="booster-visual booster-visual--revealed booster-visual--midum">
+    {Card.neutral(
+      DungeonEvent,
+      <div class="booster-visual__detail booster-visual__detail--midum">
+        <div class="booster-visual__image-wrap">
+          <img class="booster-visual__image booster-visual__image--midum" src={_card_sprite(card)} alt={_card_name(card)} />
+        </div>
+      </div>,
+      _reveal_card_surface_overrides()
+    )}
   </div>
+
+def _reveal_card_surface_overrides() -> List(Midum/Card/Override):
+  [
+    padding_none{},
+    background_none{},
+    border_none{},
+    radius_square{},
+    surface_image_sized{
+      src: "assets/background-card.png",
+      source_left: U32.to_nat(34),
+      source_right: U32.to_nat(34),
+      source_top: U32.to_nat(34),
+      source_bottom: U32.to_nat(34),
+      target_left: U32.to_nat(22),
+      target_right: U32.to_nat(22),
+      target_top: U32.to_nat(22),
+      target_bottom: U32.to_nat(22),
+    }
+  ]
 
 def _reveal_action_button(reward: PackReward, reveal_index: U32) -> HTML(DungeonEvent):
   match booster_is_last_card(reward, reveal_index):
     case 1:
-      Button.primary(DungeonEvent, done_reward{}, large{}, "Done", _full_button_overrides(1))
+      Button.neutral(DungeonEvent, done_reward{}, medium{}, "Done", [])
     case _:
-      Button.primary(DungeonEvent, next_reward{}, large{}, "Next", _full_button_overrides(1))
+      Button.neutral(DungeonEvent, next_reward{}, medium{}, "Next", [])
 
 def _reward_card_at(reward: PackReward, idx: U32) -> CardRef:
   match reward:
