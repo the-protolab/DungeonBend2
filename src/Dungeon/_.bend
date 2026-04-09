@@ -248,6 +248,7 @@ type DungeonEvent {
   open_pack{ref: U32}
   prev_reward{}
   next_reward{}
+  done_reward{}
   ultimate{}
   move{dir: Direction}
   ok{}

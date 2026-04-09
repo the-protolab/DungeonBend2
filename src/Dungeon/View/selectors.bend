@@ -9,8 +9,14 @@ import /Dungeon/Meta as Meta
 import /Dungeon/Run as Run
 import /Dungeon/Scene as Scene
 import /Dungeon/config as config
+import /Dungeon/CardRef as CardRef
+import /Dungeon/Config as Config
+import /Dungeon/DeckEntry as DeckEntry
 import /Dungeon/Deck/counts_pick/hero_max_hp as hero_max_hp
 import /Dungeon/Deck/counts_pick/nth_upgrade as nth_upgrade
+import /Dungeon/Deck/counts_pick/deck_count_for_card as deck_count_for_card
+import /Dungeon/Deck/counts_pick/merge_deck_entries as merge_deck_entries
+import /Dungeon/profile_helpers/meta_bonus_deck as meta_bonus_deck
 import /Dungeon/Boosters/inventory/pack_inventory_count as pack_inventory_count
 import /Dungeon/Boosters/inventory/pack_inventory_total as pack_inventory_total
 import /Dungeon/Boosters/packs/active_pack as active_pack
@@ -375,3 +381,24 @@ def _booster_reward_position_text(count: U32, reveal_index: U32) -> String:
       ""
     case _:
       U32.show(reveal_index + 1) ++ "/" ++ U32.show(count)
+
+def booster_is_last_card(reward: PackReward, reveal_index: U32) -> U32:
+  _booster_is_last_card(reward_count(reward), reveal_index)
+
+def _booster_is_last_card(count: U32, reveal_index: U32) -> U32:
+  match count:
+    case 0:
+      1
+    case _:
+      (reveal_index + 1) === count
+
+def _full_deck(meta_state: Meta) -> List(DeckEntry):
+  _full_deck_from_config(config(), meta_bonus_deck(meta_state))
+
+def _full_deck_from_config(config_value: Config, bonus: List(DeckEntry)) -> List(DeckEntry):
+  match config_value:
+    case config{heroes, monsters, swords, potions, deck, booster_packs, starting_dungeon_level}:
+      merge_deck_entries(deck, bonus)
+
+def card_copies(meta_state: Meta, card: CardRef) -> String:
+  U32.show(deck_count_for_card(_full_deck(meta_state), card))

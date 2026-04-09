@@ -36,6 +36,8 @@ def update_boosters(evt: DungeonEvent, meta_state: Meta, reward: PackReward, rev
       _state(meta_state, boosters{reward, prev_reward_index(reveal_index)}, next_seed_value, ui_value)
     case next_reward{}:
       _state(meta_state, boosters{reward, next_reward_index(reward, reveal_index)}, next_seed_value, ui_value)
+    case done_reward{}:
+      _state(meta_state, boosters{no_pack_reward{}, 0}, next_seed_value, default_ui())
     case _:
       _state(meta_state, boosters{reward, reveal_index}, next_seed_value, ui_value)
 

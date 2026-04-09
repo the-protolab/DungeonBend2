@@ -235,6 +235,43 @@ def _first_hp(hp_levels: List(U32)) -> U32:
     case hp<>rest:
       hp
 
+def _last_hp(hp_levels: List(U32), last: U32) -> U32:
+  match hp_levels:
+    case []:
+      last
+    case hp<>rest:
+      _last_hp(rest, hp)
+
+def _monster_hp_range(ref: U32) -> String:
+  _monster_hp_range_from_defs(config(), ref)
+
+def _monster_hp_range_from_defs(config_value: Config, ref: U32) -> String:
+  match config_value:
+    case config{heroes, monsters, swords, potions, deck, booster_packs, starting_dungeon_level}:
+      _monster_hp_range_from_list(monsters, ref)
+
+def _monster_hp_range_from_list(monsters: List(MonsterDef), ref: U32) -> String:
+  match monsters:
+    case []:
+      "1 - 1"
+    case monster_def{name, sprite, gold_drop, hp_levels}<>rest:
+      match ref:
+        case 0:
+          U32.show(_first_hp(hp_levels)) ++ " - " ++ U32.show(_last_hp(hp_levels, 1))
+        case _:
+          _monster_hp_range_from_list(rest, ref - 1)
+
+def _card_stat_range(card: CardRef) -> String:
+  match card:
+    case monster_card{ref}:
+      "HP: " ++ _monster_hp_range(ref)
+    case sword_card{ref}:
+      "DMG: " ++ U32.show(_sword_damage_value(ref))
+    case potion_card{ref}:
+      "HEAL: " ++ U32.show(_potion_heal_value(ref))
+    case hero_card{}:
+      ""
+
 def _sword_damage_value(ref: U32) -> U32:
   _sword_damage_from_defs(config(), ref)
 

@@ -3,7 +3,9 @@
     "allow": [
       "Bash(bash:*)",
       "Bash(git stash:*)",
-      "Bash(sh scripts/build.sh)"
+      "Bash(sh scripts/build.sh)",
+      "Bash(./scripts/build.sh:*)",
+      "Bash(./scripts/build-pages.sh:*)"
     ]
   }
 }

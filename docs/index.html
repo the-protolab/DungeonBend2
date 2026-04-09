@@ -15985,7 +15985,7 @@ export function $Dungeon$View$css$layout_css() {
   _v9 = ".shell{width:min(100%,560px);min-height:100svh;height:100svh;max-height:100svh;margin:0 auto;padding:calc(14px + env(safe-area-inset-top)) 14px calc(14px + env(safe-area-inset-bottom));overflow:hidden;}";
   _v7 = (_v8 + _v9);
   var _v10;
-  _v10 = ".shell--menu{display:grid;grid-template-rows:auto minmax(0,1fr) auto;gap:22px;padding-top:calc(24px + env(safe-area-inset-top));padding-bottom:calc(20px + env(safe-area-inset-bottom));}.shell--dungeon,.shell--boosters{display:grid;grid-template-rows:auto minmax(0,1fr);gap:22px;padding-top:calc(24px + env(safe-area-inset-top));padding-bottom:calc(20px + env(safe-area-inset-bottom));}";
+  _v10 = ".shell--menu{display:grid;grid-template-rows:auto minmax(0,1fr) auto;gap:22px;padding-top:calc(24px + env(safe-area-inset-top));padding-bottom:calc(20px + env(safe-area-inset-bottom));}.shell--dungeon,.shell--boosters,.shell--boosters-reveal{display:grid;grid-template-rows:auto minmax(0,1fr);gap:22px;padding-top:calc(24px + env(safe-area-inset-top));padding-bottom:calc(20px + env(safe-area-inset-bottom));}";
   _v6 = (_v7 + _v10);
   var _v11;
   _v11 = ".topbar{display:flex;align-items:center;justify-content:flex-start;min-height:0;}.topbar--menu,.topbar--dungeon,.topbar--boosters{justify-content:space-between;gap:12px;}.topbar__back{display:flex;align-items:center;}.topbar__back>.bc-btn{width:auto;min-width:0;}.resource-bar{margin:0;display:inline-flex;align-items:baseline;gap:8px;color:var(--text-muted);font-size:0.78rem;font-weight:700;letter-spacing:0.06em;text-transform:uppercase;}.resource-bar__value{color:var(--text);font-size:1rem;letter-spacing:0;}.topbar__actions{display:flex;align-items:baseline;justify-content:flex-end;gap:12px;min-width:0;}.topbar__stats{display:flex;align-items:baseline;justify-content:flex-end;gap:14px;min-width:0;}.topbar__slot{display:flex;align-items:center;justify-content:flex-end;min-width:110px;}.topbar__slot .bc-btn{width:auto;min-width:0;}.topbar__slot--placeholder{display:flex;visibility:hidden;pointer-events:none;}.topbar-stat{margin:0;display:inline-flex;align-items:baseline;gap:6px;color:var(--text-muted);font-size:0.72rem;font-weight:700;letter-spacing:0.06em;text-transform:uppercase;white-space:nowrap;}.topbar-stat__value{color:var(--text);font-size:0.92rem;letter-spacing:0;}";
@@ -15997,13 +15997,13 @@ export function $Dungeon$View$css$layout_css() {
   _v13 = ".menu-hero-panel__portrait--select{width:min(100%,320px);max-height:clamp(160px,30vh,220px);}.menu-hero-panel__nav{width:100%;display:grid;grid-template-columns:auto minmax(0,1fr) auto;align-items:center;gap:12px;}.menu-hero-panel__nav-action{display:flex;justify-content:center;}.menu-hero-panel__nav-action>.bc-btn{width:auto;min-width:44px;}.menu-hero-panel__nav-figure{display:grid;place-items:center;min-width:0;}";
   _v3 = (_v4 + _v13);
   var _v14;
-  _v14 = ".boosters-stage{display:grid;min-height:0;place-items:center;padding-block:8px;}.boosters-stage__content{width:100%;min-height:0;display:grid;justify-items:center;align-content:center;gap:18px;}.booster-visual{width:min(100%,280px);aspect-ratio:0.72;display:grid;place-items:center;padding:18px;border-radius:var(--radius-lg);background:#c62626;box-shadow:var(--shadow);}.booster-visual--pack{background:none;box-shadow:none;padding:0;aspect-ratio:auto;}.booster-visual__pack-img{width:100%;height:auto;object-fit:contain;filter:drop-shadow(0 12px 24px rgba(17,17,17,0.16));}.booster-visual--revealed{grid-template-rows:minmax(0,1fr) auto;align-content:stretch;background:linear-gradient(180deg,#fdf8ef 0%,#f3ede3 100%);border:1px solid var(--surface-border);}.booster-visual__detail{width:100%;height:100%;display:grid;grid-template-rows:minmax(0,1fr) auto;justify-items:center;align-items:center;gap:14px;}.booster-visual__image-wrap{width:100%;height:100%;display:grid;place-items:center;}.booster-visual__image{width:auto;height:auto;max-width:100%;max-height:180px;object-fit:contain;filter:drop-shadow(0 12px 24px rgba(17,17,17,0.16));}.booster-visual__stat{margin:0;display:inline-flex;align-items:center;justify-content:center;min-height:34px;padding:6px 12px;border-radius:999px;background:#fff;border:1px solid var(--surface-border);color:var(--text);font-size:0.78rem;font-weight:800;letter-spacing:0.04em;text-transform:uppercase;}.booster-visual__nav{width:100%;display:grid;grid-template-columns:auto 1fr auto;align-items:center;gap:10px;}.booster-visual__nav>.bc-btn{width:auto;min-width:0;}.booster-visual__index{margin:0;color:var(--text-muted);font-size:0.78rem;font-weight:800;letter-spacing:0.08em;text-transform:uppercase;text-align:center;}.boosters-stage__open{display:grid;justify-items:center;}.boosters-stage__buy{width:min(100%,280px);}.boosters-stage__buy>.bc-btn{width:100%;}.boosters-stage__price{margin:0;color:var(--text);font-size:0.92rem;font-weight:800;letter-spacing:0.08em;text-transform:uppercase;}";
+  _v14 = ".boosters-stage{display:grid;min-height:0;place-items:center;padding-block:8px;}.boosters-stage__content{width:100%;min-height:0;display:grid;justify-items:center;align-content:center;gap:18px;}.boosters-stage--reveal{padding-block:0;}.boosters-stage__content--reveal{height:100%;max-height:100%;align-content:center;}.boosters-reveal__top-spacer{min-height:44px;padding-top:4px;}.booster-reveal-panel{width:100%;min-height:0;display:grid;justify-items:center;align-content:center;gap:18px;}.booster-reveal-panel__visual{width:100%;display:grid;justify-items:center;}.booster-reveal-panel__meta,.booster-reveal-panel__footer{width:min(100%,280px);}.booster-reveal-panel__meta{display:grid;gap:10px;}.booster-reveal-panel__footer{display:grid;grid-template-columns:minmax(0,1fr) auto;align-items:center;gap:12px;}.booster-reveal-panel__action{width:min(100%,168px);justify-self:end;}.booster-reveal-panel__action>.bc-btn{width:100%;}.reveal-stats{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));align-items:center;gap:12px;}.reveal-stat,.reveal-position{margin:0;color:var(--text);font-size:0.92rem;font-weight:800;letter-spacing:0.06em;text-transform:uppercase;white-space:nowrap;}.reveal-stat:last-child{text-align:right;}.reveal-stat--empty{display:block;min-height:1px;visibility:hidden;}.reveal-position{color:var(--text-muted);font-size:0.82rem;letter-spacing:0.08em;}.booster-visual{width:min(100%,280px);aspect-ratio:0.72;display:grid;place-items:center;padding:18px;border-radius:var(--radius-lg);background:#c62626;box-shadow:var(--shadow);}.booster-visual--pack{background:none;box-shadow:none;padding:0;aspect-ratio:auto;}.booster-visual__pack-img{width:100%;height:auto;object-fit:contain;filter:drop-shadow(0 12px 24px rgba(17,17,17,0.16));}.booster-visual--revealed{grid-template-rows:minmax(0,1fr) auto;align-content:stretch;background:linear-gradient(180deg,#fdf8ef 0%,#f3ede3 100%);border:1px solid var(--surface-border);max-height:clamp(320px,52vh,400px);}.booster-visual__detail{width:100%;height:100%;display:grid;grid-template-rows:minmax(0,1fr) auto;justify-items:center;align-items:center;gap:14px;}.booster-visual__image-wrap{width:100%;height:100%;display:grid;place-items:center;}.booster-visual__image{width:auto;height:auto;max-width:100%;max-height:180px;object-fit:contain;filter:drop-shadow(0 12px 24px rgba(17,17,17,0.16));}.booster-visual__stat{margin:0;display:inline-flex;align-items:center;justify-content:center;min-height:34px;padding:6px 12px;border-radius:999px;background:#fff;border:1px solid var(--surface-border);color:var(--text);font-size:0.78rem;font-weight:800;letter-spacing:0.04em;text-transform:uppercase;}.booster-visual__nav{width:100%;display:grid;grid-template-columns:auto 1fr auto;align-items:center;gap:10px;}.booster-visual__nav>.bc-btn{width:auto;min-width:0;}.booster-visual__index{margin:0;color:var(--text-muted);font-size:0.78rem;font-weight:800;letter-spacing:0.08em;text-transform:uppercase;text-align:center;}.boosters-stage__open{display:grid;justify-items:center;}.boosters-stage__buy{width:min(100%,280px);}.boosters-stage__buy>.bc-btn{width:100%;}.boosters-stage__price{margin:0;color:var(--text);font-size:0.92rem;font-weight:800;letter-spacing:0.08em;text-transform:uppercase;}";
   _v2 = (_v3 + _v14);
   var _v15;
   _v15 = ".board-shell{position:relative;display:grid;grid-template-rows:minmax(0,1fr) auto;justify-items:center;align-items:center;align-content:stretch;gap:12px;min-height:0;padding-block:8px;}.board-shell--over .board{transform:scale(0.985);filter:blur(1px);}.board{position:relative;display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:10px;width:min(100%,460px);touch-action:none;transition:transform 140ms ease,filter 140ms ease;}.ultimate-action{width:min(100%,460px);align-self:end;}.ultimate-action>.bc-btn{width:100%;letter-spacing:0.08em;text-transform:uppercase;}.game-over-modal{position:absolute;inset:0;display:grid;place-items:center;padding:16px;opacity:0;pointer-events:none;background:rgba(17,17,17,0);transition:opacity 140ms ease,background-color 140ms ease;}.game-over-modal--visible{opacity:1;pointer-events:auto;background:rgba(17,17,17,0.32);}.game-over-modal>.bc-card{width:min(100%,280px);}.game-over-card{display:grid;gap:12px;justify-items:center;text-align:center;}.game-over-card__action{width:100%;}.game-over-card__action>.bc-btn{width:100%;}.game-over-card__actions{width:100%;display:grid;justify-items:center;gap:12px;padding-top:4px;}.game-over-card__primary,.game-over-card__secondary{width:min(100%,280px);justify-self:center;}.game-over-card__primary>.bc-btn,.game-over-card__secondary>.bc-btn{width:100%;}.game-over-card__eyebrow{margin:0;color:var(--danger);font-size:0.74rem;font-weight:700;letter-spacing:0.06em;text-transform:uppercase;}.game-over-card__title{margin:0;font-size:1.4rem;line-height:1;}.game-over-card__body{margin:0;color:var(--text-muted);font-size:0.92rem;line-height:1.35;}";
   _v1 = (_v2 + _v15);
   var _v16;
-  _v16 = "@media (max-width:800px){.shell{padding-inline:12px;}.shell--menu,.shell--dungeon,.shell--boosters{gap:16px;padding-top:calc(20px + env(safe-area-inset-top));padding-bottom:calc(18px + env(safe-area-inset-bottom));}.topbar--menu,.topbar--dungeon,.topbar--boosters{gap:10px;}.topbar__actions,.topbar__stats{gap:10px;}.topbar__slot{min-width:88px;}.topbar-stat{font-size:0.64rem;}.topbar-stat__value{font-size:0.82rem;}.menu-hero-panel{gap:12px;}.menu-hero-panel__name{font-size:1.08rem;}.menu-hero-panel__portrait{width:min(100%,190px);min-height:0;max-height:clamp(140px,24vh,190px);padding-bottom:4px;}.menu-hero-panel__portrait--select{width:min(100%,280px);max-height:clamp(140px,24vh,190px);}.menu-hero-panel__stats{font-size:0.8rem;white-space:normal;}.menu-upgrade-row{grid-template-columns:1fr;justify-items:center;gap:10px;}.menu-upgrade-row__meta{text-align:center;}.menu-secondary-action,.menu-start-action,.boosters-stage__buy{width:min(100%,260px);}.booster-visual{width:min(100%,248px);padding:14px;}.booster-visual__image{max-height:156px;}.booster-visual__nav{gap:8px;}.board{gap:8px;width:min(100%,400px);}.ultimate-action{width:min(100%,400px);}.game-over-modal>.bc-card{width:min(100%,240px);}}";
+  _v16 = "@media (max-width:800px){.shell{padding-inline:12px;}.shell--menu,.shell--dungeon,.shell--boosters,.shell--boosters-reveal{gap:16px;padding-top:calc(20px + env(safe-area-inset-top));padding-bottom:calc(18px + env(safe-area-inset-bottom));}.topbar--menu,.topbar--dungeon,.topbar--boosters{gap:10px;}.topbar__actions,.topbar__stats{gap:10px;}.topbar__slot{min-width:88px;}.topbar-stat{font-size:0.64rem;}.topbar-stat__value{font-size:0.82rem;}.menu-hero-panel{gap:12px;}.menu-hero-panel__name{font-size:1.08rem;}.menu-hero-panel__portrait{width:min(100%,190px);min-height:0;max-height:clamp(140px,24vh,190px);padding-bottom:4px;}.menu-hero-panel__portrait--select{width:min(100%,280px);max-height:clamp(140px,24vh,190px);}.menu-hero-panel__stats{font-size:0.8rem;white-space:normal;}.menu-upgrade-row{grid-template-columns:1fr;justify-items:center;gap:10px;}.menu-upgrade-row__meta{text-align:center;}.menu-secondary-action,.menu-start-action,.boosters-stage__buy{width:min(100%,260px);}.boosters-reveal__top-spacer{min-height:40px;}.booster-reveal-panel{gap:14px;}.booster-reveal-panel__meta,.booster-reveal-panel__footer{width:min(100%,248px);}.booster-reveal-panel__action{width:min(100%,156px);}.reveal-stats{gap:10px;}.reveal-stat,.reveal-position{font-size:0.82rem;}.booster-visual{width:min(100%,248px);padding:14px;}.booster-visual--revealed{max-height:clamp(280px,48vh,360px);}.booster-visual__image{max-height:156px;}.booster-visual__nav{gap:8px;}.board{gap:8px;width:min(100%,400px);}.ultimate-action{width:min(100%,400px);}.game-over-modal>.bc-card{width:min(100%,240px);}}";
   _r0 = (_v1 + _v16);
   return _r0;
 }
@@ -18912,6 +18912,109 @@ export function $Dungeon$View$selectors$_booster_reward_position_text(x, x$1) {
 
 export const Dungeon$View$selectors$_booster_reward_position_text = () => ((a0) => ((a1) => ($Dungeon$View$selectors$_booster_reward_position_text(a0, a1))));
 
+export function $Dungeon$View$selectors$booster_is_last_card(reward, reveal_index$1) {
+  var _r0;
+  var _v1;
+  var _v2;
+  _v2 = reward;
+  _v1 = $Dungeon$Boosters$reward_nav$reward_count(_v2);
+  var _v3;
+  _v3 = reveal_index$1;
+  _r0 = $Dungeon$View$selectors$_booster_is_last_card(_v1, _v3);
+  return _r0;
+}
+
+export const Dungeon$View$selectors$booster_is_last_card = () => ((a0) => ((a1) => ($Dungeon$View$selectors$booster_is_last_card(a0, a1))));
+
+export function $Dungeon$View$selectors$_booster_is_last_card(x, x$1) {
+  var _r0;
+  if (((x) >>> 0) === 0) {
+    var reveal_index = x$1;
+    _r0 = 1;
+  } else {
+    var _ = x;
+    var reveal_index$1 = x$1;
+    var _v1;
+    var _v2;
+    _v2 = reveal_index$1;
+    var _v3;
+    _v3 = 1;
+    _v1 = (((_v2) + (_v3)) >>> 0);
+    var _v4;
+    _v4 = _;
+    _r0 = (_v1) === (_v4) ? 1 : 0;
+  }
+  return _r0;
+}
+
+export const Dungeon$View$selectors$_booster_is_last_card = () => ((a0) => ((a1) => ($Dungeon$View$selectors$_booster_is_last_card(a0, a1))));
+
+export function $Dungeon$View$selectors$_full_deck(meta_state) {
+  var _r0;
+  var _v1;
+  _v1 = Dungeon$config();
+  var _v2;
+  var _v3;
+  _v3 = meta_state;
+  _v2 = $Dungeon$profile_helpers$meta_bonus_deck(_v3);
+  _r0 = $Dungeon$View$selectors$_full_deck_from_config(_v1, _v2);
+  return _r0;
+}
+
+export const Dungeon$View$selectors$_full_deck = () => ((a0) => ($Dungeon$View$selectors$_full_deck(a0)));
+
+export function $Dungeon$View$selectors$_full_deck_from_config(x, x$1) {
+  var _r0;
+  switch (x.$) {
+    case "config": {
+      var _m1 = x.heroes;
+      var _m2 = x.monsters;
+      var _m3 = x.swords;
+      var _m4 = x.potions;
+      var _m5 = x.deck;
+      var _m6 = x.booster_packs;
+      var _m7 = x.starting_dungeon_level;
+      var heroes = _m1;
+      var monsters$1 = _m2;
+      var swords$2 = _m3;
+      var potions$3 = _m4;
+      var deck$4 = _m5;
+      var booster_packs$5 = _m6;
+      var starting_dungeon_level$6 = _m7;
+      var bonus$7 = x$1;
+      var _v8;
+      _v8 = deck$4;
+      var _v9;
+      _v9 = bonus$7;
+      _r0 = $Dungeon$Deck$counts_pick$merge_deck_entries(_v8, _v9);
+      break;
+    }
+    default: {
+      throw new Error("EFQ applied");
+      break;
+    }
+  }
+  return _r0;
+}
+
+export const Dungeon$View$selectors$_full_deck_from_config = () => ((a0) => ((a1) => ($Dungeon$View$selectors$_full_deck_from_config(a0, a1))));
+
+export function $Dungeon$View$selectors$card_copies(meta_state, card$1) {
+  var _r0;
+  var _v1;
+  var _v2;
+  var _v3;
+  _v3 = meta_state;
+  _v2 = $Dungeon$View$selectors$_full_deck(_v3);
+  var _v4;
+  _v4 = card$1;
+  _v1 = $Dungeon$Deck$counts_pick$deck_count_for_card(_v2, _v4);
+  _r0 = $U32$show(_v1);
+  return _r0;
+}
+
+export const Dungeon$View$selectors$card_copies = () => ((a0) => ((a1) => ($Dungeon$View$selectors$card_copies(a0, a1))));
+
 export function $Dungeon$Boosters$packs$active_pack(x) {
   var _r0;
   switch (x.$) {
@@ -19506,7 +19609,47 @@ export const Midum$Button$Override = null;
 
 export const Midum$Button$config$Config = null;
 
-export function $Dungeon$View$boosters$_render_boosters(meta_state, reward$1, reveal_index$2) {
+export function $Dungeon$View$boosters$_render_boosters(meta_state, x$1, x$2) {
+  var _r0;
+  switch (x$1.$) {
+    case "no_pack_reward": {
+      var reveal_index$1 = x$2;
+      var _v1;
+      _v1 = meta_state;
+      _r0 = $Dungeon$View$boosters$_render_boosters_idle(_v1);
+      break;
+    }
+    default: {
+      switch (x$1.$) {
+        case "pack_reward": {
+          var _m2 = x$1.cards;
+          var cards$1 = _m2;
+          var reveal_index$2 = x$2;
+          var _v3;
+          _v3 = meta_state;
+          var _v4;
+          var _v5;
+          _v5 = cards$1;
+          _v4 = ({$: "pack_reward", cards: _v5});
+          var _v6;
+          _v6 = reveal_index$2;
+          _r0 = $Dungeon$View$boosters$_render_boosters_reveal(_v3, _v4, _v6);
+          break;
+        }
+        default: {
+          throw new Error("EFQ applied");
+          break;
+        }
+      }
+      break;
+    }
+  }
+  return _r0;
+}
+
+export const Dungeon$View$boosters$_render_boosters = () => ((a0) => ((a1) => ((a2) => ($Dungeon$View$boosters$_render_boosters(a0, a1, a2)))));
+
+export function $Dungeon$View$boosters$_render_boosters_idle(meta_state) {
   var _r0;
   var _v1;
   _v1 = "section";
@@ -19556,51 +19699,615 @@ export function $Dungeon$View$boosters$_render_boosters(meta_state, reward$1, re
   var _v26;
   var _v27;
   var _v28;
-  _v28 = reward$1;
+  _v28 = "div";
   var _v29;
-  _v29 = reveal_index$2;
-  _v27 = $Dungeon$View$boosters$_booster_visual(_v28, _v29);
   var _v30;
-  _v30 = ({$: "nil"});
-  _v26 = ({$: "cons", head: _v27, tail: _v30});
-  _v19 = ({$: "node", tag: _v20, attrs: _v21, kids: _v26});
   var _v31;
-  _v31 = ({$: "nil"});
-  _v18 = ({$: "cons", head: _v19, tail: _v31});
-  _v11 = ({$: "node", tag: _v12, attrs: _v13, kids: _v18});
+  _v31 = "class";
   var _v32;
+  _v32 = "booster-visual booster-visual--pack";
+  _v30 = ({$: "attr", nam: _v31, val: _v32});
   var _v33;
+  _v33 = ({$: "nil"});
+  _v29 = ({$: "cons", head: _v30, tail: _v33});
   var _v34;
-  _v34 = "section";
   var _v35;
   var _v36;
+  _v36 = "img";
   var _v37;
-  _v37 = "class";
   var _v38;
-  _v38 = "boosters-actions";
-  _v36 = ({$: "attr", nam: _v37, val: _v38});
   var _v39;
-  _v39 = ({$: "nil"});
-  _v35 = ({$: "cons", head: _v36, tail: _v39});
+  _v39 = "class";
   var _v40;
+  _v40 = "booster-visual__pack-img";
+  _v38 = ({$: "attr", nam: _v39, val: _v40});
   var _v41;
   var _v42;
-  _v42 = meta_state;
-  _v41 = $Dungeon$View$boosters$_booster_actions(_v42);
   var _v43;
-  _v43 = ({$: "nil"});
-  _v40 = ({$: "cons", head: _v41, tail: _v43});
-  _v33 = ({$: "node", tag: _v34, attrs: _v35, kids: _v40});
+  _v43 = "src";
   var _v44;
-  _v44 = ({$: "nil"});
-  _v32 = ({$: "cons", head: _v33, tail: _v44});
-  _v10 = ({$: "cons", head: _v11, tail: _v32});
+  _v44 = "assets/booster-pack.png";
+  _v42 = ({$: "attr", nam: _v43, val: _v44});
+  var _v45;
+  var _v46;
+  var _v47;
+  _v47 = "alt";
+  var _v48;
+  _v48 = "Booster Pack";
+  _v46 = ({$: "attr", nam: _v47, val: _v48});
+  var _v49;
+  _v49 = ({$: "nil"});
+  _v45 = ({$: "cons", head: _v46, tail: _v49});
+  _v41 = ({$: "cons", head: _v42, tail: _v45});
+  _v37 = ({$: "cons", head: _v38, tail: _v41});
+  var _v50;
+  _v50 = ({$: "nil"});
+  _v35 = ({$: "node", tag: _v36, attrs: _v37, kids: _v50});
+  var _v51;
+  _v51 = ({$: "nil"});
+  _v34 = ({$: "cons", head: _v35, tail: _v51});
+  _v27 = ({$: "node", tag: _v28, attrs: _v29, kids: _v34});
+  var _v52;
+  _v52 = ({$: "nil"});
+  _v26 = ({$: "cons", head: _v27, tail: _v52});
+  _v19 = ({$: "node", tag: _v20, attrs: _v21, kids: _v26});
+  var _v53;
+  _v53 = ({$: "nil"});
+  _v18 = ({$: "cons", head: _v19, tail: _v53});
+  _v11 = ({$: "node", tag: _v12, attrs: _v13, kids: _v18});
+  var _v54;
+  var _v55;
+  var _v56;
+  _v56 = "section";
+  var _v57;
+  var _v58;
+  var _v59;
+  _v59 = "class";
+  var _v60;
+  _v60 = "boosters-actions";
+  _v58 = ({$: "attr", nam: _v59, val: _v60});
+  var _v61;
+  _v61 = ({$: "nil"});
+  _v57 = ({$: "cons", head: _v58, tail: _v61});
+  var _v62;
+  var _v63;
+  var _v64;
+  _v64 = meta_state;
+  _v63 = $Dungeon$View$boosters$_booster_actions(_v64);
+  var _v65;
+  _v65 = ({$: "nil"});
+  _v62 = ({$: "cons", head: _v63, tail: _v65});
+  _v55 = ({$: "node", tag: _v56, attrs: _v57, kids: _v62});
+  var _v66;
+  _v66 = ({$: "nil"});
+  _v54 = ({$: "cons", head: _v55, tail: _v66});
+  _v10 = ({$: "cons", head: _v11, tail: _v54});
   _v7 = ({$: "cons", head: _v8, tail: _v10});
   _r0 = ({$: "node", tag: _v1, attrs: _v2, kids: _v7});
   return _r0;
 }
 
-export const Dungeon$View$boosters$_render_boosters = () => ((a0) => ((a1) => ((a2) => ($Dungeon$View$boosters$_render_boosters(a0, a1, a2)))));
+export const Dungeon$View$boosters$_render_boosters_idle = () => ((a0) => ($Dungeon$View$boosters$_render_boosters_idle(a0)));
+
+export function $Dungeon$View$boosters$_render_boosters_reveal(meta_state, reward$1, reveal_index$2) {
+  var _r0;
+  var card$3;
+  var _v1;
+  _v1 = reward$1;
+  var _v2;
+  _v2 = reveal_index$2;
+  card$3 = $Dungeon$View$boosters$_reward_card_at(_v1, _v2);
+  var _v3;
+  _v3 = "section";
+  var _v4;
+  var _v5;
+  var _v6;
+  _v6 = "class";
+  var _v7;
+  _v7 = "shell shell--boosters-reveal";
+  _v5 = ({$: "attr", nam: _v6, val: _v7});
+  var _v8;
+  _v8 = ({$: "nil"});
+  _v4 = ({$: "cons", head: _v5, tail: _v8});
+  var _v9;
+  var _v10;
+  var _v11;
+  _v11 = "div";
+  var _v12;
+  var _v13;
+  var _v14;
+  _v14 = "class";
+  var _v15;
+  _v15 = "boosters-reveal__top-spacer";
+  _v13 = ({$: "attr", nam: _v14, val: _v15});
+  var _v16;
+  _v16 = ({$: "nil"});
+  _v12 = ({$: "cons", head: _v13, tail: _v16});
+  var _v17;
+  _v17 = ({$: "nil"});
+  _v10 = ({$: "node", tag: _v11, attrs: _v12, kids: _v17});
+  var _v18;
+  var _v19;
+  var _v20;
+  _v20 = "section";
+  var _v21;
+  var _v22;
+  var _v23;
+  _v23 = "class";
+  var _v24;
+  _v24 = "boosters-stage boosters-stage--reveal";
+  _v22 = ({$: "attr", nam: _v23, val: _v24});
+  var _v25;
+  _v25 = ({$: "nil"});
+  _v21 = ({$: "cons", head: _v22, tail: _v25});
+  var _v26;
+  var _v27;
+  var _v28;
+  _v28 = "div";
+  var _v29;
+  var _v30;
+  var _v31;
+  _v31 = "class";
+  var _v32;
+  _v32 = "boosters-stage__content boosters-stage__content--reveal";
+  _v30 = ({$: "attr", nam: _v31, val: _v32});
+  var _v33;
+  _v33 = ({$: "nil"});
+  _v29 = ({$: "cons", head: _v30, tail: _v33});
+  var _v34;
+  var _v35;
+  var _v36;
+  _v36 = "div";
+  var _v37;
+  var _v38;
+  var _v39;
+  _v39 = "class";
+  var _v40;
+  _v40 = "booster-reveal-panel";
+  _v38 = ({$: "attr", nam: _v39, val: _v40});
+  var _v41;
+  _v41 = ({$: "nil"});
+  _v37 = ({$: "cons", head: _v38, tail: _v41});
+  var _v42;
+  var _v43;
+  var _v44;
+  _v44 = "div";
+  var _v45;
+  var _v46;
+  var _v47;
+  _v47 = "class";
+  var _v48;
+  _v48 = "booster-reveal-panel__visual";
+  _v46 = ({$: "attr", nam: _v47, val: _v48});
+  var _v49;
+  _v49 = ({$: "nil"});
+  _v45 = ({$: "cons", head: _v46, tail: _v49});
+  var _v50;
+  var _v51;
+  var _v52;
+  _v52 = card$3;
+  _v51 = $Dungeon$View$boosters$_reveal_card(_v52);
+  var _v53;
+  _v53 = ({$: "nil"});
+  _v50 = ({$: "cons", head: _v51, tail: _v53});
+  _v43 = ({$: "node", tag: _v44, attrs: _v45, kids: _v50});
+  var _v54;
+  var _v55;
+  var _v56;
+  _v56 = "div";
+  var _v57;
+  var _v58;
+  var _v59;
+  _v59 = "class";
+  var _v60;
+  _v60 = "booster-reveal-panel__meta";
+  _v58 = ({$: "attr", nam: _v59, val: _v60});
+  var _v61;
+  _v61 = ({$: "nil"});
+  _v57 = ({$: "cons", head: _v58, tail: _v61});
+  var _v62;
+  var _v63;
+  var _v64;
+  _v64 = "div";
+  var _v65;
+  var _v66;
+  var _v67;
+  _v67 = "class";
+  var _v68;
+  _v68 = "reveal-stats";
+  _v66 = ({$: "attr", nam: _v67, val: _v68});
+  var _v69;
+  _v69 = ({$: "nil"});
+  _v65 = ({$: "cons", head: _v66, tail: _v69});
+  var _v70;
+  var _v71;
+  var _v72;
+  _v72 = card$3;
+  _v71 = $Dungeon$View$boosters$_reveal_stat_left(_v72);
+  var _v73;
+  var _v74;
+  var _v75;
+  _v75 = "p";
+  var _v76;
+  var _v77;
+  var _v78;
+  _v78 = "class";
+  var _v79;
+  _v79 = "reveal-stat";
+  _v77 = ({$: "attr", nam: _v78, val: _v79});
+  var _v80;
+  _v80 = ({$: "nil"});
+  _v76 = ({$: "cons", head: _v77, tail: _v80});
+  var _v81;
+  var _v82;
+  var _v83;
+  var _v84;
+  _v84 = "COPIES: ";
+  var _v85;
+  var _v86;
+  _v86 = meta_state;
+  var _v87;
+  _v87 = card$3;
+  _v85 = $Dungeon$View$selectors$card_copies(_v86, _v87);
+  _v83 = (_v84 + _v85);
+  _v82 = ({$: "text", value: _v83});
+  var _v88;
+  _v88 = ({$: "nil"});
+  _v81 = ({$: "cons", head: _v82, tail: _v88});
+  _v74 = ({$: "node", tag: _v75, attrs: _v76, kids: _v81});
+  var _v89;
+  _v89 = ({$: "nil"});
+  _v73 = ({$: "cons", head: _v74, tail: _v89});
+  _v70 = ({$: "cons", head: _v71, tail: _v73});
+  _v63 = ({$: "node", tag: _v64, attrs: _v65, kids: _v70});
+  var _v90;
+  _v90 = ({$: "nil"});
+  _v62 = ({$: "cons", head: _v63, tail: _v90});
+  _v55 = ({$: "node", tag: _v56, attrs: _v57, kids: _v62});
+  var _v91;
+  var _v92;
+  var _v93;
+  _v93 = "div";
+  var _v94;
+  var _v95;
+  var _v96;
+  _v96 = "class";
+  var _v97;
+  _v97 = "booster-reveal-panel__footer";
+  _v95 = ({$: "attr", nam: _v96, val: _v97});
+  var _v98;
+  _v98 = ({$: "nil"});
+  _v94 = ({$: "cons", head: _v95, tail: _v98});
+  var _v99;
+  var _v100;
+  var _v101;
+  _v101 = "p";
+  var _v102;
+  var _v103;
+  var _v104;
+  _v104 = "class";
+  var _v105;
+  _v105 = "reveal-position";
+  _v103 = ({$: "attr", nam: _v104, val: _v105});
+  var _v106;
+  _v106 = ({$: "nil"});
+  _v102 = ({$: "cons", head: _v103, tail: _v106});
+  var _v107;
+  var _v108;
+  var _v109;
+  var _v110;
+  _v110 = reward$1;
+  var _v111;
+  _v111 = reveal_index$2;
+  _v109 = $Dungeon$View$selectors$booster_reward_position_text(_v110, _v111);
+  _v108 = ({$: "text", value: _v109});
+  var _v112;
+  _v112 = ({$: "nil"});
+  _v107 = ({$: "cons", head: _v108, tail: _v112});
+  _v100 = ({$: "node", tag: _v101, attrs: _v102, kids: _v107});
+  var _v113;
+  var _v114;
+  var _v115;
+  _v115 = "div";
+  var _v116;
+  var _v117;
+  var _v118;
+  _v118 = "class";
+  var _v119;
+  _v119 = "booster-reveal-panel__action";
+  _v117 = ({$: "attr", nam: _v118, val: _v119});
+  var _v120;
+  _v120 = ({$: "nil"});
+  _v116 = ({$: "cons", head: _v117, tail: _v120});
+  var _v121;
+  var _v122;
+  var _v123;
+  _v123 = reward$1;
+  var _v124;
+  _v124 = reveal_index$2;
+  _v122 = $Dungeon$View$boosters$_reveal_action_button(_v123, _v124);
+  var _v125;
+  _v125 = ({$: "nil"});
+  _v121 = ({$: "cons", head: _v122, tail: _v125});
+  _v114 = ({$: "node", tag: _v115, attrs: _v116, kids: _v121});
+  var _v126;
+  _v126 = ({$: "nil"});
+  _v113 = ({$: "cons", head: _v114, tail: _v126});
+  _v99 = ({$: "cons", head: _v100, tail: _v113});
+  _v92 = ({$: "node", tag: _v93, attrs: _v94, kids: _v99});
+  var _v127;
+  _v127 = ({$: "nil"});
+  _v91 = ({$: "cons", head: _v92, tail: _v127});
+  _v54 = ({$: "cons", head: _v55, tail: _v91});
+  _v42 = ({$: "cons", head: _v43, tail: _v54});
+  _v35 = ({$: "node", tag: _v36, attrs: _v37, kids: _v42});
+  var _v128;
+  _v128 = ({$: "nil"});
+  _v34 = ({$: "cons", head: _v35, tail: _v128});
+  _v27 = ({$: "node", tag: _v28, attrs: _v29, kids: _v34});
+  var _v129;
+  _v129 = ({$: "nil"});
+  _v26 = ({$: "cons", head: _v27, tail: _v129});
+  _v19 = ({$: "node", tag: _v20, attrs: _v21, kids: _v26});
+  var _v130;
+  _v130 = ({$: "nil"});
+  _v18 = ({$: "cons", head: _v19, tail: _v130});
+  _v9 = ({$: "cons", head: _v10, tail: _v18});
+  _r0 = ({$: "node", tag: _v3, attrs: _v4, kids: _v9});
+  return _r0;
+}
+
+export const Dungeon$View$boosters$_render_boosters_reveal = () => ((a0) => ((a1) => ((a2) => ($Dungeon$View$boosters$_render_boosters_reveal(a0, a1, a2)))));
+
+export function $Dungeon$View$boosters$_reveal_stat_left(x) {
+  var _r0;
+  switch (x.$) {
+    case "hero_card": {
+      var _v1;
+      _v1 = "span";
+      var _v2;
+      var _v3;
+      var _v4;
+      _v4 = "class";
+      var _v5;
+      _v5 = "reveal-stat--empty";
+      _v3 = ({$: "attr", nam: _v4, val: _v5});
+      var _v6;
+      _v6 = ({$: "nil"});
+      _v2 = ({$: "cons", head: _v3, tail: _v6});
+      var _v7;
+      _v7 = ({$: "nil"});
+      _r0 = ({$: "node", tag: _v1, attrs: _v2, kids: _v7});
+      break;
+    }
+    default: {
+      var _ = x;
+      var _v8;
+      _v8 = "p";
+      var _v9;
+      var _v10;
+      var _v11;
+      _v11 = "class";
+      var _v12;
+      _v12 = "reveal-stat";
+      _v10 = ({$: "attr", nam: _v11, val: _v12});
+      var _v13;
+      _v13 = ({$: "nil"});
+      _v9 = ({$: "cons", head: _v10, tail: _v13});
+      var _v14;
+      var _v15;
+      var _v16;
+      var _v17;
+      _v17 = _;
+      _v16 = $Dungeon$View$assets_and_labels$_card_stat_range(_v17);
+      _v15 = ({$: "text", value: _v16});
+      var _v18;
+      _v18 = ({$: "nil"});
+      _v14 = ({$: "cons", head: _v15, tail: _v18});
+      _r0 = ({$: "node", tag: _v8, attrs: _v9, kids: _v14});
+      break;
+    }
+  }
+  return _r0;
+}
+
+export const Dungeon$View$boosters$_reveal_stat_left = () => ((a0) => ($Dungeon$View$boosters$_reveal_stat_left(a0)));
+
+export function $Dungeon$View$boosters$_reveal_card(card) {
+  var _r0;
+  var _v1;
+  _v1 = "div";
+  var _v2;
+  var _v3;
+  var _v4;
+  _v4 = "class";
+  var _v5;
+  _v5 = "booster-visual booster-visual--revealed";
+  _v3 = ({$: "attr", nam: _v4, val: _v5});
+  var _v6;
+  _v6 = ({$: "nil"});
+  _v2 = ({$: "cons", head: _v3, tail: _v6});
+  var _v7;
+  var _v8;
+  var _v9;
+  _v9 = "div";
+  var _v10;
+  var _v11;
+  var _v12;
+  _v12 = "class";
+  var _v13;
+  _v13 = "booster-visual__detail";
+  _v11 = ({$: "attr", nam: _v12, val: _v13});
+  var _v14;
+  _v14 = ({$: "nil"});
+  _v10 = ({$: "cons", head: _v11, tail: _v14});
+  var _v15;
+  var _v16;
+  var _v17;
+  _v17 = "div";
+  var _v18;
+  var _v19;
+  var _v20;
+  _v20 = "class";
+  var _v21;
+  _v21 = "booster-visual__image-wrap";
+  _v19 = ({$: "attr", nam: _v20, val: _v21});
+  var _v22;
+  _v22 = ({$: "nil"});
+  _v18 = ({$: "cons", head: _v19, tail: _v22});
+  var _v23;
+  var _v24;
+  var _v25;
+  _v25 = "img";
+  var _v26;
+  var _v27;
+  var _v28;
+  _v28 = "class";
+  var _v29;
+  _v29 = "booster-visual__image";
+  _v27 = ({$: "attr", nam: _v28, val: _v29});
+  var _v30;
+  var _v31;
+  var _v32;
+  _v32 = "src";
+  var _v33;
+  var _v34;
+  _v34 = card;
+  _v33 = $Dungeon$View$assets_and_labels$_card_sprite(_v34);
+  _v31 = ({$: "attr", nam: _v32, val: _v33});
+  var _v35;
+  var _v36;
+  var _v37;
+  _v37 = "alt";
+  var _v38;
+  var _v39;
+  _v39 = card;
+  _v38 = $Dungeon$View$assets_and_labels$_card_name(_v39);
+  _v36 = ({$: "attr", nam: _v37, val: _v38});
+  var _v40;
+  _v40 = ({$: "nil"});
+  _v35 = ({$: "cons", head: _v36, tail: _v40});
+  _v30 = ({$: "cons", head: _v31, tail: _v35});
+  _v26 = ({$: "cons", head: _v27, tail: _v30});
+  var _v41;
+  _v41 = ({$: "nil"});
+  _v24 = ({$: "node", tag: _v25, attrs: _v26, kids: _v41});
+  var _v42;
+  _v42 = ({$: "nil"});
+  _v23 = ({$: "cons", head: _v24, tail: _v42});
+  _v16 = ({$: "node", tag: _v17, attrs: _v18, kids: _v23});
+  var _v43;
+  _v43 = ({$: "nil"});
+  _v15 = ({$: "cons", head: _v16, tail: _v43});
+  _v8 = ({$: "node", tag: _v9, attrs: _v10, kids: _v15});
+  var _v44;
+  _v44 = ({$: "nil"});
+  _v7 = ({$: "cons", head: _v8, tail: _v44});
+  _r0 = ({$: "node", tag: _v1, attrs: _v2, kids: _v7});
+  return _r0;
+}
+
+export const Dungeon$View$boosters$_reveal_card = () => ((a0) => ($Dungeon$View$boosters$_reveal_card(a0)));
+
+export function $Dungeon$View$boosters$_reveal_action_button(reward, reveal_index$1) {
+  var _r0;
+  var _v1;
+  _v1 = reward;
+  var _v2;
+  _v2 = reveal_index$1;
+  var _v3;
+  var _v4;
+  _v4 = reward;
+  var _v5;
+  _v5 = reveal_index$1;
+  _v3 = $Dungeon$View$selectors$booster_is_last_card(_v4, _v5);
+  _r0 = $cm_22(_v1, _v2, _v3);
+  return _r0;
+}
+
+export const Dungeon$View$boosters$_reveal_action_button = () => ((a0) => ((a1) => ($Dungeon$View$boosters$_reveal_action_button(a0, a1))));
+
+export function $Dungeon$View$boosters$_reward_card_at(x, x$1) {
+  var _r0;
+  switch (x.$) {
+    case "no_pack_reward": {
+      var idx = x$1;
+      _r0 = ({$: "hero_card"});
+      break;
+    }
+    default: {
+      switch (x.$) {
+        case "pack_reward": {
+          var _m1 = x.cards;
+          var cards = _m1;
+          var idx$1 = x$1;
+          var _v2;
+          _v2 = cards;
+          var _v3;
+          _v3 = idx$1;
+          _r0 = $Dungeon$View$boosters$_card_at(_v2, _v3);
+          break;
+        }
+        default: {
+          throw new Error("EFQ applied");
+          break;
+        }
+      }
+      break;
+    }
+  }
+  return _r0;
+}
+
+export const Dungeon$View$boosters$_reward_card_at = () => ((a0) => ((a1) => ($Dungeon$View$boosters$_reward_card_at(a0, a1))));
+
+export function $Dungeon$View$boosters$_card_at(x, x$1) {
+  while (true) {
+    var _r0;
+    switch (x.$) {
+      case "nil": {
+        var idx = x$1;
+        _r0 = ({$: "hero_card"});
+        break;
+      }
+      default: {
+        switch (x.$) {
+          case "cons": {
+            var _m1 = x.head;
+            var _m2 = x.tail;
+            var card = _m1;
+            var rest$1 = _m2;
+            if (((x$1) >>> 0) === 0) {
+              _r0 = card;
+            } else {
+              var _$2 = x$1;
+              var _v3;
+              _v3 = rest$1;
+              var _v4;
+              var _v5;
+              _v5 = _$2;
+              var _v6;
+              _v6 = 1;
+              _v4 = (((_v5) - (_v6)) >>> 0);
+              x = _v3;
+              x$1 = _v4;
+              continue;
+            }
+            break;
+          }
+          default: {
+            throw new Error("EFQ applied");
+            break;
+          }
+        }
+        break;
+      }
+    }
+    return _r0;
+  }
+}
+
+export const Dungeon$View$boosters$_card_at = () => ((a0) => ((a1) => ($Dungeon$View$boosters$_card_at(a0, a1))));
 
 export function $Dungeon$View$boosters$_boosters_header(meta_state) {
   var _r0;
@@ -19754,356 +20461,6 @@ export function $Dungeon$View$boosters$_topbar_stat(label, value$1) {
 
 export const Dungeon$View$boosters$_topbar_stat = () => ((a0) => ((a1) => ($Dungeon$View$boosters$_topbar_stat(a0, a1))));
 
-export function $Dungeon$View$boosters$_booster_visual(x, x$1) {
-  var _r0;
-  switch (x.$) {
-    case "no_pack_reward": {
-      var reveal_index = x$1;
-      var _v1;
-      _v1 = "div";
-      var _v2;
-      var _v3;
-      var _v4;
-      _v4 = "class";
-      var _v5;
-      _v5 = "booster-visual booster-visual--pack";
-      _v3 = ({$: "attr", nam: _v4, val: _v5});
-      var _v6;
-      _v6 = ({$: "nil"});
-      _v2 = ({$: "cons", head: _v3, tail: _v6});
-      var _v7;
-      var _v8;
-      var _v9;
-      _v9 = "img";
-      var _v10;
-      var _v11;
-      var _v12;
-      _v12 = "class";
-      var _v13;
-      _v13 = "booster-visual__pack-img";
-      _v11 = ({$: "attr", nam: _v12, val: _v13});
-      var _v14;
-      var _v15;
-      var _v16;
-      _v16 = "src";
-      var _v17;
-      _v17 = "assets/booster-pack.png";
-      _v15 = ({$: "attr", nam: _v16, val: _v17});
-      var _v18;
-      var _v19;
-      var _v20;
-      _v20 = "alt";
-      var _v21;
-      _v21 = "Booster Pack";
-      _v19 = ({$: "attr", nam: _v20, val: _v21});
-      var _v22;
-      _v22 = ({$: "nil"});
-      _v18 = ({$: "cons", head: _v19, tail: _v22});
-      _v14 = ({$: "cons", head: _v15, tail: _v18});
-      _v10 = ({$: "cons", head: _v11, tail: _v14});
-      var _v23;
-      _v23 = ({$: "nil"});
-      _v8 = ({$: "node", tag: _v9, attrs: _v10, kids: _v23});
-      var _v24;
-      _v24 = ({$: "nil"});
-      _v7 = ({$: "cons", head: _v8, tail: _v24});
-      _r0 = ({$: "node", tag: _v1, attrs: _v2, kids: _v7});
-      break;
-    }
-    default: {
-      switch (x.$) {
-        case "pack_reward": {
-          var _m25 = x.cards;
-          var cards = _m25;
-          var reveal_index$1 = x$1;
-          var _v26;
-          _v26 = "div";
-          var _v27;
-          var _v28;
-          var _v29;
-          _v29 = "class";
-          var _v30;
-          _v30 = "booster-visual booster-visual--revealed";
-          _v28 = ({$: "attr", nam: _v29, val: _v30});
-          var _v31;
-          _v31 = ({$: "nil"});
-          _v27 = ({$: "cons", head: _v28, tail: _v31});
-          var _v32;
-          var _v33;
-          var _v34;
-          var _v35;
-          _v35 = cards;
-          var _v36;
-          _v36 = reveal_index$1;
-          _v34 = $Dungeon$View$boosters$_reward_card_at(_v35, _v36);
-          _v33 = $Dungeon$View$boosters$_reward_detail(_v34);
-          var _v37;
-          var _v38;
-          var _v39;
-          _v39 = "div";
-          var _v40;
-          var _v41;
-          var _v42;
-          _v42 = "class";
-          var _v43;
-          _v43 = "booster-visual__nav";
-          _v41 = ({$: "attr", nam: _v42, val: _v43});
-          var _v44;
-          _v44 = ({$: "nil"});
-          _v40 = ({$: "cons", head: _v41, tail: _v44});
-          var _v45;
-          var _v46;
-          var _v47;
-          _v47 = "Prev";
-          var _v48;
-          _v48 = ({$: "prev_reward"});
-          var _v49;
-          var _v50;
-          _v50 = reveal_index$1;
-          _v49 = $Dungeon$View$selectors$booster_prev_enabled(_v50);
-          _v46 = $Dungeon$View$boosters$_reward_nav_button(_v47, _v48, _v49);
-          var _v51;
-          var _v52;
-          var _v53;
-          _v53 = "p";
-          var _v54;
-          var _v55;
-          var _v56;
-          _v56 = "class";
-          var _v57;
-          _v57 = "booster-visual__index";
-          _v55 = ({$: "attr", nam: _v56, val: _v57});
-          var _v58;
-          _v58 = ({$: "nil"});
-          _v54 = ({$: "cons", head: _v55, tail: _v58});
-          var _v59;
-          var _v60;
-          var _v61;
-          var _v62;
-          var _v63;
-          _v63 = cards;
-          _v62 = ({$: "pack_reward", cards: _v63});
-          var _v64;
-          _v64 = reveal_index$1;
-          _v61 = $Dungeon$View$selectors$booster_reward_position_text(_v62, _v64);
-          _v60 = ({$: "text", value: _v61});
-          var _v65;
-          _v65 = ({$: "nil"});
-          _v59 = ({$: "cons", head: _v60, tail: _v65});
-          _v52 = ({$: "node", tag: _v53, attrs: _v54, kids: _v59});
-          var _v66;
-          var _v67;
-          var _v68;
-          _v68 = "Next";
-          var _v69;
-          _v69 = ({$: "next_reward"});
-          var _v70;
-          var _v71;
-          var _v72;
-          _v72 = cards;
-          _v71 = ({$: "pack_reward", cards: _v72});
-          var _v73;
-          _v73 = reveal_index$1;
-          _v70 = $Dungeon$View$selectors$booster_next_enabled(_v71, _v73);
-          _v67 = $Dungeon$View$boosters$_reward_nav_button(_v68, _v69, _v70);
-          var _v74;
-          _v74 = ({$: "nil"});
-          _v66 = ({$: "cons", head: _v67, tail: _v74});
-          _v51 = ({$: "cons", head: _v52, tail: _v66});
-          _v45 = ({$: "cons", head: _v46, tail: _v51});
-          _v38 = ({$: "node", tag: _v39, attrs: _v40, kids: _v45});
-          var _v75;
-          _v75 = ({$: "nil"});
-          _v37 = ({$: "cons", head: _v38, tail: _v75});
-          _v32 = ({$: "cons", head: _v33, tail: _v37});
-          _r0 = ({$: "node", tag: _v26, attrs: _v27, kids: _v32});
-          break;
-        }
-        default: {
-          throw new Error("EFQ applied");
-          break;
-        }
-      }
-      break;
-    }
-  }
-  return _r0;
-}
-
-export const Dungeon$View$boosters$_booster_visual = () => ((a0) => ((a1) => ($Dungeon$View$boosters$_booster_visual(a0, a1))));
-
-export function $Dungeon$View$boosters$_reward_card_at(x, x$1) {
-  while (true) {
-    var _r0;
-    switch (x.$) {
-      case "nil": {
-        var idx = x$1;
-        _r0 = ({$: "hero_card"});
-        break;
-      }
-      default: {
-        switch (x.$) {
-          case "cons": {
-            var _m1 = x.head;
-            var _m2 = x.tail;
-            var card = _m1;
-            var rest$1 = _m2;
-            if (((x$1) >>> 0) === 0) {
-              _r0 = card;
-            } else {
-              var _$2 = x$1;
-              var _v3;
-              _v3 = rest$1;
-              var _v4;
-              var _v5;
-              _v5 = _$2;
-              var _v6;
-              _v6 = 1;
-              _v4 = (((_v5) - (_v6)) >>> 0);
-              x = _v3;
-              x$1 = _v4;
-              continue;
-            }
-            break;
-          }
-          default: {
-            throw new Error("EFQ applied");
-            break;
-          }
-        }
-        break;
-      }
-    }
-    return _r0;
-  }
-}
-
-export const Dungeon$View$boosters$_reward_card_at = () => ((a0) => ((a1) => ($Dungeon$View$boosters$_reward_card_at(a0, a1))));
-
-export function $Dungeon$View$boosters$_reward_detail(card) {
-  var _r0;
-  var _v1;
-  _v1 = "div";
-  var _v2;
-  var _v3;
-  var _v4;
-  _v4 = "class";
-  var _v5;
-  _v5 = "booster-visual__detail";
-  _v3 = ({$: "attr", nam: _v4, val: _v5});
-  var _v6;
-  _v6 = ({$: "nil"});
-  _v2 = ({$: "cons", head: _v3, tail: _v6});
-  var _v7;
-  var _v8;
-  var _v9;
-  _v9 = "div";
-  var _v10;
-  var _v11;
-  var _v12;
-  _v12 = "class";
-  var _v13;
-  _v13 = "booster-visual__image-wrap";
-  _v11 = ({$: "attr", nam: _v12, val: _v13});
-  var _v14;
-  _v14 = ({$: "nil"});
-  _v10 = ({$: "cons", head: _v11, tail: _v14});
-  var _v15;
-  var _v16;
-  var _v17;
-  _v17 = "img";
-  var _v18;
-  var _v19;
-  var _v20;
-  _v20 = "class";
-  var _v21;
-  _v21 = "booster-visual__image";
-  _v19 = ({$: "attr", nam: _v20, val: _v21});
-  var _v22;
-  var _v23;
-  var _v24;
-  _v24 = "src";
-  var _v25;
-  var _v26;
-  _v26 = card;
-  _v25 = $Dungeon$View$assets_and_labels$_card_sprite(_v26);
-  _v23 = ({$: "attr", nam: _v24, val: _v25});
-  var _v27;
-  var _v28;
-  var _v29;
-  _v29 = "alt";
-  var _v30;
-  var _v31;
-  _v31 = card;
-  _v30 = $Dungeon$View$assets_and_labels$_card_name(_v31);
-  _v28 = ({$: "attr", nam: _v29, val: _v30});
-  var _v32;
-  _v32 = ({$: "nil"});
-  _v27 = ({$: "cons", head: _v28, tail: _v32});
-  _v22 = ({$: "cons", head: _v23, tail: _v27});
-  _v18 = ({$: "cons", head: _v19, tail: _v22});
-  var _v33;
-  _v33 = ({$: "nil"});
-  _v16 = ({$: "node", tag: _v17, attrs: _v18, kids: _v33});
-  var _v34;
-  _v34 = ({$: "nil"});
-  _v15 = ({$: "cons", head: _v16, tail: _v34});
-  _v8 = ({$: "node", tag: _v9, attrs: _v10, kids: _v15});
-  var _v35;
-  var _v36;
-  var _v37;
-  _v37 = "p";
-  var _v38;
-  var _v39;
-  var _v40;
-  _v40 = "class";
-  var _v41;
-  _v41 = "booster-visual__stat";
-  _v39 = ({$: "attr", nam: _v40, val: _v41});
-  var _v42;
-  _v42 = ({$: "nil"});
-  _v38 = ({$: "cons", head: _v39, tail: _v42});
-  var _v43;
-  var _v44;
-  var _v45;
-  var _v46;
-  _v46 = card;
-  _v45 = $Dungeon$View$assets_and_labels$_card_stat(_v46);
-  _v44 = ({$: "text", value: _v45});
-  var _v47;
-  _v47 = ({$: "nil"});
-  _v43 = ({$: "cons", head: _v44, tail: _v47});
-  _v36 = ({$: "node", tag: _v37, attrs: _v38, kids: _v43});
-  var _v48;
-  _v48 = ({$: "nil"});
-  _v35 = ({$: "cons", head: _v36, tail: _v48});
-  _v7 = ({$: "cons", head: _v8, tail: _v35});
-  _r0 = ({$: "node", tag: _v1, attrs: _v2, kids: _v7});
-  return _r0;
-}
-
-export const Dungeon$View$boosters$_reward_detail = () => ((a0) => ($Dungeon$View$boosters$_reward_detail(a0)));
-
-export function $Dungeon$View$boosters$_reward_nav_button(label, evt$1, enabled$2) {
-  var _r0;
-  var _v1;
-  _v1 = null;
-  var _v2;
-  _v2 = evt$1;
-  var _v3;
-  _v3 = ({$: "medium"});
-  var _v4;
-  _v4 = label;
-  var _v5;
-  var _v6;
-  _v6 = enabled$2;
-  _v5 = $Dungeon$View$menu$_fit_button_overrides(_v6);
-  _r0 = $Midum$Button$secondary(_v1, _v2, _v3, _v4, _v5);
-  return _r0;
-}
-
-export const Dungeon$View$boosters$_reward_nav_button = () => ((a0) => ((a1) => ((a2) => ($Dungeon$View$boosters$_reward_nav_button(a0, a1, a2)))));
-
 export function $Dungeon$View$boosters$_back_button() {
   var _r0;
   var _v1;
@@ -20130,7 +20487,7 @@ export function $Dungeon$View$boosters$_booster_actions(meta_state) {
   var _v3;
   _v3 = meta_state;
   _v2 = $Dungeon$View$selectors$booster_open_enabled(_v3);
-  _r0 = $cm_22(_v1, _v2);
+  _r0 = $cm_23(_v1, _v2);
   return _r0;
 }
 
@@ -21410,6 +21767,248 @@ export function $Dungeon$View$assets_and_labels$_first_hp(x) {
 }
 
 export const Dungeon$View$assets_and_labels$_first_hp = () => ((a0) => ($Dungeon$View$assets_and_labels$_first_hp(a0)));
+
+export function $Dungeon$View$assets_and_labels$_last_hp(x, x$1) {
+  while (true) {
+    var _r0;
+    switch (x.$) {
+      case "nil": {
+        var last = x$1;
+        _r0 = last;
+        break;
+      }
+      default: {
+        switch (x.$) {
+          case "cons": {
+            var _m1 = x.head;
+            var _m2 = x.tail;
+            var hp = _m1;
+            var rest$1 = _m2;
+            var last$2 = x$1;
+            var _v3;
+            _v3 = rest$1;
+            var _v4;
+            _v4 = hp;
+            x = _v3;
+            x$1 = _v4;
+            continue;
+            break;
+          }
+          default: {
+            throw new Error("EFQ applied");
+            break;
+          }
+        }
+        break;
+      }
+    }
+    return _r0;
+  }
+}
+
+export const Dungeon$View$assets_and_labels$_last_hp = () => ((a0) => ((a1) => ($Dungeon$View$assets_and_labels$_last_hp(a0, a1))));
+
+export function $Dungeon$View$assets_and_labels$_monster_hp_range(ref) {
+  var _r0;
+  var _v1;
+  _v1 = Dungeon$config();
+  var _v2;
+  _v2 = ref;
+  _r0 = $Dungeon$View$assets_and_labels$_monster_hp_range_from_defs(_v1, _v2);
+  return _r0;
+}
+
+export const Dungeon$View$assets_and_labels$_monster_hp_range = () => ((a0) => ($Dungeon$View$assets_and_labels$_monster_hp_range(a0)));
+
+export function $Dungeon$View$assets_and_labels$_monster_hp_range_from_defs(x, x$1) {
+  var _r0;
+  switch (x.$) {
+    case "config": {
+      var _m1 = x.heroes;
+      var _m2 = x.monsters;
+      var _m3 = x.swords;
+      var _m4 = x.potions;
+      var _m5 = x.deck;
+      var _m6 = x.booster_packs;
+      var _m7 = x.starting_dungeon_level;
+      var heroes = _m1;
+      var monsters$1 = _m2;
+      var swords$2 = _m3;
+      var potions$3 = _m4;
+      var deck$4 = _m5;
+      var booster_packs$5 = _m6;
+      var starting_dungeon_level$6 = _m7;
+      var ref$7 = x$1;
+      var _v8;
+      _v8 = monsters$1;
+      var _v9;
+      _v9 = ref$7;
+      _r0 = $Dungeon$View$assets_and_labels$_monster_hp_range_from_list(_v8, _v9);
+      break;
+    }
+    default: {
+      throw new Error("EFQ applied");
+      break;
+    }
+  }
+  return _r0;
+}
+
+export const Dungeon$View$assets_and_labels$_monster_hp_range_from_defs = () => ((a0) => ((a1) => ($Dungeon$View$assets_and_labels$_monster_hp_range_from_defs(a0, a1))));
+
+export function $Dungeon$View$assets_and_labels$_monster_hp_range_from_list(x, x$1) {
+  while (true) {
+    var _r0;
+    switch (x.$) {
+      case "nil": {
+        var ref = x$1;
+        _r0 = "1 - 1";
+        break;
+      }
+      default: {
+        switch (x.$) {
+          case "cons": {
+            var _m1 = x.head;
+            var _m2 = x.tail;
+            switch (_m1.$) {
+              case "monster_def": {
+                var _m3 = _m1.name;
+                var _m4 = _m1.sprite;
+                var _m5 = _m1.gold_drop;
+                var _m6 = _m1.hp_levels;
+                var name = _m3;
+                var sprite$1 = _m4;
+                var gold_drop$2 = _m5;
+                var hp_levels$3 = _m6;
+                var rest$4 = _m2;
+                if (((x$1) >>> 0) === 0) {
+                  var _v7;
+                  var _v8;
+                  var _v9;
+                  var _v10;
+                  _v10 = hp_levels$3;
+                  _v9 = $Dungeon$View$assets_and_labels$_first_hp(_v10);
+                  _v8 = $U32$show(_v9);
+                  var _v11;
+                  _v11 = " - ";
+                  _v7 = (_v8 + _v11);
+                  var _v12;
+                  var _v13;
+                  var _v14;
+                  _v14 = hp_levels$3;
+                  var _v15;
+                  _v15 = 1;
+                  _v13 = $Dungeon$View$assets_and_labels$_last_hp(_v14, _v15);
+                  _v12 = $U32$show(_v13);
+                  _r0 = (_v7 + _v12);
+                } else {
+                  var _$5 = x$1;
+                  var _v16;
+                  _v16 = rest$4;
+                  var _v17;
+                  var _v18;
+                  _v18 = _$5;
+                  var _v19;
+                  _v19 = 1;
+                  _v17 = (((_v18) - (_v19)) >>> 0);
+                  x = _v16;
+                  x$1 = _v17;
+                  continue;
+                }
+                break;
+              }
+              default: {
+                throw new Error("EFQ applied");
+                break;
+              }
+            }
+            break;
+          }
+          default: {
+            throw new Error("EFQ applied");
+            break;
+          }
+        }
+        break;
+      }
+    }
+    return _r0;
+  }
+}
+
+export const Dungeon$View$assets_and_labels$_monster_hp_range_from_list = () => ((a0) => ((a1) => ($Dungeon$View$assets_and_labels$_monster_hp_range_from_list(a0, a1))));
+
+export function $Dungeon$View$assets_and_labels$_card_stat_range(x) {
+  var _r0;
+  switch (x.$) {
+    case "monster_card": {
+      var _m1 = x.ref;
+      var ref = _m1;
+      var _v2;
+      _v2 = "HP: ";
+      var _v3;
+      var _v4;
+      _v4 = ref;
+      _v3 = $Dungeon$View$assets_and_labels$_monster_hp_range(_v4);
+      _r0 = (_v2 + _v3);
+      break;
+    }
+    default: {
+      switch (x.$) {
+        case "sword_card": {
+          var _m5 = x.ref;
+          var ref = _m5;
+          var _v6;
+          _v6 = "DMG: ";
+          var _v7;
+          var _v8;
+          var _v9;
+          _v9 = ref;
+          _v8 = $Dungeon$View$assets_and_labels$_sword_damage_value(_v9);
+          _v7 = $U32$show(_v8);
+          _r0 = (_v6 + _v7);
+          break;
+        }
+        default: {
+          switch (x.$) {
+            case "potion_card": {
+              var _m10 = x.ref;
+              var ref = _m10;
+              var _v11;
+              _v11 = "HEAL: ";
+              var _v12;
+              var _v13;
+              var _v14;
+              _v14 = ref;
+              _v13 = $Dungeon$View$assets_and_labels$_potion_heal_value(_v14);
+              _v12 = $U32$show(_v13);
+              _r0 = (_v11 + _v12);
+              break;
+            }
+            default: {
+              switch (x.$) {
+                case "hero_card": {
+                  _r0 = "";
+                  break;
+                }
+                default: {
+                  throw new Error("EFQ applied");
+                  break;
+                }
+              }
+              break;
+            }
+          }
+          break;
+        }
+      }
+      break;
+    }
+  }
+  return _r0;
+}
+
+export const Dungeon$View$assets_and_labels$_card_stat_range = () => ((a0) => ($Dungeon$View$assets_and_labels$_card_stat_range(a0)));
 
 export function $Dungeon$View$assets_and_labels$_sword_damage_value(ref) {
   var _r0;
@@ -25671,7 +26270,7 @@ export function $Dungeon$Run$upgrade_hero$_upgrade_from_step(meta_state, hero_re
   var _v6;
   _v6 = profile$2;
   _v5 = $Dungeon$profile_helpers$profile_unlocked(_v6);
-  _r0 = $cm_23(_v1, _v2, _v3, _v4, _v5);
+  _r0 = $cm_24(_v1, _v2, _v3, _v4, _v5);
   return _r0;
 }
 
@@ -25938,7 +26537,7 @@ export function $Dungeon$App$update_character_select$_select_or_buy_profile(conf
   var _v7;
   _v7 = profile$4;
   _v6 = $Dungeon$profile_helpers$profile_unlocked(_v7);
-  _r0 = $cm_25(_v1, _v2, _v3, _v4, _v5, _v6);
+  _r0 = $cm_26(_v1, _v2, _v3, _v4, _v5, _v6);
   return _r0;
 }
 
@@ -26199,25 +26798,51 @@ export function $Dungeon$App$update_boosters(x, x$1, x$2, x$3, x$4, x$5) {
                       break;
                     }
                     default: {
-                      var _ = x;
-                      var meta_state$1 = x$1;
-                      var reward$2 = x$2;
-                      var reveal_index$3 = x$3;
-                      var next_seed_value$4 = x$4;
-                      var ui_value$5 = x$5;
-                      var _v33;
-                      _v33 = meta_state$1;
-                      var _v34;
-                      var _v35;
-                      _v35 = reward$2;
-                      var _v36;
-                      _v36 = reveal_index$3;
-                      _v34 = ({$: "boosters", reward: _v35, reveal_index: _v36});
-                      var _v37;
-                      _v37 = next_seed_value$4;
-                      var _v38;
-                      _v38 = ui_value$5;
-                      _r0 = $Dungeon$App$state_helpers$_state(_v33, _v34, _v37, _v38);
+                      switch (x.$) {
+                        case "done_reward": {
+                          var meta_state = x$1;
+                          var reward$1 = x$2;
+                          var reveal_index$2 = x$3;
+                          var next_seed_value$3 = x$4;
+                          var ui_value$4 = x$5;
+                          var _v33;
+                          _v33 = meta_state;
+                          var _v34;
+                          var _v35;
+                          _v35 = ({$: "no_pack_reward"});
+                          var _v36;
+                          _v36 = 0;
+                          _v34 = ({$: "boosters", reward: _v35, reveal_index: _v36});
+                          var _v37;
+                          _v37 = next_seed_value$3;
+                          var _v38;
+                          _v38 = Dungeon$default_ui();
+                          _r0 = $Dungeon$App$state_helpers$_state(_v33, _v34, _v37, _v38);
+                          break;
+                        }
+                        default: {
+                          var _ = x;
+                          var meta_state$1 = x$1;
+                          var reward$2 = x$2;
+                          var reveal_index$3 = x$3;
+                          var next_seed_value$4 = x$4;
+                          var ui_value$5 = x$5;
+                          var _v39;
+                          _v39 = meta_state$1;
+                          var _v40;
+                          var _v41;
+                          _v41 = reward$2;
+                          var _v42;
+                          _v42 = reveal_index$3;
+                          _v40 = ({$: "boosters", reward: _v41, reveal_index: _v42});
+                          var _v43;
+                          _v43 = next_seed_value$4;
+                          var _v44;
+                          _v44 = ui_value$5;
+                          _r0 = $Dungeon$App$state_helpers$_state(_v39, _v40, _v43, _v44);
+                          break;
+                        }
+                      }
                       break;
                     }
                   }
@@ -32587,7 +33212,44 @@ export function $cm_21(meta_state, hero_ref$1, hero_value$2, profile$3, x$4) {
 
 export const cm_21 = () => ((a0) => ((a1) => ((a2) => ((a3) => ((a4) => ($cm_21(a0, a1, a2, a3, a4)))))));
 
-export function $cm_22(meta_state, x$1) {
+export function $cm_22(reward, reveal_index$1, x$2) {
+  var _r0;
+  if (((x$2) >>> 0) === 1) {
+    var _v1;
+    _v1 = null;
+    var _v2;
+    _v2 = ({$: "done_reward"});
+    var _v3;
+    _v3 = ({$: "large"});
+    var _v4;
+    _v4 = "Done";
+    var _v5;
+    var _v6;
+    _v6 = 1;
+    _v5 = $Dungeon$View$menu$_full_button_overrides(_v6);
+    _r0 = $Midum$Button$primary(_v1, _v2, _v3, _v4, _v5);
+  } else {
+    var _$2 = x$2;
+    var _v7;
+    _v7 = null;
+    var _v8;
+    _v8 = ({$: "next_reward"});
+    var _v9;
+    _v9 = ({$: "large"});
+    var _v10;
+    _v10 = "Next";
+    var _v11;
+    var _v12;
+    _v12 = 1;
+    _v11 = $Dungeon$View$menu$_full_button_overrides(_v12);
+    _r0 = $Midum$Button$primary(_v7, _v8, _v9, _v10, _v11);
+  }
+  return _r0;
+}
+
+export const cm_22 = () => ((a0) => ((a1) => ((a2) => ($cm_22(a0, a1, a2)))));
+
+export function $cm_23(meta_state, x$1) {
   var _r0;
   if (((x$1) >>> 0) === 1) {
     var _v1;
@@ -32758,9 +33420,9 @@ export function $cm_22(meta_state, x$1) {
   return _r0;
 }
 
-export const cm_22 = () => ((a0) => ((a1) => ($cm_22(a0, a1))));
+export const cm_23 = () => ((a0) => ((a1) => ($cm_23(a0, a1))));
 
-export function $cm_23(meta_state, hero_ref$1, profile$2, step$3, x$4) {
+export function $cm_24(meta_state, hero_ref$1, profile$2, step$3, x$4) {
   var _r0;
   if (((x$4) >>> 0) === 0) {
     _r0 = meta_state;
@@ -32773,14 +33435,14 @@ export function $cm_23(meta_state, hero_ref$1, profile$2, step$3, x$4) {
     _v3 = profile$2;
     var _v4;
     _v4 = step$3;
-    _r0 = $cm_24(_v1, _v2, _v3, _v4, x$4);
+    _r0 = $cm_25(_v1, _v2, _v3, _v4, x$4);
   }
   return _r0;
 }
 
-export const cm_23 = () => ((a0) => ((a1) => ((a2) => ((a3) => ((a4) => ($cm_23(a0, a1, a2, a3, a4)))))));
+export const cm_24 = () => ((a0) => ((a1) => ((a2) => ((a3) => ((a4) => ($cm_24(a0, a1, a2, a3, a4)))))));
 
-export function $cm_24(meta_state, hero_ref$1, profile$2, x$3, x$4) {
+export function $cm_25(meta_state, hero_ref$1, profile$2, x$3, x$4) {
   var _r0;
   switch (x$3.$) {
     case "upgrade": {
@@ -32813,9 +33475,9 @@ export function $cm_24(meta_state, hero_ref$1, profile$2, x$3, x$4) {
   return _r0;
 }
 
-export const cm_24 = () => ((a0) => ((a1) => ((a2) => ((a3) => ((a4) => ($cm_24(a0, a1, a2, a3, a4)))))));
+export const cm_25 = () => ((a0) => ((a1) => ((a2) => ((a3) => ((a4) => ($cm_25(a0, a1, a2, a3, a4)))))));
 
-export function $cm_25(config_value, meta_state$1, hero_ref$2, next_seed_value$3, profile$4, x$5) {
+export function $cm_26(config_value, meta_state$1, hero_ref$2, next_seed_value$3, profile$4, x$5) {
   var _r0;
   if (((x$5) >>> 0) === 0) {
     var _v1;
@@ -32858,7 +33520,7 @@ export function $cm_25(config_value, meta_state$1, hero_ref$2, next_seed_value$3
   return _r0;
 }
 
-export const cm_25 = () => ((a0) => ((a1) => ((a2) => ((a3) => ((a4) => ((a5) => ($cm_25(a0, a1, a2, a3, a4, a5))))))));
+export const cm_26 = () => ((a0) => ((a1) => ((a2) => ((a3) => ((a4) => ((a5) => ($cm_26(a0, a1, a2, a3, a4, a5))))))));
 
 
 function __app_fld(obj, nam, idx) {

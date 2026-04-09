@@ -9,29 +9,106 @@ import /Dungeon/View/selectors/meta_pack_total as meta_pack_total
 import /Dungeon/View/selectors/active_pack_price as active_pack_price
 import /Dungeon/View/selectors/booster_buy_enabled as booster_buy_enabled
 import /Dungeon/View/selectors/booster_open_enabled as booster_open_enabled
-import /Dungeon/View/selectors/booster_prev_enabled as booster_prev_enabled
-import /Dungeon/View/selectors/booster_next_enabled as booster_next_enabled
 import /Dungeon/View/selectors/booster_reward_position_text as booster_reward_position_text
+import /Dungeon/View/selectors/booster_is_last_card as booster_is_last_card
+import /Dungeon/View/selectors/card_copies as card_copies
 import /Dungeon/View/menu/_full_button_overrides as _full_button_overrides
 import /Dungeon/View/menu/_fit_button_overrides as _fit_button_overrides
 import /Dungeon/View/assets_and_labels/_card_name as _card_name
 import /Dungeon/View/assets_and_labels/_card_sprite as _card_sprite
-import /Dungeon/View/assets_and_labels/_card_stat as _card_stat
+import /Dungeon/View/assets_and_labels/_card_stat_range as _card_stat_range
 import /Midum/Button/ as Button
 import /Midum/Button/Size
 
 def _render_boosters(meta_state: Meta, reward: PackReward, reveal_index: U32) -> HTML(DungeonEvent):
+  match reward:
+    case no_pack_reward{}:
+      _render_boosters_idle(meta_state)
+    case pack_reward{cards}:
+      _render_boosters_reveal(meta_state, pack_reward{cards}, reveal_index)
+
+def _render_boosters_idle(meta_state: Meta) -> HTML(DungeonEvent):
   <section class="shell shell--boosters">
     {_boosters_header(meta_state)}
     <section class="boosters-stage">
       <div class="boosters-stage__content">
-        {_booster_visual(reward, reveal_index)}
+        <div class="booster-visual booster-visual--pack">
+          <img class="booster-visual__pack-img" src="assets/booster-pack.png" alt="Booster Pack" />
+        </div>
       </div>
     </section>
     <section class="boosters-actions">
       {_booster_actions(meta_state)}
     </section>
   </section>
+
+def _render_boosters_reveal(meta_state: Meta, reward: PackReward, reveal_index: U32) -> HTML(DungeonEvent):
+  card = _reward_card_at(reward, reveal_index);
+  <section class="shell shell--boosters-reveal">
+    <div class="boosters-reveal__top-spacer"></div>
+    <section class="boosters-stage boosters-stage--reveal">
+      <div class="boosters-stage__content boosters-stage__content--reveal">
+        <div class="booster-reveal-panel">
+          <div class="booster-reveal-panel__visual">
+            {_reveal_card(card)}
+          </div>
+          <div class="booster-reveal-panel__meta">
+            <div class="reveal-stats">
+              {_reveal_stat_left(card)}
+              <p class="reveal-stat">{text{"COPIES: " ++ card_copies(meta_state, card)}}</p>
+            </div>
+          </div>
+          <div class="booster-reveal-panel__footer">
+            <p class="reveal-position">{text{booster_reward_position_text(reward, reveal_index)}}</p>
+            <div class="booster-reveal-panel__action">
+              {_reveal_action_button(reward, reveal_index)}
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+  </section>
+
+def _reveal_stat_left(card: CardRef) -> HTML(DungeonEvent):
+  match card:
+    case hero_card{}:
+      <span class="reveal-stat--empty"></span>
+    case _:
+      <p class="reveal-stat">{text{_card_stat_range(card)}}</p>
+
+def _reveal_card(card: CardRef) -> HTML(DungeonEvent):
+  <div class="booster-visual booster-visual--revealed">
+    <div class="booster-visual__detail">
+      <div class="booster-visual__image-wrap">
+        <img class="booster-visual__image" src={_card_sprite(card)} alt={_card_name(card)} />
+      </div>
+    </div>
+  </div>
+
+def _reveal_action_button(reward: PackReward, reveal_index: U32) -> HTML(DungeonEvent):
+  match booster_is_last_card(reward, reveal_index):
+    case 1:
+      Button.primary(DungeonEvent, done_reward{}, large{}, "Done", _full_button_overrides(1))
+    case _:
+      Button.primary(DungeonEvent, next_reward{}, large{}, "Next", _full_button_overrides(1))
+
+def _reward_card_at(reward: PackReward, idx: U32) -> CardRef:
+  match reward:
+    case no_pack_reward{}:
+      hero_card{}
+    case pack_reward{cards}:
+      _card_at(cards, idx)
+
+def _card_at(cards: List(CardRef), idx: U32) -> CardRef:
+  match cards:
+    case []:
+      hero_card{}
+    case card<>rest:
+      match idx:
+        case 0:
+          card
+        case _:
+          _card_at(rest, idx - 1)
 
 def _boosters_header(meta_state: Meta) -> HTML(DungeonEvent):
   <header class="topbar topbar--boosters">
@@ -49,44 +126,6 @@ def _topbar_stat(label: String, value: String) -> HTML(DungeonEvent):
     <span class="topbar-stat__label">{text{label}}</span>
     <strong class="topbar-stat__value">{text{value}}</strong>
   </p>
-
-def _booster_visual(reward: PackReward, reveal_index: U32) -> HTML(DungeonEvent):
-  match reward:
-    case no_pack_reward{}:
-      <div class="booster-visual booster-visual--pack">
-        <img class="booster-visual__pack-img" src="assets/booster-pack.png" alt="Booster Pack" />
-      </div>
-    case pack_reward{cards}:
-      <div class="booster-visual booster-visual--revealed">
-        {_reward_detail(_reward_card_at(cards, reveal_index))}
-        <div class="booster-visual__nav">
-          {_reward_nav_button("Prev", prev_reward{}, booster_prev_enabled(reveal_index))}
-          <p class="booster-visual__index">{text{booster_reward_position_text(reward, reveal_index)}}</p>
-          {_reward_nav_button("Next", next_reward{}, booster_next_enabled(reward, reveal_index))}
-        </div>
-      </div>
-
-def _reward_card_at(cards: List(CardRef), idx: U32) -> CardRef:
-  match cards:
-    case []:
-      hero_card{}
-    case card<>rest:
-      match idx:
-        case 0:
-          card
-        case _:
-          _reward_card_at(rest, idx - 1)
-
-def _reward_detail(card: CardRef) -> HTML(DungeonEvent):
-  <div class="booster-visual__detail">
-    <div class="booster-visual__image-wrap">
-      <img class="booster-visual__image" src={_card_sprite(card)} alt={_card_name(card)} />
-    </div>
-    <p class="booster-visual__stat">{text{_card_stat(card)}}</p>
-  </div>
-
-def _reward_nav_button(label: String, evt: DungeonEvent, enabled: U32) -> HTML(DungeonEvent):
-  Button.secondary(DungeonEvent, evt, medium{}, label, _fit_button_overrides(enabled))
 
 def _back_button() -> HTML(DungeonEvent):
   Button.secondary(DungeonEvent, close_boosters{}, medium{}, "Back", [])
