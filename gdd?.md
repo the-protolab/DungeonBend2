@@ -1,3 +1,6 @@
+// in order to start using the SPEC system(?) it helps to break down the game design rules as simple and straight affirmatives.
+
+
 # Booster Pack
 
 - Booster packs are the primary way to add new cards to the player's deck, serving as the core system for progression and in-game customization.
