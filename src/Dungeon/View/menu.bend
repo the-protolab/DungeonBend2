@@ -51,8 +51,7 @@ def _render_menu(meta_state: Meta) -> HTML(DungeonEvent):
   hero_ref = selected_hero(meta_state);
   hero_value = hero_at(config(), hero_ref);
   profile = active_profile(meta_state);
-  Layout.shell(
-    DungeonEvent,
+  _menu_shell(
     Layout.frame(
       DungeonEvent,
       Layout.overlay(DungeonEvent, [
@@ -77,7 +76,13 @@ def _render_menu(meta_state: Meta) -> HTML(DungeonEvent):
         Layout.bottom(DungeonEvent, _menu_actions_layout())
       ]),
       [width_full{} height_full{} inset_none{}]
-    ),
+    )
+  )
+
+def _menu_shell(body: HTML(DungeonEvent)) -> HTML(DungeonEvent):
+  Layout.shell(
+    DungeonEvent,
+    body,
     [
       max_width_px{value: 560n}
       height_viewport{}
@@ -105,22 +110,49 @@ def _menu_actions_layout() -> HTML(DungeonEvent):
 def _render_character_select(meta_state: Meta, preview_hero: U32) -> HTML(DungeonEvent):
   hero_value = hero_at(config(), preview_hero);
   profile = profile_for_hero(meta_state, preview_hero);
-  <section class="shell shell--menu">
-    {_dashboard_header(meta_state, _header_placeholder_action())}
-    <section class="menu-stage">
-      <div class="menu-stage__content">
-        {_menu_character_panel(hero_value, profile)}
-      </div>
-    </section>
-    <section class="menu-actions">
-      <div class="menu-secondary-action">
-        {_character_back_button(meta_state)}
-      </div>
-      <div class="menu-start-action">
-        {_character_select_button(meta_state, preview_hero, hero_value, profile)}
-      </div>
-    </section>
-  </section>
+  _menu_shell(
+    Layout.frame(
+      DungeonEvent,
+      Layout.overlay(DungeonEvent, [
+        Layout.top(DungeonEvent,
+          Layout.frame(
+            DungeonEvent,
+            _dashboard_header(meta_state, _header_placeholder_action()),
+            [width_full{} height_fit{} inset_none{}]
+          )
+        )
+        Layout.center(DungeonEvent,
+          Layout.frame(
+            DungeonEvent,
+            <section class="menu-stage">
+              <div class="menu-stage__content">
+                {_menu_character_panel(hero_value, profile)}
+              </div>
+            </section>,
+            [width_full{} height_fit{} inset_none{}]
+          )
+        )
+        Layout.bottom(DungeonEvent,
+          _character_select_actions_layout(meta_state, preview_hero, hero_value, profile)
+        )
+      ]),
+      [width_full{} height_full{} inset_none{}]
+    )
+  )
+
+def _character_select_actions_layout(meta_state: Meta, preview_hero: U32, hero_value: HeroDef, profile: HeroProfile) -> HTML(DungeonEvent):
+  Layout.frame(
+    DungeonEvent,
+    Layout.group(
+      DungeonEvent,
+      [
+        _character_back_button(meta_state)
+        _character_select_button(meta_state, preview_hero, hero_value, profile)
+      ],
+      [direction_column{} gap_sm{} align_stretch{}]
+    ),
+    [width_px{value: 280n} height_fit{} inset_none{}]
+  )
 
 def _menu_hero_panel(meta_state: Meta, hero_value: HeroDef, profile: HeroProfile) -> HTML(DungeonEvent):
   <section class="menu-hero-panel">
@@ -239,7 +271,7 @@ def _character_back_button(meta_state: Meta) -> HTML(DungeonEvent):
     close_character_select{},
     medium{},
     "BACK",
-    _fit_button_overrides(selection_confirmed(meta_state))
+    _full_button_overrides(selection_confirmed(meta_state))
   )
 
 def _character_select_button(meta_state: Meta, preview_hero: U32, hero_value: HeroDef, profile: HeroProfile) -> HTML(DungeonEvent):

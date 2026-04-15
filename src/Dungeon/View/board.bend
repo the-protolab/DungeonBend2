@@ -48,15 +48,13 @@ def _render_dungeon(meta_state: Meta, scene_value: Scene, run_value: Run, ui_val
         Layout.center(DungeonEvent,
           _board_grid(scene_value, run_value, ui_value, hero_value)
         )
-        Layout.bottom(DungeonEvent,
-          _ultimate_action(scene_value)
-        )
-        Layout.center(DungeonEvent,
-          _board_modal(scene_value)
-        )
-      ]),
-      [width_full{} height_full{} inset_none{}]
-    )
+          Layout.bottom(DungeonEvent,
+            _ultimate_action(scene_value)
+          )
+          _board_modal_layer(scene_value)
+        ]),
+        [width_full{} height_full{} inset_none{}]
+      )
   )
 
 def _dungeon_shell(body: HTML(DungeonEvent)) -> HTML(DungeonEvent):
@@ -109,50 +107,56 @@ def _board_class(scene_value: Scene) -> String:
     case _:
       "board"
 
-def _board_modal(scene_value: Scene) -> HTML(DungeonEvent):
+def _board_modal_layer(scene_value: Scene) -> HTML(DungeonEvent):
   match scene_value:
     case setup{}:
-      <div class="game-over-modal"></div>
+      text{""}
     case character_select{preview_hero}:
-      <div class="game-over-modal"></div>
+      text{""}
     case boosters{reward, reveal_index}:
-      <div class="game-over-modal"></div>
+      text{""}
     case running{run_value}:
-      <div class="game-over-modal"></div>
+      text{""}
     case resume_prompt{run_value}:
-      <div class={game_over_modal_class(scene_value)}>
-        {Card.neutral(
-          DungeonEvent,
-          <div class="game-over-card">
-            <p class="game-over-card__eyebrow">{text{"Dungeon interrompida"}}</p>
-            <h2 class="game-over-card__title">{text{"Retomar partida?"}}</h2>
-            <p class="game-over-card__body">{text{"Voce saiu no meio desta run."}}</p>
-            <section class="game-over-card__actions">
-              <div class="menu-secondary-action game-over-card__secondary">
-                {_resume_menu_button()}
-              </div>
-              <div class="menu-start-action game-over-card__primary">
-                {_resume_dungeon_button()}
-              </div>
-            </section>
-          </div>,
-          [padding_md{}]
-        )}
-      </div>
+      Layout.center(DungeonEvent, _resume_prompt_modal(scene_value))
     case game_over{run_value}:
-      <div class={game_over_modal_class(scene_value)}>
-        {Card.neutral(
-          DungeonEvent,
-          <div class="game-over-card">
-            <p class="game-over-card__eyebrow">{text{"Run encerrada"}}</p>
-            <h2 class="game-over-card__title">{text{"Game Over"}}</h2>
-            <div class="game-over-card__action">
-              {_game_over_ok_button()}
-            </div>
-          </div>,
-          [padding_md{}]
-        )}
-      </div>
+      Layout.center(DungeonEvent, _game_over_modal(scene_value))
+
+def _resume_prompt_modal(scene_value: Scene) -> HTML(DungeonEvent):
+  <div class={game_over_modal_class(scene_value)}>
+    {Card.neutral(
+      DungeonEvent,
+      <div class="game-over-card">
+        <p class="game-over-card__eyebrow">{text{"Dungeon interrompida"}}</p>
+        <h2 class="game-over-card__title">{text{"Retomar partida?"}}</h2>
+        <p class="game-over-card__body">{text{"Voce saiu no meio desta run."}}</p>
+        <section class="game-over-card__actions">
+          <div class="menu-secondary-action game-over-card__secondary">
+            {_resume_menu_button()}
+          </div>
+          <div class="menu-start-action game-over-card__primary">
+            {_resume_dungeon_button()}
+          </div>
+        </section>
+      </div>,
+      [padding_md{}]
+    )}
+  </div>
+
+def _game_over_modal(scene_value: Scene) -> HTML(DungeonEvent):
+  <div class={game_over_modal_class(scene_value)}>
+    {Card.neutral(
+      DungeonEvent,
+      <div class="game-over-card">
+        <p class="game-over-card__eyebrow">{text{"Run encerrada"}}</p>
+        <h2 class="game-over-card__title">{text{"Game Over"}}</h2>
+        <div class="game-over-card__action">
+          {_game_over_ok_button()}
+        </div>
+      </div>,
+      [padding_md{}]
+    )}
+  </div>
 
 def _board_idx(x: U32, y: U32) -> U32:
   x + (y * 3)
