@@ -295,15 +295,6 @@ def _character_select_enabled(is_selected: U32) -> U32:
     case _:
       0
 
-def board_shell_class(scene_value: Scene) -> String:
-  match scene_value:
-    case resume_prompt{run_value}:
-      "board-shell board-shell--over"
-    case game_over{run_value}:
-      "board-shell board-shell--over"
-    case _:
-      "board-shell"
-
 def game_over_modal_class(scene_value: Scene) -> String:
   match scene_value:
     case resume_prompt{run_value}:

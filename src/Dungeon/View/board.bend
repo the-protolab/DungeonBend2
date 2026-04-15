@@ -23,7 +23,6 @@ import /Dungeon/View/selectors/dungeon_level_value as dungeon_level_value
 import /Dungeon/View/selectors/remaining_value as remaining_value
 import /Dungeon/View/selectors/ultimate_label as ultimate_label
 import /Dungeon/View/selectors/ultimate_enabled as ultimate_enabled
-import /Dungeon/View/selectors/board_shell_class as board_shell_class
 import /Dungeon/View/selectors/game_over_modal_class as game_over_modal_class
 import /Dungeon/View/menu/_full_button_overrides as _full_button_overrides
 import /Dungeon/View/cards/_hero_card_values as _hero_card_values
@@ -47,7 +46,13 @@ def _render_dungeon(meta_state: Meta, scene_value: Scene, run_value: Run, ui_val
           )
         )
         Layout.center(DungeonEvent,
-          _run_board_node(scene_value, run_value, ui_value, hero_value)
+          _board_grid(scene_value, run_value, ui_value, hero_value)
+        )
+        Layout.bottom(DungeonEvent,
+          _ultimate_action(scene_value)
+        )
+        Layout.center(DungeonEvent,
+          _board_modal(scene_value)
         )
       ]),
       [width_full{} height_full{} inset_none{}]
@@ -86,17 +91,25 @@ def _topbar_stat(label: String, value: String) -> HTML(DungeonEvent):
     <strong class="topbar-stat__value">{text{value}}</strong>
   </p>
 
-def _run_board_node(scene_value: Scene, run_value: Run, ui_value: UiState, hero_value: HeroDef) -> HTML(DungeonEvent):
+def _board_grid(scene_value: Scene, run_value: Run, ui_value: UiState, hero_value: HeroDef) -> HTML(DungeonEvent):
   cells = U32.grid(HTML(DungeonEvent), 3, 3, _board_slot(run_value, ui_value, hero_value));
-  <section class={board_shell_class(scene_value)}>
-    <div class="board">{...cells}</div>
-    <div class="ultimate-action">
-      {_ultimate_button(scene_value)}
-    </div>
-    {_board_overlay(scene_value)}
-  </section>
+  <div class={_board_class(scene_value)}>{...cells}</div>
 
-def _board_overlay(scene_value: Scene) -> HTML(DungeonEvent):
+def _ultimate_action(scene_value: Scene) -> HTML(DungeonEvent):
+  <div class="ultimate-action">
+    {_ultimate_button(scene_value)}
+  </div>
+
+def _board_class(scene_value: Scene) -> String:
+  match scene_value:
+    case resume_prompt{run_value}:
+      "board board--over"
+    case game_over{run_value}:
+      "board board--over"
+    case _:
+      "board"
+
+def _board_modal(scene_value: Scene) -> HTML(DungeonEvent):
   match scene_value:
     case setup{}:
       <div class="game-over-modal"></div>
