@@ -13631,6 +13631,543 @@ export function $Midum$Internal$DOM$Layout$max_width_style(x) {
 
 export const Midum$Internal$DOM$Layout$max_width_style = () => ((a0) => ($Midum$Internal$DOM$Layout$max_width_style(a0)));
 
+export function $Midum$Internal$DOM$Layout$edge_px(value) {
+  var _r0;
+  var _v1;
+  var _v2;
+  _v2 = value;
+  _v1 = $Midum$Internal$DOM$Layout$css_nat(_v2);
+  var _v3;
+  _v3 = "px";
+  _r0 = (_v1 + _v3);
+  return _r0;
+}
+
+export const Midum$Internal$DOM$Layout$edge_px = () => ((a0) => ($Midum$Internal$DOM$Layout$edge_px(a0)));
+
+export function $Midum$Internal$DOM$Layout$edge_top_style(x) {
+  var _r0;
+  switch (x.$) {
+    case "edge_insets": {
+      var _m1 = x.top;
+      var _m2 = x.right;
+      var _m3 = x.bottom;
+      var _m4 = x.left;
+      var top = _m1;
+      var right$1 = _m2;
+      var bottom$2 = _m3;
+      var left$3 = _m4;
+      var _v5;
+      _v5 = top;
+      _r0 = $Midum$Internal$DOM$Layout$edge_px(_v5);
+      break;
+    }
+    default: {
+      throw new Error("EFQ applied");
+      break;
+    }
+  }
+  return _r0;
+}
+
+export const Midum$Internal$DOM$Layout$edge_top_style = () => ((a0) => ($Midum$Internal$DOM$Layout$edge_top_style(a0)));
+
+export function $Midum$Internal$DOM$Layout$edge_right_style(x) {
+  var _r0;
+  switch (x.$) {
+    case "edge_insets": {
+      var _m1 = x.top;
+      var _m2 = x.right;
+      var _m3 = x.bottom;
+      var _m4 = x.left;
+      var top = _m1;
+      var right$1 = _m2;
+      var bottom$2 = _m3;
+      var left$3 = _m4;
+      var _v5;
+      _v5 = right$1;
+      _r0 = $Midum$Internal$DOM$Layout$edge_px(_v5);
+      break;
+    }
+    default: {
+      throw new Error("EFQ applied");
+      break;
+    }
+  }
+  return _r0;
+}
+
+export const Midum$Internal$DOM$Layout$edge_right_style = () => ((a0) => ($Midum$Internal$DOM$Layout$edge_right_style(a0)));
+
+export function $Midum$Internal$DOM$Layout$edge_bottom_style(x) {
+  var _r0;
+  switch (x.$) {
+    case "edge_insets": {
+      var _m1 = x.top;
+      var _m2 = x.right;
+      var _m3 = x.bottom;
+      var _m4 = x.left;
+      var top = _m1;
+      var right$1 = _m2;
+      var bottom$2 = _m3;
+      var left$3 = _m4;
+      var _v5;
+      _v5 = bottom$2;
+      _r0 = $Midum$Internal$DOM$Layout$edge_px(_v5);
+      break;
+    }
+    default: {
+      throw new Error("EFQ applied");
+      break;
+    }
+  }
+  return _r0;
+}
+
+export const Midum$Internal$DOM$Layout$edge_bottom_style = () => ((a0) => ($Midum$Internal$DOM$Layout$edge_bottom_style(a0)));
+
+export function $Midum$Internal$DOM$Layout$edge_left_style(x) {
+  var _r0;
+  switch (x.$) {
+    case "edge_insets": {
+      var _m1 = x.top;
+      var _m2 = x.right;
+      var _m3 = x.bottom;
+      var _m4 = x.left;
+      var top = _m1;
+      var right$1 = _m2;
+      var bottom$2 = _m3;
+      var left$3 = _m4;
+      var _v5;
+      _v5 = left$3;
+      _r0 = $Midum$Internal$DOM$Layout$edge_px(_v5);
+      break;
+    }
+    default: {
+      throw new Error("EFQ applied");
+      break;
+    }
+  }
+  return _r0;
+}
+
+export const Midum$Internal$DOM$Layout$edge_left_style = () => ((a0) => ($Midum$Internal$DOM$Layout$edge_left_style(a0)));
+
+export function $Midum$Internal$DOM$Layout$compact_top_style(inset, x$1) {
+  var _r0;
+  switch (x$1.$) {
+    case "compact_inset_none": {
+      var _v1;
+      _v1 = inset;
+      _r0 = $Midum$Internal$DOM$Layout$edge_top_style(_v1);
+      break;
+    }
+    default: {
+      switch (x$1.$) {
+        case "compact_inset_value": {
+          var _m2 = x$1.inset;
+          var compact_value$1 = _m2;
+          var _v3;
+          _v3 = compact_value$1;
+          _r0 = $Midum$Internal$DOM$Layout$edge_top_style(_v3);
+          break;
+        }
+        default: {
+          throw new Error("EFQ applied");
+          break;
+        }
+      }
+      break;
+    }
+  }
+  return _r0;
+}
+
+export const Midum$Internal$DOM$Layout$compact_top_style = () => ((a0) => ((a1) => ($Midum$Internal$DOM$Layout$compact_top_style(a0, a1))));
+
+export function $Midum$Internal$DOM$Layout$compact_right_style(inset, x$1) {
+  var _r0;
+  switch (x$1.$) {
+    case "compact_inset_none": {
+      var _v1;
+      _v1 = inset;
+      _r0 = $Midum$Internal$DOM$Layout$edge_right_style(_v1);
+      break;
+    }
+    default: {
+      switch (x$1.$) {
+        case "compact_inset_value": {
+          var _m2 = x$1.inset;
+          var compact_value$1 = _m2;
+          var _v3;
+          _v3 = compact_value$1;
+          _r0 = $Midum$Internal$DOM$Layout$edge_right_style(_v3);
+          break;
+        }
+        default: {
+          throw new Error("EFQ applied");
+          break;
+        }
+      }
+      break;
+    }
+  }
+  return _r0;
+}
+
+export const Midum$Internal$DOM$Layout$compact_right_style = () => ((a0) => ((a1) => ($Midum$Internal$DOM$Layout$compact_right_style(a0, a1))));
+
+export function $Midum$Internal$DOM$Layout$compact_bottom_style(inset, x$1) {
+  var _r0;
+  switch (x$1.$) {
+    case "compact_inset_none": {
+      var _v1;
+      _v1 = inset;
+      _r0 = $Midum$Internal$DOM$Layout$edge_bottom_style(_v1);
+      break;
+    }
+    default: {
+      switch (x$1.$) {
+        case "compact_inset_value": {
+          var _m2 = x$1.inset;
+          var compact_value$1 = _m2;
+          var _v3;
+          _v3 = compact_value$1;
+          _r0 = $Midum$Internal$DOM$Layout$edge_bottom_style(_v3);
+          break;
+        }
+        default: {
+          throw new Error("EFQ applied");
+          break;
+        }
+      }
+      break;
+    }
+  }
+  return _r0;
+}
+
+export const Midum$Internal$DOM$Layout$compact_bottom_style = () => ((a0) => ((a1) => ($Midum$Internal$DOM$Layout$compact_bottom_style(a0, a1))));
+
+export function $Midum$Internal$DOM$Layout$compact_left_style(inset, x$1) {
+  var _r0;
+  switch (x$1.$) {
+    case "compact_inset_none": {
+      var _v1;
+      _v1 = inset;
+      _r0 = $Midum$Internal$DOM$Layout$edge_left_style(_v1);
+      break;
+    }
+    default: {
+      switch (x$1.$) {
+        case "compact_inset_value": {
+          var _m2 = x$1.inset;
+          var compact_value$1 = _m2;
+          var _v3;
+          _v3 = compact_value$1;
+          _r0 = $Midum$Internal$DOM$Layout$edge_left_style(_v3);
+          break;
+        }
+        default: {
+          throw new Error("EFQ applied");
+          break;
+        }
+      }
+      break;
+    }
+  }
+  return _r0;
+}
+
+export const Midum$Internal$DOM$Layout$compact_left_style = () => ((a0) => ((a1) => ($Midum$Internal$DOM$Layout$compact_left_style(a0, a1))));
+
+export function $Midum$Internal$DOM$Layout$shell_height_class(x) {
+  var _r0;
+  switch (x.$) {
+    case "shell_height_auto": {
+      _r0 = "bc-layout-shell-height-auto";
+      break;
+    }
+    default: {
+      switch (x.$) {
+        case "shell_height_viewport": {
+          _r0 = "bc-layout-shell-height-viewport";
+          break;
+        }
+        default: {
+          throw new Error("EFQ applied");
+          break;
+        }
+      }
+      break;
+    }
+  }
+  return _r0;
+}
+
+export const Midum$Internal$DOM$Layout$shell_height_class = () => ((a0) => ($Midum$Internal$DOM$Layout$shell_height_class(a0)));
+
+export function $Midum$Internal$DOM$Layout$shell_overflow_class(x) {
+  var _r0;
+  switch (x.$) {
+    case "shell_overflow_visible": {
+      _r0 = "bc-layout-shell-overflow-visible";
+      break;
+    }
+    default: {
+      switch (x.$) {
+        case "shell_overflow_hidden": {
+          _r0 = "bc-layout-shell-overflow-hidden";
+          break;
+        }
+        default: {
+          throw new Error("EFQ applied");
+          break;
+        }
+      }
+      break;
+    }
+  }
+  return _r0;
+}
+
+export const Midum$Internal$DOM$Layout$shell_overflow_class = () => ((a0) => ($Midum$Internal$DOM$Layout$shell_overflow_class(a0)));
+
+export function $Midum$Internal$DOM$Layout$shell_safe_area_class(x) {
+  var _r0;
+  switch (x.$) {
+    case "shell_safe_area_off": {
+      _r0 = "bc-layout-shell-safe-area-off";
+      break;
+    }
+    default: {
+      switch (x.$) {
+        case "shell_safe_area_on": {
+          _r0 = "bc-layout-shell-safe-area";
+          break;
+        }
+        default: {
+          throw new Error("EFQ applied");
+          break;
+        }
+      }
+      break;
+    }
+  }
+  return _r0;
+}
+
+export const Midum$Internal$DOM$Layout$shell_safe_area_class = () => ((a0) => ($Midum$Internal$DOM$Layout$shell_safe_area_class(a0)));
+
+export function $Midum$Internal$DOM$Layout$shell_class(height, overflow$1, safe_area$2) {
+  var _r0;
+  var _v1;
+  var _v2;
+  var _v3;
+  var _v4;
+  var _v5;
+  _v5 = "bc-layout-shell ";
+  var _v6;
+  var _v7;
+  _v7 = height;
+  _v6 = $Midum$Internal$DOM$Layout$shell_height_class(_v7);
+  _v4 = (_v5 + _v6);
+  var _v8;
+  _v8 = " ";
+  _v3 = (_v4 + _v8);
+  var _v9;
+  var _v10;
+  _v10 = overflow$1;
+  _v9 = $Midum$Internal$DOM$Layout$shell_overflow_class(_v10);
+  _v2 = (_v3 + _v9);
+  var _v11;
+  _v11 = " ";
+  _v1 = (_v2 + _v11);
+  var _v12;
+  var _v13;
+  _v13 = safe_area$2;
+  _v12 = $Midum$Internal$DOM$Layout$shell_safe_area_class(_v13);
+  _r0 = (_v1 + _v12);
+  return _r0;
+}
+
+export const Midum$Internal$DOM$Layout$shell_class = () => ((a0) => ((a1) => ((a2) => ($Midum$Internal$DOM$Layout$shell_class(a0, a1, a2)))));
+
+export function $Midum$Internal$DOM$Layout$shell_attrs(_Event, x$1) {
+  var _r0;
+  switch (x$1.$) {
+    case "shell_layout": {
+      var _m1 = x$1.width;
+      var _m2 = x$1.max_width;
+      var _m3 = x$1.height;
+      var _m4 = x$1.overflow;
+      var _m5 = x$1.safe_area;
+      var _m6 = x$1.inset;
+      var _m7 = x$1.compact_inset;
+      var width$1 = _m1;
+      var max_width$2 = _m2;
+      var height$3 = _m3;
+      var overflow$4 = _m4;
+      var safe_area$5 = _m5;
+      var inset$6 = _m6;
+      var compact_inset$7 = _m7;
+      var _v8;
+      var _v9;
+      _v9 = "class";
+      var _v10;
+      var _v11;
+      _v11 = height$3;
+      var _v12;
+      _v12 = overflow$4;
+      var _v13;
+      _v13 = safe_area$5;
+      _v10 = $Midum$Internal$DOM$Layout$shell_class(_v11, _v12, _v13);
+      _v8 = ({$: "attr", nam: _v9, val: _v10});
+      var _v14;
+      var _v15;
+      var _v16;
+      _v16 = "width";
+      var _v17;
+      var _v18;
+      _v18 = width$1;
+      _v17 = $Midum$Internal$DOM$Layout$frame_width_style(_v18);
+      _v15 = ({$: "style", nam: _v16, val: _v17});
+      var _v19;
+      var _v20;
+      var _v21;
+      _v21 = "max-width";
+      var _v22;
+      var _v23;
+      _v23 = max_width$2;
+      _v22 = $Midum$Internal$DOM$Layout$max_width_style(_v23);
+      _v20 = ({$: "style", nam: _v21, val: _v22});
+      var _v24;
+      var _v25;
+      var _v26;
+      _v26 = "--bc-layout-shell-inset-top";
+      var _v27;
+      var _v28;
+      _v28 = inset$6;
+      _v27 = $Midum$Internal$DOM$Layout$edge_top_style(_v28);
+      _v25 = ({$: "style", nam: _v26, val: _v27});
+      var _v29;
+      var _v30;
+      var _v31;
+      _v31 = "--bc-layout-shell-inset-right";
+      var _v32;
+      var _v33;
+      _v33 = inset$6;
+      _v32 = $Midum$Internal$DOM$Layout$edge_right_style(_v33);
+      _v30 = ({$: "style", nam: _v31, val: _v32});
+      var _v34;
+      var _v35;
+      var _v36;
+      _v36 = "--bc-layout-shell-inset-bottom";
+      var _v37;
+      var _v38;
+      _v38 = inset$6;
+      _v37 = $Midum$Internal$DOM$Layout$edge_bottom_style(_v38);
+      _v35 = ({$: "style", nam: _v36, val: _v37});
+      var _v39;
+      var _v40;
+      var _v41;
+      _v41 = "--bc-layout-shell-inset-left";
+      var _v42;
+      var _v43;
+      _v43 = inset$6;
+      _v42 = $Midum$Internal$DOM$Layout$edge_left_style(_v43);
+      _v40 = ({$: "style", nam: _v41, val: _v42});
+      var _v44;
+      var _v45;
+      var _v46;
+      _v46 = "--bc-layout-shell-compact-inset-top";
+      var _v47;
+      var _v48;
+      _v48 = inset$6;
+      var _v49;
+      _v49 = compact_inset$7;
+      _v47 = $Midum$Internal$DOM$Layout$compact_top_style(_v48, _v49);
+      _v45 = ({$: "style", nam: _v46, val: _v47});
+      var _v50;
+      var _v51;
+      var _v52;
+      _v52 = "--bc-layout-shell-compact-inset-right";
+      var _v53;
+      var _v54;
+      _v54 = inset$6;
+      var _v55;
+      _v55 = compact_inset$7;
+      _v53 = $Midum$Internal$DOM$Layout$compact_right_style(_v54, _v55);
+      _v51 = ({$: "style", nam: _v52, val: _v53});
+      var _v56;
+      var _v57;
+      var _v58;
+      _v58 = "--bc-layout-shell-compact-inset-bottom";
+      var _v59;
+      var _v60;
+      _v60 = inset$6;
+      var _v61;
+      _v61 = compact_inset$7;
+      _v59 = $Midum$Internal$DOM$Layout$compact_bottom_style(_v60, _v61);
+      _v57 = ({$: "style", nam: _v58, val: _v59});
+      var _v62;
+      var _v63;
+      var _v64;
+      _v64 = "--bc-layout-shell-compact-inset-left";
+      var _v65;
+      var _v66;
+      _v66 = inset$6;
+      var _v67;
+      _v67 = compact_inset$7;
+      _v65 = $Midum$Internal$DOM$Layout$compact_left_style(_v66, _v67);
+      _v63 = ({$: "style", nam: _v64, val: _v65});
+      var _v68;
+      _v68 = ({$: "nil"});
+      _v62 = ({$: "cons", head: _v63, tail: _v68});
+      _v56 = ({$: "cons", head: _v57, tail: _v62});
+      _v50 = ({$: "cons", head: _v51, tail: _v56});
+      _v44 = ({$: "cons", head: _v45, tail: _v50});
+      _v39 = ({$: "cons", head: _v40, tail: _v44});
+      _v34 = ({$: "cons", head: _v35, tail: _v39});
+      _v29 = ({$: "cons", head: _v30, tail: _v34});
+      _v24 = ({$: "cons", head: _v25, tail: _v29});
+      _v19 = ({$: "cons", head: _v20, tail: _v24});
+      _v14 = ({$: "cons", head: _v15, tail: _v19});
+      _r0 = ({$: "cons", head: _v8, tail: _v14});
+      break;
+    }
+    default: {
+      throw new Error("EFQ applied");
+      break;
+    }
+  }
+  return _r0;
+}
+
+export const Midum$Internal$DOM$Layout$shell_attrs = () => ((a0) => ((a1) => ($Midum$Internal$DOM$Layout$shell_attrs(a0, a1))));
+
+export function $Midum$Internal$DOM$Layout$render_shell(_Event, cfg$1, body$2) {
+  var _r0;
+  var _v1;
+  _v1 = "div";
+  var _v2;
+  var _v3;
+  _v3 = _Event;
+  var _v4;
+  _v4 = cfg$1;
+  _v2 = $Midum$Internal$DOM$Layout$shell_attrs(_v3, _v4);
+  var _v5;
+  var _v6;
+  _v6 = body$2;
+  var _v7;
+  _v7 = ({$: "nil"});
+  _v5 = ({$: "cons", head: _v6, tail: _v7});
+  _r0 = ({$: "node", tag: _v1, attrs: _v2, kids: _v5});
+  return _r0;
+}
+
+export const Midum$Internal$DOM$Layout$render_shell = () => ((a0) => ((a1) => ((a2) => ($Midum$Internal$DOM$Layout$render_shell(a0, a1, a2)))));
+
 export function $Midum$Internal$DOM$Layout$render_page(_Event, x$1, x$2) {
   var _r0;
   switch (x$1.$) {
@@ -13986,7 +14523,7 @@ export const Midum$Internal$DOM$Layout$render_document_stack = () => ((a0) => ((
 
 export function $Midum$Internal$DOM$Layout$css_canvas() {
   var _r0;
-  _r0 = "\n  .bc-layout-page {\n    display: block;\n    box-sizing: border-box;\n    width: 100%;\n    min-height: 100vh;\n  }\n\n  .bc-layout-container {\n    display: block;\n    box-sizing: border-box;\n    width: 100%;\n    min-width: 0;\n    margin-left: auto;\n    margin-right: auto;\n  }\n\n  .bc-layout-box {\n    box-sizing: border-box;\n    display: flex;\n    flex: 1 1 auto;\n    width: 100%;\n    max-width: 100%;\n    height: 100%;\n    min-height: 0;\n  }\n\n  .bc-screen > .bc-layout-box {\n    min-height: 100vh;\n    padding: 24px;\n  }\n\n  .bc-layout-box > .bc-layout-box-body {\n    display: flex;\n    box-sizing: border-box;\n    max-width: 100%;\n    max-height: 100%;\n    min-width: 0;\n    min-height: 0;\n  }\n\n  .bc-layout-overlay {\n    position: relative;\n    box-sizing: border-box;\n    width: 100%;\n    height: 100%;\n    min-height: 100%;\n  }\n\n  .bc-screen > .bc-layout-overlay {\n    min-height: 100vh;\n  }\n\n  .bc-layout-overlay > .bc-layout-box {\n    position: absolute;\n    inset: 0;\n    padding: 24px;\n    pointer-events: none;\n  }\n\n  .bc-layout-overlay > .bc-layout-box > .bc-layout-box-body {\n    pointer-events: none;\n  }\n\n  .bc-layout-overlay > .bc-layout-box > .bc-layout-box-body > * {\n    pointer-events: auto;\n  }\n\n  .bc-layout-frame {\n    display: block;\n    box-sizing: border-box;\n    min-width: 0;\n    min-height: 0;\n  }\n\n  .bc-layout-frame > .bc-layout-overlay {\n    width: 100%;\n    height: 100%;\n    min-height: 0;\n  }\n\n  .bc-layout-frame > .bc-layout-overlay > .bc-layout-box {\n    padding: 0;\n  }\n\n  .bc-layout-stack {\n    display: flex;\n    box-sizing: border-box;\n    max-width: 100%;\n    min-width: 0;\n    min-height: 0;\n  }\n\n  .bc-layout-document-stack {\n    display: flex;\n    box-sizing: border-box;\n    width: 100%;\n    max-width: 100%;\n    min-width: 0;\n    min-height: 0;\n    gap: var(--bc-layout-gap);\n  }\n  ";
+  _r0 = "\n  .bc-layout-shell {\n    display: block;\n    box-sizing: border-box;\n    min-width: 0;\n    margin-left: auto;\n    margin-right: auto;\n    padding-top: var(--bc-layout-shell-inset-top);\n    padding-right: var(--bc-layout-shell-inset-right);\n    padding-bottom: var(--bc-layout-shell-inset-bottom);\n    padding-left: var(--bc-layout-shell-inset-left);\n  }\n\n  .bc-layout-shell-safe-area {\n    padding-top: calc(var(--bc-layout-shell-inset-top) + env(safe-area-inset-top));\n    padding-right: calc(var(--bc-layout-shell-inset-right) + env(safe-area-inset-right));\n    padding-bottom: calc(var(--bc-layout-shell-inset-bottom) + env(safe-area-inset-bottom));\n    padding-left: calc(var(--bc-layout-shell-inset-left) + env(safe-area-inset-left));\n  }\n\n  .bc-layout-shell-height-viewport {\n    min-height: 100svh;\n    height: 100svh;\n    max-height: 100svh;\n  }\n\n  .bc-layout-shell-overflow-hidden {\n    overflow: hidden;\n  }\n\n  @media (max-width: 800px) {\n    .bc-layout-shell {\n      padding-top: var(--bc-layout-shell-compact-inset-top);\n      padding-right: var(--bc-layout-shell-compact-inset-right);\n      padding-bottom: var(--bc-layout-shell-compact-inset-bottom);\n      padding-left: var(--bc-layout-shell-compact-inset-left);\n    }\n\n    .bc-layout-shell-safe-area {\n      padding-top: calc(var(--bc-layout-shell-compact-inset-top) + env(safe-area-inset-top));\n      padding-right: calc(var(--bc-layout-shell-compact-inset-right) + env(safe-area-inset-right));\n      padding-bottom: calc(var(--bc-layout-shell-compact-inset-bottom) + env(safe-area-inset-bottom));\n      padding-left: calc(var(--bc-layout-shell-compact-inset-left) + env(safe-area-inset-left));\n    }\n  }\n\n  .bc-layout-page {\n    display: block;\n    box-sizing: border-box;\n    width: 100%;\n    min-height: 100vh;\n  }\n\n  .bc-layout-container {\n    display: block;\n    box-sizing: border-box;\n    width: 100%;\n    min-width: 0;\n    margin-left: auto;\n    margin-right: auto;\n  }\n\n  .bc-layout-box {\n    box-sizing: border-box;\n    display: flex;\n    flex: 1 1 auto;\n    width: 100%;\n    max-width: 100%;\n    height: 100%;\n    min-height: 0;\n  }\n\n  .bc-screen > .bc-layout-box {\n    min-height: 100vh;\n    padding: 24px;\n  }\n\n  .bc-layout-box > .bc-layout-box-body {\n    display: flex;\n    box-sizing: border-box;\n    max-width: 100%;\n    max-height: 100%;\n    min-width: 0;\n    min-height: 0;\n  }\n\n  .bc-layout-overlay {\n    position: relative;\n    box-sizing: border-box;\n    width: 100%;\n    height: 100%;\n    min-height: 100%;\n  }\n\n  .bc-screen > .bc-layout-overlay {\n    min-height: 100vh;\n  }\n\n  .bc-layout-overlay > .bc-layout-box {\n    position: absolute;\n    inset: 0;\n    padding: 24px;\n    pointer-events: none;\n  }\n\n  .bc-layout-overlay > .bc-layout-box > .bc-layout-box-body {\n    pointer-events: none;\n  }\n\n  .bc-layout-overlay > .bc-layout-box > .bc-layout-box-body > * {\n    pointer-events: auto;\n  }\n\n  .bc-layout-frame {\n    display: block;\n    box-sizing: border-box;\n    min-width: 0;\n    min-height: 0;\n  }\n\n  .bc-layout-frame > .bc-layout-overlay {\n    width: 100%;\n    height: 100%;\n    min-height: 0;\n  }\n\n  .bc-layout-frame > .bc-layout-overlay > .bc-layout-box {\n    padding: 0;\n  }\n\n  .bc-layout-stack {\n    display: flex;\n    box-sizing: border-box;\n    max-width: 100%;\n    min-width: 0;\n    min-height: 0;\n  }\n\n  .bc-layout-document-stack {\n    display: flex;\n    box-sizing: border-box;\n    width: 100%;\n    max-width: 100%;\n    min-width: 0;\n    min-height: 0;\n    gap: var(--bc-layout-gap);\n  }\n  ";
   return _r0;
 }
 
@@ -14213,6 +14750,18 @@ export const Midum$Layout$Height = null;
 export const Midum$Layout$Inset = null;
 
 export const Midum$Layout$MaxWidth = null;
+
+export const Midum$Layout$EdgeInsets = null;
+
+export const Midum$Layout$ShellCompactInset = null;
+
+export const Midum$Layout$ShellHeight = null;
+
+export const Midum$Layout$ShellOverflow = null;
+
+export const Midum$Layout$ShellSafeArea = null;
+
+export const Midum$Layout$ShellConfig = null;
 
 export const Midum$Layout$PageConfig = null;
 
@@ -16609,7 +17158,7 @@ export function $Dungeon$View$css$layout_css() {
   _v11 = ".shell{width:min(100%,560px);min-height:100svh;height:100svh;max-height:100svh;margin:0 auto;padding:calc(14px + env(safe-area-inset-top)) 14px calc(14px + env(safe-area-inset-bottom));overflow:hidden;}";
   _v9 = (_v10 + _v11);
   var _v12;
-  _v12 = ".shell--menu{display:grid;grid-template-rows:auto minmax(0,1fr) auto;gap:22px;padding-top:calc(24px + env(safe-area-inset-top));padding-bottom:calc(20px + env(safe-area-inset-bottom));}.shell--setup{display:block;position:relative;padding-top:calc(24px + env(safe-area-inset-top));padding-bottom:calc(20px + env(safe-area-inset-bottom));}.shell--dungeon,.shell--boosters,.shell--boosters-reveal{display:grid;grid-template-rows:auto minmax(0,1fr);gap:22px;padding-top:calc(24px + env(safe-area-inset-top));padding-bottom:calc(20px + env(safe-area-inset-bottom));}";
+  _v12 = ".shell--menu{display:grid;grid-template-rows:auto minmax(0,1fr) auto;gap:22px;padding-top:calc(24px + env(safe-area-inset-top));padding-bottom:calc(20px + env(safe-area-inset-bottom));}.shell--dungeon,.shell--boosters,.shell--boosters-reveal{display:grid;grid-template-rows:auto minmax(0,1fr);gap:22px;padding-top:calc(24px + env(safe-area-inset-top));padding-bottom:calc(20px + env(safe-area-inset-bottom));}";
   _v8 = (_v9 + _v12);
   var _v13;
   _v13 = ".topbar{display:flex;align-items:center;justify-content:flex-start;min-height:0;}.topbar--menu,.topbar--dungeon,.topbar--boosters{justify-content:space-between;gap:12px;}.topbar__back{display:flex;align-items:center;}.topbar__back>.bc-btn{width:auto;min-width:0;}.resource-bar{margin:0;display:inline-flex;align-items:baseline;gap:8px;color:var(--text-muted);font-size:0.78rem;font-weight:700;letter-spacing:0.06em;text-transform:uppercase;}.resource-bar__value{color:var(--text);font-size:1rem;letter-spacing:0;}.topbar__actions{display:flex;align-items:baseline;justify-content:flex-end;gap:12px;min-width:0;}.topbar__stats{display:flex;align-items:baseline;justify-content:flex-end;gap:14px;min-width:0;}.topbar__slot{display:flex;align-items:center;justify-content:flex-end;min-width:110px;}.topbar__slot .bc-btn{width:auto;min-width:0;}.topbar__slot--placeholder{display:flex;visibility:hidden;pointer-events:none;}.topbar-stat{margin:0;display:inline-flex;align-items:baseline;gap:6px;color:var(--text-muted);font-size:0.72rem;font-weight:700;letter-spacing:0.06em;text-transform:uppercase;white-space:nowrap;}.topbar-stat__value{color:var(--text);font-size:0.92rem;letter-spacing:0;}";
@@ -16630,7 +17179,7 @@ export function $Dungeon$View$css$layout_css() {
   _v18 = ".board-shell{position:relative;display:grid;grid-template-rows:minmax(0,1fr) auto;justify-items:center;align-items:center;align-content:stretch;gap:12px;min-height:0;padding-block:8px;}.board-shell--over .board{transform:scale(0.985);filter:blur(1px);}.board{position:relative;display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:10px;width:min(100%,460px);touch-action:none;transition:transform 140ms ease,filter 140ms ease;}.ultimate-action{width:min(100%,460px);align-self:end;}.ultimate-action>.bc-btn{width:100%;letter-spacing:0.08em;text-transform:uppercase;}.game-over-modal{position:absolute;inset:0;display:grid;place-items:center;padding:16px;opacity:0;pointer-events:none;background:rgba(17,17,17,0);transition:opacity 140ms ease,background-color 140ms ease;}.game-over-modal--visible{opacity:1;pointer-events:auto;background:rgba(17,17,17,0.32);}.game-over-modal>.bc-card{width:min(100%,280px);}.game-over-card{display:grid;gap:12px;justify-items:center;text-align:center;}.game-over-card__action{width:100%;}.game-over-card__action>.bc-btn{width:100%;}.game-over-card__actions{width:100%;display:grid;justify-items:center;gap:12px;padding-top:4px;}.game-over-card__primary,.game-over-card__secondary{width:min(100%,280px);justify-self:center;}.game-over-card__primary>.bc-btn,.game-over-card__secondary>.bc-btn{width:100%;}.game-over-card__eyebrow{margin:0;color:var(--danger);font-size:0.74rem;font-weight:700;letter-spacing:0.06em;text-transform:uppercase;}.game-over-card__title{margin:0;font-size:1.4rem;line-height:1;}.game-over-card__body{margin:0;color:var(--text-muted);font-size:0.92rem;line-height:1.35;}";
   _v2 = (_v3 + _v18);
   var _v19;
-  _v19 = "@media (max-width:800px){.shell{padding-inline:12px;}.shell--menu,.shell--setup,.shell--dungeon,.shell--boosters,.shell--boosters-reveal{gap:16px;padding-top:calc(20px + env(safe-area-inset-top));padding-bottom:calc(18px + env(safe-area-inset-bottom));}.topbar--menu,.topbar--dungeon,.topbar--boosters{gap:10px;}.topbar__actions,.topbar__stats{gap:10px;}.topbar__slot{min-width:88px;}.topbar-stat{font-size:0.64rem;}.topbar-stat__value{font-size:0.82rem;}.menu-hero-panel{gap:12px;}.menu-hero-panel__name{font-size:1.08rem;}.menu-hero-panel__portrait{width:min(100%,190px);min-height:0;max-height:clamp(140px,24vh,190px);padding-bottom:4px;}.menu-hero-panel__portrait--select{width:min(100%,280px);max-height:clamp(140px,24vh,190px);}.menu-hero-panel__stats{font-size:0.8rem;white-space:normal;}.menu-upgrade-row{grid-template-columns:1fr;justify-items:center;gap:10px;}.menu-upgrade-row__meta{text-align:center;}.menu-secondary-action,.menu-start-action,.boosters-stage__buy{width:min(100%,260px);}.boosters-reveal__top-spacer{min-height:40px;}.booster-reveal-panel{gap:14px;}.booster-reveal-panel__meta{width:min(100%,248px);}.booster-reveal-panel__footer{padding-top:26px;}.booster-reveal-panel__action{width:min(100%,156px);}.reveal-meta{gap:6px;}.reveal-name{font-size:1rem;}.reveal-copies{font-size:0.82rem;}.reveal-stat--detail{font-size:0.88rem;}.reveal-position{font-size:0.82rem;}.booster-visual{width:min(100%,248px);padding:14px;}.booster-visual--revealed{max-height:clamp(280px,48vh,360px);}.booster-visual--midum{padding:0;}.booster-visual__detail--midum{padding:14px;}.booster-visual__image{max-height:156px;}.booster-visual__image--midum{transform:translateY(-9px);}.booster-visual__nav{gap:8px;}.board{gap:8px;width:min(100%,400px);}.ultimate-action{width:min(100%,400px);}.game-over-modal>.bc-card{width:min(100%,240px);}}";
+  _v19 = "@media (max-width:800px){.shell{padding-inline:12px;}.shell--menu,.shell--dungeon,.shell--boosters,.shell--boosters-reveal{gap:16px;padding-top:calc(20px + env(safe-area-inset-top));padding-bottom:calc(18px + env(safe-area-inset-bottom));}.topbar--menu,.topbar--dungeon,.topbar--boosters{gap:10px;}.topbar__actions,.topbar__stats{gap:10px;}.topbar__slot{min-width:88px;}.topbar-stat{font-size:0.64rem;}.topbar-stat__value{font-size:0.82rem;}.menu-hero-panel{gap:12px;}.menu-hero-panel__name{font-size:1.08rem;}.menu-hero-panel__portrait{width:min(100%,190px);min-height:0;max-height:clamp(140px,24vh,190px);padding-bottom:4px;}.menu-hero-panel__portrait--select{width:min(100%,280px);max-height:clamp(140px,24vh,190px);}.menu-hero-panel__stats{font-size:0.8rem;white-space:normal;}.menu-upgrade-row{grid-template-columns:1fr;justify-items:center;gap:10px;}.menu-upgrade-row__meta{text-align:center;}.menu-secondary-action,.menu-start-action,.boosters-stage__buy{width:min(100%,260px);}.boosters-reveal__top-spacer{min-height:40px;}.booster-reveal-panel{gap:14px;}.booster-reveal-panel__meta{width:min(100%,248px);}.booster-reveal-panel__footer{padding-top:26px;}.booster-reveal-panel__action{width:min(100%,156px);}.reveal-meta{gap:6px;}.reveal-name{font-size:1rem;}.reveal-copies{font-size:0.82rem;}.reveal-stat--detail{font-size:0.88rem;}.reveal-position{font-size:0.82rem;}.booster-visual{width:min(100%,248px);padding:14px;}.booster-visual--revealed{max-height:clamp(280px,48vh,360px);}.booster-visual--midum{padding:0;}.booster-visual__detail--midum{padding:14px;}.booster-visual__image{max-height:156px;}.booster-visual__image--midum{transform:translateY(-9px);}.booster-visual__nav{gap:8px;}.board{gap:8px;width:min(100%,400px);}.ultimate-action{width:min(100%,400px);}.game-over-modal>.bc-card{width:min(100%,240px);}}";
   _v1 = (_v2 + _v19);
   var _v20;
   _v20 = "@media (max-width:800px){.hero-hud{width:min(100%,228px);column-gap:16px;}.hero-hud__level .bc-text{font-size:0.94rem;}.hero-hud__heart{width:40px;flex-basis:40px;}.hero-hud__heart-value{font-size:0.92rem;}.hero-hud__max .bc-text{font-size:0.94rem;}.menu-upgrade-row--placeholder{width:min(100%,260px);min-height:72px;}}";
@@ -16907,152 +17456,182 @@ export function $Dungeon$View$menu$_render_menu(meta_state) {
   _v4 = meta_state;
   profile$3 = $Dungeon$profile_helpers$active_profile(_v4);
   var _v5;
-  _v5 = "section";
+  _v5 = null;
   var _v6;
   var _v7;
+  _v7 = null;
   var _v8;
-  _v8 = "class";
   var _v9;
-  _v9 = "shell shell--setup";
-  _v7 = ({$: "attr", nam: _v8, val: _v9});
+  _v9 = null;
   var _v10;
-  _v10 = ({$: "nil"});
-  _v6 = ({$: "cons", head: _v7, tail: _v10});
   var _v11;
   var _v12;
+  _v12 = null;
   var _v13;
-  _v13 = null;
   var _v14;
+  _v14 = null;
   var _v15;
-  _v15 = null;
   var _v16;
+  _v16 = meta_state;
   var _v17;
+  _v17 = Dungeon$View$menu$_header_characters_action();
+  _v15 = $Dungeon$View$menu$_dashboard_header(_v16, _v17);
   var _v18;
-  _v18 = null;
   var _v19;
+  _v19 = ({$: "width_full"});
   var _v20;
-  _v20 = null;
   var _v21;
+  _v21 = ({$: "height_fit"});
   var _v22;
-  _v22 = meta_state;
   var _v23;
-  _v23 = Dungeon$View$menu$_header_characters_action();
-  _v21 = $Dungeon$View$menu$_dashboard_header(_v22, _v23);
+  _v23 = ({$: "inset_none"});
   var _v24;
+  _v24 = ({$: "nil"});
+  _v22 = ({$: "cons", head: _v23, tail: _v24});
+  _v20 = ({$: "cons", head: _v21, tail: _v22});
+  _v18 = ({$: "cons", head: _v19, tail: _v20});
+  _v13 = $Midum$Layout$frame(_v14, _v15, _v18);
+  _v11 = $Midum$Layout$top(_v12, _v13);
   var _v25;
-  _v25 = ({$: "width_full"});
   var _v26;
   var _v27;
-  _v27 = ({$: "height_fit"});
+  _v27 = null;
   var _v28;
   var _v29;
-  _v29 = ({$: "inset_none"});
+  _v29 = null;
   var _v30;
-  _v30 = ({$: "nil"});
-  _v28 = ({$: "cons", head: _v29, tail: _v30});
-  _v26 = ({$: "cons", head: _v27, tail: _v28});
-  _v24 = ({$: "cons", head: _v25, tail: _v26});
-  _v19 = $Midum$Layout$frame(_v20, _v21, _v24);
-  _v17 = $Midum$Layout$top(_v18, _v19);
   var _v31;
+  _v31 = "section";
   var _v32;
   var _v33;
-  _v33 = null;
   var _v34;
+  _v34 = "class";
   var _v35;
-  _v35 = null;
+  _v35 = "menu-stage";
+  _v33 = ({$: "attr", nam: _v34, val: _v35});
   var _v36;
+  _v36 = ({$: "nil"});
+  _v32 = ({$: "cons", head: _v33, tail: _v36});
   var _v37;
-  _v37 = "section";
   var _v38;
   var _v39;
+  _v39 = "div";
   var _v40;
-  _v40 = "class";
   var _v41;
-  _v41 = "menu-stage";
-  _v39 = ({$: "attr", nam: _v40, val: _v41});
   var _v42;
-  _v42 = ({$: "nil"});
-  _v38 = ({$: "cons", head: _v39, tail: _v42});
+  _v42 = "class";
   var _v43;
+  _v43 = "menu-stage__content";
+  _v41 = ({$: "attr", nam: _v42, val: _v43});
   var _v44;
+  _v44 = ({$: "nil"});
+  _v40 = ({$: "cons", head: _v41, tail: _v44});
   var _v45;
-  _v45 = "div";
   var _v46;
   var _v47;
+  _v47 = meta_state;
   var _v48;
-  _v48 = "class";
+  _v48 = hero_value$2;
   var _v49;
-  _v49 = "menu-stage__content";
-  _v47 = ({$: "attr", nam: _v48, val: _v49});
+  _v49 = profile$3;
+  _v46 = $Dungeon$View$menu$_menu_hero_panel(_v47, _v48, _v49);
   var _v50;
   _v50 = ({$: "nil"});
-  _v46 = ({$: "cons", head: _v47, tail: _v50});
+  _v45 = ({$: "cons", head: _v46, tail: _v50});
+  _v38 = ({$: "node", tag: _v39, attrs: _v40, kids: _v45});
   var _v51;
+  _v51 = ({$: "nil"});
+  _v37 = ({$: "cons", head: _v38, tail: _v51});
+  _v30 = ({$: "node", tag: _v31, attrs: _v32, kids: _v37});
   var _v52;
   var _v53;
-  _v53 = meta_state;
+  _v53 = ({$: "width_full"});
   var _v54;
-  _v54 = hero_value$2;
   var _v55;
-  _v55 = profile$3;
-  _v52 = $Dungeon$View$menu$_menu_hero_panel(_v53, _v54, _v55);
+  _v55 = ({$: "height_fit"});
   var _v56;
-  _v56 = ({$: "nil"});
-  _v51 = ({$: "cons", head: _v52, tail: _v56});
-  _v44 = ({$: "node", tag: _v45, attrs: _v46, kids: _v51});
   var _v57;
-  _v57 = ({$: "nil"});
-  _v43 = ({$: "cons", head: _v44, tail: _v57});
-  _v36 = ({$: "node", tag: _v37, attrs: _v38, kids: _v43});
+  _v57 = ({$: "inset_none"});
   var _v58;
+  _v58 = ({$: "nil"});
+  _v56 = ({$: "cons", head: _v57, tail: _v58});
+  _v54 = ({$: "cons", head: _v55, tail: _v56});
+  _v52 = ({$: "cons", head: _v53, tail: _v54});
+  _v28 = $Midum$Layout$frame(_v29, _v30, _v52);
+  _v26 = $Midum$Layout$center(_v27, _v28);
   var _v59;
-  _v59 = ({$: "width_full"});
   var _v60;
   var _v61;
-  _v61 = ({$: "height_fit"});
+  _v61 = null;
   var _v62;
+  _v62 = Dungeon$View$menu$_menu_actions_layout();
+  _v60 = $Midum$Layout$bottom(_v61, _v62);
   var _v63;
-  _v63 = ({$: "inset_none"});
+  _v63 = ({$: "nil"});
+  _v59 = ({$: "cons", head: _v60, tail: _v63});
+  _v25 = ({$: "cons", head: _v26, tail: _v59});
+  _v10 = ({$: "cons", head: _v11, tail: _v25});
+  _v8 = $Midum$Layout$overlay(_v9, _v10);
   var _v64;
-  _v64 = ({$: "nil"});
-  _v62 = ({$: "cons", head: _v63, tail: _v64});
-  _v60 = ({$: "cons", head: _v61, tail: _v62});
-  _v58 = ({$: "cons", head: _v59, tail: _v60});
-  _v34 = $Midum$Layout$frame(_v35, _v36, _v58);
-  _v32 = $Midum$Layout$center(_v33, _v34);
   var _v65;
+  _v65 = ({$: "width_full"});
   var _v66;
   var _v67;
-  _v67 = null;
+  _v67 = ({$: "height_full"});
   var _v68;
-  _v68 = Dungeon$View$menu$_menu_actions_layout();
-  _v66 = $Midum$Layout$bottom(_v67, _v68);
   var _v69;
-  _v69 = ({$: "nil"});
-  _v65 = ({$: "cons", head: _v66, tail: _v69});
-  _v31 = ({$: "cons", head: _v32, tail: _v65});
-  _v16 = ({$: "cons", head: _v17, tail: _v31});
-  _v14 = $Midum$Layout$overlay(_v15, _v16);
+  _v69 = ({$: "inset_none"});
   var _v70;
+  _v70 = ({$: "nil"});
+  _v68 = ({$: "cons", head: _v69, tail: _v70});
+  _v66 = ({$: "cons", head: _v67, tail: _v68});
+  _v64 = ({$: "cons", head: _v65, tail: _v66});
+  _v6 = $Midum$Layout$frame(_v7, _v8, _v64);
   var _v71;
-  _v71 = ({$: "width_full"});
   var _v72;
   var _v73;
-  _v73 = ({$: "height_full"});
+  _v73 = 560;
+  _v72 = ({$: "max_width_px", value: _v73});
   var _v74;
   var _v75;
-  _v75 = ({$: "inset_none"});
+  _v75 = ({$: "height_viewport"});
   var _v76;
-  _v76 = ({$: "nil"});
-  _v74 = ({$: "cons", head: _v75, tail: _v76});
-  _v72 = ({$: "cons", head: _v73, tail: _v74});
-  _v70 = ({$: "cons", head: _v71, tail: _v72});
-  _v12 = $Midum$Layout$frame(_v13, _v14, _v70);
   var _v77;
-  _v77 = ({$: "nil"});
-  _v11 = ({$: "cons", head: _v12, tail: _v77});
-  _r0 = ({$: "node", tag: _v5, attrs: _v6, kids: _v11});
+  _v77 = ({$: "overflow_hidden"});
+  var _v78;
+  var _v79;
+  _v79 = ({$: "safe_area"});
+  var _v80;
+  var _v81;
+  var _v82;
+  _v82 = 24;
+  var _v83;
+  _v83 = 14;
+  var _v84;
+  _v84 = 20;
+  var _v85;
+  _v85 = 14;
+  _v81 = ({$: "inset_px", top: _v82, right: _v83, bottom: _v84, left: _v85});
+  var _v86;
+  var _v87;
+  var _v88;
+  _v88 = 20;
+  var _v89;
+  _v89 = 12;
+  var _v90;
+  _v90 = 18;
+  var _v91;
+  _v91 = 12;
+  _v87 = ({$: "compact_inset_px", top: _v88, right: _v89, bottom: _v90, left: _v91});
+  var _v92;
+  _v92 = ({$: "nil"});
+  _v86 = ({$: "cons", head: _v87, tail: _v92});
+  _v80 = ({$: "cons", head: _v81, tail: _v86});
+  _v78 = ({$: "cons", head: _v79, tail: _v80});
+  _v76 = ({$: "cons", head: _v77, tail: _v78});
+  _v74 = ({$: "cons", head: _v75, tail: _v76});
+  _v71 = ({$: "cons", head: _v72, tail: _v74});
+  _r0 = $Midum$Layout$shell(_v5, _v6, _v71);
   return _r0;
 }
 
@@ -19954,6 +20533,22 @@ export function $Dungeon$Boosters$packs$pack_at(x, x$1) {
 
 export const Dungeon$Boosters$packs$pack_at = () => ((a0) => ((a1) => ($Dungeon$Boosters$packs$pack_at(a0, a1))));
 
+export function $Midum$Layout$edge_insets_zero() {
+  var _r0;
+  var _v1;
+  _v1 = 0;
+  var _v2;
+  _v2 = 0;
+  var _v3;
+  _v3 = 0;
+  var _v4;
+  _v4 = 0;
+  _r0 = ({$: "edge_insets", top: _v1, right: _v2, bottom: _v3, left: _v4});
+  return _r0;
+}
+
+export const Midum$Layout$edge_insets_zero = () => ($Midum$Layout$edge_insets_zero());
+
 export function $Midum$Layout$with_frame_width(x, x$1) {
   var _r0;
   switch (x.$) {
@@ -20155,74 +20750,135 @@ export function $Midum$Layout$apply_frame_override(cfg, x$1) {
                                         }
                                         default: {
                                           switch (x$1.$) {
-                                            case "max_width_px": {
-                                              var _m25 = x$1.value;
-                                              var value$1 = _m25;
+                                            case "inset_px": {
+                                              var _m25 = x$1.top;
+                                              var _m26 = x$1.right;
+                                              var _m27 = x$1.bottom;
+                                              var _m28 = x$1.left;
+                                              var top$1 = _m25;
+                                              var right$2 = _m26;
+                                              var bottom$3 = _m27;
+                                              var left$4 = _m28;
                                               _r0 = cfg;
                                               break;
                                             }
                                             default: {
                                               switch (x$1.$) {
-                                                case "direction_column": {
+                                                case "compact_inset_px": {
+                                                  var _m29 = x$1.top;
+                                                  var _m30 = x$1.right;
+                                                  var _m31 = x$1.bottom;
+                                                  var _m32 = x$1.left;
+                                                  var top$1 = _m29;
+                                                  var right$2 = _m30;
+                                                  var bottom$3 = _m31;
+                                                  var left$4 = _m32;
                                                   _r0 = cfg;
                                                   break;
                                                 }
                                                 default: {
                                                   switch (x$1.$) {
-                                                    case "direction_row": {
+                                                    case "max_width_px": {
+                                                      var _m33 = x$1.value;
+                                                      var value$1 = _m33;
                                                       _r0 = cfg;
                                                       break;
                                                     }
                                                     default: {
                                                       switch (x$1.$) {
-                                                        case "gap_none": {
+                                                        case "height_viewport": {
                                                           _r0 = cfg;
                                                           break;
                                                         }
                                                         default: {
                                                           switch (x$1.$) {
-                                                            case "gap_sm": {
+                                                            case "overflow_hidden": {
                                                               _r0 = cfg;
                                                               break;
                                                             }
                                                             default: {
                                                               switch (x$1.$) {
-                                                                case "gap_md": {
+                                                                case "safe_area": {
                                                                   _r0 = cfg;
                                                                   break;
                                                                 }
                                                                 default: {
                                                                   switch (x$1.$) {
-                                                                    case "gap_lg": {
+                                                                    case "direction_column": {
                                                                       _r0 = cfg;
                                                                       break;
                                                                     }
                                                                     default: {
                                                                       switch (x$1.$) {
-                                                                        case "align_start": {
+                                                                        case "direction_row": {
                                                                           _r0 = cfg;
                                                                           break;
                                                                         }
                                                                         default: {
                                                                           switch (x$1.$) {
-                                                                            case "align_center": {
+                                                                            case "gap_none": {
                                                                               _r0 = cfg;
                                                                               break;
                                                                             }
                                                                             default: {
                                                                               switch (x$1.$) {
-                                                                                case "align_end": {
+                                                                                case "gap_sm": {
                                                                                   _r0 = cfg;
                                                                                   break;
                                                                                 }
                                                                                 default: {
                                                                                   switch (x$1.$) {
-                                                                                    case "align_stretch": {
+                                                                                    case "gap_md": {
                                                                                       _r0 = cfg;
                                                                                       break;
                                                                                     }
                                                                                     default: {
-                                                                                      throw new Error("EFQ applied");
+                                                                                      switch (x$1.$) {
+                                                                                        case "gap_lg": {
+                                                                                          _r0 = cfg;
+                                                                                          break;
+                                                                                        }
+                                                                                        default: {
+                                                                                          switch (x$1.$) {
+                                                                                            case "align_start": {
+                                                                                              _r0 = cfg;
+                                                                                              break;
+                                                                                            }
+                                                                                            default: {
+                                                                                              switch (x$1.$) {
+                                                                                                case "align_center": {
+                                                                                                  _r0 = cfg;
+                                                                                                  break;
+                                                                                                }
+                                                                                                default: {
+                                                                                                  switch (x$1.$) {
+                                                                                                    case "align_end": {
+                                                                                                      _r0 = cfg;
+                                                                                                      break;
+                                                                                                    }
+                                                                                                    default: {
+                                                                                                      switch (x$1.$) {
+                                                                                                        case "align_stretch": {
+                                                                                                          _r0 = cfg;
+                                                                                                          break;
+                                                                                                        }
+                                                                                                        default: {
+                                                                                                          throw new Error("EFQ applied");
+                                                                                                          break;
+                                                                                                        }
+                                                                                                      }
+                                                                                                      break;
+                                                                                                    }
+                                                                                                  }
+                                                                                                  break;
+                                                                                                }
+                                                                                              }
+                                                                                              break;
+                                                                                            }
+                                                                                          }
+                                                                                          break;
+                                                                                        }
+                                                                                      }
                                                                                       break;
                                                                                     }
                                                                                   }
@@ -20386,114 +21042,175 @@ export function $Midum$Layout$apply_page_override(cfg, x$1) {
                 }
                 default: {
                   switch (x$1.$) {
-                    case "width_fit": {
+                    case "inset_px": {
+                      var _m5 = x$1.top;
+                      var _m6 = x$1.right;
+                      var _m7 = x$1.bottom;
+                      var _m8 = x$1.left;
+                      var top$1 = _m5;
+                      var right$2 = _m6;
+                      var bottom$3 = _m7;
+                      var left$4 = _m8;
                       _r0 = cfg;
                       break;
                     }
                     default: {
                       switch (x$1.$) {
-                        case "width_full": {
+                        case "compact_inset_px": {
+                          var _m9 = x$1.top;
+                          var _m10 = x$1.right;
+                          var _m11 = x$1.bottom;
+                          var _m12 = x$1.left;
+                          var top$1 = _m9;
+                          var right$2 = _m10;
+                          var bottom$3 = _m11;
+                          var left$4 = _m12;
                           _r0 = cfg;
                           break;
                         }
                         default: {
                           switch (x$1.$) {
-                            case "width_px": {
-                              var _m5 = x$1.value;
-                              var value$1 = _m5;
+                            case "width_fit": {
                               _r0 = cfg;
                               break;
                             }
                             default: {
                               switch (x$1.$) {
-                                case "height_fit": {
+                                case "width_full": {
                                   _r0 = cfg;
                                   break;
                                 }
                                 default: {
                                   switch (x$1.$) {
-                                    case "height_full": {
+                                    case "width_px": {
+                                      var _m13 = x$1.value;
+                                      var value$1 = _m13;
                                       _r0 = cfg;
                                       break;
                                     }
                                     default: {
                                       switch (x$1.$) {
-                                        case "height_px": {
-                                          var _m6 = x$1.value;
-                                          var value$1 = _m6;
+                                        case "height_fit": {
                                           _r0 = cfg;
                                           break;
                                         }
                                         default: {
                                           switch (x$1.$) {
-                                            case "max_width_px": {
-                                              var _m7 = x$1.value;
-                                              var value$1 = _m7;
+                                            case "height_full": {
                                               _r0 = cfg;
                                               break;
                                             }
                                             default: {
                                               switch (x$1.$) {
-                                                case "direction_column": {
+                                                case "height_px": {
+                                                  var _m14 = x$1.value;
+                                                  var value$1 = _m14;
                                                   _r0 = cfg;
                                                   break;
                                                 }
                                                 default: {
                                                   switch (x$1.$) {
-                                                    case "direction_row": {
+                                                    case "max_width_px": {
+                                                      var _m15 = x$1.value;
+                                                      var value$1 = _m15;
                                                       _r0 = cfg;
                                                       break;
                                                     }
                                                     default: {
                                                       switch (x$1.$) {
-                                                        case "gap_none": {
+                                                        case "height_viewport": {
                                                           _r0 = cfg;
                                                           break;
                                                         }
                                                         default: {
                                                           switch (x$1.$) {
-                                                            case "gap_sm": {
+                                                            case "overflow_hidden": {
                                                               _r0 = cfg;
                                                               break;
                                                             }
                                                             default: {
                                                               switch (x$1.$) {
-                                                                case "gap_md": {
+                                                                case "safe_area": {
                                                                   _r0 = cfg;
                                                                   break;
                                                                 }
                                                                 default: {
                                                                   switch (x$1.$) {
-                                                                    case "gap_lg": {
+                                                                    case "direction_column": {
                                                                       _r0 = cfg;
                                                                       break;
                                                                     }
                                                                     default: {
                                                                       switch (x$1.$) {
-                                                                        case "align_start": {
+                                                                        case "direction_row": {
                                                                           _r0 = cfg;
                                                                           break;
                                                                         }
                                                                         default: {
                                                                           switch (x$1.$) {
-                                                                            case "align_center": {
+                                                                            case "gap_none": {
                                                                               _r0 = cfg;
                                                                               break;
                                                                             }
                                                                             default: {
                                                                               switch (x$1.$) {
-                                                                                case "align_end": {
+                                                                                case "gap_sm": {
                                                                                   _r0 = cfg;
                                                                                   break;
                                                                                 }
                                                                                 default: {
                                                                                   switch (x$1.$) {
-                                                                                    case "align_stretch": {
+                                                                                    case "gap_md": {
                                                                                       _r0 = cfg;
                                                                                       break;
                                                                                     }
                                                                                     default: {
-                                                                                      throw new Error("EFQ applied");
+                                                                                      switch (x$1.$) {
+                                                                                        case "gap_lg": {
+                                                                                          _r0 = cfg;
+                                                                                          break;
+                                                                                        }
+                                                                                        default: {
+                                                                                          switch (x$1.$) {
+                                                                                            case "align_start": {
+                                                                                              _r0 = cfg;
+                                                                                              break;
+                                                                                            }
+                                                                                            default: {
+                                                                                              switch (x$1.$) {
+                                                                                                case "align_center": {
+                                                                                                  _r0 = cfg;
+                                                                                                  break;
+                                                                                                }
+                                                                                                default: {
+                                                                                                  switch (x$1.$) {
+                                                                                                    case "align_end": {
+                                                                                                      _r0 = cfg;
+                                                                                                      break;
+                                                                                                    }
+                                                                                                    default: {
+                                                                                                      switch (x$1.$) {
+                                                                                                        case "align_stretch": {
+                                                                                                          _r0 = cfg;
+                                                                                                          break;
+                                                                                                        }
+                                                                                                        default: {
+                                                                                                          throw new Error("EFQ applied");
+                                                                                                          break;
+                                                                                                        }
+                                                                                                      }
+                                                                                                      break;
+                                                                                                    }
+                                                                                                  }
+                                                                                                  break;
+                                                                                                }
+                                                                                              }
+                                                                                              break;
+                                                                                            }
+                                                                                          }
+                                                                                          break;
+                                                                                        }
+                                                                                      }
                                                                                       break;
                                                                                     }
                                                                                   }
@@ -20697,66 +21414,127 @@ export function $Midum$Layout$apply_container_override(cfg, x$1) {
                                             }
                                             default: {
                                               switch (x$1.$) {
-                                                case "direction_column": {
+                                                case "inset_px": {
+                                                  var _m6 = x$1.top;
+                                                  var _m7 = x$1.right;
+                                                  var _m8 = x$1.bottom;
+                                                  var _m9 = x$1.left;
+                                                  var top$1 = _m6;
+                                                  var right$2 = _m7;
+                                                  var bottom$3 = _m8;
+                                                  var left$4 = _m9;
                                                   _r0 = cfg;
                                                   break;
                                                 }
                                                 default: {
                                                   switch (x$1.$) {
-                                                    case "direction_row": {
+                                                    case "compact_inset_px": {
+                                                      var _m10 = x$1.top;
+                                                      var _m11 = x$1.right;
+                                                      var _m12 = x$1.bottom;
+                                                      var _m13 = x$1.left;
+                                                      var top$1 = _m10;
+                                                      var right$2 = _m11;
+                                                      var bottom$3 = _m12;
+                                                      var left$4 = _m13;
                                                       _r0 = cfg;
                                                       break;
                                                     }
                                                     default: {
                                                       switch (x$1.$) {
-                                                        case "gap_none": {
+                                                        case "direction_column": {
                                                           _r0 = cfg;
                                                           break;
                                                         }
                                                         default: {
                                                           switch (x$1.$) {
-                                                            case "gap_sm": {
+                                                            case "direction_row": {
                                                               _r0 = cfg;
                                                               break;
                                                             }
                                                             default: {
                                                               switch (x$1.$) {
-                                                                case "gap_md": {
+                                                                case "gap_none": {
                                                                   _r0 = cfg;
                                                                   break;
                                                                 }
                                                                 default: {
                                                                   switch (x$1.$) {
-                                                                    case "gap_lg": {
+                                                                    case "gap_sm": {
                                                                       _r0 = cfg;
                                                                       break;
                                                                     }
                                                                     default: {
                                                                       switch (x$1.$) {
-                                                                        case "align_start": {
+                                                                        case "gap_md": {
                                                                           _r0 = cfg;
                                                                           break;
                                                                         }
                                                                         default: {
                                                                           switch (x$1.$) {
-                                                                            case "align_center": {
+                                                                            case "gap_lg": {
                                                                               _r0 = cfg;
                                                                               break;
                                                                             }
                                                                             default: {
                                                                               switch (x$1.$) {
-                                                                                case "align_end": {
+                                                                                case "align_start": {
                                                                                   _r0 = cfg;
                                                                                   break;
                                                                                 }
                                                                                 default: {
                                                                                   switch (x$1.$) {
-                                                                                    case "align_stretch": {
+                                                                                    case "align_center": {
                                                                                       _r0 = cfg;
                                                                                       break;
                                                                                     }
                                                                                     default: {
-                                                                                      throw new Error("EFQ applied");
+                                                                                      switch (x$1.$) {
+                                                                                        case "align_end": {
+                                                                                          _r0 = cfg;
+                                                                                          break;
+                                                                                        }
+                                                                                        default: {
+                                                                                          switch (x$1.$) {
+                                                                                            case "align_stretch": {
+                                                                                              _r0 = cfg;
+                                                                                              break;
+                                                                                            }
+                                                                                            default: {
+                                                                                              switch (x$1.$) {
+                                                                                                case "height_viewport": {
+                                                                                                  _r0 = cfg;
+                                                                                                  break;
+                                                                                                }
+                                                                                                default: {
+                                                                                                  switch (x$1.$) {
+                                                                                                    case "overflow_hidden": {
+                                                                                                      _r0 = cfg;
+                                                                                                      break;
+                                                                                                    }
+                                                                                                    default: {
+                                                                                                      switch (x$1.$) {
+                                                                                                        case "safe_area": {
+                                                                                                          _r0 = cfg;
+                                                                                                          break;
+                                                                                                        }
+                                                                                                        default: {
+                                                                                                          throw new Error("EFQ applied");
+                                                                                                          break;
+                                                                                                        }
+                                                                                                      }
+                                                                                                      break;
+                                                                                                    }
+                                                                                                  }
+                                                                                                  break;
+                                                                                                }
+                                                                                              }
+                                                                                              break;
+                                                                                            }
+                                                                                          }
+                                                                                          break;
+                                                                                        }
+                                                                                      }
                                                                                       break;
                                                                                     }
                                                                                   }
@@ -20880,6 +21658,718 @@ export function $Midum$Layout$container_config(overrides) {
 }
 
 export const Midum$Layout$container_config = () => ((a0) => ($Midum$Layout$container_config(a0)));
+
+export function $Midum$Layout$with_shell_width(x, x$1) {
+  var _r0;
+  switch (x.$) {
+    case "shell_layout": {
+      var _m1 = x.width;
+      var _m2 = x.max_width;
+      var _m3 = x.height;
+      var _m4 = x.overflow;
+      var _m5 = x.safe_area;
+      var _m6 = x.inset;
+      var _m7 = x.compact_inset;
+      var width = _m1;
+      var max_width$1 = _m2;
+      var height$2 = _m3;
+      var overflow$3 = _m4;
+      var safe_area$4 = _m5;
+      var inset$5 = _m6;
+      var compact_inset$6 = _m7;
+      var next_width$7 = x$1;
+      var _v8;
+      _v8 = next_width$7;
+      var _v9;
+      _v9 = max_width$1;
+      var _v10;
+      _v10 = height$2;
+      var _v11;
+      _v11 = overflow$3;
+      var _v12;
+      _v12 = safe_area$4;
+      var _v13;
+      _v13 = inset$5;
+      var _v14;
+      _v14 = compact_inset$6;
+      _r0 = ({$: "shell_layout", width: _v8, max_width: _v9, height: _v10, overflow: _v11, safe_area: _v12, inset: _v13, compact_inset: _v14});
+      break;
+    }
+    default: {
+      throw new Error("EFQ applied");
+      break;
+    }
+  }
+  return _r0;
+}
+
+export const Midum$Layout$with_shell_width = () => ((a0) => ((a1) => ($Midum$Layout$with_shell_width(a0, a1))));
+
+export function $Midum$Layout$with_shell_max_width(x, x$1) {
+  var _r0;
+  switch (x.$) {
+    case "shell_layout": {
+      var _m1 = x.width;
+      var _m2 = x.max_width;
+      var _m3 = x.height;
+      var _m4 = x.overflow;
+      var _m5 = x.safe_area;
+      var _m6 = x.inset;
+      var _m7 = x.compact_inset;
+      var width = _m1;
+      var max_width$1 = _m2;
+      var height$2 = _m3;
+      var overflow$3 = _m4;
+      var safe_area$4 = _m5;
+      var inset$5 = _m6;
+      var compact_inset$6 = _m7;
+      var next_max_width$7 = x$1;
+      var _v8;
+      _v8 = width;
+      var _v9;
+      _v9 = next_max_width$7;
+      var _v10;
+      _v10 = height$2;
+      var _v11;
+      _v11 = overflow$3;
+      var _v12;
+      _v12 = safe_area$4;
+      var _v13;
+      _v13 = inset$5;
+      var _v14;
+      _v14 = compact_inset$6;
+      _r0 = ({$: "shell_layout", width: _v8, max_width: _v9, height: _v10, overflow: _v11, safe_area: _v12, inset: _v13, compact_inset: _v14});
+      break;
+    }
+    default: {
+      throw new Error("EFQ applied");
+      break;
+    }
+  }
+  return _r0;
+}
+
+export const Midum$Layout$with_shell_max_width = () => ((a0) => ((a1) => ($Midum$Layout$with_shell_max_width(a0, a1))));
+
+export function $Midum$Layout$with_shell_height(x, x$1) {
+  var _r0;
+  switch (x.$) {
+    case "shell_layout": {
+      var _m1 = x.width;
+      var _m2 = x.max_width;
+      var _m3 = x.height;
+      var _m4 = x.overflow;
+      var _m5 = x.safe_area;
+      var _m6 = x.inset;
+      var _m7 = x.compact_inset;
+      var width = _m1;
+      var max_width$1 = _m2;
+      var height$2 = _m3;
+      var overflow$3 = _m4;
+      var safe_area$4 = _m5;
+      var inset$5 = _m6;
+      var compact_inset$6 = _m7;
+      var next_height$7 = x$1;
+      var _v8;
+      _v8 = width;
+      var _v9;
+      _v9 = max_width$1;
+      var _v10;
+      _v10 = next_height$7;
+      var _v11;
+      _v11 = overflow$3;
+      var _v12;
+      _v12 = safe_area$4;
+      var _v13;
+      _v13 = inset$5;
+      var _v14;
+      _v14 = compact_inset$6;
+      _r0 = ({$: "shell_layout", width: _v8, max_width: _v9, height: _v10, overflow: _v11, safe_area: _v12, inset: _v13, compact_inset: _v14});
+      break;
+    }
+    default: {
+      throw new Error("EFQ applied");
+      break;
+    }
+  }
+  return _r0;
+}
+
+export const Midum$Layout$with_shell_height = () => ((a0) => ((a1) => ($Midum$Layout$with_shell_height(a0, a1))));
+
+export function $Midum$Layout$with_shell_overflow(x, x$1) {
+  var _r0;
+  switch (x.$) {
+    case "shell_layout": {
+      var _m1 = x.width;
+      var _m2 = x.max_width;
+      var _m3 = x.height;
+      var _m4 = x.overflow;
+      var _m5 = x.safe_area;
+      var _m6 = x.inset;
+      var _m7 = x.compact_inset;
+      var width = _m1;
+      var max_width$1 = _m2;
+      var height$2 = _m3;
+      var overflow$3 = _m4;
+      var safe_area$4 = _m5;
+      var inset$5 = _m6;
+      var compact_inset$6 = _m7;
+      var next_overflow$7 = x$1;
+      var _v8;
+      _v8 = width;
+      var _v9;
+      _v9 = max_width$1;
+      var _v10;
+      _v10 = height$2;
+      var _v11;
+      _v11 = next_overflow$7;
+      var _v12;
+      _v12 = safe_area$4;
+      var _v13;
+      _v13 = inset$5;
+      var _v14;
+      _v14 = compact_inset$6;
+      _r0 = ({$: "shell_layout", width: _v8, max_width: _v9, height: _v10, overflow: _v11, safe_area: _v12, inset: _v13, compact_inset: _v14});
+      break;
+    }
+    default: {
+      throw new Error("EFQ applied");
+      break;
+    }
+  }
+  return _r0;
+}
+
+export const Midum$Layout$with_shell_overflow = () => ((a0) => ((a1) => ($Midum$Layout$with_shell_overflow(a0, a1))));
+
+export function $Midum$Layout$with_shell_safe_area(x, x$1) {
+  var _r0;
+  switch (x.$) {
+    case "shell_layout": {
+      var _m1 = x.width;
+      var _m2 = x.max_width;
+      var _m3 = x.height;
+      var _m4 = x.overflow;
+      var _m5 = x.safe_area;
+      var _m6 = x.inset;
+      var _m7 = x.compact_inset;
+      var width = _m1;
+      var max_width$1 = _m2;
+      var height$2 = _m3;
+      var overflow$3 = _m4;
+      var safe_area$4 = _m5;
+      var inset$5 = _m6;
+      var compact_inset$6 = _m7;
+      var next_safe_area$7 = x$1;
+      var _v8;
+      _v8 = width;
+      var _v9;
+      _v9 = max_width$1;
+      var _v10;
+      _v10 = height$2;
+      var _v11;
+      _v11 = overflow$3;
+      var _v12;
+      _v12 = next_safe_area$7;
+      var _v13;
+      _v13 = inset$5;
+      var _v14;
+      _v14 = compact_inset$6;
+      _r0 = ({$: "shell_layout", width: _v8, max_width: _v9, height: _v10, overflow: _v11, safe_area: _v12, inset: _v13, compact_inset: _v14});
+      break;
+    }
+    default: {
+      throw new Error("EFQ applied");
+      break;
+    }
+  }
+  return _r0;
+}
+
+export const Midum$Layout$with_shell_safe_area = () => ((a0) => ((a1) => ($Midum$Layout$with_shell_safe_area(a0, a1))));
+
+export function $Midum$Layout$with_shell_inset(x, x$1) {
+  var _r0;
+  switch (x.$) {
+    case "shell_layout": {
+      var _m1 = x.width;
+      var _m2 = x.max_width;
+      var _m3 = x.height;
+      var _m4 = x.overflow;
+      var _m5 = x.safe_area;
+      var _m6 = x.inset;
+      var _m7 = x.compact_inset;
+      var width = _m1;
+      var max_width$1 = _m2;
+      var height$2 = _m3;
+      var overflow$3 = _m4;
+      var safe_area$4 = _m5;
+      var inset$5 = _m6;
+      var compact_inset$6 = _m7;
+      var next_inset$7 = x$1;
+      var _v8;
+      _v8 = width;
+      var _v9;
+      _v9 = max_width$1;
+      var _v10;
+      _v10 = height$2;
+      var _v11;
+      _v11 = overflow$3;
+      var _v12;
+      _v12 = safe_area$4;
+      var _v13;
+      _v13 = next_inset$7;
+      var _v14;
+      _v14 = compact_inset$6;
+      _r0 = ({$: "shell_layout", width: _v8, max_width: _v9, height: _v10, overflow: _v11, safe_area: _v12, inset: _v13, compact_inset: _v14});
+      break;
+    }
+    default: {
+      throw new Error("EFQ applied");
+      break;
+    }
+  }
+  return _r0;
+}
+
+export const Midum$Layout$with_shell_inset = () => ((a0) => ((a1) => ($Midum$Layout$with_shell_inset(a0, a1))));
+
+export function $Midum$Layout$with_shell_compact_inset(x, x$1) {
+  var _r0;
+  switch (x.$) {
+    case "shell_layout": {
+      var _m1 = x.width;
+      var _m2 = x.max_width;
+      var _m3 = x.height;
+      var _m4 = x.overflow;
+      var _m5 = x.safe_area;
+      var _m6 = x.inset;
+      var _m7 = x.compact_inset;
+      var width = _m1;
+      var max_width$1 = _m2;
+      var height$2 = _m3;
+      var overflow$3 = _m4;
+      var safe_area$4 = _m5;
+      var inset$5 = _m6;
+      var compact_inset$6 = _m7;
+      var next_compact_inset$7 = x$1;
+      var _v8;
+      _v8 = width;
+      var _v9;
+      _v9 = max_width$1;
+      var _v10;
+      _v10 = height$2;
+      var _v11;
+      _v11 = overflow$3;
+      var _v12;
+      _v12 = safe_area$4;
+      var _v13;
+      _v13 = inset$5;
+      var _v14;
+      _v14 = next_compact_inset$7;
+      _r0 = ({$: "shell_layout", width: _v8, max_width: _v9, height: _v10, overflow: _v11, safe_area: _v12, inset: _v13, compact_inset: _v14});
+      break;
+    }
+    default: {
+      throw new Error("EFQ applied");
+      break;
+    }
+  }
+  return _r0;
+}
+
+export const Midum$Layout$with_shell_compact_inset = () => ((a0) => ((a1) => ($Midum$Layout$with_shell_compact_inset(a0, a1))));
+
+export function $Midum$Layout$apply_shell_override(cfg, x$1) {
+  var _r0;
+  switch (x$1.$) {
+    case "width_fit": {
+      var _v1;
+      _v1 = cfg;
+      var _v2;
+      _v2 = ({$: "fit"});
+      _r0 = $Midum$Layout$with_shell_width(_v1, _v2);
+      break;
+    }
+    default: {
+      switch (x$1.$) {
+        case "width_full": {
+          var _v3;
+          _v3 = cfg;
+          var _v4;
+          _v4 = ({$: "full"});
+          _r0 = $Midum$Layout$with_shell_width(_v3, _v4);
+          break;
+        }
+        default: {
+          switch (x$1.$) {
+            case "width_px": {
+              var _m5 = x$1.value;
+              var value$1 = _m5;
+              var _v6;
+              _v6 = cfg;
+              var _v7;
+              var _v8;
+              _v8 = value$1;
+              _v7 = ({$: "px", value: _v8});
+              _r0 = $Midum$Layout$with_shell_width(_v6, _v7);
+              break;
+            }
+            default: {
+              switch (x$1.$) {
+                case "max_width_px": {
+                  var _m9 = x$1.value;
+                  var value$1 = _m9;
+                  var _v10;
+                  _v10 = cfg;
+                  var _v11;
+                  var _v12;
+                  _v12 = value$1;
+                  _v11 = ({$: "max_width_px_value", value: _v12});
+                  _r0 = $Midum$Layout$with_shell_max_width(_v10, _v11);
+                  break;
+                }
+                default: {
+                  switch (x$1.$) {
+                    case "height_viewport": {
+                      var _v13;
+                      _v13 = cfg;
+                      var _v14;
+                      _v14 = ({$: "shell_height_viewport"});
+                      _r0 = $Midum$Layout$with_shell_height(_v13, _v14);
+                      break;
+                    }
+                    default: {
+                      switch (x$1.$) {
+                        case "overflow_hidden": {
+                          var _v15;
+                          _v15 = cfg;
+                          var _v16;
+                          _v16 = ({$: "shell_overflow_hidden"});
+                          _r0 = $Midum$Layout$with_shell_overflow(_v15, _v16);
+                          break;
+                        }
+                        default: {
+                          switch (x$1.$) {
+                            case "safe_area": {
+                              var _v17;
+                              _v17 = cfg;
+                              var _v18;
+                              _v18 = ({$: "shell_safe_area_on"});
+                              _r0 = $Midum$Layout$with_shell_safe_area(_v17, _v18);
+                              break;
+                            }
+                            default: {
+                              switch (x$1.$) {
+                                case "inset_px": {
+                                  var _m19 = x$1.top;
+                                  var _m20 = x$1.right;
+                                  var _m21 = x$1.bottom;
+                                  var _m22 = x$1.left;
+                                  var top$1 = _m19;
+                                  var right$2 = _m20;
+                                  var bottom$3 = _m21;
+                                  var left$4 = _m22;
+                                  var _v23;
+                                  _v23 = cfg;
+                                  var _v24;
+                                  var _v25;
+                                  _v25 = top$1;
+                                  var _v26;
+                                  _v26 = right$2;
+                                  var _v27;
+                                  _v27 = bottom$3;
+                                  var _v28;
+                                  _v28 = left$4;
+                                  _v24 = ({$: "edge_insets", top: _v25, right: _v26, bottom: _v27, left: _v28});
+                                  _r0 = $Midum$Layout$with_shell_inset(_v23, _v24);
+                                  break;
+                                }
+                                default: {
+                                  switch (x$1.$) {
+                                    case "compact_inset_px": {
+                                      var _m29 = x$1.top;
+                                      var _m30 = x$1.right;
+                                      var _m31 = x$1.bottom;
+                                      var _m32 = x$1.left;
+                                      var top$1 = _m29;
+                                      var right$2 = _m30;
+                                      var bottom$3 = _m31;
+                                      var left$4 = _m32;
+                                      var _v33;
+                                      _v33 = cfg;
+                                      var _v34;
+                                      var _v35;
+                                      var _v36;
+                                      _v36 = top$1;
+                                      var _v37;
+                                      _v37 = right$2;
+                                      var _v38;
+                                      _v38 = bottom$3;
+                                      var _v39;
+                                      _v39 = left$4;
+                                      _v35 = ({$: "edge_insets", top: _v36, right: _v37, bottom: _v38, left: _v39});
+                                      _v34 = ({$: "compact_inset_value", inset: _v35});
+                                      _r0 = $Midum$Layout$with_shell_compact_inset(_v33, _v34);
+                                      break;
+                                    }
+                                    default: {
+                                      switch (x$1.$) {
+                                        case "height_fit": {
+                                          _r0 = cfg;
+                                          break;
+                                        }
+                                        default: {
+                                          switch (x$1.$) {
+                                            case "height_full": {
+                                              _r0 = cfg;
+                                              break;
+                                            }
+                                            default: {
+                                              switch (x$1.$) {
+                                                case "height_px": {
+                                                  var _m40 = x$1.value;
+                                                  var value$1 = _m40;
+                                                  _r0 = cfg;
+                                                  break;
+                                                }
+                                                default: {
+                                                  switch (x$1.$) {
+                                                    case "inset_none": {
+                                                      _r0 = cfg;
+                                                      break;
+                                                    }
+                                                    default: {
+                                                      switch (x$1.$) {
+                                                        case "inset_sm": {
+                                                          _r0 = cfg;
+                                                          break;
+                                                        }
+                                                        default: {
+                                                          switch (x$1.$) {
+                                                            case "inset_md": {
+                                                              _r0 = cfg;
+                                                              break;
+                                                            }
+                                                            default: {
+                                                              switch (x$1.$) {
+                                                                case "inset_lg": {
+                                                                  _r0 = cfg;
+                                                                  break;
+                                                                }
+                                                                default: {
+                                                                  switch (x$1.$) {
+                                                                    case "direction_column": {
+                                                                      _r0 = cfg;
+                                                                      break;
+                                                                    }
+                                                                    default: {
+                                                                      switch (x$1.$) {
+                                                                        case "direction_row": {
+                                                                          _r0 = cfg;
+                                                                          break;
+                                                                        }
+                                                                        default: {
+                                                                          switch (x$1.$) {
+                                                                            case "gap_none": {
+                                                                              _r0 = cfg;
+                                                                              break;
+                                                                            }
+                                                                            default: {
+                                                                              switch (x$1.$) {
+                                                                                case "gap_sm": {
+                                                                                  _r0 = cfg;
+                                                                                  break;
+                                                                                }
+                                                                                default: {
+                                                                                  switch (x$1.$) {
+                                                                                    case "gap_md": {
+                                                                                      _r0 = cfg;
+                                                                                      break;
+                                                                                    }
+                                                                                    default: {
+                                                                                      switch (x$1.$) {
+                                                                                        case "gap_lg": {
+                                                                                          _r0 = cfg;
+                                                                                          break;
+                                                                                        }
+                                                                                        default: {
+                                                                                          switch (x$1.$) {
+                                                                                            case "align_start": {
+                                                                                              _r0 = cfg;
+                                                                                              break;
+                                                                                            }
+                                                                                            default: {
+                                                                                              switch (x$1.$) {
+                                                                                                case "align_center": {
+                                                                                                  _r0 = cfg;
+                                                                                                  break;
+                                                                                                }
+                                                                                                default: {
+                                                                                                  switch (x$1.$) {
+                                                                                                    case "align_end": {
+                                                                                                      _r0 = cfg;
+                                                                                                      break;
+                                                                                                    }
+                                                                                                    default: {
+                                                                                                      switch (x$1.$) {
+                                                                                                        case "align_stretch": {
+                                                                                                          _r0 = cfg;
+                                                                                                          break;
+                                                                                                        }
+                                                                                                        default: {
+                                                                                                          throw new Error("EFQ applied");
+                                                                                                          break;
+                                                                                                        }
+                                                                                                      }
+                                                                                                      break;
+                                                                                                    }
+                                                                                                  }
+                                                                                                  break;
+                                                                                                }
+                                                                                              }
+                                                                                              break;
+                                                                                            }
+                                                                                          }
+                                                                                          break;
+                                                                                        }
+                                                                                      }
+                                                                                      break;
+                                                                                    }
+                                                                                  }
+                                                                                  break;
+                                                                                }
+                                                                              }
+                                                                              break;
+                                                                            }
+                                                                          }
+                                                                          break;
+                                                                        }
+                                                                      }
+                                                                      break;
+                                                                    }
+                                                                  }
+                                                                  break;
+                                                                }
+                                                              }
+                                                              break;
+                                                            }
+                                                          }
+                                                          break;
+                                                        }
+                                                      }
+                                                      break;
+                                                    }
+                                                  }
+                                                  break;
+                                                }
+                                              }
+                                              break;
+                                            }
+                                          }
+                                          break;
+                                        }
+                                      }
+                                      break;
+                                    }
+                                  }
+                                  break;
+                                }
+                              }
+                              break;
+                            }
+                          }
+                          break;
+                        }
+                      }
+                      break;
+                    }
+                  }
+                  break;
+                }
+              }
+              break;
+            }
+          }
+          break;
+        }
+      }
+      break;
+    }
+  }
+  return _r0;
+}
+
+export const Midum$Layout$apply_shell_override = () => ((a0) => ((a1) => ($Midum$Layout$apply_shell_override(a0, a1))));
+
+export function $Midum$Layout$apply_shell_overrides(cfg, x$1) {
+  while (true) {
+    var _r0;
+    switch (x$1.$) {
+      case "nil": {
+        _r0 = cfg;
+        break;
+      }
+      default: {
+        switch (x$1.$) {
+          case "cons": {
+            var _m1 = x$1.head;
+            var _m2 = x$1.tail;
+            var override$1 = _m1;
+            var rest$2 = _m2;
+            var _v3;
+            var _v4;
+            _v4 = cfg;
+            var _v5;
+            _v5 = override$1;
+            _v3 = $Midum$Layout$apply_shell_override(_v4, _v5);
+            var _v6;
+            _v6 = rest$2;
+            cfg = _v3;
+            x$1 = _v6;
+            continue;
+            break;
+          }
+          default: {
+            throw new Error("EFQ applied");
+            break;
+          }
+        }
+        break;
+      }
+    }
+    return _r0;
+  }
+}
+
+export const Midum$Layout$apply_shell_overrides = () => ((a0) => ((a1) => ($Midum$Layout$apply_shell_overrides(a0, a1))));
+
+export function $Midum$Layout$shell_config(overrides) {
+  var _r0;
+  var _v1;
+  var _v2;
+  _v2 = ({$: "full"});
+  var _v3;
+  _v3 = ({$: "max_width_none"});
+  var _v4;
+  _v4 = ({$: "shell_height_auto"});
+  var _v5;
+  _v5 = ({$: "shell_overflow_visible"});
+  var _v6;
+  _v6 = ({$: "shell_safe_area_off"});
+  var _v7;
+  _v7 = Midum$Layout$edge_insets_zero();
+  var _v8;
+  _v8 = ({$: "compact_inset_none"});
+  _v1 = ({$: "shell_layout", width: _v2, max_width: _v3, height: _v4, overflow: _v5, safe_area: _v6, inset: _v7, compact_inset: _v8});
+  var _v9;
+  _v9 = overrides;
+  _r0 = $Midum$Layout$apply_shell_overrides(_v1, _v9);
+  return _r0;
+}
+
+export const Midum$Layout$shell_config = () => ((a0) => ($Midum$Layout$shell_config(a0)));
 
 export function $Midum$Layout$with_stack_flow(x, x$1) {
   var _r0;
@@ -21138,14 +22628,75 @@ export function $Midum$Layout$apply_stack_override(cfg, x$1) {
                                                                                 }
                                                                                 default: {
                                                                                   switch (x$1.$) {
-                                                                                    case "max_width_px": {
-                                                                                      var _m23 = x$1.value;
-                                                                                      var value$1 = _m23;
+                                                                                    case "inset_px": {
+                                                                                      var _m23 = x$1.top;
+                                                                                      var _m24 = x$1.right;
+                                                                                      var _m25 = x$1.bottom;
+                                                                                      var _m26 = x$1.left;
+                                                                                      var top$1 = _m23;
+                                                                                      var right$2 = _m24;
+                                                                                      var bottom$3 = _m25;
+                                                                                      var left$4 = _m26;
                                                                                       _r0 = cfg;
                                                                                       break;
                                                                                     }
                                                                                     default: {
-                                                                                      throw new Error("EFQ applied");
+                                                                                      switch (x$1.$) {
+                                                                                        case "compact_inset_px": {
+                                                                                          var _m27 = x$1.top;
+                                                                                          var _m28 = x$1.right;
+                                                                                          var _m29 = x$1.bottom;
+                                                                                          var _m30 = x$1.left;
+                                                                                          var top$1 = _m27;
+                                                                                          var right$2 = _m28;
+                                                                                          var bottom$3 = _m29;
+                                                                                          var left$4 = _m30;
+                                                                                          _r0 = cfg;
+                                                                                          break;
+                                                                                        }
+                                                                                        default: {
+                                                                                          switch (x$1.$) {
+                                                                                            case "max_width_px": {
+                                                                                              var _m31 = x$1.value;
+                                                                                              var value$1 = _m31;
+                                                                                              _r0 = cfg;
+                                                                                              break;
+                                                                                            }
+                                                                                            default: {
+                                                                                              switch (x$1.$) {
+                                                                                                case "height_viewport": {
+                                                                                                  _r0 = cfg;
+                                                                                                  break;
+                                                                                                }
+                                                                                                default: {
+                                                                                                  switch (x$1.$) {
+                                                                                                    case "overflow_hidden": {
+                                                                                                      _r0 = cfg;
+                                                                                                      break;
+                                                                                                    }
+                                                                                                    default: {
+                                                                                                      switch (x$1.$) {
+                                                                                                        case "safe_area": {
+                                                                                                          _r0 = cfg;
+                                                                                                          break;
+                                                                                                        }
+                                                                                                        default: {
+                                                                                                          throw new Error("EFQ applied");
+                                                                                                          break;
+                                                                                                        }
+                                                                                                      }
+                                                                                                      break;
+                                                                                                    }
+                                                                                                  }
+                                                                                                  break;
+                                                                                                }
+                                                                                              }
+                                                                                              break;
+                                                                                            }
+                                                                                          }
+                                                                                          break;
+                                                                                        }
+                                                                                      }
                                                                                       break;
                                                                                     }
                                                                                   }
@@ -21301,6 +22852,22 @@ export function $Midum$Layout$frame(_Event, body$1, overrides$2) {
 }
 
 export const Midum$Layout$frame = () => ((a0) => ((a1) => ((a2) => ($Midum$Layout$frame(a0, a1, a2)))));
+
+export function $Midum$Layout$shell(_Event, body$1, overrides$2) {
+  var _r0;
+  var _v1;
+  _v1 = _Event;
+  var _v2;
+  var _v3;
+  _v3 = overrides$2;
+  _v2 = $Midum$Layout$shell_config(_v3);
+  var _v4;
+  _v4 = body$1;
+  _r0 = $Midum$Internal$DOM$Layout$render_shell(_v1, _v2, _v4);
+  return _r0;
+}
+
+export const Midum$Layout$shell = () => ((a0) => ((a1) => ((a2) => ($Midum$Layout$shell(a0, a1, a2)))));
 
 export function $Midum$Layout$page(_Event, body$1, overrides$2) {
   var _r0;

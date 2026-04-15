@@ -51,8 +51,9 @@ def _render_menu(meta_state: Meta) -> HTML(DungeonEvent):
   hero_ref = selected_hero(meta_state);
   hero_value = hero_at(config(), hero_ref);
   profile = active_profile(meta_state);
-  <section class="shell shell--setup">
-    {Layout.frame(
+  Layout.shell(
+    DungeonEvent,
+    Layout.frame(
       DungeonEvent,
       Layout.overlay(DungeonEvent, [
         Layout.top(DungeonEvent,
@@ -76,8 +77,16 @@ def _render_menu(meta_state: Meta) -> HTML(DungeonEvent):
         Layout.bottom(DungeonEvent, _menu_actions_layout())
       ]),
       [width_full{} height_full{} inset_none{}]
-    )}
-  </section>
+    ),
+    [
+      max_width_px{value: 560n}
+      height_viewport{}
+      overflow_hidden{}
+      safe_area{}
+      inset_px{top: 24n, right: 14n, bottom: 20n, left: 14n}
+      compact_inset_px{top: 20n, right: 12n, bottom: 18n, left: 12n}
+    ]
+  )
 
 def _menu_actions_layout() -> HTML(DungeonEvent):
   Layout.frame(

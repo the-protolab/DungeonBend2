@@ -122,6 +122,101 @@ def max_width_style(max_width: Midum/Layout/MaxWidth) -> String:
     case max_width_px_value{value}:
       css_nat(value) ++ "px"
 
+def edge_px(value: Nat) -> String:
+  css_nat(value) ++ "px"
+
+def edge_top_style(inset: Midum/Layout/EdgeInsets) -> String:
+  match inset:
+    case edge_insets{top, right, bottom, left}:
+      edge_px(top)
+
+def edge_right_style(inset: Midum/Layout/EdgeInsets) -> String:
+  match inset:
+    case edge_insets{top, right, bottom, left}:
+      edge_px(right)
+
+def edge_bottom_style(inset: Midum/Layout/EdgeInsets) -> String:
+  match inset:
+    case edge_insets{top, right, bottom, left}:
+      edge_px(bottom)
+
+def edge_left_style(inset: Midum/Layout/EdgeInsets) -> String:
+  match inset:
+    case edge_insets{top, right, bottom, left}:
+      edge_px(left)
+
+def compact_top_style(inset: Midum/Layout/EdgeInsets, compact_inset: Midum/Layout/ShellCompactInset) -> String:
+  match compact_inset:
+    case compact_inset_none{}:
+      edge_top_style(inset)
+    case compact_inset_value{inset: compact_value}:
+      edge_top_style(compact_value)
+
+def compact_right_style(inset: Midum/Layout/EdgeInsets, compact_inset: Midum/Layout/ShellCompactInset) -> String:
+  match compact_inset:
+    case compact_inset_none{}:
+      edge_right_style(inset)
+    case compact_inset_value{inset: compact_value}:
+      edge_right_style(compact_value)
+
+def compact_bottom_style(inset: Midum/Layout/EdgeInsets, compact_inset: Midum/Layout/ShellCompactInset) -> String:
+  match compact_inset:
+    case compact_inset_none{}:
+      edge_bottom_style(inset)
+    case compact_inset_value{inset: compact_value}:
+      edge_bottom_style(compact_value)
+
+def compact_left_style(inset: Midum/Layout/EdgeInsets, compact_inset: Midum/Layout/ShellCompactInset) -> String:
+  match compact_inset:
+    case compact_inset_none{}:
+      edge_left_style(inset)
+    case compact_inset_value{inset: compact_value}:
+      edge_left_style(compact_value)
+
+def shell_height_class(height: Midum/Layout/ShellHeight) -> String:
+  match height:
+    case shell_height_auto{}:
+      "bc-layout-shell-height-auto"
+    case shell_height_viewport{}:
+      "bc-layout-shell-height-viewport"
+
+def shell_overflow_class(overflow: Midum/Layout/ShellOverflow) -> String:
+  match overflow:
+    case shell_overflow_visible{}:
+      "bc-layout-shell-overflow-visible"
+    case shell_overflow_hidden{}:
+      "bc-layout-shell-overflow-hidden"
+
+def shell_safe_area_class(safe_area: Midum/Layout/ShellSafeArea) -> String:
+  match safe_area:
+    case shell_safe_area_off{}:
+      "bc-layout-shell-safe-area-off"
+    case shell_safe_area_on{}:
+      "bc-layout-shell-safe-area"
+
+def shell_class(height: Midum/Layout/ShellHeight, overflow: Midum/Layout/ShellOverflow, safe_area: Midum/Layout/ShellSafeArea) -> String:
+  "bc-layout-shell " ++ shell_height_class(height) ++ " " ++ shell_overflow_class(overflow) ++ " " ++ shell_safe_area_class(safe_area)
+
+def shell_attrs(Event: Type, cfg: Midum/Layout/ShellConfig) -> List(HTML/Attr(Event)):
+  match cfg:
+    case shell_layout{width, max_width, height, overflow, safe_area, inset, compact_inset}:
+      [
+        attr{"class", shell_class(height, overflow, safe_area)}
+        style{"width", frame_width_style(width)}
+        style{"max-width", max_width_style(max_width)}
+        style{"--bc-layout-shell-inset-top", edge_top_style(inset)}
+        style{"--bc-layout-shell-inset-right", edge_right_style(inset)}
+        style{"--bc-layout-shell-inset-bottom", edge_bottom_style(inset)}
+        style{"--bc-layout-shell-inset-left", edge_left_style(inset)}
+        style{"--bc-layout-shell-compact-inset-top", compact_top_style(inset, compact_inset)}
+        style{"--bc-layout-shell-compact-inset-right", compact_right_style(inset, compact_inset)}
+        style{"--bc-layout-shell-compact-inset-bottom", compact_bottom_style(inset, compact_inset)}
+        style{"--bc-layout-shell-compact-inset-left", compact_left_style(inset, compact_inset)}
+      ]
+
+def render_shell(Event: Type, cfg: Midum/Layout/ShellConfig, body: HTML(Event)) -> HTML(Event):
+  node{"div", shell_attrs(Event, cfg), [body]}
+
 def render_page(Event: Type, cfg: Midum/Layout/PageConfig, body: HTML(Event)) -> HTML(Event):
   match cfg:
     case page_layout{inset}:
@@ -174,6 +269,51 @@ def render_document_stack(Event: Type, cfg: Midum/Layout/StackConfig, kids: List
 
 def css_canvas() -> String:
   "
+  .bc-layout-shell {
+    display: block;
+    box-sizing: border-box;
+    min-width: 0;
+    margin-left: auto;
+    margin-right: auto;
+    padding-top: var(--bc-layout-shell-inset-top);
+    padding-right: var(--bc-layout-shell-inset-right);
+    padding-bottom: var(--bc-layout-shell-inset-bottom);
+    padding-left: var(--bc-layout-shell-inset-left);
+  }
+
+  .bc-layout-shell-safe-area {
+    padding-top: calc(var(--bc-layout-shell-inset-top) + env(safe-area-inset-top));
+    padding-right: calc(var(--bc-layout-shell-inset-right) + env(safe-area-inset-right));
+    padding-bottom: calc(var(--bc-layout-shell-inset-bottom) + env(safe-area-inset-bottom));
+    padding-left: calc(var(--bc-layout-shell-inset-left) + env(safe-area-inset-left));
+  }
+
+  .bc-layout-shell-height-viewport {
+    min-height: 100svh;
+    height: 100svh;
+    max-height: 100svh;
+  }
+
+  .bc-layout-shell-overflow-hidden {
+    overflow: hidden;
+  }
+
+  @media (max-width: 800px) {
+    .bc-layout-shell {
+      padding-top: var(--bc-layout-shell-compact-inset-top);
+      padding-right: var(--bc-layout-shell-compact-inset-right);
+      padding-bottom: var(--bc-layout-shell-compact-inset-bottom);
+      padding-left: var(--bc-layout-shell-compact-inset-left);
+    }
+
+    .bc-layout-shell-safe-area {
+      padding-top: calc(var(--bc-layout-shell-compact-inset-top) + env(safe-area-inset-top));
+      padding-right: calc(var(--bc-layout-shell-compact-inset-right) + env(safe-area-inset-right));
+      padding-bottom: calc(var(--bc-layout-shell-compact-inset-bottom) + env(safe-area-inset-bottom));
+      padding-left: calc(var(--bc-layout-shell-compact-inset-left) + env(safe-area-inset-left));
+    }
+  }
+
   .bc-layout-page {
     display: block;
     box-sizing: border-box;

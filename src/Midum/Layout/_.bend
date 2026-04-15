@@ -12,6 +12,7 @@ import /Midum/Layout/Flow
 import /Midum/Layout/Gap
 import /Midum/Layout/MaxWidth
 import /Midum/Layout/PageConfig
+import /Midum/Layout/ShellConfig
 import /Midum/Layout/StackConfig
 import /Midum/Internal/DOM/Layout/Arrangement
 import /Midum/Internal/DOM/Layout/box as dom_box
@@ -21,6 +22,10 @@ import /Midum/Internal/DOM/Layout/overlay as dom_overlay
 import /Midum/Internal/DOM/Layout/render_container as dom_container
 import /Midum/Internal/DOM/Layout/render_document_stack as dom_document_stack
 import /Midum/Internal/DOM/Layout/render_page as dom_page
+import /Midum/Internal/DOM/Layout/render_shell as dom_shell
+
+def edge_insets_zero() -> Midum/Layout/EdgeInsets:
+  edge_insets{top: 0n, right: 0n, bottom: 0n, left: 0n}
 
 def with_frame_width(cfg: Midum/Layout/FrameConfig, next_width: Midum/Layout/Width) -> Midum/Layout/FrameConfig:
   match cfg:
@@ -59,7 +64,17 @@ def apply_frame_override(cfg: Midum/Layout/FrameConfig, override: Midum/Layout/O
       with_frame_inset(cfg, md{})
     case inset_lg{}:
       with_frame_inset(cfg, lg{})
+    case inset_px{top, right, bottom, left}:
+      cfg
+    case compact_inset_px{top, right, bottom, left}:
+      cfg
     case max_width_px{value}:
+      cfg
+    case height_viewport{}:
+      cfg
+    case overflow_hidden{}:
+      cfg
+    case safe_area{}:
       cfg
     case direction_column{}:
       cfg
@@ -102,6 +117,10 @@ def apply_page_override(cfg: Midum/Layout/PageConfig, override: Midum/Layout/Ove
       page_layout{inset: md{}}
     case inset_lg{}:
       page_layout{inset: lg{}}
+    case inset_px{top, right, bottom, left}:
+      cfg
+    case compact_inset_px{top, right, bottom, left}:
+      cfg
     case width_fit{}:
       cfg
     case width_full{}:
@@ -115,6 +134,12 @@ def apply_page_override(cfg: Midum/Layout/PageConfig, override: Midum/Layout/Ove
     case height_px{value}:
       cfg
     case max_width_px{value}:
+      cfg
+    case height_viewport{}:
+      cfg
+    case overflow_hidden{}:
+      cfg
+    case safe_area{}:
       cfg
     case direction_column{}:
       cfg
@@ -171,6 +196,116 @@ def apply_container_override(cfg: Midum/Layout/ContainerConfig, override: Midum/
       cfg
     case inset_lg{}:
       cfg
+    case inset_px{top, right, bottom, left}:
+      cfg
+    case compact_inset_px{top, right, bottom, left}:
+      cfg
+    case direction_column{}:
+      cfg
+    case direction_row{}:
+      cfg
+    case gap_none{}:
+      cfg
+    case gap_sm{}:
+      cfg
+    case gap_md{}:
+      cfg
+    case gap_lg{}:
+      cfg
+    case align_start{}:
+      cfg
+    case align_center{}:
+      cfg
+    case align_end{}:
+      cfg
+    case align_stretch{}:
+      cfg
+    case height_viewport{}:
+      cfg
+    case overflow_hidden{}:
+      cfg
+    case safe_area{}:
+      cfg
+
+def apply_container_overrides(cfg: Midum/Layout/ContainerConfig, overrides: List(Midum/Layout/Override)) -> Midum/Layout/ContainerConfig:
+  match overrides:
+    case []:
+      cfg
+    case override<>rest:
+      apply_container_overrides(apply_container_override(cfg, override), rest)
+
+def container_config(overrides: List(Midum/Layout/Override)) -> Midum/Layout/ContainerConfig:
+  apply_container_overrides(container_layout{max_width: max_width_none{}}, overrides)
+
+def with_shell_width(cfg: Midum/Layout/ShellConfig, next_width: Midum/Layout/Width) -> Midum/Layout/ShellConfig:
+  match cfg:
+    case shell_layout{width, max_width, height, overflow, safe_area, inset, compact_inset}:
+      shell_layout{width: next_width, max_width, height, overflow, safe_area, inset, compact_inset}
+
+def with_shell_max_width(cfg: Midum/Layout/ShellConfig, next_max_width: Midum/Layout/MaxWidth) -> Midum/Layout/ShellConfig:
+  match cfg:
+    case shell_layout{width, max_width, height, overflow, safe_area, inset, compact_inset}:
+      shell_layout{width, max_width: next_max_width, height, overflow, safe_area, inset, compact_inset}
+
+def with_shell_height(cfg: Midum/Layout/ShellConfig, next_height: Midum/Layout/ShellHeight) -> Midum/Layout/ShellConfig:
+  match cfg:
+    case shell_layout{width, max_width, height, overflow, safe_area, inset, compact_inset}:
+      shell_layout{width, max_width, height: next_height, overflow, safe_area, inset, compact_inset}
+
+def with_shell_overflow(cfg: Midum/Layout/ShellConfig, next_overflow: Midum/Layout/ShellOverflow) -> Midum/Layout/ShellConfig:
+  match cfg:
+    case shell_layout{width, max_width, height, overflow, safe_area, inset, compact_inset}:
+      shell_layout{width, max_width, height, overflow: next_overflow, safe_area, inset, compact_inset}
+
+def with_shell_safe_area(cfg: Midum/Layout/ShellConfig, next_safe_area: Midum/Layout/ShellSafeArea) -> Midum/Layout/ShellConfig:
+  match cfg:
+    case shell_layout{width, max_width, height, overflow, safe_area, inset, compact_inset}:
+      shell_layout{width, max_width, height, overflow, safe_area: next_safe_area, inset, compact_inset}
+
+def with_shell_inset(cfg: Midum/Layout/ShellConfig, next_inset: Midum/Layout/EdgeInsets) -> Midum/Layout/ShellConfig:
+  match cfg:
+    case shell_layout{width, max_width, height, overflow, safe_area, inset, compact_inset}:
+      shell_layout{width, max_width, height, overflow, safe_area, inset: next_inset, compact_inset}
+
+def with_shell_compact_inset(cfg: Midum/Layout/ShellConfig, next_compact_inset: Midum/Layout/ShellCompactInset) -> Midum/Layout/ShellConfig:
+  match cfg:
+    case shell_layout{width, max_width, height, overflow, safe_area, inset, compact_inset}:
+      shell_layout{width, max_width, height, overflow, safe_area, inset, compact_inset: next_compact_inset}
+
+def apply_shell_override(cfg: Midum/Layout/ShellConfig, override: Midum/Layout/Override) -> Midum/Layout/ShellConfig:
+  match override:
+    case width_fit{}:
+      with_shell_width(cfg, fit{})
+    case width_full{}:
+      with_shell_width(cfg, full{})
+    case width_px{value}:
+      with_shell_width(cfg, px{value})
+    case max_width_px{value}:
+      with_shell_max_width(cfg, max_width_px_value{value})
+    case height_viewport{}:
+      with_shell_height(cfg, shell_height_viewport{})
+    case overflow_hidden{}:
+      with_shell_overflow(cfg, shell_overflow_hidden{})
+    case safe_area{}:
+      with_shell_safe_area(cfg, shell_safe_area_on{})
+    case inset_px{top, right, bottom, left}:
+      with_shell_inset(cfg, edge_insets{top, right, bottom, left})
+    case compact_inset_px{top, right, bottom, left}:
+      with_shell_compact_inset(cfg, compact_inset_value{inset: edge_insets{top, right, bottom, left}})
+    case height_fit{}:
+      cfg
+    case height_full{}:
+      cfg
+    case height_px{value}:
+      cfg
+    case inset_none{}:
+      cfg
+    case inset_sm{}:
+      cfg
+    case inset_md{}:
+      cfg
+    case inset_lg{}:
+      cfg
     case direction_column{}:
       cfg
     case direction_row{}:
@@ -192,15 +327,15 @@ def apply_container_override(cfg: Midum/Layout/ContainerConfig, override: Midum/
     case align_stretch{}:
       cfg
 
-def apply_container_overrides(cfg: Midum/Layout/ContainerConfig, overrides: List(Midum/Layout/Override)) -> Midum/Layout/ContainerConfig:
+def apply_shell_overrides(cfg: Midum/Layout/ShellConfig, overrides: List(Midum/Layout/Override)) -> Midum/Layout/ShellConfig:
   match overrides:
     case []:
       cfg
     case override<>rest:
-      apply_container_overrides(apply_container_override(cfg, override), rest)
+      apply_shell_overrides(apply_shell_override(cfg, override), rest)
 
-def container_config(overrides: List(Midum/Layout/Override)) -> Midum/Layout/ContainerConfig:
-  apply_container_overrides(container_layout{max_width: max_width_none{}}, overrides)
+def shell_config(overrides: List(Midum/Layout/Override)) -> Midum/Layout/ShellConfig:
+  apply_shell_overrides(shell_layout{width: full{}, max_width: max_width_none{}, height: shell_height_auto{}, overflow: shell_overflow_visible{}, safe_area: shell_safe_area_off{}, inset: edge_insets_zero(), compact_inset: compact_inset_none{}}, overrides)
 
 def with_stack_flow(cfg: Midum/Layout/StackConfig, next_flow: Midum/Layout/Flow) -> Midum/Layout/StackConfig:
   match cfg:
@@ -259,7 +394,17 @@ def apply_stack_override(cfg: Midum/Layout/StackConfig, override: Midum/Layout/O
       cfg
     case inset_lg{}:
       cfg
+    case inset_px{top, right, bottom, left}:
+      cfg
+    case compact_inset_px{top, right, bottom, left}:
+      cfg
     case max_width_px{value}:
+      cfg
+    case height_viewport{}:
+      cfg
+    case overflow_hidden{}:
+      cfg
+    case safe_area{}:
       cfg
 
 def apply_stack_overrides(cfg: Midum/Layout/StackConfig, overrides: List(Midum/Layout/Override)) -> Midum/Layout/StackConfig:
@@ -277,6 +422,9 @@ def overlay(Event: Type, layers: List(HTML(Event))) -> HTML(Event):
 
 def frame(Event: Type, body: HTML(Event), overrides: List(Midum/Layout/Override)) -> HTML(Event):
   dom_frame(Event, frame_config(overrides), body)
+
+def shell(Event: Type, body: HTML(Event), overrides: List(Midum/Layout/Override)) -> HTML(Event):
+  dom_shell(Event, shell_config(overrides), body)
 
 def page(Event: Type, body: HTML(Event), overrides: List(Midum/Layout/Override)) -> HTML(Event):
   dom_page(Event, page_config(overrides), body)

@@ -11,7 +11,12 @@ type Override {
   inset_sm{}
   inset_md{}
   inset_lg{}
+  inset_px{top: Nat, right: Nat, bottom: Nat, left: Nat}
+  compact_inset_px{top: Nat, right: Nat, bottom: Nat, left: Nat}
   max_width_px{value: Nat}
+  height_viewport{}
+  overflow_hidden{}
+  safe_area{}
   direction_column{}
   direction_row{}
   gap_none{}
