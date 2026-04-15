@@ -31,13 +31,42 @@ import /Dungeon/View/cards/_tile_card as _tile_card
 import /Midum/Button/ as Button
 import /Midum/Button/Size
 import /Midum/Card/ as Card
+import /Midum/Layout/ as Layout
 
 def _render_dungeon(meta_state: Meta, scene_value: Scene, run_value: Run, ui_value: UiState) -> HTML(DungeonEvent):
   hero_value = hero_at(config(), selected_hero(meta_state));
-  <section class="shell shell--dungeon">
-    {_dungeon_header(meta_state, scene_value)}
-    {_run_board_node(scene_value, run_value, ui_value, hero_value)}
-  </section>
+  _dungeon_shell(
+    Layout.frame(
+      DungeonEvent,
+      Layout.overlay(DungeonEvent, [
+        Layout.top(DungeonEvent,
+          Layout.frame(
+            DungeonEvent,
+            _dungeon_header(meta_state, scene_value),
+            [width_full{} height_fit{} inset_none{}]
+          )
+        )
+        Layout.center(DungeonEvent,
+          _run_board_node(scene_value, run_value, ui_value, hero_value)
+        )
+      ]),
+      [width_full{} height_full{} inset_none{}]
+    )
+  )
+
+def _dungeon_shell(body: HTML(DungeonEvent)) -> HTML(DungeonEvent):
+  Layout.shell(
+    DungeonEvent,
+    body,
+    [
+      max_width_px{value: 560n}
+      height_viewport{}
+      overflow_hidden{}
+      safe_area{}
+      inset_px{top: 24n, right: 14n, bottom: 20n, left: 14n}
+      compact_inset_px{top: 20n, right: 12n, bottom: 18n, left: 12n}
+    ]
+  )
 
 def _dungeon_header(meta_state: Meta, scene_value: Scene) -> HTML(DungeonEvent):
   <header class="topbar topbar--dungeon">
