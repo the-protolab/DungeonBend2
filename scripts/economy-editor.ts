@@ -74,6 +74,23 @@ async function buildDocs(): Promise<{ ok: boolean; output: string }> {
   };
 }
 
+async function buildEditor(): Promise<{ ok: boolean; output: string }> {
+  const proc = Bun.spawn(["bun", "scripts/build.ts", "src/Editor/main.bend", "editor/index.html"], {
+    cwd,
+    stdout: "pipe",
+    stderr: "pipe",
+  });
+  const [stdout, stderr, exitCode] = await Promise.all([
+    new Response(proc.stdout).text(),
+    new Response(proc.stderr).text(),
+    proc.exited,
+  ]);
+  return {
+    ok: exitCode === 0,
+    output: [stdout.trim(), stderr.trim()].filter(Boolean).join("\n"),
+  };
+}
+
 async function handleRequest(req: Request): Promise<Response> {
   const url = new URL(req.url);
 
@@ -91,6 +108,10 @@ async function handleRequest(req: Request): Promise<Response> {
       }
       await writeGameData(cwd, data);
       await generateDungeonConfig(cwd);
+      const editorBuild = await buildEditor();
+      if (!editorBuild.ok) {
+        return jsonResponse({ ok: false, errors: [editorBuild.output || "Editor build failed after save"] }, 500);
+      }
       return jsonResponse({ ok: true, errors: [] });
     }
 
@@ -137,6 +158,11 @@ function startServer(): ReturnType<typeof Bun.serve> {
   } catch (err) {
     throw lastError ?? err;
   }
+}
+
+const initialEditorBuild = await buildEditor();
+if (!initialEditorBuild.ok) {
+  throw new Error(initialEditorBuild.output || "Editor build failed");
 }
 
 const server = startServer();

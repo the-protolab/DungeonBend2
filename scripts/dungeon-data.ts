@@ -752,11 +752,82 @@ export function renderHeroPresentationModule(data: GameData): string {
   ].join("\n");
 }
 
+function renderEditorBool(value: boolean): string {
+  return value ? "1" : "0";
+}
+
+function renderEditorU32List(values: number[]): string {
+  return bendList(values.map((value) => String(value)), 4);
+}
+
+export function renderEditorDataModule(data: GameData): string {
+  assertValidGameData(data);
+
+  const heroes = data.heroes.map((hero) =>
+    `hero_row{1, ${bendString(hero.id)}, ${bendString(hero.name)}, ${bendString(hero.sprite)}, ${hero.base_max_hp}, ${hero.unlock_cost}, ${renderEditorBool(hero.starts_unlocked)}}`
+  );
+  const upgrades = data.hero_upgrades.map((upgrade) =>
+    `hero_upgrade_row{1, ${bendString(upgrade.hero_id)}, ${upgrade.level}, ${upgrade.cost}, ${upgrade.max_hp}}`
+  );
+  const monsters = data.monsters.map((monster) =>
+    `monster_row{1, ${bendString(monster.id)}, ${bendString(monster.name)}, ${bendString(monster.sprite)}, ${monster.gold_drop}, ${renderEditorU32List(monster.hp_by_level)}}`
+  );
+  const weapons = data.weapons.map((weapon) =>
+    `weapon_row{1, ${bendString(weapon.id)}, ${bendString(weapon.name)}, ${bendString(weapon.sprite)}, ${weapon.dmg}}`
+  );
+  const potions = data.potions.map((potion) =>
+    `potion_row{1, ${bendString(potion.id)}, ${bendString(potion.name)}, ${bendString(potion.sprite)}, ${potion.heal}}`
+  );
+  const deck = data.decks.base_deck.map((entry) =>
+    `deck_row{1, ${bendString(entry.card_id)}, ${entry.count}}`
+  );
+  const packs = data.boosters.packs.map((pack) =>
+    `pack_row{1, ${bendString(pack.id)}, ${bendString(pack.name)}, ${pack.price}, ${pack.reveal_count}, ${renderEditorBool(pack.allow_duplicates)}}`
+  );
+  const pool = data.boosters.pool.map((entry) =>
+    `pool_row{1, ${bendString(entry.pack_id)}, ${bendString(entry.card_id)}, ${entry.weight}}`
+  );
+  const presentations = data.presentation.heroes.map((presentation) =>
+    `presentation_row{1, ${bendString(presentation.hero_id)}, ${bendString(presentation.name_align)}, ${bendString(presentation.ultimate_title)}, ${bendString(presentation.ultimate_icon)}, ${bendString(presentation.ultimate_description)}}`
+  );
+  const rules = data.rules;
+
+  return [
+    "import /Editor/EditorData as EditorData",
+    "import /Editor/HeroRow as HeroRow",
+    "import /Editor/HeroUpgradeRow as HeroUpgradeRow",
+    "import /Editor/MonsterRow as MonsterRow",
+    "import /Editor/WeaponRow as WeaponRow",
+    "import /Editor/PotionRow as PotionRow",
+    "import /Editor/DeckRow as DeckRow",
+    "import /Editor/PackRow as PackRow",
+    "import /Editor/PoolRow as PoolRow",
+    "import /Editor/RulesRow as RulesRow",
+    "import /Editor/PresentationRow as PresentationRow",
+    "",
+    "def generated_editor_data() -> EditorData:",
+    "  editor_data{",
+    `    ${bendList(heroes, 4)},`,
+    `    ${bendList(upgrades, 4)},`,
+    `    ${bendList(monsters, 4)},`,
+    `    ${bendList(weapons, 4)},`,
+    `    ${bendList(potions, 4)},`,
+    `    ${bendList(deck, 4)},`,
+    `    ${bendList(packs, 4)},`,
+    `    ${bendList(pool, 4)},`,
+    `    rules_row{${rules.initial_seed}, ${rules.starting_gold}, ${bendString(rules.starting_selected_hero_id)}, ${renderEditorBool(rules.starting_selection_confirmed)}, ${rules.starting_dungeon_level}, ${rules.dungeon_level_increment_per_refill}, ${rules.ultimate_charge_required}, ${rules.ultimate_charge_per_move}},`,
+    `    ${bendList(presentations, 4)}`,
+    "  }",
+    "",
+  ].join("\n");
+}
+
 export async function generateDungeonConfig(cwd: string): Promise<void> {
   const data = await loadGameData(cwd);
   await Promise.all([
     Bun.write(path.resolve(cwd, "src/Dungeon/generated_config.bend"), renderConfigModule(data)),
     Bun.write(path.resolve(cwd, "src/Dungeon/generated_hero_presentation.bend"), renderHeroPresentationModule(data)),
     Bun.write(path.resolve(cwd, "src/Dungeon/generated_rules.bend"), renderRulesModule(data)),
+    Bun.write(path.resolve(cwd, "src/Editor/generated_data.bend"), renderEditorDataModule(data)),
   ]);
 }
