@@ -30,6 +30,7 @@ import /Dungeon/profile_helpers/selected_hero as selected_hero
 import /Dungeon/profile_helpers/selection_confirmed as selection_confirmed
 import /Dungeon/profile_helpers/profile_unlocked as profile_unlocked
 import /Dungeon/profile_helpers/profile_hero_level as profile_hero_level
+import /Dungeon/rules/ultimate_charge_required as ultimate_charge_required
 
 def meta_gold(meta_state: Meta) -> String:
   U32.show(meta_gold_value(meta_state))
@@ -87,16 +88,19 @@ def _run_weapon_text(run_value: Run) -> String:
 def _run_ult_label(run_value: Run) -> String:
   match run_value:
     case run{dungeon_level, hero_hp, hero_max_hp, hero_index, weapon, board_value, deck_blueprint, draw_counts, remaining, capacity, seed, ult_charge}:
-      "ULTIMATE " ++ U32.show(ult_charge) ++ "/6"
+      "ULTIMATE " ++ U32.show(ult_charge) ++ "/" ++ U32.show(ultimate_charge_required())
 
 def _run_ult_ready(run_value: Run) -> U32:
   match run_value:
     case run{dungeon_level, hero_hp, hero_max_hp, hero_index, weapon, board_value, deck_blueprint, draw_counts, remaining, capacity, seed, ult_charge}:
-      match ult_charge:
-        case 6:
-          1
-        case _:
-          0
+      _run_ult_ready_flag(ult_charge < ultimate_charge_required())
+
+def _run_ult_ready_flag(charge_lt_required: U32) -> U32:
+  match charge_lt_required:
+    case 0:
+      1
+    case _:
+      0
 
 def dungeon_level_value(scene_value: Scene) -> String:
   match scene_value:
@@ -146,11 +150,11 @@ def weapon_value(scene_value: Scene) -> String:
 def ultimate_label(scene_value: Scene) -> String:
   match scene_value:
     case setup{}:
-      "ULTIMATE 0/6"
+      "ULTIMATE 0/" ++ U32.show(ultimate_charge_required())
     case character_select{preview_hero}:
-      "ULTIMATE 0/6"
+      "ULTIMATE 0/" ++ U32.show(ultimate_charge_required())
     case boosters{reward, reveal_index}:
-      "ULTIMATE 0/6"
+      "ULTIMATE 0/" ++ U32.show(ultimate_charge_required())
     case running{run_value}:
       _run_ult_label(run_value)
     case resume_prompt{run_value}:

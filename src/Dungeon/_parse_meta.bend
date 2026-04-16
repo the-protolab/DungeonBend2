@@ -476,7 +476,7 @@ def _parse_v3_profiles_list(heroes: List(HeroDef), profile_parts: List(String), 
   match heroes:
     case []:
       meta_state
-    case hero_def{id, name, sprite, base_max_hp, unlock_cost, upgrades}<>hero_rest:
+    case hero_def{id, name, sprite, base_max_hp, unlock_cost, starts_unlocked, upgrades}<>hero_rest:
       match profile_parts:
         case []:
           meta_state
@@ -509,7 +509,7 @@ def _parse_v2_profiles_list(monsters: List(MonsterDef), swords: List(SwordDef), 
   match heroes:
     case []:
       meta_state
-    case hero_def{id, name, sprite, base_max_hp, unlock_cost, upgrades}<>hero_rest:
+    case hero_def{id, name, sprite, base_max_hp, unlock_cost, starts_unlocked, upgrades}<>hero_rest:
       match profile_parts:
         case []:
           meta_state

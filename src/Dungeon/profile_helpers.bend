@@ -4,6 +4,7 @@ import /Dungeon/HeroDef as HeroDef
 import /Dungeon/HeroProfile as HeroProfile
 import /Dungeon/Meta as Meta
 import /Dungeon/Config as Config
+import /Dungeon/hero_helpers/hero_starts_unlocked as hero_starts_unlocked
 
 def default_hero_profile() -> HeroProfile:
   hero_profile{0, 0}
@@ -15,6 +16,9 @@ def default_profile_for_hero(hero_ref: U32) -> HeroProfile:
     case _:
       default_hero_profile()
 
+def default_profile_from_hero(hero_value: HeroDef) -> HeroProfile:
+  hero_profile{hero_starts_unlocked(hero_value), 0}
+
 def default_hero_profiles(config_value: Config) -> List(HeroProfile):
   match config_value:
     case config{heroes, monsters, swords, potions, deck, booster_packs, starting_dungeon_level}:
@@ -24,8 +28,8 @@ def _default_hero_profiles_from_list(heroes: List(HeroDef), hero_ref: U32) -> Li
   match heroes:
     case []:
       []
-    case hero_def{id, name, sprite, base_max_hp, unlock_cost, upgrades}<>rest:
-      default_profile_for_hero(hero_ref)<>_default_hero_profiles_from_list(rest, hero_ref + 1)
+    case hero_def{id, name, sprite, base_max_hp, unlock_cost, starts_unlocked, upgrades}<>rest:
+      default_profile_from_hero(hero_def{id, name, sprite, base_max_hp, unlock_cost, starts_unlocked, upgrades})<>_default_hero_profiles_from_list(rest, hero_ref + 1)
 
 def selected_hero(meta_state: Meta) -> U32:
   match meta_state:

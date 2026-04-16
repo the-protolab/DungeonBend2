@@ -9,6 +9,7 @@ import /Dungeon/Deck/counts_pick/next_seed as next_seed
 import /Dungeon/Deck/counts_pick/_monster_hp as _monster_hp
 import /Dungeon/Deck/counts_pick/_sword_damage as _sword_damage
 import /Dungeon/Deck/counts_pick/_potion_heal as _potion_heal
+import /Dungeon/rules/dungeon_level_increment_per_refill as dungeon_level_increment_per_refill
 
 def _spawn_tile(config_value: Config, entry: DeckEntry, level: U32) -> Tile:
   match config_value entry:
@@ -44,6 +45,6 @@ def draw_tile(config_value: Config, deck_blueprint: List(DeckEntry), draw_counts
   match remaining:
     case 0:
       refill = sum_counts(deck_blueprint);
-      _draw_from_counts(config_value, deck_blueprint, refill, seed, level + 1)
+      _draw_from_counts(config_value, deck_blueprint, refill, seed, level + dungeon_level_increment_per_refill())
     case _:
       _draw_from_counts(config_value, draw_counts, remaining, seed, level)

@@ -1,0 +1,31 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>DungeonBend Lever Editor</title>
+    <link rel="stylesheet" href="/styles.css" />
+  </head>
+  <body>
+    <main class="app-shell">
+      <header class="app-header">
+        <div>
+          <h1>DungeonBend Lever Editor</h1>
+          <p>Local JSON editor</p>
+        </div>
+        <div class="actions">
+          <button id="reload-button" type="button">Reload</button>
+          <button id="build-button" type="button">Build docs</button>
+          <button id="save-button" type="button" class="primary">Save</button>
+        </div>
+      </header>
+
+      <section id="status" class="status">Loading data...</section>
+
+      <nav id="tabs" class="tabs" aria-label="Editor sections"></nav>
+      <section id="panel" class="panel"></section>
+    </main>
+
+    <script type="module" src="/app.js"></script>
+  </body>
+</html>

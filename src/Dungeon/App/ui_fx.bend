@@ -11,6 +11,8 @@ import /Dungeon/Impact as Impact
 import /Dungeon/ImpactFx as ImpactFx
 import /Dungeon/Board/indexing/adjacent_pos as adjacent_pos
 import /Dungeon/Board/indexing/board_get_pos as board_get_pos
+import /Dungeon/rules/ultimate_charge_required as ultimate_charge_required
+import /Dungeon/rules/ultimate_charge_per_move as ultimate_charge_per_move
 
 def _hero_hp(run_value: Run) -> U32:
   match run_value:
@@ -40,11 +42,17 @@ def _run_with_ult_charge(run_value: Run, next_ult_charge: U32) -> Run:
       run{dungeon_level, hero_hp, hero_max_hp, hero_index, weapon, board_value, deck_blueprint, draw_counts, remaining, capacity, seed, next_ult_charge}
 
 def _run_charge_after_gain(current_charge: U32) -> U32:
-  match current_charge:
-    case 6:
-      6
+  _min_u32(ultimate_charge_required(), current_charge + ultimate_charge_per_move())
+
+def _min_u32(a: U32, b: U32) -> U32:
+  _min_u32_flag(a < b, a, b)
+
+def _min_u32_flag(a_lt_b: U32, a: U32, b: U32) -> U32:
+  match a_lt_b:
+    case 0:
+      b
     case _:
-      current_charge + 1
+      a
 
 def _run_hero_index(run_value: Run) -> U32:
   match run_value:

@@ -245,11 +245,11 @@ export const Dungeon$initial_game = () => ($Dungeon$initial_game());
 export function $Dungeon$default_meta() {
   var _r0;
   var _v1;
-  _v1 = 0;
+  _v1 = Dungeon$rules$starting_selected_hero();
   var _v2;
-  _v2 = 1;
+  _v2 = Dungeon$rules$starting_selection_confirmed();
   var _v3;
-  _v3 = 0;
+  _v3 = Dungeon$rules$starting_gold();
   var _v4;
   _v4 = ({$: "nil"});
   var _v5;
@@ -263,6 +263,134 @@ export function $Dungeon$default_meta() {
 }
 
 export const Dungeon$default_meta = () => ($Dungeon$default_meta());
+
+export function $Dungeon$rules$initial_seed_value() {
+  var _r0;
+  _r0 = $Dungeon$generated_rules$generated_initial_seed();
+  return _r0;
+}
+
+export const Dungeon$rules$initial_seed_value = () => ($Dungeon$rules$initial_seed_value());
+
+export function $Dungeon$rules$starting_gold() {
+  var _r0;
+  _r0 = $Dungeon$generated_rules$generated_starting_gold();
+  return _r0;
+}
+
+export const Dungeon$rules$starting_gold = () => ($Dungeon$rules$starting_gold());
+
+export function $Dungeon$rules$starting_selected_hero() {
+  var _r0;
+  _r0 = $Dungeon$generated_rules$generated_starting_selected_hero();
+  return _r0;
+}
+
+export const Dungeon$rules$starting_selected_hero = () => ($Dungeon$rules$starting_selected_hero());
+
+export function $Dungeon$rules$starting_selection_confirmed() {
+  var _r0;
+  _r0 = $Dungeon$generated_rules$generated_starting_selection_confirmed();
+  return _r0;
+}
+
+export const Dungeon$rules$starting_selection_confirmed = () => ($Dungeon$rules$starting_selection_confirmed());
+
+export function $Dungeon$rules$starting_dungeon_level() {
+  var _r0;
+  _r0 = $Dungeon$generated_rules$generated_starting_dungeon_level();
+  return _r0;
+}
+
+export const Dungeon$rules$starting_dungeon_level = () => ($Dungeon$rules$starting_dungeon_level());
+
+export function $Dungeon$rules$dungeon_level_increment_per_refill() {
+  var _r0;
+  _r0 = $Dungeon$generated_rules$generated_dungeon_level_increment_per_refill();
+  return _r0;
+}
+
+export const Dungeon$rules$dungeon_level_increment_per_refill = () => ($Dungeon$rules$dungeon_level_increment_per_refill());
+
+export function $Dungeon$rules$ultimate_charge_required() {
+  var _r0;
+  _r0 = $Dungeon$generated_rules$generated_ultimate_charge_required();
+  return _r0;
+}
+
+export const Dungeon$rules$ultimate_charge_required = () => ($Dungeon$rules$ultimate_charge_required());
+
+export function $Dungeon$rules$ultimate_charge_per_move() {
+  var _r0;
+  _r0 = $Dungeon$generated_rules$generated_ultimate_charge_per_move();
+  return _r0;
+}
+
+export const Dungeon$rules$ultimate_charge_per_move = () => ($Dungeon$rules$ultimate_charge_per_move());
+
+export function $Dungeon$generated_rules$generated_initial_seed() {
+  var _r0;
+  _r0 = 1;
+  return _r0;
+}
+
+export const Dungeon$generated_rules$generated_initial_seed = () => ($Dungeon$generated_rules$generated_initial_seed());
+
+export function $Dungeon$generated_rules$generated_starting_gold() {
+  var _r0;
+  _r0 = 0;
+  return _r0;
+}
+
+export const Dungeon$generated_rules$generated_starting_gold = () => ($Dungeon$generated_rules$generated_starting_gold());
+
+export function $Dungeon$generated_rules$generated_starting_selected_hero() {
+  var _r0;
+  _r0 = 0;
+  return _r0;
+}
+
+export const Dungeon$generated_rules$generated_starting_selected_hero = () => ($Dungeon$generated_rules$generated_starting_selected_hero());
+
+export function $Dungeon$generated_rules$generated_starting_selection_confirmed() {
+  var _r0;
+  _r0 = 1;
+  return _r0;
+}
+
+export const Dungeon$generated_rules$generated_starting_selection_confirmed = () => ($Dungeon$generated_rules$generated_starting_selection_confirmed());
+
+export function $Dungeon$generated_rules$generated_starting_dungeon_level() {
+  var _r0;
+  _r0 = 1;
+  return _r0;
+}
+
+export const Dungeon$generated_rules$generated_starting_dungeon_level = () => ($Dungeon$generated_rules$generated_starting_dungeon_level());
+
+export function $Dungeon$generated_rules$generated_dungeon_level_increment_per_refill() {
+  var _r0;
+  _r0 = 1;
+  return _r0;
+}
+
+export const Dungeon$generated_rules$generated_dungeon_level_increment_per_refill = () => ($Dungeon$generated_rules$generated_dungeon_level_increment_per_refill());
+
+export function $Dungeon$generated_rules$generated_ultimate_charge_required() {
+  var _r0;
+  _r0 = 6;
+  return _r0;
+}
+
+export const Dungeon$generated_rules$generated_ultimate_charge_required = () => ($Dungeon$generated_rules$generated_ultimate_charge_required());
+
+export function $Dungeon$generated_rules$generated_ultimate_charge_per_move() {
+  var _r0;
+  _r0 = 1;
+  return _r0;
+}
+
+export const Dungeon$generated_rules$generated_ultimate_charge_per_move = () => ($Dungeon$generated_rules$generated_ultimate_charge_per_move());
 
 export function $Dungeon$profile_helpers$default_hero_profile() {
   var _r0;
@@ -292,6 +420,20 @@ export function $Dungeon$profile_helpers$default_profile_for_hero(x) {
 }
 
 export const Dungeon$profile_helpers$default_profile_for_hero = () => ((a0) => ($Dungeon$profile_helpers$default_profile_for_hero(a0)));
+
+export function $Dungeon$profile_helpers$default_profile_from_hero(hero_value) {
+  var _r0;
+  var _v1;
+  var _v2;
+  _v2 = hero_value;
+  _v1 = $Dungeon$hero_helpers$hero_starts_unlocked(_v2);
+  var _v3;
+  _v3 = 0;
+  _r0 = ({$: "hero_profile", unlocked: _v1, hero_level: _v3});
+  return _r0;
+}
+
+export const Dungeon$profile_helpers$default_profile_from_hero = () => ((a0) => ($Dungeon$profile_helpers$default_profile_from_hero(a0)));
 
 export function $Dungeon$profile_helpers$default_hero_profiles(x) {
   var _r0;
@@ -348,30 +490,46 @@ export function $Dungeon$profile_helpers$_default_hero_profiles_from_list(x, x$1
               var _m5 = _m1.sprite;
               var _m6 = _m1.base_max_hp;
               var _m7 = _m1.unlock_cost;
-              var _m8 = _m1.upgrades;
+              var _m8 = _m1.starts_unlocked;
+              var _m9 = _m1.upgrades;
               var id = _m3;
               var name$1 = _m4;
               var sprite$2 = _m5;
               var base_max_hp$3 = _m6;
               var unlock_cost$4 = _m7;
-              var upgrades$5 = _m8;
-              var rest$6 = _m2;
-              var hero_ref$7 = x$1;
-              var _v9;
+              var starts_unlocked$5 = _m8;
+              var upgrades$6 = _m9;
+              var rest$7 = _m2;
+              var hero_ref$8 = x$1;
               var _v10;
-              _v10 = hero_ref$7;
-              _v9 = $Dungeon$profile_helpers$default_profile_for_hero(_v10);
               var _v11;
               var _v12;
-              _v12 = rest$6;
+              _v12 = id;
               var _v13;
+              _v13 = name$1;
               var _v14;
-              _v14 = hero_ref$7;
+              _v14 = sprite$2;
               var _v15;
-              _v15 = 1;
-              _v13 = (((_v14) + (_v15)) >>> 0);
-              _v11 = $Dungeon$profile_helpers$_default_hero_profiles_from_list(_v12, _v13);
-              _r0 = ({$: "cons", head: _v9, tail: _v11});
+              _v15 = base_max_hp$3;
+              var _v16;
+              _v16 = unlock_cost$4;
+              var _v17;
+              _v17 = starts_unlocked$5;
+              var _v18;
+              _v18 = upgrades$6;
+              _v11 = ({$: "hero_def", id: _v12, name: _v13, sprite: _v14, base_max_hp: _v15, unlock_cost: _v16, starts_unlocked: _v17, upgrades: _v18});
+              _v10 = $Dungeon$profile_helpers$default_profile_from_hero(_v11);
+              var _v19;
+              var _v20;
+              _v20 = rest$7;
+              var _v21;
+              var _v22;
+              _v22 = hero_ref$8;
+              var _v23;
+              _v23 = 1;
+              _v21 = (((_v22) + (_v23)) >>> 0);
+              _v19 = $Dungeon$profile_helpers$_default_hero_profiles_from_list(_v20, _v21);
+              _r0 = ({$: "cons", head: _v10, tail: _v19});
               break;
             }
             default: {
@@ -1176,6 +1334,666 @@ export function $Dungeon$profile_helpers$profile_with_unlocked_and_level(x, x$1,
 
 export const Dungeon$profile_helpers$profile_with_unlocked_and_level = () => ((a0) => ((a1) => ((a2) => ($Dungeon$profile_helpers$profile_with_unlocked_and_level(a0, a1, a2)))));
 
+export function $Dungeon$hero_helpers$hero_count(x) {
+  var _r0;
+  switch (x.$) {
+    case "config": {
+      var _m1 = x.heroes;
+      var _m2 = x.monsters;
+      var _m3 = x.swords;
+      var _m4 = x.potions;
+      var _m5 = x.deck;
+      var _m6 = x.booster_packs;
+      var _m7 = x.starting_dungeon_level;
+      var heroes = _m1;
+      var monsters$1 = _m2;
+      var swords$2 = _m3;
+      var potions$3 = _m4;
+      var deck$4 = _m5;
+      var booster_packs$5 = _m6;
+      var starting_dungeon_level$6 = _m7;
+      var _v8;
+      _v8 = heroes;
+      _r0 = $Dungeon$hero_helpers$_hero_count_from_list(_v8);
+      break;
+    }
+    default: {
+      throw new Error("EFQ applied");
+      break;
+    }
+  }
+  return _r0;
+}
+
+export const Dungeon$hero_helpers$hero_count = () => ((a0) => ($Dungeon$hero_helpers$hero_count(a0)));
+
+export function $Dungeon$hero_helpers$_hero_count_from_list(x) {
+  var _r0;
+  switch (x.$) {
+    case "nil": {
+      _r0 = 0;
+      break;
+    }
+    default: {
+      switch (x.$) {
+        case "cons": {
+          var _m1 = x.head;
+          var _m2 = x.tail;
+          switch (_m1.$) {
+            case "hero_def": {
+              var _m3 = _m1.id;
+              var _m4 = _m1.name;
+              var _m5 = _m1.sprite;
+              var _m6 = _m1.base_max_hp;
+              var _m7 = _m1.unlock_cost;
+              var _m8 = _m1.starts_unlocked;
+              var _m9 = _m1.upgrades;
+              var id = _m3;
+              var name$1 = _m4;
+              var sprite$2 = _m5;
+              var base_max_hp$3 = _m6;
+              var unlock_cost$4 = _m7;
+              var starts_unlocked$5 = _m8;
+              var upgrades$6 = _m9;
+              var rest$7 = _m2;
+              var _v10;
+              _v10 = 1;
+              var _v11;
+              var _v12;
+              _v12 = rest$7;
+              _v11 = $Dungeon$hero_helpers$_hero_count_from_list(_v12);
+              _r0 = (((_v10) + (_v11)) >>> 0);
+              break;
+            }
+            default: {
+              throw new Error("EFQ applied");
+              break;
+            }
+          }
+          break;
+        }
+        default: {
+          throw new Error("EFQ applied");
+          break;
+        }
+      }
+      break;
+    }
+  }
+  return _r0;
+}
+
+export const Dungeon$hero_helpers$_hero_count_from_list = () => ((a0) => ($Dungeon$hero_helpers$_hero_count_from_list(a0)));
+
+export function $Dungeon$hero_helpers$normalize_hero_ref(config_value, hero_ref$1) {
+  var _r0;
+  var _v1;
+  var _v2;
+  _v2 = config_value;
+  _v1 = $Dungeon$hero_helpers$hero_count(_v2);
+  var _v3;
+  _v3 = hero_ref$1;
+  _r0 = $Dungeon$hero_helpers$_normalize_hero_ref_from_count(_v1, _v3);
+  return _r0;
+}
+
+export const Dungeon$hero_helpers$normalize_hero_ref = () => ((a0) => ((a1) => ($Dungeon$hero_helpers$normalize_hero_ref(a0, a1))));
+
+export function $Dungeon$hero_helpers$_normalize_hero_ref_from_count(x, x$1) {
+  var _r0;
+  if (((x) >>> 0) === 0) {
+    var hero_ref = x$1;
+    _r0 = 0;
+  } else {
+    var _ = x;
+    var hero_ref$1 = x$1;
+    var _v1;
+    var _v2;
+    _v2 = hero_ref$1;
+    var _v3;
+    _v3 = _;
+    _v1 = (_v2) < (_v3) ? 1 : 0;
+    var _v4;
+    _v4 = _;
+    var _v5;
+    _v5 = hero_ref$1;
+    _r0 = $Dungeon$hero_helpers$_normalize_hero_ref_in_range(_v1, _v4, _v5);
+  }
+  return _r0;
+}
+
+export const Dungeon$hero_helpers$_normalize_hero_ref_from_count = () => ((a0) => ((a1) => ($Dungeon$hero_helpers$_normalize_hero_ref_from_count(a0, a1))));
+
+export function $Dungeon$hero_helpers$_normalize_hero_ref_in_range(x, x$1, x$2) {
+  var _r0;
+  if (((x) >>> 0) === 0) {
+    var count = x$1;
+    var hero_ref$1 = x$2;
+    var _v1;
+    _v1 = count;
+    var _v2;
+    _v2 = 1;
+    _r0 = (((_v1) - (_v2)) >>> 0);
+  } else {
+    var _ = x;
+    var count$1 = x$1;
+    var hero_ref$2 = x$2;
+    _r0 = hero_ref$2;
+  }
+  return _r0;
+}
+
+export const Dungeon$hero_helpers$_normalize_hero_ref_in_range = () => ((a0) => ((a1) => ((a2) => ($Dungeon$hero_helpers$_normalize_hero_ref_in_range(a0, a1, a2)))));
+
+export function $Dungeon$hero_helpers$hero_at(x, x$1) {
+  var _r0;
+  switch (x.$) {
+    case "config": {
+      var _m1 = x.heroes;
+      var _m2 = x.monsters;
+      var _m3 = x.swords;
+      var _m4 = x.potions;
+      var _m5 = x.deck;
+      var _m6 = x.booster_packs;
+      var _m7 = x.starting_dungeon_level;
+      var heroes = _m1;
+      var monsters$1 = _m2;
+      var swords$2 = _m3;
+      var potions$3 = _m4;
+      var deck$4 = _m5;
+      var booster_packs$5 = _m6;
+      var starting_dungeon_level$6 = _m7;
+      var hero_ref$7 = x$1;
+      var _v8;
+      _v8 = heroes;
+      var _v9;
+      var _v10;
+      var _v11;
+      _v11 = heroes;
+      var _v12;
+      _v12 = monsters$1;
+      var _v13;
+      _v13 = swords$2;
+      var _v14;
+      _v14 = potions$3;
+      var _v15;
+      _v15 = deck$4;
+      var _v16;
+      _v16 = booster_packs$5;
+      var _v17;
+      _v17 = starting_dungeon_level$6;
+      _v10 = ({$: "config", heroes: _v11, monsters: _v12, swords: _v13, potions: _v14, deck: _v15, booster_packs: _v16, starting_dungeon_level: _v17});
+      var _v18;
+      _v18 = hero_ref$7;
+      _v9 = $Dungeon$hero_helpers$normalize_hero_ref(_v10, _v18);
+      _r0 = $Dungeon$hero_helpers$_hero_at_from_list(_v8, _v9);
+      break;
+    }
+    default: {
+      throw new Error("EFQ applied");
+      break;
+    }
+  }
+  return _r0;
+}
+
+export const Dungeon$hero_helpers$hero_at = () => ((a0) => ((a1) => ($Dungeon$hero_helpers$hero_at(a0, a1))));
+
+export function $Dungeon$hero_helpers$_hero_at_from_list(x, x$1) {
+  while (true) {
+    var _r0;
+    switch (x.$) {
+      case "nil": {
+        var hero_ref = x$1;
+        var _v1;
+        _v1 = "hero";
+        var _v2;
+        _v2 = "Hero";
+        var _v3;
+        _v3 = "";
+        var _v4;
+        _v4 = 1;
+        var _v5;
+        _v5 = 0;
+        var _v6;
+        _v6 = 1;
+        var _v7;
+        _v7 = ({$: "nil"});
+        _r0 = ({$: "hero_def", id: _v1, name: _v2, sprite: _v3, base_max_hp: _v4, unlock_cost: _v5, starts_unlocked: _v6, upgrades: _v7});
+        break;
+      }
+      default: {
+        switch (x.$) {
+          case "cons": {
+            var _m8 = x.head;
+            var _m9 = x.tail;
+            switch (_m8.$) {
+              case "hero_def": {
+                var _m10 = _m8.id;
+                var _m11 = _m8.name;
+                var _m12 = _m8.sprite;
+                var _m13 = _m8.base_max_hp;
+                var _m14 = _m8.unlock_cost;
+                var _m15 = _m8.starts_unlocked;
+                var _m16 = _m8.upgrades;
+                var id = _m10;
+                var name$1 = _m11;
+                var sprite$2 = _m12;
+                var base_max_hp$3 = _m13;
+                var unlock_cost$4 = _m14;
+                var starts_unlocked$5 = _m15;
+                var upgrades$6 = _m16;
+                var rest$7 = _m9;
+                if (((x$1) >>> 0) === 0) {
+                  var _v17;
+                  _v17 = id;
+                  var _v18;
+                  _v18 = name$1;
+                  var _v19;
+                  _v19 = sprite$2;
+                  var _v20;
+                  _v20 = base_max_hp$3;
+                  var _v21;
+                  _v21 = unlock_cost$4;
+                  var _v22;
+                  _v22 = starts_unlocked$5;
+                  var _v23;
+                  _v23 = upgrades$6;
+                  _r0 = ({$: "hero_def", id: _v17, name: _v18, sprite: _v19, base_max_hp: _v20, unlock_cost: _v21, starts_unlocked: _v22, upgrades: _v23});
+                } else {
+                  var _$8 = x$1;
+                  var _v24;
+                  _v24 = rest$7;
+                  var _v25;
+                  var _v26;
+                  _v26 = _$8;
+                  var _v27;
+                  _v27 = 1;
+                  _v25 = (((_v26) - (_v27)) >>> 0);
+                  x = _v24;
+                  x$1 = _v25;
+                  continue;
+                }
+                break;
+              }
+              default: {
+                throw new Error("EFQ applied");
+                break;
+              }
+            }
+            break;
+          }
+          default: {
+            throw new Error("EFQ applied");
+            break;
+          }
+        }
+        break;
+      }
+    }
+    return _r0;
+  }
+}
+
+export const Dungeon$hero_helpers$_hero_at_from_list = () => ((a0) => ((a1) => ($Dungeon$hero_helpers$_hero_at_from_list(a0, a1))));
+
+export function $Dungeon$hero_helpers$next_hero_ref(config_value, hero_ref$1) {
+  var _r0;
+  var count$2;
+  var _v1;
+  _v1 = config_value;
+  count$2 = $Dungeon$hero_helpers$hero_count(_v1);
+  var safe_ref$3;
+  var _v2;
+  _v2 = config_value;
+  var _v3;
+  _v3 = hero_ref$1;
+  safe_ref$3 = $Dungeon$hero_helpers$normalize_hero_ref(_v2, _v3);
+  var _v4;
+  _v4 = count$2;
+  var _v5;
+  _v5 = safe_ref$3;
+  _r0 = $Dungeon$hero_helpers$_next_hero_ref_from_count(_v4, _v5);
+  return _r0;
+}
+
+export const Dungeon$hero_helpers$next_hero_ref = () => ((a0) => ((a1) => ($Dungeon$hero_helpers$next_hero_ref(a0, a1))));
+
+export function $Dungeon$hero_helpers$_next_hero_ref_from_count(x, x$1) {
+  var _r0;
+  if (((x) >>> 0) === 0) {
+    var hero_ref = x$1;
+    _r0 = 0;
+  } else {
+    var _ = x;
+    var hero_ref$1 = x$1;
+    var _v1;
+    var _v2;
+    var _v3;
+    _v3 = hero_ref$1;
+    var _v4;
+    _v4 = 1;
+    _v2 = (((_v3) + (_v4)) >>> 0);
+    var _v5;
+    _v5 = _;
+    _v1 = (_v2) < (_v5) ? 1 : 0;
+    var _v6;
+    _v6 = hero_ref$1;
+    _r0 = $Dungeon$hero_helpers$_next_hero_ref_in_range(_v1, _v6);
+  }
+  return _r0;
+}
+
+export const Dungeon$hero_helpers$_next_hero_ref_from_count = () => ((a0) => ((a1) => ($Dungeon$hero_helpers$_next_hero_ref_from_count(a0, a1))));
+
+export function $Dungeon$hero_helpers$_next_hero_ref_in_range(x, x$1) {
+  var _r0;
+  if (((x) >>> 0) === 0) {
+    var hero_ref = x$1;
+    _r0 = 0;
+  } else {
+    var _ = x;
+    var hero_ref$1 = x$1;
+    var _v1;
+    _v1 = hero_ref$1;
+    var _v2;
+    _v2 = 1;
+    _r0 = (((_v1) + (_v2)) >>> 0);
+  }
+  return _r0;
+}
+
+export const Dungeon$hero_helpers$_next_hero_ref_in_range = () => ((a0) => ((a1) => ($Dungeon$hero_helpers$_next_hero_ref_in_range(a0, a1))));
+
+export function $Dungeon$hero_helpers$prev_hero_ref(config_value, hero_ref$1) {
+  var _r0;
+  var count$2;
+  var _v1;
+  _v1 = config_value;
+  count$2 = $Dungeon$hero_helpers$hero_count(_v1);
+  var safe_ref$3;
+  var _v2;
+  _v2 = config_value;
+  var _v3;
+  _v3 = hero_ref$1;
+  safe_ref$3 = $Dungeon$hero_helpers$normalize_hero_ref(_v2, _v3);
+  var _v4;
+  _v4 = count$2;
+  var _v5;
+  _v5 = safe_ref$3;
+  _r0 = $Dungeon$hero_helpers$_prev_hero_ref_from_count(_v4, _v5);
+  return _r0;
+}
+
+export const Dungeon$hero_helpers$prev_hero_ref = () => ((a0) => ((a1) => ($Dungeon$hero_helpers$prev_hero_ref(a0, a1))));
+
+export function $Dungeon$hero_helpers$_prev_hero_ref_from_count(x, x$1) {
+  var _r0;
+  if (((x) >>> 0) === 0) {
+    var hero_ref = x$1;
+    _r0 = 0;
+  } else {
+    var _ = x;
+    var hero_ref$1 = x$1;
+    var _v1;
+    var _v2;
+    _v2 = hero_ref$1;
+    var _v3;
+    _v3 = 0;
+    _v1 = (_v2) === (_v3) ? 1 : 0;
+    var _v4;
+    _v4 = _;
+    var _v5;
+    _v5 = hero_ref$1;
+    _r0 = $Dungeon$hero_helpers$_prev_hero_ref_at_start(_v1, _v4, _v5);
+  }
+  return _r0;
+}
+
+export const Dungeon$hero_helpers$_prev_hero_ref_from_count = () => ((a0) => ((a1) => ($Dungeon$hero_helpers$_prev_hero_ref_from_count(a0, a1))));
+
+export function $Dungeon$hero_helpers$_prev_hero_ref_at_start(x, x$1, x$2) {
+  var _r0;
+  if (((x) >>> 0) === 0) {
+    var count = x$1;
+    var hero_ref$1 = x$2;
+    var _v1;
+    _v1 = hero_ref$1;
+    var _v2;
+    _v2 = 1;
+    _r0 = (((_v1) - (_v2)) >>> 0);
+  } else {
+    var _ = x;
+    var count$1 = x$1;
+    var hero_ref$2 = x$2;
+    var _v3;
+    _v3 = count$1;
+    var _v4;
+    _v4 = 1;
+    _r0 = (((_v3) - (_v4)) >>> 0);
+  }
+  return _r0;
+}
+
+export const Dungeon$hero_helpers$_prev_hero_ref_at_start = () => ((a0) => ((a1) => ((a2) => ($Dungeon$hero_helpers$_prev_hero_ref_at_start(a0, a1, a2)))));
+
+export function $Dungeon$hero_helpers$hero_id(x) {
+  var _r0;
+  switch (x.$) {
+    case "hero_def": {
+      var _m1 = x.id;
+      var _m2 = x.name;
+      var _m3 = x.sprite;
+      var _m4 = x.base_max_hp;
+      var _m5 = x.unlock_cost;
+      var _m6 = x.starts_unlocked;
+      var _m7 = x.upgrades;
+      var id = _m1;
+      var name$1 = _m2;
+      var sprite$2 = _m3;
+      var base_max_hp$3 = _m4;
+      var unlock_cost$4 = _m5;
+      var starts_unlocked$5 = _m6;
+      var upgrades$6 = _m7;
+      _r0 = id;
+      break;
+    }
+    default: {
+      throw new Error("EFQ applied");
+      break;
+    }
+  }
+  return _r0;
+}
+
+export const Dungeon$hero_helpers$hero_id = () => ((a0) => ($Dungeon$hero_helpers$hero_id(a0)));
+
+export function $Dungeon$hero_helpers$hero_name(x) {
+  var _r0;
+  switch (x.$) {
+    case "hero_def": {
+      var _m1 = x.id;
+      var _m2 = x.name;
+      var _m3 = x.sprite;
+      var _m4 = x.base_max_hp;
+      var _m5 = x.unlock_cost;
+      var _m6 = x.starts_unlocked;
+      var _m7 = x.upgrades;
+      var id = _m1;
+      var name$1 = _m2;
+      var sprite$2 = _m3;
+      var base_max_hp$3 = _m4;
+      var unlock_cost$4 = _m5;
+      var starts_unlocked$5 = _m6;
+      var upgrades$6 = _m7;
+      _r0 = name$1;
+      break;
+    }
+    default: {
+      throw new Error("EFQ applied");
+      break;
+    }
+  }
+  return _r0;
+}
+
+export const Dungeon$hero_helpers$hero_name = () => ((a0) => ($Dungeon$hero_helpers$hero_name(a0)));
+
+export function $Dungeon$hero_helpers$hero_sprite(x) {
+  var _r0;
+  switch (x.$) {
+    case "hero_def": {
+      var _m1 = x.id;
+      var _m2 = x.name;
+      var _m3 = x.sprite;
+      var _m4 = x.base_max_hp;
+      var _m5 = x.unlock_cost;
+      var _m6 = x.starts_unlocked;
+      var _m7 = x.upgrades;
+      var id = _m1;
+      var name$1 = _m2;
+      var sprite$2 = _m3;
+      var base_max_hp$3 = _m4;
+      var unlock_cost$4 = _m5;
+      var starts_unlocked$5 = _m6;
+      var upgrades$6 = _m7;
+      _r0 = sprite$2;
+      break;
+    }
+    default: {
+      throw new Error("EFQ applied");
+      break;
+    }
+  }
+  return _r0;
+}
+
+export const Dungeon$hero_helpers$hero_sprite = () => ((a0) => ($Dungeon$hero_helpers$hero_sprite(a0)));
+
+export function $Dungeon$hero_helpers$hero_base_max_hp(x) {
+  var _r0;
+  switch (x.$) {
+    case "hero_def": {
+      var _m1 = x.id;
+      var _m2 = x.name;
+      var _m3 = x.sprite;
+      var _m4 = x.base_max_hp;
+      var _m5 = x.unlock_cost;
+      var _m6 = x.starts_unlocked;
+      var _m7 = x.upgrades;
+      var id = _m1;
+      var name$1 = _m2;
+      var sprite$2 = _m3;
+      var base_max_hp$3 = _m4;
+      var unlock_cost$4 = _m5;
+      var starts_unlocked$5 = _m6;
+      var upgrades$6 = _m7;
+      _r0 = base_max_hp$3;
+      break;
+    }
+    default: {
+      throw new Error("EFQ applied");
+      break;
+    }
+  }
+  return _r0;
+}
+
+export const Dungeon$hero_helpers$hero_base_max_hp = () => ((a0) => ($Dungeon$hero_helpers$hero_base_max_hp(a0)));
+
+export function $Dungeon$hero_helpers$hero_unlock_cost(x) {
+  var _r0;
+  switch (x.$) {
+    case "hero_def": {
+      var _m1 = x.id;
+      var _m2 = x.name;
+      var _m3 = x.sprite;
+      var _m4 = x.base_max_hp;
+      var _m5 = x.unlock_cost;
+      var _m6 = x.starts_unlocked;
+      var _m7 = x.upgrades;
+      var id = _m1;
+      var name$1 = _m2;
+      var sprite$2 = _m3;
+      var base_max_hp$3 = _m4;
+      var unlock_cost$4 = _m5;
+      var starts_unlocked$5 = _m6;
+      var upgrades$6 = _m7;
+      _r0 = unlock_cost$4;
+      break;
+    }
+    default: {
+      throw new Error("EFQ applied");
+      break;
+    }
+  }
+  return _r0;
+}
+
+export const Dungeon$hero_helpers$hero_unlock_cost = () => ((a0) => ($Dungeon$hero_helpers$hero_unlock_cost(a0)));
+
+export function $Dungeon$hero_helpers$hero_starts_unlocked(x) {
+  var _r0;
+  switch (x.$) {
+    case "hero_def": {
+      var _m1 = x.id;
+      var _m2 = x.name;
+      var _m3 = x.sprite;
+      var _m4 = x.base_max_hp;
+      var _m5 = x.unlock_cost;
+      var _m6 = x.starts_unlocked;
+      var _m7 = x.upgrades;
+      var id = _m1;
+      var name$1 = _m2;
+      var sprite$2 = _m3;
+      var base_max_hp$3 = _m4;
+      var unlock_cost$4 = _m5;
+      var starts_unlocked$5 = _m6;
+      var upgrades$6 = _m7;
+      _r0 = starts_unlocked$5;
+      break;
+    }
+    default: {
+      throw new Error("EFQ applied");
+      break;
+    }
+  }
+  return _r0;
+}
+
+export const Dungeon$hero_helpers$hero_starts_unlocked = () => ((a0) => ($Dungeon$hero_helpers$hero_starts_unlocked(a0)));
+
+export function $Dungeon$hero_helpers$hero_upgrades(x) {
+  var _r0;
+  switch (x.$) {
+    case "hero_def": {
+      var _m1 = x.id;
+      var _m2 = x.name;
+      var _m3 = x.sprite;
+      var _m4 = x.base_max_hp;
+      var _m5 = x.unlock_cost;
+      var _m6 = x.starts_unlocked;
+      var _m7 = x.upgrades;
+      var id = _m1;
+      var name$1 = _m2;
+      var sprite$2 = _m3;
+      var base_max_hp$3 = _m4;
+      var unlock_cost$4 = _m5;
+      var starts_unlocked$5 = _m6;
+      var upgrades$6 = _m7;
+      _r0 = upgrades$6;
+      break;
+    }
+    default: {
+      throw new Error("EFQ applied");
+      break;
+    }
+  }
+  return _r0;
+}
+
+export const Dungeon$hero_helpers$hero_upgrades = () => ((a0) => ($Dungeon$hero_helpers$hero_upgrades(a0)));
+
 export function $Dungeon$Config$config() {
   var _r0;
   _r0 = $Dungeon$generated_config();
@@ -1199,436 +2017,440 @@ export function $Dungeon$generated_config() {
   var _v7;
   _v7 = 0;
   var _v8;
+  _v8 = 1;
   var _v9;
   var _v10;
-  _v10 = 20;
   var _v11;
-  _v11 = 14;
-  _v9 = ({$: "upgrade", cost: _v10, max_hp: _v11});
+  _v11 = 20;
   var _v12;
+  _v12 = 14;
+  _v10 = ({$: "upgrade", cost: _v11, max_hp: _v12});
   var _v13;
   var _v14;
-  _v14 = 35;
   var _v15;
-  _v15 = 17;
-  _v13 = ({$: "upgrade", cost: _v14, max_hp: _v15});
+  _v15 = 35;
   var _v16;
+  _v16 = 17;
+  _v14 = ({$: "upgrade", cost: _v15, max_hp: _v16});
   var _v17;
   var _v18;
-  _v18 = 55;
   var _v19;
-  _v19 = 20;
-  _v17 = ({$: "upgrade", cost: _v18, max_hp: _v19});
+  _v19 = 55;
   var _v20;
+  _v20 = 20;
+  _v18 = ({$: "upgrade", cost: _v19, max_hp: _v20});
   var _v21;
   var _v22;
-  _v22 = 80;
   var _v23;
-  _v23 = 24;
-  _v21 = ({$: "upgrade", cost: _v22, max_hp: _v23});
+  _v23 = 80;
   var _v24;
-  _v24 = ({$: "nil"});
-  _v20 = ({$: "cons", head: _v21, tail: _v24});
-  _v16 = ({$: "cons", head: _v17, tail: _v20});
-  _v12 = ({$: "cons", head: _v13, tail: _v16});
-  _v8 = ({$: "cons", head: _v9, tail: _v12});
-  _v2 = ({$: "hero_def", id: _v3, name: _v4, sprite: _v5, base_max_hp: _v6, unlock_cost: _v7, upgrades: _v8});
+  _v24 = 24;
+  _v22 = ({$: "upgrade", cost: _v23, max_hp: _v24});
   var _v25;
+  _v25 = ({$: "nil"});
+  _v21 = ({$: "cons", head: _v22, tail: _v25});
+  _v17 = ({$: "cons", head: _v18, tail: _v21});
+  _v13 = ({$: "cons", head: _v14, tail: _v17});
+  _v9 = ({$: "cons", head: _v10, tail: _v13});
+  _v2 = ({$: "hero_def", id: _v3, name: _v4, sprite: _v5, base_max_hp: _v6, unlock_cost: _v7, starts_unlocked: _v8, upgrades: _v9});
   var _v26;
   var _v27;
-  _v27 = "gato_de_botas";
   var _v28;
-  _v28 = "Gato de Botas";
+  _v28 = "gato_de_botas";
   var _v29;
-  _v29 = "assets/player-gato-de-botas.png";
+  _v29 = "Gato de Botas";
   var _v30;
-  _v30 = 9;
+  _v30 = "assets/player-gato-de-botas.png";
   var _v31;
-  _v31 = 45;
+  _v31 = 9;
   var _v32;
+  _v32 = 45;
   var _v33;
+  _v33 = 0;
   var _v34;
-  _v34 = 18;
   var _v35;
-  _v35 = 12;
-  _v33 = ({$: "upgrade", cost: _v34, max_hp: _v35});
   var _v36;
+  _v36 = 18;
   var _v37;
+  _v37 = 12;
+  _v35 = ({$: "upgrade", cost: _v36, max_hp: _v37});
   var _v38;
-  _v38 = 30;
   var _v39;
-  _v39 = 15;
-  _v37 = ({$: "upgrade", cost: _v38, max_hp: _v39});
   var _v40;
+  _v40 = 30;
   var _v41;
+  _v41 = 15;
+  _v39 = ({$: "upgrade", cost: _v40, max_hp: _v41});
   var _v42;
-  _v42 = 48;
   var _v43;
-  _v43 = 18;
-  _v41 = ({$: "upgrade", cost: _v42, max_hp: _v43});
   var _v44;
+  _v44 = 48;
   var _v45;
+  _v45 = 18;
+  _v43 = ({$: "upgrade", cost: _v44, max_hp: _v45});
   var _v46;
-  _v46 = 72;
   var _v47;
-  _v47 = 22;
-  _v45 = ({$: "upgrade", cost: _v46, max_hp: _v47});
   var _v48;
-  _v48 = ({$: "nil"});
-  _v44 = ({$: "cons", head: _v45, tail: _v48});
-  _v40 = ({$: "cons", head: _v41, tail: _v44});
-  _v36 = ({$: "cons", head: _v37, tail: _v40});
-  _v32 = ({$: "cons", head: _v33, tail: _v36});
-  _v26 = ({$: "hero_def", id: _v27, name: _v28, sprite: _v29, base_max_hp: _v30, unlock_cost: _v31, upgrades: _v32});
+  _v48 = 72;
   var _v49;
-  _v49 = ({$: "nil"});
-  _v25 = ({$: "cons", head: _v26, tail: _v49});
-  _v1 = ({$: "cons", head: _v2, tail: _v25});
+  _v49 = 22;
+  _v47 = ({$: "upgrade", cost: _v48, max_hp: _v49});
   var _v50;
+  _v50 = ({$: "nil"});
+  _v46 = ({$: "cons", head: _v47, tail: _v50});
+  _v42 = ({$: "cons", head: _v43, tail: _v46});
+  _v38 = ({$: "cons", head: _v39, tail: _v42});
+  _v34 = ({$: "cons", head: _v35, tail: _v38});
+  _v27 = ({$: "hero_def", id: _v28, name: _v29, sprite: _v30, base_max_hp: _v31, unlock_cost: _v32, starts_unlocked: _v33, upgrades: _v34});
   var _v51;
+  _v51 = ({$: "nil"});
+  _v26 = ({$: "cons", head: _v27, tail: _v51});
+  _v1 = ({$: "cons", head: _v2, tail: _v26});
   var _v52;
-  _v52 = "Rat";
   var _v53;
-  _v53 = "assets/enemy-rat.png";
   var _v54;
-  _v54 = 3;
+  _v54 = "Rat";
   var _v55;
+  _v55 = "assets/enemy-rat.png";
   var _v56;
   _v56 = 3;
   var _v57;
   var _v58;
-  _v58 = 5;
+  _v58 = 3;
   var _v59;
   var _v60;
-  _v60 = 7;
+  _v60 = 5;
   var _v61;
   var _v62;
-  _v62 = 9;
+  _v62 = 7;
   var _v63;
   var _v64;
-  _v64 = 11;
+  _v64 = 9;
   var _v65;
-  _v65 = ({$: "nil"});
+  var _v66;
+  _v66 = 11;
+  var _v67;
+  _v67 = ({$: "nil"});
+  _v65 = ({$: "cons", head: _v66, tail: _v67});
   _v63 = ({$: "cons", head: _v64, tail: _v65});
   _v61 = ({$: "cons", head: _v62, tail: _v63});
   _v59 = ({$: "cons", head: _v60, tail: _v61});
   _v57 = ({$: "cons", head: _v58, tail: _v59});
-  _v55 = ({$: "cons", head: _v56, tail: _v57});
-  _v51 = ({$: "monster_def", name: _v52, sprite: _v53, gold_drop: _v54, hp_levels: _v55});
-  var _v66;
-  var _v67;
+  _v53 = ({$: "monster_def", name: _v54, sprite: _v55, gold_drop: _v56, hp_levels: _v57});
   var _v68;
-  _v68 = "Spider";
   var _v69;
-  _v69 = "assets/enemy-spider.png";
   var _v70;
-  _v70 = 4;
+  _v70 = "Spider";
   var _v71;
+  _v71 = "assets/enemy-spider.png";
   var _v72;
-  _v72 = 5;
+  _v72 = 4;
   var _v73;
   var _v74;
-  _v74 = 7;
+  _v74 = 5;
   var _v75;
   var _v76;
-  _v76 = 9;
+  _v76 = 7;
   var _v77;
   var _v78;
-  _v78 = 11;
+  _v78 = 9;
   var _v79;
   var _v80;
-  _v80 = 13;
+  _v80 = 11;
   var _v81;
-  _v81 = ({$: "nil"});
+  var _v82;
+  _v82 = 13;
+  var _v83;
+  _v83 = ({$: "nil"});
+  _v81 = ({$: "cons", head: _v82, tail: _v83});
   _v79 = ({$: "cons", head: _v80, tail: _v81});
   _v77 = ({$: "cons", head: _v78, tail: _v79});
   _v75 = ({$: "cons", head: _v76, tail: _v77});
   _v73 = ({$: "cons", head: _v74, tail: _v75});
-  _v71 = ({$: "cons", head: _v72, tail: _v73});
-  _v67 = ({$: "monster_def", name: _v68, sprite: _v69, gold_drop: _v70, hp_levels: _v71});
-  var _v82;
-  var _v83;
+  _v69 = ({$: "monster_def", name: _v70, sprite: _v71, gold_drop: _v72, hp_levels: _v73});
   var _v84;
-  _v84 = "Venom Spider";
   var _v85;
-  _v85 = "assets/enemy-spider2.png";
   var _v86;
-  _v86 = 5;
+  _v86 = "Venom Spider";
   var _v87;
+  _v87 = "assets/enemy-spider2.png";
   var _v88;
-  _v88 = 7;
+  _v88 = 5;
   var _v89;
   var _v90;
-  _v90 = 9;
+  _v90 = 7;
   var _v91;
   var _v92;
-  _v92 = 11;
+  _v92 = 9;
   var _v93;
   var _v94;
-  _v94 = 13;
+  _v94 = 11;
   var _v95;
   var _v96;
-  _v96 = 15;
+  _v96 = 13;
   var _v97;
-  _v97 = ({$: "nil"});
+  var _v98;
+  _v98 = 15;
+  var _v99;
+  _v99 = ({$: "nil"});
+  _v97 = ({$: "cons", head: _v98, tail: _v99});
   _v95 = ({$: "cons", head: _v96, tail: _v97});
   _v93 = ({$: "cons", head: _v94, tail: _v95});
   _v91 = ({$: "cons", head: _v92, tail: _v93});
   _v89 = ({$: "cons", head: _v90, tail: _v91});
-  _v87 = ({$: "cons", head: _v88, tail: _v89});
-  _v83 = ({$: "monster_def", name: _v84, sprite: _v85, gold_drop: _v86, hp_levels: _v87});
-  var _v98;
-  var _v99;
+  _v85 = ({$: "monster_def", name: _v86, sprite: _v87, gold_drop: _v88, hp_levels: _v89});
   var _v100;
-  _v100 = "Orc";
   var _v101;
-  _v101 = "assets/enemy-orc.png";
   var _v102;
-  _v102 = 6;
+  _v102 = "Orc";
   var _v103;
+  _v103 = "assets/enemy-orc.png";
   var _v104;
-  _v104 = 9;
+  _v104 = 6;
   var _v105;
   var _v106;
-  _v106 = 11;
+  _v106 = 9;
   var _v107;
   var _v108;
-  _v108 = 14;
+  _v108 = 11;
   var _v109;
   var _v110;
-  _v110 = 17;
+  _v110 = 14;
   var _v111;
   var _v112;
-  _v112 = 20;
+  _v112 = 17;
   var _v113;
-  _v113 = ({$: "nil"});
+  var _v114;
+  _v114 = 20;
+  var _v115;
+  _v115 = ({$: "nil"});
+  _v113 = ({$: "cons", head: _v114, tail: _v115});
   _v111 = ({$: "cons", head: _v112, tail: _v113});
   _v109 = ({$: "cons", head: _v110, tail: _v111});
   _v107 = ({$: "cons", head: _v108, tail: _v109});
   _v105 = ({$: "cons", head: _v106, tail: _v107});
-  _v103 = ({$: "cons", head: _v104, tail: _v105});
-  _v99 = ({$: "monster_def", name: _v100, sprite: _v101, gold_drop: _v102, hp_levels: _v103});
-  var _v114;
-  _v114 = ({$: "nil"});
-  _v98 = ({$: "cons", head: _v99, tail: _v114});
-  _v82 = ({$: "cons", head: _v83, tail: _v98});
-  _v66 = ({$: "cons", head: _v67, tail: _v82});
-  _v50 = ({$: "cons", head: _v51, tail: _v66});
-  var _v115;
+  _v101 = ({$: "monster_def", name: _v102, sprite: _v103, gold_drop: _v104, hp_levels: _v105});
   var _v116;
+  _v116 = ({$: "nil"});
+  _v100 = ({$: "cons", head: _v101, tail: _v116});
+  _v84 = ({$: "cons", head: _v85, tail: _v100});
+  _v68 = ({$: "cons", head: _v69, tail: _v84});
+  _v52 = ({$: "cons", head: _v53, tail: _v68});
   var _v117;
-  _v117 = "Sword";
   var _v118;
-  _v118 = "assets/item-sword.png";
   var _v119;
-  _v119 = 5;
-  _v116 = ({$: "sword_def", name: _v117, sprite: _v118, dmg: _v119});
+  _v119 = "Sword";
   var _v120;
+  _v120 = "assets/item-sword.png";
   var _v121;
+  _v121 = 5;
+  _v118 = ({$: "sword_def", name: _v119, sprite: _v120, dmg: _v121});
   var _v122;
-  _v122 = "Sword";
   var _v123;
-  _v123 = "assets/item-sword.png";
   var _v124;
-  _v124 = 7;
-  _v121 = ({$: "sword_def", name: _v122, sprite: _v123, dmg: _v124});
+  _v124 = "Sword";
   var _v125;
+  _v125 = "assets/item-sword.png";
   var _v126;
+  _v126 = 7;
+  _v123 = ({$: "sword_def", name: _v124, sprite: _v125, dmg: _v126});
   var _v127;
-  _v127 = "Sword";
   var _v128;
-  _v128 = "assets/item-sword.png";
   var _v129;
-  _v129 = 9;
-  _v126 = ({$: "sword_def", name: _v127, sprite: _v128, dmg: _v129});
+  _v129 = "Sword";
   var _v130;
-  _v130 = ({$: "nil"});
-  _v125 = ({$: "cons", head: _v126, tail: _v130});
-  _v120 = ({$: "cons", head: _v121, tail: _v125});
-  _v115 = ({$: "cons", head: _v116, tail: _v120});
+  _v130 = "assets/item-sword.png";
   var _v131;
+  _v131 = 9;
+  _v128 = ({$: "sword_def", name: _v129, sprite: _v130, dmg: _v131});
   var _v132;
+  _v132 = ({$: "nil"});
+  _v127 = ({$: "cons", head: _v128, tail: _v132});
+  _v122 = ({$: "cons", head: _v123, tail: _v127});
+  _v117 = ({$: "cons", head: _v118, tail: _v122});
   var _v133;
-  _v133 = "Potion";
   var _v134;
-  _v134 = "assets/item-potion.png";
   var _v135;
-  _v135 = 4;
-  _v132 = ({$: "potion_def", name: _v133, sprite: _v134, heal: _v135});
+  _v135 = "Potion";
   var _v136;
-  _v136 = ({$: "nil"});
-  _v131 = ({$: "cons", head: _v132, tail: _v136});
+  _v136 = "assets/item-potion.png";
   var _v137;
+  _v137 = 4;
+  _v134 = ({$: "potion_def", name: _v135, sprite: _v136, heal: _v137});
   var _v138;
+  _v138 = ({$: "nil"});
+  _v133 = ({$: "cons", head: _v134, tail: _v138});
   var _v139;
-  _v139 = 0;
   var _v140;
-  _v140 = 4;
-  _v138 = ({$: "monster_entry", ref: _v139, count: _v140});
   var _v141;
+  _v141 = 0;
   var _v142;
+  _v142 = 4;
+  _v140 = ({$: "monster_entry", ref: _v141, count: _v142});
   var _v143;
-  _v143 = 1;
   var _v144;
-  _v144 = 3;
-  _v142 = ({$: "monster_entry", ref: _v143, count: _v144});
   var _v145;
+  _v145 = 1;
   var _v146;
+  _v146 = 3;
+  _v144 = ({$: "monster_entry", ref: _v145, count: _v146});
   var _v147;
-  _v147 = 2;
   var _v148;
-  _v148 = 3;
-  _v146 = ({$: "monster_entry", ref: _v147, count: _v148});
   var _v149;
+  _v149 = 2;
   var _v150;
+  _v150 = 3;
+  _v148 = ({$: "monster_entry", ref: _v149, count: _v150});
   var _v151;
-  _v151 = 3;
   var _v152;
-  _v152 = 3;
-  _v150 = ({$: "monster_entry", ref: _v151, count: _v152});
   var _v153;
+  _v153 = 3;
   var _v154;
+  _v154 = 3;
+  _v152 = ({$: "monster_entry", ref: _v153, count: _v154});
   var _v155;
-  _v155 = 0;
   var _v156;
-  _v156 = 1;
-  _v154 = ({$: "sword_entry", ref: _v155, count: _v156});
   var _v157;
+  _v157 = 0;
   var _v158;
+  _v158 = 1;
+  _v156 = ({$: "sword_entry", ref: _v157, count: _v158});
   var _v159;
-  _v159 = 1;
   var _v160;
-  _v160 = 1;
-  _v158 = ({$: "sword_entry", ref: _v159, count: _v160});
   var _v161;
+  _v161 = 1;
   var _v162;
+  _v162 = 1;
+  _v160 = ({$: "sword_entry", ref: _v161, count: _v162});
   var _v163;
-  _v163 = 2;
   var _v164;
-  _v164 = 1;
-  _v162 = ({$: "sword_entry", ref: _v163, count: _v164});
   var _v165;
+  _v165 = 2;
   var _v166;
+  _v166 = 1;
+  _v164 = ({$: "sword_entry", ref: _v165, count: _v166});
   var _v167;
-  _v167 = 0;
   var _v168;
-  _v168 = 3;
-  _v166 = ({$: "potion_entry", ref: _v167, count: _v168});
   var _v169;
+  _v169 = 0;
   var _v170;
+  _v170 = 3;
+  _v168 = ({$: "potion_entry", ref: _v169, count: _v170});
   var _v171;
-  _v171 = 1;
-  _v170 = ({$: "hero_entry", count: _v171});
   var _v172;
-  _v172 = ({$: "nil"});
-  _v169 = ({$: "cons", head: _v170, tail: _v172});
-  _v165 = ({$: "cons", head: _v166, tail: _v169});
-  _v161 = ({$: "cons", head: _v162, tail: _v165});
-  _v157 = ({$: "cons", head: _v158, tail: _v161});
-  _v153 = ({$: "cons", head: _v154, tail: _v157});
-  _v149 = ({$: "cons", head: _v150, tail: _v153});
-  _v145 = ({$: "cons", head: _v146, tail: _v149});
-  _v141 = ({$: "cons", head: _v142, tail: _v145});
-  _v137 = ({$: "cons", head: _v138, tail: _v141});
   var _v173;
+  _v173 = 1;
+  _v172 = ({$: "hero_entry", count: _v173});
   var _v174;
+  _v174 = ({$: "nil"});
+  _v171 = ({$: "cons", head: _v172, tail: _v174});
+  _v167 = ({$: "cons", head: _v168, tail: _v171});
+  _v163 = ({$: "cons", head: _v164, tail: _v167});
+  _v159 = ({$: "cons", head: _v160, tail: _v163});
+  _v155 = ({$: "cons", head: _v156, tail: _v159});
+  _v151 = ({$: "cons", head: _v152, tail: _v155});
+  _v147 = ({$: "cons", head: _v148, tail: _v151});
+  _v143 = ({$: "cons", head: _v144, tail: _v147});
+  _v139 = ({$: "cons", head: _v140, tail: _v143});
   var _v175;
-  _v175 = "Starter Booster";
   var _v176;
-  _v176 = 20;
   var _v177;
-  _v177 = 3;
+  _v177 = "Starter Booster";
   var _v178;
-  _v178 = 0;
+  _v178 = 80;
   var _v179;
+  _v179 = 3;
   var _v180;
+  _v180 = 0;
   var _v181;
   var _v182;
-  _v182 = 0;
-  _v181 = ({$: "monster_card", ref: _v182});
   var _v183;
-  _v183 = 1;
-  _v180 = ({$: "pack_pool_entry", card: _v181, weight: _v183});
   var _v184;
+  _v184 = 0;
+  _v183 = ({$: "monster_card", ref: _v184});
   var _v185;
+  _v185 = 1;
+  _v182 = ({$: "pack_pool_entry", card: _v183, weight: _v185});
   var _v186;
   var _v187;
-  _v187 = 1;
-  _v186 = ({$: "monster_card", ref: _v187});
   var _v188;
-  _v188 = 1;
-  _v185 = ({$: "pack_pool_entry", card: _v186, weight: _v188});
   var _v189;
+  _v189 = 1;
+  _v188 = ({$: "monster_card", ref: _v189});
   var _v190;
+  _v190 = 1;
+  _v187 = ({$: "pack_pool_entry", card: _v188, weight: _v190});
   var _v191;
   var _v192;
-  _v192 = 2;
-  _v191 = ({$: "monster_card", ref: _v192});
   var _v193;
-  _v193 = 1;
-  _v190 = ({$: "pack_pool_entry", card: _v191, weight: _v193});
   var _v194;
+  _v194 = 2;
+  _v193 = ({$: "monster_card", ref: _v194});
   var _v195;
+  _v195 = 1;
+  _v192 = ({$: "pack_pool_entry", card: _v193, weight: _v195});
   var _v196;
   var _v197;
-  _v197 = 3;
-  _v196 = ({$: "monster_card", ref: _v197});
   var _v198;
-  _v198 = 1;
-  _v195 = ({$: "pack_pool_entry", card: _v196, weight: _v198});
   var _v199;
+  _v199 = 3;
+  _v198 = ({$: "monster_card", ref: _v199});
   var _v200;
+  _v200 = 1;
+  _v197 = ({$: "pack_pool_entry", card: _v198, weight: _v200});
   var _v201;
   var _v202;
-  _v202 = 0;
-  _v201 = ({$: "sword_card", ref: _v202});
   var _v203;
-  _v203 = 1;
-  _v200 = ({$: "pack_pool_entry", card: _v201, weight: _v203});
   var _v204;
+  _v204 = 0;
+  _v203 = ({$: "sword_card", ref: _v204});
   var _v205;
+  _v205 = 1;
+  _v202 = ({$: "pack_pool_entry", card: _v203, weight: _v205});
   var _v206;
   var _v207;
-  _v207 = 1;
-  _v206 = ({$: "sword_card", ref: _v207});
   var _v208;
-  _v208 = 1;
-  _v205 = ({$: "pack_pool_entry", card: _v206, weight: _v208});
   var _v209;
+  _v209 = 1;
+  _v208 = ({$: "sword_card", ref: _v209});
   var _v210;
+  _v210 = 1;
+  _v207 = ({$: "pack_pool_entry", card: _v208, weight: _v210});
   var _v211;
   var _v212;
-  _v212 = 2;
-  _v211 = ({$: "sword_card", ref: _v212});
   var _v213;
-  _v213 = 1;
-  _v210 = ({$: "pack_pool_entry", card: _v211, weight: _v213});
   var _v214;
+  _v214 = 2;
+  _v213 = ({$: "sword_card", ref: _v214});
   var _v215;
+  _v215 = 1;
+  _v212 = ({$: "pack_pool_entry", card: _v213, weight: _v215});
   var _v216;
   var _v217;
-  _v217 = 0;
-  _v216 = ({$: "potion_card", ref: _v217});
   var _v218;
-  _v218 = 1;
-  _v215 = ({$: "pack_pool_entry", card: _v216, weight: _v218});
   var _v219;
-  _v219 = ({$: "nil"});
-  _v214 = ({$: "cons", head: _v215, tail: _v219});
-  _v209 = ({$: "cons", head: _v210, tail: _v214});
-  _v204 = ({$: "cons", head: _v205, tail: _v209});
-  _v199 = ({$: "cons", head: _v200, tail: _v204});
-  _v194 = ({$: "cons", head: _v195, tail: _v199});
-  _v189 = ({$: "cons", head: _v190, tail: _v194});
-  _v184 = ({$: "cons", head: _v185, tail: _v189});
-  _v179 = ({$: "cons", head: _v180, tail: _v184});
-  _v174 = ({$: "pack_def", name: _v175, price: _v176, reveal_count: _v177, allow_duplicates: _v178, pool: _v179});
+  _v219 = 0;
+  _v218 = ({$: "potion_card", ref: _v219});
   var _v220;
-  _v220 = ({$: "nil"});
-  _v173 = ({$: "cons", head: _v174, tail: _v220});
+  _v220 = 1;
+  _v217 = ({$: "pack_pool_entry", card: _v218, weight: _v220});
   var _v221;
-  _v221 = 1;
-  _r0 = ({$: "config", heroes: _v1, monsters: _v50, swords: _v115, potions: _v131, deck: _v137, booster_packs: _v173, starting_dungeon_level: _v221});
+  _v221 = ({$: "nil"});
+  _v216 = ({$: "cons", head: _v217, tail: _v221});
+  _v211 = ({$: "cons", head: _v212, tail: _v216});
+  _v206 = ({$: "cons", head: _v207, tail: _v211});
+  _v201 = ({$: "cons", head: _v202, tail: _v206});
+  _v196 = ({$: "cons", head: _v197, tail: _v201});
+  _v191 = ({$: "cons", head: _v192, tail: _v196});
+  _v186 = ({$: "cons", head: _v187, tail: _v191});
+  _v181 = ({$: "cons", head: _v182, tail: _v186});
+  _v176 = ({$: "pack_def", name: _v177, price: _v178, reveal_count: _v179, allow_duplicates: _v180, pool: _v181});
+  var _v222;
+  _v222 = ({$: "nil"});
+  _v175 = ({$: "cons", head: _v176, tail: _v222});
+  var _v223;
+  _v223 = 1;
+  _r0 = ({$: "config", heroes: _v1, monsters: _v52, swords: _v117, potions: _v133, deck: _v139, booster_packs: _v175, starting_dungeon_level: _v223});
   return _r0;
 }
 
@@ -1644,7 +2466,7 @@ export const Dungeon$config = () => ($Dungeon$config());
 
 export function $Dungeon$initial_seed() {
   var _r0;
-  _r0 = 1;
+  _r0 = $Dungeon$rules$initial_seed_value();
   return _r0;
 }
 
@@ -3505,58 +4327,60 @@ export function $Dungeon$_parse_meta$_parse_v3_profiles_list(x, x$1, x$2, x$3) {
                 var _m5 = _m1.sprite;
                 var _m6 = _m1.base_max_hp;
                 var _m7 = _m1.unlock_cost;
-                var _m8 = _m1.upgrades;
+                var _m8 = _m1.starts_unlocked;
+                var _m9 = _m1.upgrades;
                 var id = _m3;
                 var name$1 = _m4;
                 var sprite$2 = _m5;
                 var base_max_hp$3 = _m6;
                 var unlock_cost$4 = _m7;
-                var upgrades$5 = _m8;
-                var hero_rest$6 = _m2;
+                var starts_unlocked$5 = _m8;
+                var upgrades$6 = _m9;
+                var hero_rest$7 = _m2;
                 switch (x$1.$) {
                   case "nil": {
-                    var meta_state$7 = x$2;
-                    var hero_ref$8 = x$3;
-                    _r0 = meta_state$7;
+                    var meta_state$8 = x$2;
+                    var hero_ref$9 = x$3;
+                    _r0 = meta_state$8;
                     break;
                   }
                   default: {
                     switch (x$1.$) {
                       case "cons": {
-                        var _m9 = x$1.head;
-                        var _m10 = x$1.tail;
-                        var part$7 = _m9;
-                        var rest$8 = _m10;
-                        var meta_state$9 = x$2;
-                        var hero_ref$10 = x$3;
-                        var _v11;
-                        _v11 = hero_rest$6;
+                        var _m10 = x$1.head;
+                        var _m11 = x$1.tail;
+                        var part$8 = _m10;
+                        var rest$9 = _m11;
+                        var meta_state$10 = x$2;
+                        var hero_ref$11 = x$3;
                         var _v12;
-                        _v12 = rest$8;
+                        _v12 = hero_rest$7;
                         var _v13;
+                        _v13 = rest$9;
                         var _v14;
-                        _v14 = hero_ref$10;
                         var _v15;
+                        _v15 = hero_ref$11;
                         var _v16;
-                        _v16 = part$7;
                         var _v17;
+                        _v17 = part$8;
                         var _v18;
-                        _v18 = 126;
-                        _v17 = String.fromCharCode(((_v18) >>> 0) & 0xFFFF);
-                        _v15 = $String$split(_v16, _v17);
                         var _v19;
-                        _v19 = meta_state$9;
-                        _v13 = $Dungeon$_parse_meta$_apply_v3_profile_segment(_v14, _v15, _v19);
+                        _v19 = 126;
+                        _v18 = String.fromCharCode(((_v19) >>> 0) & 0xFFFF);
+                        _v16 = $String$split(_v17, _v18);
                         var _v20;
+                        _v20 = meta_state$10;
+                        _v14 = $Dungeon$_parse_meta$_apply_v3_profile_segment(_v15, _v16, _v20);
                         var _v21;
-                        _v21 = hero_ref$10;
                         var _v22;
-                        _v22 = 1;
-                        _v20 = (((_v21) + (_v22)) >>> 0);
-                        x = _v11;
-                        x$1 = _v12;
-                        x$2 = _v13;
-                        x$3 = _v20;
+                        _v22 = hero_ref$11;
+                        var _v23;
+                        _v23 = 1;
+                        _v21 = (((_v22) + (_v23)) >>> 0);
+                        x = _v12;
+                        x$1 = _v13;
+                        x$2 = _v14;
+                        x$3 = _v21;
                         continue;
                         break;
                       }
@@ -3725,85 +4549,87 @@ export function $Dungeon$_parse_meta$_parse_v2_profiles_list(monsters, swords$1,
                 var _m5 = _m1.sprite;
                 var _m6 = _m1.base_max_hp;
                 var _m7 = _m1.unlock_cost;
-                var _m8 = _m1.upgrades;
+                var _m8 = _m1.starts_unlocked;
+                var _m9 = _m1.upgrades;
                 var id$4 = _m3;
                 var name$5 = _m4;
                 var sprite$6 = _m5;
                 var base_max_hp$7 = _m6;
                 var unlock_cost$8 = _m7;
-                var upgrades$9 = _m8;
-                var hero_rest$10 = _m2;
+                var starts_unlocked$9 = _m8;
+                var upgrades$10 = _m9;
+                var hero_rest$11 = _m2;
                 switch (x$5.$) {
                   case "nil": {
-                    var meta_state$11 = x$6;
-                    var selected_ref$12 = x$7;
-                    var hero_ref$13 = x$8;
-                    _r0 = meta_state$11;
+                    var meta_state$12 = x$6;
+                    var selected_ref$13 = x$7;
+                    var hero_ref$14 = x$8;
+                    _r0 = meta_state$12;
                     break;
                   }
                   default: {
                     switch (x$5.$) {
                       case "cons": {
-                        var _m9 = x$5.head;
-                        var _m10 = x$5.tail;
-                        var part$11 = _m9;
-                        var rest$12 = _m10;
-                        var meta_state$13 = x$6;
-                        var selected_ref$14 = x$7;
-                        var hero_ref$15 = x$8;
-                        var _v11;
-                        _v11 = monsters;
+                        var _m10 = x$5.head;
+                        var _m11 = x$5.tail;
+                        var part$12 = _m10;
+                        var rest$13 = _m11;
+                        var meta_state$14 = x$6;
+                        var selected_ref$15 = x$7;
+                        var hero_ref$16 = x$8;
                         var _v12;
-                        _v12 = swords$1;
+                        _v12 = monsters;
                         var _v13;
-                        _v13 = potions$2;
+                        _v13 = swords$1;
                         var _v14;
-                        _v14 = booster_packs$3;
+                        _v14 = potions$2;
                         var _v15;
-                        _v15 = hero_rest$10;
+                        _v15 = booster_packs$3;
                         var _v16;
-                        _v16 = rest$12;
+                        _v16 = hero_rest$11;
                         var _v17;
+                        _v17 = rest$13;
                         var _v18;
-                        _v18 = monsters;
                         var _v19;
-                        _v19 = swords$1;
+                        _v19 = monsters;
                         var _v20;
-                        _v20 = potions$2;
+                        _v20 = swords$1;
                         var _v21;
-                        _v21 = booster_packs$3;
+                        _v21 = potions$2;
                         var _v22;
-                        _v22 = selected_ref$14;
+                        _v22 = booster_packs$3;
                         var _v23;
-                        _v23 = hero_ref$15;
+                        _v23 = selected_ref$15;
                         var _v24;
+                        _v24 = hero_ref$16;
                         var _v25;
-                        _v25 = part$11;
                         var _v26;
+                        _v26 = part$12;
                         var _v27;
-                        _v27 = 126;
-                        _v26 = String.fromCharCode(((_v27) >>> 0) & 0xFFFF);
-                        _v24 = $String$split(_v25, _v26);
                         var _v28;
-                        _v28 = meta_state$13;
-                        _v17 = $Dungeon$_parse_meta$_apply_v2_profile_segment(_v18, _v19, _v20, _v21, _v22, _v23, _v24, _v28);
+                        _v28 = 126;
+                        _v27 = String.fromCharCode(((_v28) >>> 0) & 0xFFFF);
+                        _v25 = $String$split(_v26, _v27);
                         var _v29;
-                        _v29 = selected_ref$14;
+                        _v29 = meta_state$14;
+                        _v18 = $Dungeon$_parse_meta$_apply_v2_profile_segment(_v19, _v20, _v21, _v22, _v23, _v24, _v25, _v29);
                         var _v30;
+                        _v30 = selected_ref$15;
                         var _v31;
-                        _v31 = hero_ref$15;
                         var _v32;
-                        _v32 = 1;
-                        _v30 = (((_v31) + (_v32)) >>> 0);
-                        monsters = _v11;
-                        swords$1 = _v12;
-                        potions$2 = _v13;
-                        booster_packs$3 = _v14;
-                        x$4 = _v15;
-                        x$5 = _v16;
-                        x$6 = _v17;
-                        x$7 = _v29;
-                        x$8 = _v30;
+                        _v32 = hero_ref$16;
+                        var _v33;
+                        _v33 = 1;
+                        _v31 = (((_v32) + (_v33)) >>> 0);
+                        monsters = _v12;
+                        swords$1 = _v13;
+                        potions$2 = _v14;
+                        booster_packs$3 = _v15;
+                        x$4 = _v16;
+                        x$5 = _v17;
+                        x$6 = _v18;
+                        x$7 = _v30;
+                        x$8 = _v31;
                         continue;
                         break;
                       }
@@ -5962,615 +6788,6 @@ export function $String$to_u32$check(value, t$1, acc$2, x$3, x$4) {
 }
 
 export const String$to_u32$check = () => ((a0) => ((a1) => ((a2) => ((a3) => ((a4) => ($String$to_u32$check(a0, a1, a2, a3, a4)))))));
-
-export function $Dungeon$hero_helpers$hero_count(x) {
-  var _r0;
-  switch (x.$) {
-    case "config": {
-      var _m1 = x.heroes;
-      var _m2 = x.monsters;
-      var _m3 = x.swords;
-      var _m4 = x.potions;
-      var _m5 = x.deck;
-      var _m6 = x.booster_packs;
-      var _m7 = x.starting_dungeon_level;
-      var heroes = _m1;
-      var monsters$1 = _m2;
-      var swords$2 = _m3;
-      var potions$3 = _m4;
-      var deck$4 = _m5;
-      var booster_packs$5 = _m6;
-      var starting_dungeon_level$6 = _m7;
-      var _v8;
-      _v8 = heroes;
-      _r0 = $Dungeon$hero_helpers$_hero_count_from_list(_v8);
-      break;
-    }
-    default: {
-      throw new Error("EFQ applied");
-      break;
-    }
-  }
-  return _r0;
-}
-
-export const Dungeon$hero_helpers$hero_count = () => ((a0) => ($Dungeon$hero_helpers$hero_count(a0)));
-
-export function $Dungeon$hero_helpers$_hero_count_from_list(x) {
-  var _r0;
-  switch (x.$) {
-    case "nil": {
-      _r0 = 0;
-      break;
-    }
-    default: {
-      switch (x.$) {
-        case "cons": {
-          var _m1 = x.head;
-          var _m2 = x.tail;
-          switch (_m1.$) {
-            case "hero_def": {
-              var _m3 = _m1.id;
-              var _m4 = _m1.name;
-              var _m5 = _m1.sprite;
-              var _m6 = _m1.base_max_hp;
-              var _m7 = _m1.unlock_cost;
-              var _m8 = _m1.upgrades;
-              var id = _m3;
-              var name$1 = _m4;
-              var sprite$2 = _m5;
-              var base_max_hp$3 = _m6;
-              var unlock_cost$4 = _m7;
-              var upgrades$5 = _m8;
-              var rest$6 = _m2;
-              var _v9;
-              _v9 = 1;
-              var _v10;
-              var _v11;
-              _v11 = rest$6;
-              _v10 = $Dungeon$hero_helpers$_hero_count_from_list(_v11);
-              _r0 = (((_v9) + (_v10)) >>> 0);
-              break;
-            }
-            default: {
-              throw new Error("EFQ applied");
-              break;
-            }
-          }
-          break;
-        }
-        default: {
-          throw new Error("EFQ applied");
-          break;
-        }
-      }
-      break;
-    }
-  }
-  return _r0;
-}
-
-export const Dungeon$hero_helpers$_hero_count_from_list = () => ((a0) => ($Dungeon$hero_helpers$_hero_count_from_list(a0)));
-
-export function $Dungeon$hero_helpers$normalize_hero_ref(config_value, hero_ref$1) {
-  var _r0;
-  var _v1;
-  var _v2;
-  _v2 = config_value;
-  _v1 = $Dungeon$hero_helpers$hero_count(_v2);
-  var _v3;
-  _v3 = hero_ref$1;
-  _r0 = $Dungeon$hero_helpers$_normalize_hero_ref_from_count(_v1, _v3);
-  return _r0;
-}
-
-export const Dungeon$hero_helpers$normalize_hero_ref = () => ((a0) => ((a1) => ($Dungeon$hero_helpers$normalize_hero_ref(a0, a1))));
-
-export function $Dungeon$hero_helpers$_normalize_hero_ref_from_count(x, x$1) {
-  var _r0;
-  if (((x) >>> 0) === 0) {
-    var hero_ref = x$1;
-    _r0 = 0;
-  } else {
-    var _ = x;
-    var hero_ref$1 = x$1;
-    var _v1;
-    var _v2;
-    _v2 = hero_ref$1;
-    var _v3;
-    _v3 = _;
-    _v1 = (_v2) < (_v3) ? 1 : 0;
-    var _v4;
-    _v4 = _;
-    var _v5;
-    _v5 = hero_ref$1;
-    _r0 = $Dungeon$hero_helpers$_normalize_hero_ref_in_range(_v1, _v4, _v5);
-  }
-  return _r0;
-}
-
-export const Dungeon$hero_helpers$_normalize_hero_ref_from_count = () => ((a0) => ((a1) => ($Dungeon$hero_helpers$_normalize_hero_ref_from_count(a0, a1))));
-
-export function $Dungeon$hero_helpers$_normalize_hero_ref_in_range(x, x$1, x$2) {
-  var _r0;
-  if (((x) >>> 0) === 0) {
-    var count = x$1;
-    var hero_ref$1 = x$2;
-    var _v1;
-    _v1 = count;
-    var _v2;
-    _v2 = 1;
-    _r0 = (((_v1) - (_v2)) >>> 0);
-  } else {
-    var _ = x;
-    var count$1 = x$1;
-    var hero_ref$2 = x$2;
-    _r0 = hero_ref$2;
-  }
-  return _r0;
-}
-
-export const Dungeon$hero_helpers$_normalize_hero_ref_in_range = () => ((a0) => ((a1) => ((a2) => ($Dungeon$hero_helpers$_normalize_hero_ref_in_range(a0, a1, a2)))));
-
-export function $Dungeon$hero_helpers$hero_at(x, x$1) {
-  var _r0;
-  switch (x.$) {
-    case "config": {
-      var _m1 = x.heroes;
-      var _m2 = x.monsters;
-      var _m3 = x.swords;
-      var _m4 = x.potions;
-      var _m5 = x.deck;
-      var _m6 = x.booster_packs;
-      var _m7 = x.starting_dungeon_level;
-      var heroes = _m1;
-      var monsters$1 = _m2;
-      var swords$2 = _m3;
-      var potions$3 = _m4;
-      var deck$4 = _m5;
-      var booster_packs$5 = _m6;
-      var starting_dungeon_level$6 = _m7;
-      var hero_ref$7 = x$1;
-      var _v8;
-      _v8 = heroes;
-      var _v9;
-      var _v10;
-      var _v11;
-      _v11 = heroes;
-      var _v12;
-      _v12 = monsters$1;
-      var _v13;
-      _v13 = swords$2;
-      var _v14;
-      _v14 = potions$3;
-      var _v15;
-      _v15 = deck$4;
-      var _v16;
-      _v16 = booster_packs$5;
-      var _v17;
-      _v17 = starting_dungeon_level$6;
-      _v10 = ({$: "config", heroes: _v11, monsters: _v12, swords: _v13, potions: _v14, deck: _v15, booster_packs: _v16, starting_dungeon_level: _v17});
-      var _v18;
-      _v18 = hero_ref$7;
-      _v9 = $Dungeon$hero_helpers$normalize_hero_ref(_v10, _v18);
-      _r0 = $Dungeon$hero_helpers$_hero_at_from_list(_v8, _v9);
-      break;
-    }
-    default: {
-      throw new Error("EFQ applied");
-      break;
-    }
-  }
-  return _r0;
-}
-
-export const Dungeon$hero_helpers$hero_at = () => ((a0) => ((a1) => ($Dungeon$hero_helpers$hero_at(a0, a1))));
-
-export function $Dungeon$hero_helpers$_hero_at_from_list(x, x$1) {
-  while (true) {
-    var _r0;
-    switch (x.$) {
-      case "nil": {
-        var hero_ref = x$1;
-        var _v1;
-        _v1 = "hero";
-        var _v2;
-        _v2 = "Hero";
-        var _v3;
-        _v3 = "";
-        var _v4;
-        _v4 = 1;
-        var _v5;
-        _v5 = 0;
-        var _v6;
-        _v6 = ({$: "nil"});
-        _r0 = ({$: "hero_def", id: _v1, name: _v2, sprite: _v3, base_max_hp: _v4, unlock_cost: _v5, upgrades: _v6});
-        break;
-      }
-      default: {
-        switch (x.$) {
-          case "cons": {
-            var _m7 = x.head;
-            var _m8 = x.tail;
-            switch (_m7.$) {
-              case "hero_def": {
-                var _m9 = _m7.id;
-                var _m10 = _m7.name;
-                var _m11 = _m7.sprite;
-                var _m12 = _m7.base_max_hp;
-                var _m13 = _m7.unlock_cost;
-                var _m14 = _m7.upgrades;
-                var id = _m9;
-                var name$1 = _m10;
-                var sprite$2 = _m11;
-                var base_max_hp$3 = _m12;
-                var unlock_cost$4 = _m13;
-                var upgrades$5 = _m14;
-                var rest$6 = _m8;
-                if (((x$1) >>> 0) === 0) {
-                  var _v15;
-                  _v15 = id;
-                  var _v16;
-                  _v16 = name$1;
-                  var _v17;
-                  _v17 = sprite$2;
-                  var _v18;
-                  _v18 = base_max_hp$3;
-                  var _v19;
-                  _v19 = unlock_cost$4;
-                  var _v20;
-                  _v20 = upgrades$5;
-                  _r0 = ({$: "hero_def", id: _v15, name: _v16, sprite: _v17, base_max_hp: _v18, unlock_cost: _v19, upgrades: _v20});
-                } else {
-                  var _$7 = x$1;
-                  var _v21;
-                  _v21 = rest$6;
-                  var _v22;
-                  var _v23;
-                  _v23 = _$7;
-                  var _v24;
-                  _v24 = 1;
-                  _v22 = (((_v23) - (_v24)) >>> 0);
-                  x = _v21;
-                  x$1 = _v22;
-                  continue;
-                }
-                break;
-              }
-              default: {
-                throw new Error("EFQ applied");
-                break;
-              }
-            }
-            break;
-          }
-          default: {
-            throw new Error("EFQ applied");
-            break;
-          }
-        }
-        break;
-      }
-    }
-    return _r0;
-  }
-}
-
-export const Dungeon$hero_helpers$_hero_at_from_list = () => ((a0) => ((a1) => ($Dungeon$hero_helpers$_hero_at_from_list(a0, a1))));
-
-export function $Dungeon$hero_helpers$next_hero_ref(config_value, hero_ref$1) {
-  var _r0;
-  var count$2;
-  var _v1;
-  _v1 = config_value;
-  count$2 = $Dungeon$hero_helpers$hero_count(_v1);
-  var safe_ref$3;
-  var _v2;
-  _v2 = config_value;
-  var _v3;
-  _v3 = hero_ref$1;
-  safe_ref$3 = $Dungeon$hero_helpers$normalize_hero_ref(_v2, _v3);
-  var _v4;
-  _v4 = count$2;
-  var _v5;
-  _v5 = safe_ref$3;
-  _r0 = $Dungeon$hero_helpers$_next_hero_ref_from_count(_v4, _v5);
-  return _r0;
-}
-
-export const Dungeon$hero_helpers$next_hero_ref = () => ((a0) => ((a1) => ($Dungeon$hero_helpers$next_hero_ref(a0, a1))));
-
-export function $Dungeon$hero_helpers$_next_hero_ref_from_count(x, x$1) {
-  var _r0;
-  if (((x) >>> 0) === 0) {
-    var hero_ref = x$1;
-    _r0 = 0;
-  } else {
-    var _ = x;
-    var hero_ref$1 = x$1;
-    var _v1;
-    var _v2;
-    var _v3;
-    _v3 = hero_ref$1;
-    var _v4;
-    _v4 = 1;
-    _v2 = (((_v3) + (_v4)) >>> 0);
-    var _v5;
-    _v5 = _;
-    _v1 = (_v2) < (_v5) ? 1 : 0;
-    var _v6;
-    _v6 = hero_ref$1;
-    _r0 = $Dungeon$hero_helpers$_next_hero_ref_in_range(_v1, _v6);
-  }
-  return _r0;
-}
-
-export const Dungeon$hero_helpers$_next_hero_ref_from_count = () => ((a0) => ((a1) => ($Dungeon$hero_helpers$_next_hero_ref_from_count(a0, a1))));
-
-export function $Dungeon$hero_helpers$_next_hero_ref_in_range(x, x$1) {
-  var _r0;
-  if (((x) >>> 0) === 0) {
-    var hero_ref = x$1;
-    _r0 = 0;
-  } else {
-    var _ = x;
-    var hero_ref$1 = x$1;
-    var _v1;
-    _v1 = hero_ref$1;
-    var _v2;
-    _v2 = 1;
-    _r0 = (((_v1) + (_v2)) >>> 0);
-  }
-  return _r0;
-}
-
-export const Dungeon$hero_helpers$_next_hero_ref_in_range = () => ((a0) => ((a1) => ($Dungeon$hero_helpers$_next_hero_ref_in_range(a0, a1))));
-
-export function $Dungeon$hero_helpers$prev_hero_ref(config_value, hero_ref$1) {
-  var _r0;
-  var count$2;
-  var _v1;
-  _v1 = config_value;
-  count$2 = $Dungeon$hero_helpers$hero_count(_v1);
-  var safe_ref$3;
-  var _v2;
-  _v2 = config_value;
-  var _v3;
-  _v3 = hero_ref$1;
-  safe_ref$3 = $Dungeon$hero_helpers$normalize_hero_ref(_v2, _v3);
-  var _v4;
-  _v4 = count$2;
-  var _v5;
-  _v5 = safe_ref$3;
-  _r0 = $Dungeon$hero_helpers$_prev_hero_ref_from_count(_v4, _v5);
-  return _r0;
-}
-
-export const Dungeon$hero_helpers$prev_hero_ref = () => ((a0) => ((a1) => ($Dungeon$hero_helpers$prev_hero_ref(a0, a1))));
-
-export function $Dungeon$hero_helpers$_prev_hero_ref_from_count(x, x$1) {
-  var _r0;
-  if (((x) >>> 0) === 0) {
-    var hero_ref = x$1;
-    _r0 = 0;
-  } else {
-    var _ = x;
-    var hero_ref$1 = x$1;
-    var _v1;
-    var _v2;
-    _v2 = hero_ref$1;
-    var _v3;
-    _v3 = 0;
-    _v1 = (_v2) === (_v3) ? 1 : 0;
-    var _v4;
-    _v4 = _;
-    var _v5;
-    _v5 = hero_ref$1;
-    _r0 = $Dungeon$hero_helpers$_prev_hero_ref_at_start(_v1, _v4, _v5);
-  }
-  return _r0;
-}
-
-export const Dungeon$hero_helpers$_prev_hero_ref_from_count = () => ((a0) => ((a1) => ($Dungeon$hero_helpers$_prev_hero_ref_from_count(a0, a1))));
-
-export function $Dungeon$hero_helpers$_prev_hero_ref_at_start(x, x$1, x$2) {
-  var _r0;
-  if (((x) >>> 0) === 0) {
-    var count = x$1;
-    var hero_ref$1 = x$2;
-    var _v1;
-    _v1 = hero_ref$1;
-    var _v2;
-    _v2 = 1;
-    _r0 = (((_v1) - (_v2)) >>> 0);
-  } else {
-    var _ = x;
-    var count$1 = x$1;
-    var hero_ref$2 = x$2;
-    var _v3;
-    _v3 = count$1;
-    var _v4;
-    _v4 = 1;
-    _r0 = (((_v3) - (_v4)) >>> 0);
-  }
-  return _r0;
-}
-
-export const Dungeon$hero_helpers$_prev_hero_ref_at_start = () => ((a0) => ((a1) => ((a2) => ($Dungeon$hero_helpers$_prev_hero_ref_at_start(a0, a1, a2)))));
-
-export function $Dungeon$hero_helpers$hero_id(x) {
-  var _r0;
-  switch (x.$) {
-    case "hero_def": {
-      var _m1 = x.id;
-      var _m2 = x.name;
-      var _m3 = x.sprite;
-      var _m4 = x.base_max_hp;
-      var _m5 = x.unlock_cost;
-      var _m6 = x.upgrades;
-      var id = _m1;
-      var name$1 = _m2;
-      var sprite$2 = _m3;
-      var base_max_hp$3 = _m4;
-      var unlock_cost$4 = _m5;
-      var upgrades$5 = _m6;
-      _r0 = id;
-      break;
-    }
-    default: {
-      throw new Error("EFQ applied");
-      break;
-    }
-  }
-  return _r0;
-}
-
-export const Dungeon$hero_helpers$hero_id = () => ((a0) => ($Dungeon$hero_helpers$hero_id(a0)));
-
-export function $Dungeon$hero_helpers$hero_name(x) {
-  var _r0;
-  switch (x.$) {
-    case "hero_def": {
-      var _m1 = x.id;
-      var _m2 = x.name;
-      var _m3 = x.sprite;
-      var _m4 = x.base_max_hp;
-      var _m5 = x.unlock_cost;
-      var _m6 = x.upgrades;
-      var id = _m1;
-      var name$1 = _m2;
-      var sprite$2 = _m3;
-      var base_max_hp$3 = _m4;
-      var unlock_cost$4 = _m5;
-      var upgrades$5 = _m6;
-      _r0 = name$1;
-      break;
-    }
-    default: {
-      throw new Error("EFQ applied");
-      break;
-    }
-  }
-  return _r0;
-}
-
-export const Dungeon$hero_helpers$hero_name = () => ((a0) => ($Dungeon$hero_helpers$hero_name(a0)));
-
-export function $Dungeon$hero_helpers$hero_sprite(x) {
-  var _r0;
-  switch (x.$) {
-    case "hero_def": {
-      var _m1 = x.id;
-      var _m2 = x.name;
-      var _m3 = x.sprite;
-      var _m4 = x.base_max_hp;
-      var _m5 = x.unlock_cost;
-      var _m6 = x.upgrades;
-      var id = _m1;
-      var name$1 = _m2;
-      var sprite$2 = _m3;
-      var base_max_hp$3 = _m4;
-      var unlock_cost$4 = _m5;
-      var upgrades$5 = _m6;
-      _r0 = sprite$2;
-      break;
-    }
-    default: {
-      throw new Error("EFQ applied");
-      break;
-    }
-  }
-  return _r0;
-}
-
-export const Dungeon$hero_helpers$hero_sprite = () => ((a0) => ($Dungeon$hero_helpers$hero_sprite(a0)));
-
-export function $Dungeon$hero_helpers$hero_base_max_hp(x) {
-  var _r0;
-  switch (x.$) {
-    case "hero_def": {
-      var _m1 = x.id;
-      var _m2 = x.name;
-      var _m3 = x.sprite;
-      var _m4 = x.base_max_hp;
-      var _m5 = x.unlock_cost;
-      var _m6 = x.upgrades;
-      var id = _m1;
-      var name$1 = _m2;
-      var sprite$2 = _m3;
-      var base_max_hp$3 = _m4;
-      var unlock_cost$4 = _m5;
-      var upgrades$5 = _m6;
-      _r0 = base_max_hp$3;
-      break;
-    }
-    default: {
-      throw new Error("EFQ applied");
-      break;
-    }
-  }
-  return _r0;
-}
-
-export const Dungeon$hero_helpers$hero_base_max_hp = () => ((a0) => ($Dungeon$hero_helpers$hero_base_max_hp(a0)));
-
-export function $Dungeon$hero_helpers$hero_unlock_cost(x) {
-  var _r0;
-  switch (x.$) {
-    case "hero_def": {
-      var _m1 = x.id;
-      var _m2 = x.name;
-      var _m3 = x.sprite;
-      var _m4 = x.base_max_hp;
-      var _m5 = x.unlock_cost;
-      var _m6 = x.upgrades;
-      var id = _m1;
-      var name$1 = _m2;
-      var sprite$2 = _m3;
-      var base_max_hp$3 = _m4;
-      var unlock_cost$4 = _m5;
-      var upgrades$5 = _m6;
-      _r0 = unlock_cost$4;
-      break;
-    }
-    default: {
-      throw new Error("EFQ applied");
-      break;
-    }
-  }
-  return _r0;
-}
-
-export const Dungeon$hero_helpers$hero_unlock_cost = () => ((a0) => ($Dungeon$hero_helpers$hero_unlock_cost(a0)));
-
-export function $Dungeon$hero_helpers$hero_upgrades(x) {
-  var _r0;
-  switch (x.$) {
-    case "hero_def": {
-      var _m1 = x.id;
-      var _m2 = x.name;
-      var _m3 = x.sprite;
-      var _m4 = x.base_max_hp;
-      var _m5 = x.unlock_cost;
-      var _m6 = x.upgrades;
-      var id = _m1;
-      var name$1 = _m2;
-      var sprite$2 = _m3;
-      var base_max_hp$3 = _m4;
-      var unlock_cost$4 = _m5;
-      var upgrades$5 = _m6;
-      _r0 = upgrades$5;
-      break;
-    }
-    default: {
-      throw new Error("EFQ applied");
-      break;
-    }
-  }
-  return _r0;
-}
-
-export const Dungeon$hero_helpers$hero_upgrades = () => ((a0) => ($Dungeon$hero_helpers$hero_upgrades(a0)));
 
 export function $Dungeon$Deck$counts_pick$_next_seed_value(x) {
   var _r0;
@@ -19826,15 +20043,21 @@ export function $Dungeon$View$selectors$_run_ult_label(x) {
       var ult_charge$11 = _m12;
       var _v13;
       var _v14;
-      _v14 = "ULTIMATE ";
       var _v15;
+      _v15 = "ULTIMATE ";
       var _v16;
-      _v16 = ult_charge$11;
-      _v15 = $U32$show(_v16);
-      _v13 = (_v14 + _v15);
       var _v17;
-      _v17 = "/6";
-      _r0 = (_v13 + _v17);
+      _v17 = ult_charge$11;
+      _v16 = $U32$show(_v17);
+      _v14 = (_v15 + _v16);
+      var _v18;
+      _v18 = "/";
+      _v13 = (_v14 + _v18);
+      var _v19;
+      var _v20;
+      _v20 = Dungeon$rules$ultimate_charge_required();
+      _v19 = $U32$show(_v20);
+      _r0 = (_v13 + _v19);
       break;
     }
     default: {
@@ -19874,12 +20097,14 @@ export function $Dungeon$View$selectors$_run_ult_ready(x) {
       var remaining$8 = _m9;
       var capacity$9 = _m10;
       var seed$10 = _m11;
-      if (((_m12) >>> 0) === 6) {
-        _r0 = 1;
-      } else {
-        var _$11 = _m12;
-        _r0 = 0;
-      }
+      var ult_charge$11 = _m12;
+      var _v13;
+      var _v14;
+      _v14 = ult_charge$11;
+      var _v15;
+      _v15 = Dungeon$rules$ultimate_charge_required();
+      _v13 = (_v14) < (_v15) ? 1 : 0;
+      _r0 = $Dungeon$View$selectors$_run_ult_ready_flag(_v13);
       break;
     }
     default: {
@@ -19891,6 +20116,19 @@ export function $Dungeon$View$selectors$_run_ult_ready(x) {
 }
 
 export const Dungeon$View$selectors$_run_ult_ready = () => ((a0) => ($Dungeon$View$selectors$_run_ult_ready(a0)));
+
+export function $Dungeon$View$selectors$_run_ult_ready_flag(x) {
+  var _r0;
+  if (((x) >>> 0) === 0) {
+    _r0 = 1;
+  } else {
+    var _ = x;
+    _r0 = 0;
+  }
+  return _r0;
+}
+
+export const Dungeon$View$selectors$_run_ult_ready_flag = () => ((a0) => ($Dungeon$View$selectors$_run_ult_ready_flag(a0)));
 
 export function $Dungeon$View$selectors$dungeon_level_value(x) {
   var _r0;
@@ -20136,55 +20374,73 @@ export function $Dungeon$View$selectors$ultimate_label(x) {
   var _r0;
   switch (x.$) {
     case "setup": {
-      _r0 = "ULTIMATE 0/6";
+      var _v1;
+      _v1 = "ULTIMATE 0/";
+      var _v2;
+      var _v3;
+      _v3 = Dungeon$rules$ultimate_charge_required();
+      _v2 = $U32$show(_v3);
+      _r0 = (_v1 + _v2);
       break;
     }
     default: {
       switch (x.$) {
         case "character_select": {
-          var _m1 = x.preview_hero;
-          var preview_hero = _m1;
-          _r0 = "ULTIMATE 0/6";
+          var _m4 = x.preview_hero;
+          var preview_hero = _m4;
+          var _v5;
+          _v5 = "ULTIMATE 0/";
+          var _v6;
+          var _v7;
+          _v7 = Dungeon$rules$ultimate_charge_required();
+          _v6 = $U32$show(_v7);
+          _r0 = (_v5 + _v6);
           break;
         }
         default: {
           switch (x.$) {
             case "boosters": {
-              var _m2 = x.reward;
-              var _m3 = x.reveal_index;
-              var reward = _m2;
-              var reveal_index$1 = _m3;
-              _r0 = "ULTIMATE 0/6";
+              var _m8 = x.reward;
+              var _m9 = x.reveal_index;
+              var reward = _m8;
+              var reveal_index$1 = _m9;
+              var _v10;
+              _v10 = "ULTIMATE 0/";
+              var _v11;
+              var _v12;
+              _v12 = Dungeon$rules$ultimate_charge_required();
+              _v11 = $U32$show(_v12);
+              _r0 = (_v10 + _v11);
               break;
             }
             default: {
               switch (x.$) {
                 case "running": {
-                  var _m4 = x.run;
-                  var run_value = _m4;
-                  var _v5;
-                  _v5 = run_value;
-                  _r0 = $Dungeon$View$selectors$_run_ult_label(_v5);
+                  var _m13 = x.run;
+                  var run_value = _m13;
+                  var _v14;
+                  _v14 = run_value;
+                  _r0 = $Dungeon$View$selectors$_run_ult_label(_v14);
                   break;
                 }
                 default: {
                   switch (x.$) {
                     case "resume_prompt": {
-                      var _m6 = x.run;
-                      var run_value = _m6;
-                      var _v7;
-                      _v7 = run_value;
-                      _r0 = $Dungeon$View$selectors$_run_ult_label(_v7);
+                      var _m15 = x.run;
+                      var run_value = _m15;
+                      var _v16;
+                      _v16 = run_value;
+                      _r0 = $Dungeon$View$selectors$_run_ult_label(_v16);
                       break;
                     }
                     default: {
                       switch (x.$) {
                         case "game_over": {
-                          var _m8 = x.run;
-                          var run_value = _m8;
-                          var _v9;
-                          _v9 = run_value;
-                          _r0 = $Dungeon$View$selectors$_run_ult_label(_v9);
+                          var _m17 = x.run;
+                          var run_value = _m17;
+                          var _v18;
+                          _v18 = run_value;
+                          _r0 = $Dungeon$View$selectors$_run_ult_label(_v18);
                           break;
                         }
                         default: {
@@ -31832,7 +32088,7 @@ export function $Dungeon$Deck$spawn_and_draw$draw_tile(config_value, deck_bluepr
     var _v7;
     _v7 = level$4;
     var _v8;
-    _v8 = 1;
+    _v8 = Dungeon$rules$dungeon_level_increment_per_refill();
     _v6 = (((_v7) + (_v8)) >>> 0);
     _r0 = $Dungeon$Deck$spawn_and_draw$_draw_from_counts(_v2, _v3, _v4, _v5, _v6);
   } else {
@@ -33759,9 +34015,23 @@ export function $Dungeon$App$update_running$_use_ultimate(meta_state, x$1, x$2) 
 
 export const Dungeon$App$update_running$_use_ultimate = () => ((a0) => ((a1) => ((a2) => ($Dungeon$App$update_running$_use_ultimate(a0, a1, a2)))));
 
-export function $Dungeon$App$update_running$_ultimate_ready_charge(x) {
+export function $Dungeon$App$update_running$_ultimate_ready_charge(ult_charge) {
   var _r0;
-  if (((x) >>> 0) === 6) {
+  var _v1;
+  var _v2;
+  _v2 = ult_charge;
+  var _v3;
+  _v3 = Dungeon$rules$ultimate_charge_required();
+  _v1 = (_v2) < (_v3) ? 1 : 0;
+  _r0 = $Dungeon$App$update_running$_ultimate_ready_charge_flag(_v1);
+  return _r0;
+}
+
+export const Dungeon$App$update_running$_ultimate_ready_charge = () => ((a0) => ($Dungeon$App$update_running$_ultimate_ready_charge(a0)));
+
+export function $Dungeon$App$update_running$_ultimate_ready_charge_flag(x) {
+  var _r0;
+  if (((x) >>> 0) === 0) {
     _r0 = 1;
   } else {
     var _ = x;
@@ -33770,7 +34040,7 @@ export function $Dungeon$App$update_running$_ultimate_ready_charge(x) {
   return _r0;
 }
 
-export const Dungeon$App$update_running$_ultimate_ready_charge = () => ((a0) => ($Dungeon$App$update_running$_ultimate_ready_charge(a0)));
+export const Dungeon$App$update_running$_ultimate_ready_charge_flag = () => ((a0) => ($Dungeon$App$update_running$_ultimate_ready_charge_flag(a0)));
 
 export function $Dungeon$App$update_running$_ultimate_ready(run_value) {
   var _r0;
@@ -34172,22 +34442,56 @@ export function $Dungeon$App$ui_fx$_run_with_ult_charge(x, x$1) {
 
 export const Dungeon$App$ui_fx$_run_with_ult_charge = () => ((a0) => ((a1) => ($Dungeon$App$ui_fx$_run_with_ult_charge(a0, a1))));
 
-export function $Dungeon$App$ui_fx$_run_charge_after_gain(x) {
+export function $Dungeon$App$ui_fx$_run_charge_after_gain(current_charge) {
   var _r0;
-  if (((x) >>> 0) === 6) {
-    _r0 = 6;
-  } else {
-    var _ = x;
-    var _v1;
-    _v1 = _;
-    var _v2;
-    _v2 = 1;
-    _r0 = (((_v1) + (_v2)) >>> 0);
-  }
+  var _v1;
+  _v1 = Dungeon$rules$ultimate_charge_required();
+  var _v2;
+  var _v3;
+  _v3 = current_charge;
+  var _v4;
+  _v4 = Dungeon$rules$ultimate_charge_per_move();
+  _v2 = (((_v3) + (_v4)) >>> 0);
+  _r0 = $Dungeon$App$ui_fx$_min_u32(_v1, _v2);
   return _r0;
 }
 
 export const Dungeon$App$ui_fx$_run_charge_after_gain = () => ((a0) => ($Dungeon$App$ui_fx$_run_charge_after_gain(a0)));
+
+export function $Dungeon$App$ui_fx$_min_u32(a, b$1) {
+  var _r0;
+  var _v1;
+  var _v2;
+  _v2 = a;
+  var _v3;
+  _v3 = b$1;
+  _v1 = (_v2) < (_v3) ? 1 : 0;
+  var _v4;
+  _v4 = a;
+  var _v5;
+  _v5 = b$1;
+  _r0 = $Dungeon$App$ui_fx$_min_u32_flag(_v1, _v4, _v5);
+  return _r0;
+}
+
+export const Dungeon$App$ui_fx$_min_u32 = () => ((a0) => ((a1) => ($Dungeon$App$ui_fx$_min_u32(a0, a1))));
+
+export function $Dungeon$App$ui_fx$_min_u32_flag(x, x$1, x$2) {
+  var _r0;
+  if (((x) >>> 0) === 0) {
+    var a = x$1;
+    var b$1 = x$2;
+    _r0 = b$1;
+  } else {
+    var _ = x;
+    var a$1 = x$1;
+    var b$2 = x$2;
+    _r0 = a$1;
+  }
+  return _r0;
+}
+
+export const Dungeon$App$ui_fx$_min_u32_flag = () => ((a0) => ((a1) => ((a2) => ($Dungeon$App$ui_fx$_min_u32_flag(a0, a1, a2)))));
 
 export function $Dungeon$App$ui_fx$_run_hero_index(x) {
   var _r0;

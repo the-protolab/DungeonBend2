@@ -49,8 +49,8 @@ assert card_potion_exists:
 # (Ultimate is noted in the rulebook as not yet modeled — add a
 # field and a law when that rule lands.)
 assert hero_def_adventurer:
-  hero_def{"001", "Adventurer", "assets/player-boy.png", 11, 0, []}
-    == hero_def{"001", "Adventurer", "assets/player-boy.png", 11, 0, []}
+  hero_def{"001", "Adventurer", "assets/player-boy.png", 11, 0, 1, []}
+    == hero_def{"001", "Adventurer", "assets/player-boy.png", 11, 0, 1, []}
     :: HeroDef
 
 # "Each hero has its own progression curve: level, HP, and such."

@@ -1,0 +1,18 @@
+[
+  {
+    "id": "adventurer",
+    "name": "Adventurer",
+    "sprite": "assets/player-boy.png",
+    "base_max_hp": 11,
+    "unlock_cost": 0,
+    "starts_unlocked": true
+  },
+  {
+    "id": "gato_de_botas",
+    "name": "Gato de Botas",
+    "sprite": "assets/player-gato-de-botas.png",
+    "base_max_hp": 9,
+    "unlock_cost": 45,
+    "starts_unlocked": false
+  }
+]

@@ -1,0 +1,20 @@
+[
+  {
+    "id": "sword_1",
+    "name": "Sword",
+    "sprite": "assets/item-sword.png",
+    "dmg": 5
+  },
+  {
+    "id": "sword_2",
+    "name": "Sword",
+    "sprite": "assets/item-sword.png",
+    "dmg": 7
+  },
+  {
+    "id": "sword_3",
+    "name": "Sword",
+    "sprite": "assets/item-sword.png",
+    "dmg": 9
+  }
+]

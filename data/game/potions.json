@@ -1,0 +1,8 @@
+[
+  {
+    "id": "potion_1",
+    "name": "Potion",
+    "sprite": "assets/item-potion.png",
+    "heal": 4
+  }
+]

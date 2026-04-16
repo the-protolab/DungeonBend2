@@ -9,6 +9,7 @@ type HeroDef {
     sprite: String,
     base_max_hp: U32,
     unlock_cost: U32,
+    starts_unlocked: U32,
     upgrades: List(Upgrade)
   }
 }

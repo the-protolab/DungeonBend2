@@ -18,6 +18,7 @@ import /Dungeon/Run/apply_swipe as apply_swipe
 import /Dungeon/App/state_helpers/_state as _state
 import /Dungeon/App/ui_fx/_next_ui_from_turn as _next_ui_from_turn
 import /Dungeon/App/ui_fx/_advance_with_charge as _advance_with_charge
+import /Dungeon/rules/ultimate_charge_required as ultimate_charge_required
 
 def _state_from_swipe(result: SwipeResult, current_run: Run, next_seed_value: U32, current_ui: UiState, dir: Direction) -> DungeonState:
   match result:
@@ -46,8 +47,11 @@ def _use_ultimate(meta_state: Meta, run_value: Run, next_seed_value: U32) -> Dun
       _state(meta_state, running{_ultimate_run_from_values(hero_hp, hero_max_hp, hero_index, weapon_value, deck_blueprint, capacity, stage)}, next_seed_value, default_ui())
 
 def _ultimate_ready_charge(ult_charge: U32) -> U32:
-  match ult_charge:
-    case 6:
+  _ultimate_ready_charge_flag(ult_charge < ultimate_charge_required())
+
+def _ultimate_ready_charge_flag(charge_lt_required: U32) -> U32:
+  match charge_lt_required:
+    case 0:
       1
     case _:
       0

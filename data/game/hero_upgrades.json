@@ -1,0 +1,50 @@
+[
+  {
+    "hero_id": "adventurer",
+    "level": 1,
+    "cost": 20,
+    "max_hp": 14
+  },
+  {
+    "hero_id": "adventurer",
+    "level": 2,
+    "cost": 35,
+    "max_hp": 17
+  },
+  {
+    "hero_id": "adventurer",
+    "level": 3,
+    "cost": 55,
+    "max_hp": 20
+  },
+  {
+    "hero_id": "adventurer",
+    "level": 4,
+    "cost": 80,
+    "max_hp": 24
+  },
+  {
+    "hero_id": "gato_de_botas",
+    "level": 1,
+    "cost": 18,
+    "max_hp": 12
+  },
+  {
+    "hero_id": "gato_de_botas",
+    "level": 2,
+    "cost": 30,
+    "max_hp": 15
+  },
+  {
+    "hero_id": "gato_de_botas",
+    "level": 3,
+    "cost": 48,
+    "max_hp": 18
+  },
+  {
+    "hero_id": "gato_de_botas",
+    "level": 4,
+    "cost": 72,
+    "max_hp": 22
+  }
+]

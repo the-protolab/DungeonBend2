@@ -2,6 +2,7 @@ import * as fs from "node:fs/promises";
 import * as path from "node:path";
 import * as process from "node:process";
 import { pathToFileURL } from "node:url";
+import { generateDungeonConfig as generateDungeonData } from "./dungeon-data.ts";
 
 async function loadPatchedBend(cwd: string) {
   const bendSrcDir = path.resolve(cwd, "../Bend2/bend-ts/src");
@@ -699,7 +700,7 @@ const file = path.resolve(cwd, input);
 const out = path.resolve(cwd, output);
 const preludeDir = path.resolve(cwd, process.env.BEND_PRELUDE_DIR ?? "../Bend2/prelude");
 
-await generateDungeonConfig(cwd);
+await generateDungeonData(cwd);
 const Bend = await loadPatchedBend(cwd);
 
 const loaded = Bend.Loader.load_book(file, { prelude_dir: preludeDir, strict: true });
