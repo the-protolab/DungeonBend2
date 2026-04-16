@@ -15,6 +15,7 @@
         </div>
         <div class="actions">
           <button id="reload-button" type="button">Reload</button>
+          <button id="versions-button" type="button">Versions</button>
           <button id="build-button" type="button">Build docs</button>
           <button id="save-button" type="button" class="primary">Save</button>
         </div>
@@ -25,6 +26,9 @@
       <nav id="tabs" class="tabs" aria-label="Editor sections"></nav>
       <section id="panel" class="panel"></section>
     </main>
+
+    <div id="versions-overlay" class="drawer-overlay" hidden></div>
+    <aside id="versions-drawer" class="versions-drawer" aria-label="Saved JSON versions" hidden></aside>
 
     <script type="module" src="/app.js"></script>
   </body>

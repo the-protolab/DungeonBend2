@@ -1,6 +1,3 @@
-def booster_pack_2_name() -> String:
-  "Onde fica?"
-
 def booster_starter_booster_name() -> String:
   "Starter Booster"
 
@@ -34,23 +31,8 @@ def hero_gato_de_botas_ultimate_desc() -> String:
 def hero_gato_de_botas_ultimate_title() -> String:
   "Ultimate"
 
-def hero_hero_3_name() -> String:
-  "Fulanao"
-
-def hero_hero_3_ultimate_desc() -> String:
-  "Refills the dungeon with new cards while keeping the hero in place."
-
-def hero_hero_3_ultimate_title() -> String:
-  "Ultimate"
-
 def item_gold_name() -> String:
   "Gold"
-
-def monster_monster_5_name() -> String:
-  "Odeio Voce"
-
-def monster_monster_6_name() -> String:
-  "New Monster"
 
 def monster_orc_name() -> String:
   "Orc"
@@ -66,9 +48,6 @@ def monster_venom_spider_name() -> String:
 
 def potion_potion_1_name() -> String:
   "Potion"
-
-def potion_potion_2_name() -> String:
-  "NOVA Potion"
 
 def stat_dmg() -> String:
   "DMG"
@@ -210,7 +189,4 @@ def weapon_sword_2_name() -> String:
 
 def weapon_sword_3_name() -> String:
   "Sword"
-
-def weapon_weapon_4_name() -> String:
-  "NOVA Sword"
 

@@ -1,0 +1,40 @@
+{
+  "base_deck": [
+    {
+      "card_id": "rat",
+      "count": 4
+    },
+    {
+      "card_id": "spider",
+      "count": 3
+    },
+    {
+      "card_id": "venom_spider",
+      "count": 3
+    },
+    {
+      "card_id": "orc",
+      "count": 3
+    },
+    {
+      "card_id": "sword_1",
+      "count": 1
+    },
+    {
+      "card_id": "sword_2",
+      "count": 1
+    },
+    {
+      "card_id": "sword_3",
+      "count": 1
+    },
+    {
+      "card_id": "potion_1",
+      "count": 3
+    },
+    {
+      "card_id": "hero",
+      "count": 1
+    }
+  ]
+}

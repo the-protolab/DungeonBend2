@@ -129,6 +129,8 @@ const state = {
   editorMetadata: {
     pack_colors: {},
   },
+  versions: [],
+  versionsOpen: false,
   assets: [],
   serverErrors: [],
   assetErrors: new Set(),
@@ -147,6 +149,9 @@ const statusNode = document.getElementById("status");
 const saveButton = document.getElementById("save-button");
 const reloadButton = document.getElementById("reload-button");
 const buildButton = document.getElementById("build-button");
+const versionsButton = document.getElementById("versions-button");
+const versionsOverlay = document.getElementById("versions-overlay");
+const versionsDrawer = document.getElementById("versions-drawer");
 
 function setStatus(message, kind = "") {
   statusNode.textContent = message;
@@ -210,7 +215,7 @@ async function loadData() {
 
 async function saveData() {
   if (!state.data) {
-    return;
+    return false;
   }
   saveButton.disabled = true;
   setStatus("Saving JSON and regenerating Bend...");
@@ -231,12 +236,14 @@ async function saveData() {
       if (state.active === "validation") {
         render();
       }
-      return;
+      return false;
     }
     await loadData();
     setStatus("Saved JSON and regenerated Bend", "success");
+    return true;
   } catch (err) {
     setStatus(err.message, "error");
+    return false;
   } finally {
     saveButton.disabled = false;
   }
@@ -258,6 +265,154 @@ async function buildDocs() {
   } finally {
     buildButton.disabled = false;
   }
+}
+
+function formatVersionDate(value) {
+  const date = new Date(value);
+  if (Number.isNaN(date.getTime())) {
+    return value || "";
+  }
+  return date.toLocaleString();
+}
+
+async function loadVersions() {
+  const res = await fetch("/api/versions");
+  const body = await res.json();
+  if (!res.ok) {
+    throw new Error((body.errors || ["Could not load versions"]).join("\n"));
+  }
+  state.versions = Array.isArray(body.versions) ? body.versions : [];
+  renderVersionsDrawer();
+}
+
+function openVersions() {
+  state.versionsOpen = true;
+  renderVersionsDrawer();
+  loadVersions().catch((err) => setStatus(err.message, "error"));
+}
+
+function closeVersions() {
+  state.versionsOpen = false;
+  renderVersionsDrawer();
+}
+
+async function saveCurrentAsVersion() {
+  const label = window.prompt("Version name");
+  if (label === null || label.trim() === "") {
+    return;
+  }
+  if (state.dirty) {
+    const shouldSave = window.confirm("Save current editor changes before creating this version?");
+    if (!shouldSave) {
+      return;
+    }
+    const saved = await saveData();
+    if (!saved) {
+      return;
+    }
+  }
+  versionsButton.disabled = true;
+  setStatus("Saving version...");
+  try {
+    const res = await fetch("/api/versions", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({ label }),
+    });
+    const body = await res.json();
+    if (!res.ok || !body.ok) {
+      setStatus((body.errors || ["Could not save version"]).join("\n"), "error");
+      return;
+    }
+    await loadVersions();
+    setStatus(`Saved version: ${body.version.label}`, "success");
+  } catch (err) {
+    setStatus(err.message, "error");
+  } finally {
+    versionsButton.disabled = false;
+  }
+}
+
+async function restoreVersion(version) {
+  if (state.dirty) {
+    const discard = window.confirm("Restore will discard unsaved editor changes. Continue?");
+    if (!discard) {
+      return;
+    }
+  }
+  const confirmed = window.confirm(`Restore "${version.label}"?\n\nThis will overwrite the current JSON files and regenerate Bend.`);
+  if (!confirmed) {
+    return;
+  }
+  versionsButton.disabled = true;
+  setStatus("Restoring version...");
+  try {
+    const res = await fetch("/api/versions/restore", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({ slug: version.slug }),
+    });
+    const body = await res.json();
+    if (!res.ok || !body.ok) {
+      setStatus((body.errors || ["Could not restore version"]).join("\n"), "error");
+      return;
+    }
+    await loadData();
+    await loadVersions();
+    setStatus(`Restored version: ${version.label}`, "success");
+  } catch (err) {
+    setStatus(err.message, "error");
+  } finally {
+    versionsButton.disabled = false;
+  }
+}
+
+function renderVersionsDrawer() {
+  versionsOverlay.hidden = !state.versionsOpen;
+  versionsDrawer.hidden = !state.versionsOpen;
+  if (!state.versionsOpen) {
+    versionsDrawer.replaceChildren();
+    return;
+  }
+
+  const header = document.createElement("div");
+  header.className = "versions-header";
+  const copy = document.createElement("div");
+  const title = document.createElement("h2");
+  title.textContent = "Versions";
+  const subtitle = document.createElement("p");
+  subtitle.textContent = "JSON saved versions";
+  copy.append(title, subtitle);
+  header.append(copy, addButton("Close", closeVersions));
+
+  const body = document.createElement("div");
+  body.className = "versions-body";
+  body.append(addButton("Save current as version", saveCurrentAsVersion, "primary"));
+
+  const list = document.createElement("div");
+  list.className = "version-list";
+  if (state.versions.length === 0) {
+    const empty = document.createElement("p");
+    empty.className = "version-empty";
+    empty.textContent = "No saved versions yet.";
+    list.append(empty);
+  } else {
+    state.versions.forEach((version) => {
+      const row = document.createElement("div");
+      row.className = "version-row";
+      const label = document.createElement("strong");
+      label.textContent = version.label;
+      const date = document.createElement("span");
+      date.textContent = formatVersionDate(version.created_at);
+      const actions = document.createElement("div");
+      actions.className = "version-actions";
+      actions.append(addButton("Restore", () => restoreVersion(version)));
+      row.append(label, date, actions);
+      list.append(row);
+    });
+  }
+  body.append(list);
+  versionsDrawer.replaceChildren(header, body);
 }
 
 function content() {
@@ -1759,6 +1914,8 @@ function render() {
 }
 
 saveButton.addEventListener("click", saveData);
+versionsButton.addEventListener("click", openVersions);
+versionsOverlay.addEventListener("click", closeVersions);
 reloadButton.addEventListener("click", () => {
   loadData().catch((err) => setStatus(err.message, "error"));
 });
