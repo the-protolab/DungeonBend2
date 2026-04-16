@@ -25,6 +25,7 @@ import /Dungeon/View/selectors/ultimate_label as ultimate_label
 import /Dungeon/View/selectors/ultimate_enabled as ultimate_enabled
 import /Dungeon/View/selectors/game_over_modal_class as game_over_modal_class
 import /Dungeon/View/menu/_full_button_overrides as _full_button_overrides
+import /Dungeon/View/assets_and_labels/_gold_sprite as _gold_sprite
 import /Dungeon/View/cards/_hero_card_values as _hero_card_values
 import /Dungeon/View/cards/_tile_card as _tile_card
 import /Midum/Button/ as Button
@@ -73,21 +74,28 @@ def _dungeon_shell(body: HTML(DungeonEvent)) -> HTML(DungeonEvent):
 
 def _dungeon_header(meta_state: Meta, scene_value: Scene) -> HTML(DungeonEvent):
   <header class="topbar topbar--dungeon">
-    <p class="resource-bar">
-      <span class="resource-bar__label">Gold</span>
-      <strong class="resource-bar__value">{text{meta_gold(meta_state)}}</strong>
-    </p>
-    <div class="topbar__stats">
-      {_topbar_stat("Dungeon Lv", dungeon_level_value(scene_value))}
-      {_topbar_stat("Cards", remaining_value(scene_value))}
+    <div class="dungeon-topbar__left">
+      {_dungeon_resource(_gold_sprite(), "Gold", meta_gold(meta_state), "dungeon-resource--gold")}
+    </div>
+    <div class="dungeon-topbar__center">
+      {_dungeon_level(scene_value)}
+    </div>
+    <div class="dungeon-topbar__right">
+      {_dungeon_resource("assets/icon-cards-placeholder.png", "Cards", remaining_value(scene_value), "dungeon-resource--cards")}
     </div>
   </header>
 
-def _topbar_stat(label: String, value: String) -> HTML(DungeonEvent):
-  <p class="topbar-stat">
-    <span class="topbar-stat__label">{text{label}}</span>
-    <strong class="topbar-stat__value">{text{value}}</strong>
+def _dungeon_resource(src: String, alt: String, value: String, role_class: String) -> HTML(DungeonEvent):
+  <p class={"dungeon-resource " ++ role_class}>
+    <img class="dungeon-resource__icon" src={src} alt={alt} />
+    <strong class="dungeon-resource__value">{text{value}}</strong>
   </p>
+
+def _dungeon_level(scene_value: Scene) -> HTML(DungeonEvent):
+  <div class="dungeon-level">
+    <span class="dungeon-level__badge">DUNGEON LEVEL</span>
+    <strong class="dungeon-level__value">{text{dungeon_level_value(scene_value)}}</strong>
+  </div>
 
 def _board_grid(scene_value: Scene, run_value: Run, ui_value: UiState, hero_value: HeroDef) -> HTML(DungeonEvent):
   cells = U32.grid(HTML(DungeonEvent), 3, 3, _board_slot(run_value, ui_value, hero_value));

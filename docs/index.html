@@ -17185,6 +17185,30 @@ export function $Dungeon$View$css$layout_css() {
 
 export const Dungeon$View$css$layout_css = () => ($Dungeon$View$css$layout_css());
 
+export function $Dungeon$View$css$dungeon_topbar_css() {
+  var _r0;
+  var _v1;
+  var _v2;
+  var _v3;
+  var _v4;
+  _v4 = "";
+  var _v5;
+  _v5 = ".topbar--dungeon{display:grid;grid-template-columns:minmax(0,1fr) auto minmax(0,1fr);align-items:start;width:100%;min-height:72px;gap:8px;padding-top:0;}.dungeon-topbar__left,.dungeon-topbar__center,.dungeon-topbar__right{min-width:0;display:flex;align-items:flex-start;}.dungeon-topbar__left{justify-self:start;justify-content:flex-start;}.dungeon-topbar__center{justify-self:center;justify-content:center;}.dungeon-topbar__right{justify-self:end;justify-content:flex-end;}";
+  _v3 = (_v4 + _v5);
+  var _v6;
+  _v6 = ".dungeon-resource{margin:0;display:inline-grid;grid-template-columns:34px auto;align-items:center;column-gap:7px;min-height:40px;min-width:0;color:var(--text);white-space:nowrap;}.dungeon-resource__icon{width:34px;height:34px;object-fit:contain;flex:0 0 auto;}.dungeon-resource__value{display:block;min-width:0;font-size:1rem;font-weight:900;line-height:1;letter-spacing:0;text-align:left;}.dungeon-resource--cards{grid-template-columns:30px auto;}.dungeon-resource--cards .dungeon-resource__icon{width:30px;height:30px;border-radius:6px;}.dungeon-resource--cards .dungeon-resource__value{text-align:right;}";
+  _v2 = (_v3 + _v6);
+  var _v7;
+  _v7 = ".dungeon-level{display:grid;justify-items:center;align-content:start;gap:3px;min-width:112px;text-align:center;}.dungeon-level__badge{display:inline-flex;align-items:center;justify-content:center;min-height:22px;padding:3px 9px;border:2px solid #323C9F;border-radius:6px;background:linear-gradient(180deg,#759DE5 0%,#5878C8 100%);color:#ffffff;font-size:0.72rem;font-weight:900;line-height:1;letter-spacing:0;text-transform:uppercase;white-space:nowrap;-webkit-text-stroke:0.7px #323C9F;paint-order:stroke fill;text-shadow:0 1px 0 #323C9F,1px 0 0 #323C9F,-1px 0 0 #323C9F,0 -1px 0 #323C9F;box-shadow:inset 0 -2px 0 #8AAEEF,0 3px 0 #323C9F;}.dungeon-level__value{display:block;color:var(--text);font-size:1.92rem;font-weight:900;line-height:0.9;letter-spacing:0;}";
+  _v1 = (_v2 + _v7);
+  var _v8;
+  _v8 = "@media (max-width:800px){.topbar--dungeon{min-height:66px;gap:6px;}.dungeon-resource{grid-template-columns:30px auto;column-gap:6px;min-height:36px;}.dungeon-resource__icon{width:30px;height:30px;}.dungeon-resource__value{font-size:0.9rem;}.dungeon-resource--cards{grid-template-columns:27px auto;}.dungeon-resource--cards .dungeon-resource__icon{width:27px;height:27px;}.dungeon-level{min-width:98px;gap:2px;}.dungeon-level__badge{min-height:19px;padding:2px 7px;font-size:0.61rem;-webkit-text-stroke:0.6px #323C9F;box-shadow:inset 0 -2px 0 #8AAEEF,0 3px 0 #323C9F;}.dungeon-level__value{font-size:1.64rem;}}";
+  _r0 = (_v1 + _v8);
+  return _r0;
+}
+
+export const Dungeon$View$css$dungeon_topbar_css = () => ($Dungeon$View$css$dungeon_topbar_css());
+
 export function $Dungeon$View$css$cards_css() {
   var _r0;
   var _v1;
@@ -17262,16 +17286,20 @@ export function $Dungeon$View$css() {
   var _v1;
   var _v2;
   var _v3;
-  _v3 = Dungeon$View$css$base_css();
   var _v4;
-  _v4 = Dungeon$View$css$layout_css();
-  _v2 = (_v3 + _v4);
+  _v4 = Dungeon$View$css$base_css();
   var _v5;
-  _v5 = Dungeon$View$css$cards_css();
-  _v1 = (_v2 + _v5);
+  _v5 = Dungeon$View$css$layout_css();
+  _v3 = (_v4 + _v5);
   var _v6;
-  _v6 = Dungeon$View$css$fx_css();
-  _r0 = (_v1 + _v6);
+  _v6 = Dungeon$View$css$dungeon_topbar_css();
+  _v2 = (_v3 + _v6);
+  var _v7;
+  _v7 = Dungeon$View$css$cards_css();
+  _v1 = (_v2 + _v7);
+  var _v8;
+  _v8 = Dungeon$View$css$fx_css();
+  _r0 = (_v1 + _v8);
   return _r0;
 }
 
@@ -19608,6 +19636,34 @@ export function $Dungeon$View$selectors$_run_dungeon_level(x) {
 
 export const Dungeon$View$selectors$_run_dungeon_level = () => ((a0) => ($Dungeon$View$selectors$_run_dungeon_level(a0)));
 
+export function $Dungeon$View$selectors$_two_digit_value(value) {
+  var _r0;
+  var _v1;
+  _v1 = value;
+  var _v2;
+  var _v3;
+  _v3 = value;
+  var _v4;
+  _v4 = 10;
+  _v2 = (_v3) < (_v4) ? 1 : 0;
+  _r0 = $Dungeon$View$selectors$_two_digit_value$_0(_v1, _v2);
+  return _r0;
+}
+
+export const Dungeon$View$selectors$_two_digit_value = () => ((a0) => ($Dungeon$View$selectors$_two_digit_value(a0)));
+
+export function $Dungeon$View$selectors$_run_dungeon_level_text(run_value) {
+  var _r0;
+  var _v1;
+  var _v2;
+  _v2 = run_value;
+  _v1 = $Dungeon$View$selectors$_run_dungeon_level(_v2);
+  _r0 = $Dungeon$View$selectors$_two_digit_value(_v1);
+  return _r0;
+}
+
+export const Dungeon$View$selectors$_run_dungeon_level_text = () => ((a0) => ($Dungeon$View$selectors$_run_dungeon_level_text(a0)));
+
 export function $Dungeon$View$selectors$_run_remaining_text(x) {
   var _r0;
   switch (x.$) {
@@ -19867,34 +19923,28 @@ export function $Dungeon$View$selectors$dungeon_level_value(x) {
                   var _m4 = x.run;
                   var run_value = _m4;
                   var _v5;
-                  var _v6;
-                  _v6 = run_value;
-                  _v5 = $Dungeon$View$selectors$_run_dungeon_level(_v6);
-                  _r0 = $U32$show(_v5);
+                  _v5 = run_value;
+                  _r0 = $Dungeon$View$selectors$_run_dungeon_level_text(_v5);
                   break;
                 }
                 default: {
                   switch (x.$) {
                     case "resume_prompt": {
-                      var _m7 = x.run;
-                      var run_value = _m7;
-                      var _v8;
-                      var _v9;
-                      _v9 = run_value;
-                      _v8 = $Dungeon$View$selectors$_run_dungeon_level(_v9);
-                      _r0 = $U32$show(_v8);
+                      var _m6 = x.run;
+                      var run_value = _m6;
+                      var _v7;
+                      _v7 = run_value;
+                      _r0 = $Dungeon$View$selectors$_run_dungeon_level_text(_v7);
                       break;
                     }
                     default: {
                       switch (x.$) {
                         case "game_over": {
-                          var _m10 = x.run;
-                          var run_value = _m10;
-                          var _v11;
-                          var _v12;
-                          _v12 = run_value;
-                          _v11 = $Dungeon$View$selectors$_run_dungeon_level(_v12);
-                          _r0 = $U32$show(_v11);
+                          var _m8 = x.run;
+                          var run_value = _m8;
+                          var _v9;
+                          _v9 = run_value;
+                          _r0 = $Dungeon$View$selectors$_run_dungeon_level_text(_v9);
                           break;
                         }
                         default: {
@@ -28342,13 +28392,13 @@ export function $Dungeon$View$board$_dungeon_header(meta_state, scene_value$1) {
   var _v7;
   var _v8;
   var _v9;
-  _v9 = "p";
+  _v9 = "div";
   var _v10;
   var _v11;
   var _v12;
   _v12 = "class";
   var _v13;
-  _v13 = "resource-bar";
+  _v13 = "dungeon-topbar__left";
   _v11 = ({$: "attr", nam: _v12, val: _v13});
   var _v14;
   _v14 = ({$: "nil"});
@@ -28356,104 +28406,86 @@ export function $Dungeon$View$board$_dungeon_header(meta_state, scene_value$1) {
   var _v15;
   var _v16;
   var _v17;
-  _v17 = "span";
+  _v17 = Dungeon$View$assets_and_labels$_gold_sprite();
   var _v18;
+  _v18 = "Gold";
   var _v19;
   var _v20;
-  _v20 = "class";
+  _v20 = meta_state;
+  _v19 = $Dungeon$View$selectors$meta_gold(_v20);
   var _v21;
-  _v21 = "resource-bar__label";
-  _v19 = ({$: "attr", nam: _v20, val: _v21});
+  _v21 = "dungeon-resource--gold";
+  _v16 = $Dungeon$View$board$_dungeon_resource(_v17, _v18, _v19, _v21);
   var _v22;
   _v22 = ({$: "nil"});
-  _v18 = ({$: "cons", head: _v19, tail: _v22});
+  _v15 = ({$: "cons", head: _v16, tail: _v22});
+  _v8 = ({$: "node", tag: _v9, attrs: _v10, kids: _v15});
   var _v23;
   var _v24;
   var _v25;
-  _v25 = "Gold";
-  _v24 = ({$: "text", value: _v25});
+  _v25 = "div";
   var _v26;
-  _v26 = ({$: "nil"});
-  _v23 = ({$: "cons", head: _v24, tail: _v26});
-  _v16 = ({$: "node", tag: _v17, attrs: _v18, kids: _v23});
   var _v27;
   var _v28;
+  _v28 = "class";
   var _v29;
-  _v29 = "strong";
+  _v29 = "dungeon-topbar__center";
+  _v27 = ({$: "attr", nam: _v28, val: _v29});
   var _v30;
+  _v30 = ({$: "nil"});
+  _v26 = ({$: "cons", head: _v27, tail: _v30});
   var _v31;
   var _v32;
-  _v32 = "class";
   var _v33;
-  _v33 = "resource-bar__value";
-  _v31 = ({$: "attr", nam: _v32, val: _v33});
+  _v33 = scene_value$1;
+  _v32 = $Dungeon$View$board$_dungeon_level(_v33);
   var _v34;
   _v34 = ({$: "nil"});
-  _v30 = ({$: "cons", head: _v31, tail: _v34});
+  _v31 = ({$: "cons", head: _v32, tail: _v34});
+  _v24 = ({$: "node", tag: _v25, attrs: _v26, kids: _v31});
   var _v35;
   var _v36;
   var _v37;
+  _v37 = "div";
   var _v38;
-  _v38 = meta_state;
-  _v37 = $Dungeon$View$selectors$meta_gold(_v38);
-  _v36 = ({$: "text", value: _v37});
   var _v39;
-  _v39 = ({$: "nil"});
-  _v35 = ({$: "cons", head: _v36, tail: _v39});
-  _v28 = ({$: "node", tag: _v29, attrs: _v30, kids: _v35});
   var _v40;
-  _v40 = ({$: "nil"});
-  _v27 = ({$: "cons", head: _v28, tail: _v40});
-  _v15 = ({$: "cons", head: _v16, tail: _v27});
-  _v8 = ({$: "node", tag: _v9, attrs: _v10, kids: _v15});
+  _v40 = "class";
   var _v41;
+  _v41 = "dungeon-topbar__right";
+  _v39 = ({$: "attr", nam: _v40, val: _v41});
   var _v42;
+  _v42 = ({$: "nil"});
+  _v38 = ({$: "cons", head: _v39, tail: _v42});
   var _v43;
-  _v43 = "div";
   var _v44;
   var _v45;
+  _v45 = "assets/icon-cards-placeholder.png";
   var _v46;
-  _v46 = "class";
+  _v46 = "Cards";
   var _v47;
-  _v47 = "topbar__stats";
-  _v45 = ({$: "attr", nam: _v46, val: _v47});
   var _v48;
-  _v48 = ({$: "nil"});
-  _v44 = ({$: "cons", head: _v45, tail: _v48});
+  _v48 = scene_value$1;
+  _v47 = $Dungeon$View$selectors$remaining_value(_v48);
   var _v49;
+  _v49 = "dungeon-resource--cards";
+  _v44 = $Dungeon$View$board$_dungeon_resource(_v45, _v46, _v47, _v49);
   var _v50;
+  _v50 = ({$: "nil"});
+  _v43 = ({$: "cons", head: _v44, tail: _v50});
+  _v36 = ({$: "node", tag: _v37, attrs: _v38, kids: _v43});
   var _v51;
-  _v51 = "Dungeon Lv";
-  var _v52;
-  var _v53;
-  _v53 = scene_value$1;
-  _v52 = $Dungeon$View$selectors$dungeon_level_value(_v53);
-  _v50 = $Dungeon$View$board$_topbar_stat(_v51, _v52);
-  var _v54;
-  var _v55;
-  var _v56;
-  _v56 = "Cards";
-  var _v57;
-  var _v58;
-  _v58 = scene_value$1;
-  _v57 = $Dungeon$View$selectors$remaining_value(_v58);
-  _v55 = $Dungeon$View$board$_topbar_stat(_v56, _v57);
-  var _v59;
-  _v59 = ({$: "nil"});
-  _v54 = ({$: "cons", head: _v55, tail: _v59});
-  _v49 = ({$: "cons", head: _v50, tail: _v54});
-  _v42 = ({$: "node", tag: _v43, attrs: _v44, kids: _v49});
-  var _v60;
-  _v60 = ({$: "nil"});
-  _v41 = ({$: "cons", head: _v42, tail: _v60});
-  _v7 = ({$: "cons", head: _v8, tail: _v41});
+  _v51 = ({$: "nil"});
+  _v35 = ({$: "cons", head: _v36, tail: _v51});
+  _v23 = ({$: "cons", head: _v24, tail: _v35});
+  _v7 = ({$: "cons", head: _v8, tail: _v23});
   _r0 = ({$: "node", tag: _v1, attrs: _v2, kids: _v7});
   return _r0;
 }
 
 export const Dungeon$View$board$_dungeon_header = () => ((a0) => ((a1) => ($Dungeon$View$board$_dungeon_header(a0, a1))));
 
-export function $Dungeon$View$board$_topbar_stat(label, value$1) {
+export function $Dungeon$View$board$_dungeon_resource(src, alt$1, value$2, role_class$3) {
   var _r0;
   var _v1;
   _v1 = "p";
@@ -28462,7 +28494,91 @@ export function $Dungeon$View$board$_topbar_stat(label, value$1) {
   var _v4;
   _v4 = "class";
   var _v5;
-  _v5 = "topbar-stat";
+  var _v6;
+  _v6 = "dungeon-resource ";
+  var _v7;
+  _v7 = role_class$3;
+  _v5 = (_v6 + _v7);
+  _v3 = ({$: "attr", nam: _v4, val: _v5});
+  var _v8;
+  _v8 = ({$: "nil"});
+  _v2 = ({$: "cons", head: _v3, tail: _v8});
+  var _v9;
+  var _v10;
+  var _v11;
+  _v11 = "img";
+  var _v12;
+  var _v13;
+  var _v14;
+  _v14 = "class";
+  var _v15;
+  _v15 = "dungeon-resource__icon";
+  _v13 = ({$: "attr", nam: _v14, val: _v15});
+  var _v16;
+  var _v17;
+  var _v18;
+  _v18 = "src";
+  var _v19;
+  _v19 = src;
+  _v17 = ({$: "attr", nam: _v18, val: _v19});
+  var _v20;
+  var _v21;
+  var _v22;
+  _v22 = "alt";
+  var _v23;
+  _v23 = alt$1;
+  _v21 = ({$: "attr", nam: _v22, val: _v23});
+  var _v24;
+  _v24 = ({$: "nil"});
+  _v20 = ({$: "cons", head: _v21, tail: _v24});
+  _v16 = ({$: "cons", head: _v17, tail: _v20});
+  _v12 = ({$: "cons", head: _v13, tail: _v16});
+  var _v25;
+  _v25 = ({$: "nil"});
+  _v10 = ({$: "node", tag: _v11, attrs: _v12, kids: _v25});
+  var _v26;
+  var _v27;
+  var _v28;
+  _v28 = "strong";
+  var _v29;
+  var _v30;
+  var _v31;
+  _v31 = "class";
+  var _v32;
+  _v32 = "dungeon-resource__value";
+  _v30 = ({$: "attr", nam: _v31, val: _v32});
+  var _v33;
+  _v33 = ({$: "nil"});
+  _v29 = ({$: "cons", head: _v30, tail: _v33});
+  var _v34;
+  var _v35;
+  var _v36;
+  _v36 = value$2;
+  _v35 = ({$: "text", value: _v36});
+  var _v37;
+  _v37 = ({$: "nil"});
+  _v34 = ({$: "cons", head: _v35, tail: _v37});
+  _v27 = ({$: "node", tag: _v28, attrs: _v29, kids: _v34});
+  var _v38;
+  _v38 = ({$: "nil"});
+  _v26 = ({$: "cons", head: _v27, tail: _v38});
+  _v9 = ({$: "cons", head: _v10, tail: _v26});
+  _r0 = ({$: "node", tag: _v1, attrs: _v2, kids: _v9});
+  return _r0;
+}
+
+export const Dungeon$View$board$_dungeon_resource = () => ((a0) => ((a1) => ((a2) => ((a3) => ($Dungeon$View$board$_dungeon_resource(a0, a1, a2, a3))))));
+
+export function $Dungeon$View$board$_dungeon_level(scene_value) {
+  var _r0;
+  var _v1;
+  _v1 = "div";
+  var _v2;
+  var _v3;
+  var _v4;
+  _v4 = "class";
+  var _v5;
+  _v5 = "dungeon-level";
   _v3 = ({$: "attr", nam: _v4, val: _v5});
   var _v6;
   _v6 = ({$: "nil"});
@@ -28476,7 +28592,7 @@ export function $Dungeon$View$board$_topbar_stat(label, value$1) {
   var _v12;
   _v12 = "class";
   var _v13;
-  _v13 = "topbar-stat__label";
+  _v13 = "dungeon-level__badge";
   _v11 = ({$: "attr", nam: _v12, val: _v13});
   var _v14;
   _v14 = ({$: "nil"});
@@ -28484,7 +28600,7 @@ export function $Dungeon$View$board$_topbar_stat(label, value$1) {
   var _v15;
   var _v16;
   var _v17;
-  _v17 = label;
+  _v17 = "DUNGEON LEVEL";
   _v16 = ({$: "text", value: _v17});
   var _v18;
   _v18 = ({$: "nil"});
@@ -28499,7 +28615,7 @@ export function $Dungeon$View$board$_topbar_stat(label, value$1) {
   var _v24;
   _v24 = "class";
   var _v25;
-  _v25 = "topbar-stat__value";
+  _v25 = "dungeon-level__value";
   _v23 = ({$: "attr", nam: _v24, val: _v25});
   var _v26;
   _v26 = ({$: "nil"});
@@ -28507,21 +28623,23 @@ export function $Dungeon$View$board$_topbar_stat(label, value$1) {
   var _v27;
   var _v28;
   var _v29;
-  _v29 = value$1;
-  _v28 = ({$: "text", value: _v29});
   var _v30;
-  _v30 = ({$: "nil"});
-  _v27 = ({$: "cons", head: _v28, tail: _v30});
-  _v20 = ({$: "node", tag: _v21, attrs: _v22, kids: _v27});
+  _v30 = scene_value;
+  _v29 = $Dungeon$View$selectors$dungeon_level_value(_v30);
+  _v28 = ({$: "text", value: _v29});
   var _v31;
   _v31 = ({$: "nil"});
-  _v19 = ({$: "cons", head: _v20, tail: _v31});
+  _v27 = ({$: "cons", head: _v28, tail: _v31});
+  _v20 = ({$: "node", tag: _v21, attrs: _v22, kids: _v27});
+  var _v32;
+  _v32 = ({$: "nil"});
+  _v19 = ({$: "cons", head: _v20, tail: _v32});
   _v7 = ({$: "cons", head: _v8, tail: _v19});
   _r0 = ({$: "node", tag: _v1, attrs: _v2, kids: _v7});
   return _r0;
 }
 
-export const Dungeon$View$board$_topbar_stat = () => ((a0) => ((a1) => ($Dungeon$View$board$_topbar_stat(a0, a1))));
+export const Dungeon$View$board$_dungeon_level = () => ((a0) => ($Dungeon$View$board$_dungeon_level(a0)));
 
 export function $Dungeon$View$board$_board_grid(scene_value, run_value$1, ui_value$2, hero_value$3) {
   var _r0;
@@ -38930,6 +39048,27 @@ export function $Dungeon$View$menu$_menu_upgrade_row$_0(meta_state, hero_value$1
 }
 
 export const Dungeon$View$menu$_menu_upgrade_row$_0 = () => ((a0) => ((a1) => ((a2) => ((a3) => ($Dungeon$View$menu$_menu_upgrade_row$_0(a0, a1, a2, a3))))));
+
+export function $Dungeon$View$selectors$_two_digit_value$_0(value, x$1) {
+  var _r0;
+  if (((x$1) >>> 0) === 1) {
+    var _v1;
+    _v1 = "0";
+    var _v2;
+    var _v3;
+    _v3 = value;
+    _v2 = $U32$show(_v3);
+    _r0 = (_v1 + _v2);
+  } else {
+    var _$1 = x$1;
+    var _v4;
+    _v4 = value;
+    _r0 = $U32$show(_v4);
+  }
+  return _r0;
+}
+
+export const Dungeon$View$selectors$_two_digit_value$_0 = () => ((a0) => ((a1) => ($Dungeon$View$selectors$_two_digit_value$_0(a0, a1))));
 
 export function $Dungeon$View$selectors$character_upgrade_label$_0(hero_value, profile$1, x$2) {
   var _r0;

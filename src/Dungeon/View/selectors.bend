@@ -57,6 +57,16 @@ def _run_dungeon_level(run_value: Run) -> U32:
     case run{dungeon_level, hero_hp, hero_max_hp, hero_index, weapon, board_value, deck_blueprint, draw_counts, remaining, capacity, seed, ult_charge}:
       dungeon_level
 
+def _two_digit_value(value: U32) -> String:
+  match value < 10:
+    case 1:
+      "0" ++ U32.show(value)
+    case _:
+      U32.show(value)
+
+def _run_dungeon_level_text(run_value: Run) -> String:
+  _two_digit_value(_run_dungeon_level(run_value))
+
 def _run_remaining_text(run_value: Run) -> String:
   match run_value:
     case run{dungeon_level, hero_hp, hero_max_hp, hero_index, weapon, board_value, deck_blueprint, draw_counts, remaining, capacity, seed, ult_charge}:
@@ -97,11 +107,11 @@ def dungeon_level_value(scene_value: Scene) -> String:
     case boosters{reward, reveal_index}:
       "--"
     case running{run_value}:
-      U32.show(_run_dungeon_level(run_value))
+      _run_dungeon_level_text(run_value)
     case resume_prompt{run_value}:
-      U32.show(_run_dungeon_level(run_value))
+      _run_dungeon_level_text(run_value)
     case game_over{run_value}:
-      U32.show(_run_dungeon_level(run_value))
+      _run_dungeon_level_text(run_value)
 
 def remaining_value(scene_value: Scene) -> String:
   match scene_value:
