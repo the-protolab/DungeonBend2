@@ -16,5 +16,11 @@
     "name": "Sword",
     "sprite": "assets/item-sword.png",
     "dmg": 9
+  },
+  {
+    "id": "weapon_4",
+    "name": "NOVA Sword",
+    "sprite": "assets/icon-cards-placeholder.png",
+    "dmg": 50
   }
 ]

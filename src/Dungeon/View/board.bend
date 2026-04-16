@@ -28,6 +28,7 @@ import /Dungeon/View/menu/_full_button_overrides as _full_button_overrides
 import /Dungeon/View/assets_and_labels/_gold_sprite as _gold_sprite
 import /Dungeon/View/cards/_hero_card_values as _hero_card_values
 import /Dungeon/View/cards/_tile_card as _tile_card
+import /Dungeon/Content/ as Content
 import /Midum/Button/ as Button
 import /Midum/Button/Size
 import /Midum/Card/ as Card
@@ -75,13 +76,13 @@ def _dungeon_shell(body: HTML(DungeonEvent)) -> HTML(DungeonEvent):
 def _dungeon_header(meta_state: Meta, scene_value: Scene) -> HTML(DungeonEvent):
   <header class="topbar topbar--dungeon">
     <div class="dungeon-topbar__left">
-      {_dungeon_resource(_gold_sprite(), "Gold", meta_gold(meta_state), "dungeon-resource--gold")}
+      {_dungeon_resource(_gold_sprite(), Content.ui_topbar_gold(), meta_gold(meta_state), "dungeon-resource--gold")}
     </div>
     <div class="dungeon-topbar__center">
       {_dungeon_level(scene_value)}
     </div>
     <div class="dungeon-topbar__right">
-      {_dungeon_resource("assets/icon-cards-placeholder.png", "Cards", remaining_value(scene_value), "dungeon-resource--cards")}
+      {_dungeon_resource("assets/icon-cards-placeholder.png", Content.ui_topbar_cards(), remaining_value(scene_value), "dungeon-resource--cards")}
     </div>
   </header>
 
@@ -93,7 +94,7 @@ def _dungeon_resource(src: String, alt: String, value: String, role_class: Strin
 
 def _dungeon_level(scene_value: Scene) -> HTML(DungeonEvent):
   <div class="dungeon-level">
-    <span class="dungeon-level__badge">DUNGEON LEVEL</span>
+    <span class="dungeon-level__badge">{text{Content.ui_dungeon_level()}}</span>
     <strong class="dungeon-level__value">{text{dungeon_level_value(scene_value)}}</strong>
   </div>
 
@@ -135,9 +136,9 @@ def _resume_prompt_modal(scene_value: Scene) -> HTML(DungeonEvent):
     {Card.neutral(
       DungeonEvent,
       <div class="game-over-card">
-        <p class="game-over-card__eyebrow">{text{"Dungeon interrompida"}}</p>
-        <h2 class="game-over-card__title">{text{"Retomar partida?"}}</h2>
-        <p class="game-over-card__body">{text{"Voce saiu no meio desta run."}}</p>
+        <p class="game-over-card__eyebrow">{text{Content.ui_game_over_resume_eyebrow()}}</p>
+        <h2 class="game-over-card__title">{text{Content.ui_game_over_resume_title()}}</h2>
+        <p class="game-over-card__body">{text{Content.ui_game_over_resume_body()}}</p>
         <section class="game-over-card__actions">
           <div class="menu-secondary-action game-over-card__secondary">
             {_resume_menu_button()}
@@ -156,8 +157,8 @@ def _game_over_modal(scene_value: Scene) -> HTML(DungeonEvent):
     {Card.neutral(
       DungeonEvent,
       <div class="game-over-card">
-        <p class="game-over-card__eyebrow">{text{"Run encerrada"}}</p>
-        <h2 class="game-over-card__title">{text{"Game Over"}}</h2>
+        <p class="game-over-card__eyebrow">{text{Content.ui_game_over_end_eyebrow()}}</p>
+        <h2 class="game-over-card__title">{text{Content.ui_game_over_title()}}</h2>
         <div class="game-over-card__action">
           {_game_over_ok_button()}
         </div>
@@ -229,10 +230,10 @@ def _ultimate_button(scene_value: Scene) -> HTML(DungeonEvent):
   )
 
 def _game_over_ok_button() -> HTML(DungeonEvent):
-  Button.primary(DungeonEvent, ok{}, medium{}, "OK", [width_full{}])
+  Button.primary(DungeonEvent, ok{}, medium{}, Content.ui_game_over_ok(), [width_full{}])
 
 def _resume_dungeon_button() -> HTML(DungeonEvent):
-  Button.primary(DungeonEvent, resume_dungeon{}, large{}, "Retomar dungeon", [width_full{}])
+  Button.primary(DungeonEvent, resume_dungeon{}, large{}, Content.ui_game_over_resume_dungeon(), [width_full{}])
 
 def _resume_menu_button() -> HTML(DungeonEvent):
-  Button.secondary(DungeonEvent, abandon_dungeon{}, medium{}, "Menu principal", [width_full{}])
+  Button.secondary(DungeonEvent, abandon_dungeon{}, medium{}, Content.ui_game_over_main_menu(), [width_full{}])

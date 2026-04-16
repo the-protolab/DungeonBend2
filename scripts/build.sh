@@ -7,6 +7,8 @@ out_assets="$out_dir/assets"
 
 mkdir -p "$out_assets"
 
+bun -e 'import { generateDungeonConfig } from "./scripts/dungeon-data.ts"; await generateDungeonConfig(process.cwd());'
+
 if [ -f ../Bend2/bend-ts/src/Bend.ts ]; then
   bun scripts/build.ts src/main.bend "$out_html"
 elif command -v bend >/dev/null 2>&1; then

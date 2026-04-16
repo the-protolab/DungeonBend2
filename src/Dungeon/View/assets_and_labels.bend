@@ -10,6 +10,7 @@ import /Dungeon/config as config
 import /Dungeon/hero_helpers/hero_at as hero_at
 import /Dungeon/hero_helpers/hero_name as hero_name
 import /Dungeon/hero_helpers/hero_sprite as hero_sprite
+import /Dungeon/Content/ as Content
 
 def _hero_name() -> String:
   hero_name(hero_at(config(), 0))
@@ -18,7 +19,7 @@ def _hero_sprite() -> String:
   hero_sprite(hero_at(config(), 0))
 
 def _gold_name() -> String:
-  "Gold"
+  Content.item_gold_name()
 
 def _gold_sprite() -> String:
   "assets/item-gold.png"
@@ -34,7 +35,7 @@ def _monster_name_from_defs(config_value: Config, ref: U32) -> String:
 def _monster_name_from_list(monsters: List(MonsterDef), ref: U32) -> String:
   match monsters:
     case []:
-      "Monster"
+      Content.fallback_monster_name()
     case monster_def{name, sprite, gold_drop, hp_levels}<>rest:
       match ref:
         case 0:
@@ -72,7 +73,7 @@ def _sword_name_from_defs(config_value: Config, ref: U32) -> String:
 def _sword_name_from_list(swords: List(SwordDef), ref: U32) -> String:
   match swords:
     case []:
-      "Sword"
+      Content.fallback_weapon_name()
     case sword_def{name, sprite, dmg}<>rest:
       match ref:
         case 0:
@@ -110,7 +111,7 @@ def _potion_name_from_defs(config_value: Config, ref: U32) -> String:
 def _potion_name_from_list(potions: List(PotionDef), ref: U32) -> String:
   match potions:
     case []:
-      "Potion"
+      Content.fallback_potion_name()
     case potion_def{name, sprite, heal}<>rest:
       match ref:
         case 0:
@@ -140,7 +141,7 @@ def _potion_sprite_from_list(potions: List(PotionDef), ref: U32) -> String:
 def _tile_name(tile: Tile) -> String:
   match tile:
     case none{}:
-      "Empty"
+      Content.card_empty()
     case monster{ref, hp}:
       _monster_name(ref)
     case sword{ref, dmg}:
@@ -168,13 +169,13 @@ def _tile_badge(tile: Tile) -> String:
     case none{}:
       ""
     case monster{ref, hp}:
-      "HP " ++ U32.show(hp)
+      Content.stat_hp() ++ " " ++ U32.show(hp)
     case sword{ref, dmg}:
-      "DMG " ++ U32.show(dmg)
+      Content.stat_dmg() ++ " " ++ U32.show(dmg)
     case potion{ref, heal}:
-      "HEAL " ++ U32.show(heal)
+      Content.stat_heal() ++ " " ++ U32.show(heal)
     case gold{amount}:
-      "GOLD " ++ U32.show(amount)
+      Content.stat_gold() ++ " " ++ U32.show(amount)
 
 def _card_name(card: CardRef) -> String:
   match card:
@@ -264,11 +265,11 @@ def _monster_hp_range_from_list(monsters: List(MonsterDef), ref: U32) -> String:
 def _card_stat_range(card: CardRef) -> String:
   match card:
     case monster_card{ref}:
-      "HP: " ++ _monster_hp_range(ref)
+      Content.stat_hp() ++ ": " ++ _monster_hp_range(ref)
     case sword_card{ref}:
-      "DMG: " ++ U32.show(_sword_damage_value(ref))
+      Content.stat_dmg() ++ ": " ++ U32.show(_sword_damage_value(ref))
     case potion_card{ref}:
-      "HEAL: " ++ U32.show(_potion_heal_value(ref))
+      Content.stat_heal() ++ ": " ++ U32.show(_potion_heal_value(ref))
     case hero_card{}:
       ""
 

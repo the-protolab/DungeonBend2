@@ -50,5 +50,31 @@
       17,
       20
     ]
+  },
+  {
+    "id": "monster_5",
+    "name": "Odeio Voce",
+    "sprite": "assets/player-gato-de-botas.png",
+    "gold_drop": 800,
+    "hp_by_level": [
+      4,
+      4,
+      4,
+      4,
+      4
+    ]
+  },
+  {
+    "id": "monster_6",
+    "name": "New Monster",
+    "sprite": "assets/enemy-rat.png",
+    "gold_drop": 1,
+    "hp_by_level": [
+      1,
+      1,
+      1,
+      1,
+      1
+    ]
   }
 ]

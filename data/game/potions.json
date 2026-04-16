@@ -4,5 +4,11 @@
     "name": "Potion",
     "sprite": "assets/item-potion.png",
     "heal": 4
+  },
+  {
+    "id": "potion_2",
+    "name": "NOVA Potion",
+    "sprite": "assets/icon-cards-placeholder.png",
+    "heal": 5
   }
 ]

@@ -15,6 +15,7 @@ import /Dungeon/View/menu/_full_button_overrides as _full_button_overrides
 import /Dungeon/View/assets_and_labels/_card_name as _card_name
 import /Dungeon/View/assets_and_labels/_card_sprite as _card_sprite
 import /Dungeon/View/assets_and_labels/_card_stat_range as _card_stat_range
+import /Dungeon/Content/ as Content
 import /Midum/Card/ as Card
 import /Midum/Button/ as Button
 import /Midum/Button/Size
@@ -62,7 +63,7 @@ def _render_boosters_idle(meta_state: Meta) -> HTML(DungeonEvent):
 
 def _booster_pack_visual() -> HTML(DungeonEvent):
   <div class="booster-visual booster-visual--pack">
-    <img class="booster-visual__pack-img" src="assets/booster-pack.png" alt="Booster Pack" />
+    <img class="booster-visual__pack-img" src="assets/booster-pack.png" alt={Content.ui_booster_pack_alt()} />
   </div>
 
 def _render_boosters_reveal(meta_state: Meta, reward: PackReward, reveal_index: U32) -> HTML(DungeonEvent):
@@ -98,7 +99,7 @@ def _reveal_meta(meta_state: Meta, card: CardRef) -> HTML(DungeonEvent):
   <div class="reveal-meta">
     <div class="reveal-meta__top">
       <p class="reveal-name">{text{_card_name(card)}}</p>
-      <p class="reveal-copies">{text{"COPIES: " ++ card_copies(meta_state, card)}}</p>
+      <p class="reveal-copies">{text{Content.ui_booster_copies_prefix() ++ card_copies(meta_state, card)}}</p>
     </div>
     {_reveal_stat_left(card)}
   </div>
@@ -145,9 +146,9 @@ def _reveal_card_surface_overrides() -> List(Midum/Card/Override):
 def _reveal_action_button(reward: PackReward, reveal_index: U32) -> HTML(DungeonEvent):
   match booster_is_last_card(reward, reveal_index):
     case 1:
-      Button.neutral(DungeonEvent, done_reward{}, medium{}, "Done", [])
+      Button.neutral(DungeonEvent, done_reward{}, medium{}, Content.ui_booster_done(), [])
     case _:
-      Button.neutral(DungeonEvent, next_reward{}, medium{}, "Next", [])
+      Button.neutral(DungeonEvent, next_reward{}, medium{}, Content.ui_booster_next(), [])
 
 def _reward_card_at(reward: PackReward, idx: U32) -> CardRef:
   match reward:
@@ -173,8 +174,8 @@ def _boosters_header(meta_state: Meta) -> HTML(DungeonEvent):
       {_back_button()}
     </div>
     <div class="topbar__stats">
-      {_topbar_stat("Gold", meta_gold(meta_state))}
-      {_topbar_stat("Boosters", meta_pack_total(meta_state))}
+      {_topbar_stat(Content.ui_topbar_gold(), meta_gold(meta_state))}
+      {_topbar_stat(Content.ui_topbar_boosters(), meta_pack_total(meta_state))}
     </div>
   </header>
 
@@ -185,7 +186,7 @@ def _topbar_stat(label: String, value: String) -> HTML(DungeonEvent):
   </p>
 
 def _back_button() -> HTML(DungeonEvent):
-  Button.secondary(DungeonEvent, close_boosters{}, medium{}, "Back", [])
+  Button.secondary(DungeonEvent, close_boosters{}, medium{}, Content.ui_booster_back(), [])
 
 def _booster_actions(meta_state: Meta) -> HTML(DungeonEvent):
   match booster_open_enabled(meta_state):
@@ -195,8 +196,8 @@ def _booster_actions(meta_state: Meta) -> HTML(DungeonEvent):
         Layout.group(
           DungeonEvent,
           [
-            Button.secondary(DungeonEvent, buy_pack{0}, medium{}, "Buy More - " ++ U32.show(active_pack_price()) ++ "g", _full_button_overrides(booster_buy_enabled(meta_state)))
-            Button.primary(DungeonEvent, open_pack{0}, large{}, "Open", _full_button_overrides(1))
+            Button.secondary(DungeonEvent, buy_pack{0}, medium{}, Content.ui_booster_buy_more_prefix() ++ U32.show(active_pack_price()) ++ Content.ui_booster_currency_suffix(), _full_button_overrides(booster_buy_enabled(meta_state)))
+            Button.primary(DungeonEvent, open_pack{0}, large{}, Content.ui_booster_open(), _full_button_overrides(1))
           ],
           [direction_column{} gap_sm{} align_stretch{}]
         ),
@@ -208,7 +209,7 @@ def _booster_actions(meta_state: Meta) -> HTML(DungeonEvent):
         Layout.group(
           DungeonEvent,
           [
-            Button.primary(DungeonEvent, buy_pack{0}, large{}, "Buy - " ++ U32.show(active_pack_price()) ++ "g", _full_button_overrides(booster_buy_enabled(meta_state)))
+            Button.primary(DungeonEvent, buy_pack{0}, large{}, Content.ui_booster_buy_prefix() ++ U32.show(active_pack_price()) ++ Content.ui_booster_currency_suffix(), _full_button_overrides(booster_buy_enabled(meta_state)))
           ],
           [direction_column{} gap_sm{} align_stretch{}]
         ),

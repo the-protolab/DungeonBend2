@@ -23,6 +23,9 @@ def generated_config() -> Config:
         upgrade{30, 15},
         upgrade{48, 18},
         upgrade{72, 22}
+      ]},
+      hero_def{"hero_3", "Fulanao", "assets/player-boy.png", 1, 0, 0, [
+        upgrade{1, 2}
       ]}
     ],
     [
@@ -53,15 +56,31 @@ def generated_config() -> Config:
         14,
         17,
         20
+      ]},
+      monster_def{"Odeio Voce", "assets/player-gato-de-botas.png", 800, [
+        4,
+        4,
+        4,
+        4,
+        4
+      ]},
+      monster_def{"New Monster", "assets/enemy-rat.png", 1, [
+        1,
+        1,
+        1,
+        1,
+        1
       ]}
     ],
     [
       sword_def{"Sword", "assets/item-sword.png", 5},
       sword_def{"Sword", "assets/item-sword.png", 7},
-      sword_def{"Sword", "assets/item-sword.png", 9}
+      sword_def{"Sword", "assets/item-sword.png", 9},
+      sword_def{"NOVA Sword", "assets/icon-cards-placeholder.png", 50}
     ],
     [
-      potion_def{"Potion", "assets/item-potion.png", 4}
+      potion_def{"Potion", "assets/item-potion.png", 4},
+      potion_def{"NOVA Potion", "assets/icon-cards-placeholder.png", 5}
     ],
     [
       monster_entry{0, 4},
@@ -75,15 +94,19 @@ def generated_config() -> Config:
       hero_entry{1}
     ],
     [
-      pack_def{"Starter Booster", 80, 3, 0, [
-        pack_pool_entry{monster_card{0}, 1},
-        pack_pool_entry{monster_card{1}, 1},
+      pack_def{"Starter Booster", 1, 3, 0, [
+        pack_pool_entry{potion_card{1}, 1},
+        pack_pool_entry{sword_card{3}, 1},
         pack_pool_entry{monster_card{2}, 1},
         pack_pool_entry{monster_card{3}, 1},
         pack_pool_entry{sword_card{0}, 1},
         pack_pool_entry{sword_card{1}, 1},
-        pack_pool_entry{sword_card{2}, 1},
+        pack_pool_entry{monster_card{4}, 1},
         pack_pool_entry{potion_card{0}, 1}
+      ]},
+      pack_def{"Onde fica?", 20, 3, 1, [
+        pack_pool_entry{monster_card{5}, 1},
+        pack_pool_entry{monster_card{4}, 1}
       ]}
     ],
     1

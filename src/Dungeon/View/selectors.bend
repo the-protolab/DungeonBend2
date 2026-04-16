@@ -31,6 +31,7 @@ import /Dungeon/profile_helpers/selection_confirmed as selection_confirmed
 import /Dungeon/profile_helpers/profile_unlocked as profile_unlocked
 import /Dungeon/profile_helpers/profile_hero_level as profile_hero_level
 import /Dungeon/rules/ultimate_charge_required as ultimate_charge_required
+import /Dungeon/Content/ as Content
 
 def meta_gold(meta_state: Meta) -> String:
   U32.show(meta_gold_value(meta_state))
@@ -39,13 +40,13 @@ def meta_pack_total(meta_state: Meta) -> String:
   U32.show(pack_inventory_total(meta_pack_inventory_value(meta_state)))
 
 def hero_level_text(profile: HeroProfile) -> String:
-  "Hero Lv " ++ U32.show(profile_hero_level(profile))
+  Content.ui_hero_level_prefix_long() ++ U32.show(profile_hero_level(profile))
 
 def hero_display_level(profile: HeroProfile) -> String:
   U32.show(profile_hero_level(profile) + 1)
 
 def hero_menu_level_text(profile: HeroProfile) -> String:
-  "LV: " ++ hero_display_level(profile)
+  Content.ui_hero_level_prefix_short() ++ hero_display_level(profile)
 
 def hero_menu_current_hp_text(hero_value: HeroDef, profile: HeroProfile) -> String:
   hero_menu_max_hp_text(hero_value, profile)
@@ -76,9 +77,9 @@ def _run_remaining_text(run_value: Run) -> String:
 def _weapon_value_from_weapon(weapon_value: Weapon) -> String:
   match weapon_value:
     case no_weapon{}:
-      "Unarmed"
+      Content.ui_hero_unarmed()
     case weapon{ref, dmg}:
-      "DMG " ++ U32.show(dmg)
+      Content.stat_dmg() ++ " " ++ U32.show(dmg)
 
 def _run_weapon_text(run_value: Run) -> String:
   match run_value:
@@ -88,7 +89,7 @@ def _run_weapon_text(run_value: Run) -> String:
 def _run_ult_label(run_value: Run) -> String:
   match run_value:
     case run{dungeon_level, hero_hp, hero_max_hp, hero_index, weapon, board_value, deck_blueprint, draw_counts, remaining, capacity, seed, ult_charge}:
-      "ULTIMATE " ++ U32.show(ult_charge) ++ "/" ++ U32.show(ultimate_charge_required())
+      Content.ui_ultimate_label() ++ " " ++ U32.show(ult_charge) ++ "/" ++ U32.show(ultimate_charge_required())
 
 def _run_ult_ready(run_value: Run) -> U32:
   match run_value:
@@ -150,11 +151,11 @@ def weapon_value(scene_value: Scene) -> String:
 def ultimate_label(scene_value: Scene) -> String:
   match scene_value:
     case setup{}:
-      "ULTIMATE 0/" ++ U32.show(ultimate_charge_required())
+      Content.ui_ultimate_label() ++ " 0/" ++ U32.show(ultimate_charge_required())
     case character_select{preview_hero}:
-      "ULTIMATE 0/" ++ U32.show(ultimate_charge_required())
+      Content.ui_ultimate_label() ++ " 0/" ++ U32.show(ultimate_charge_required())
     case boosters{reward, reveal_index}:
-      "ULTIMATE 0/" ++ U32.show(ultimate_charge_required())
+      Content.ui_ultimate_label() ++ " 0/" ++ U32.show(ultimate_charge_required())
     case running{run_value}:
       _run_ult_label(run_value)
     case resume_prompt{run_value}:
@@ -230,9 +231,9 @@ def upgrade_label(hero_value: HeroDef, profile: HeroProfile) -> String:
 def _upgrade_label_cost(cost: U32) -> String:
   match cost:
     case 0:
-      "Max Level"
+      Content.ui_upgrade_max_level()
     case _:
-      "Upgrade - " ++ U32.show(cost)
+      Content.ui_upgrade_upgrade_prefix() ++ U32.show(cost)
 
 def menu_upgrade_label(hero_value: HeroDef, profile: HeroProfile) -> String:
   _menu_upgrade_label_cost(next_upgrade_cost(hero_value, profile))
@@ -240,9 +241,9 @@ def menu_upgrade_label(hero_value: HeroDef, profile: HeroProfile) -> String:
 def _menu_upgrade_label_cost(cost: U32) -> String:
   match cost:
     case 0:
-      "MAX LEVEL"
+      Content.ui_upgrade_max_level_short()
     case _:
-      "UPGRADE"
+      Content.ui_upgrade_upgrade()
 
 def menu_upgrade_cost_text(hero_value: HeroDef, profile: HeroProfile) -> String:
   _menu_upgrade_cost_text(next_upgrade_cost(hero_value, profile))
@@ -250,7 +251,7 @@ def menu_upgrade_cost_text(hero_value: HeroDef, profile: HeroProfile) -> String:
 def _menu_upgrade_cost_text(cost: U32) -> String:
   match cost:
     case 0:
-      "MAX"
+      Content.ui_upgrade_max_short()
     case _:
       U32.show(cost)
 
@@ -260,7 +261,7 @@ def _unlock_cost_text(cost: U32) -> String:
 def character_upgrade_label(hero_value: HeroDef, profile: HeroProfile) -> String:
   match profile_unlocked(profile):
     case 0:
-      "LOCKED"
+      Content.ui_character_locked()
     case _:
       menu_upgrade_label(hero_value, profile)
 
@@ -291,16 +292,16 @@ def _character_selected_confirmed(confirmed: U32, same_ref: U32) -> U32:
 def character_primary_label(meta_state: Meta, hero_ref: U32, hero_value: HeroDef, profile: HeroProfile) -> String:
   match profile_unlocked(profile):
     case 0:
-      "BUY"
+      Content.ui_character_buy()
     case _:
       _character_select_label(_character_selected(meta_state, hero_ref))
 
 def _character_select_label(is_selected: U32) -> String:
   match is_selected:
     case 0:
-      "SELECT"
+      Content.ui_character_select()
     case _:
-      "SELECTED"
+      Content.ui_character_selected()
 
 def character_primary_enabled(meta_state: Meta, hero_ref: U32, hero_value: HeroDef, profile: HeroProfile) -> U32:
   match profile_unlocked(profile):

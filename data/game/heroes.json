@@ -14,5 +14,13 @@
     "base_max_hp": 9,
     "unlock_cost": 45,
     "starts_unlocked": false
+  },
+  {
+    "id": "hero_3",
+    "name": "Fulanao",
+    "sprite": "assets/player-boy.png",
+    "base_max_hp": 1,
+    "unlock_cost": 0,
+    "starts_unlocked": false
   }
 ]

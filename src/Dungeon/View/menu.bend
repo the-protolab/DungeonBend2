@@ -34,6 +34,7 @@ import /Dungeon/View/selectors/character_upgrade_cost_text as character_upgrade_
 import /Dungeon/View/selectors/character_upgrade_enabled as character_upgrade_enabled
 import /Dungeon/View/selectors/character_primary_label as character_primary_label
 import /Dungeon/View/selectors/character_primary_enabled as character_primary_enabled
+import /Dungeon/Content/ as Content
 import /Midum/Button/ as Button
 import /Midum/Button/Size
 import /Midum/Card/ as Card
@@ -44,12 +45,12 @@ import /Midum/Text/Align
 def _dashboard_header(meta_state: Meta, header_action: HTML(DungeonEvent)) -> HTML(DungeonEvent):
   <header class="topbar topbar--menu">
     <p class="resource-bar">
-      <span class="resource-bar__label">Gold</span>
+      <span class="resource-bar__label">{text{Content.ui_topbar_gold()}}</span>
       <strong class="resource-bar__value">{text{meta_gold(meta_state)}}</strong>
     </p>
     <div class="topbar__actions">
       <div class="topbar__stats">
-        {_menu_stat("Boosters", meta_pack_total(meta_state))}
+        {_menu_stat(Content.ui_topbar_boosters(), meta_pack_total(meta_state))}
       </div>
       <div class="topbar__slot">
         {header_action}
@@ -274,16 +275,16 @@ def _character_equipped(meta_state: Meta, hero_ref: U32) -> U32:
 def _character_detail_status_label(meta_state: Meta, preview_hero: U32, profile: HeroProfile) -> String:
   match profile_unlocked(profile):
     case 0:
-      "LOCKED"
+      Content.ui_character_locked()
     case _:
       _character_detail_unlocked_status(_character_equipped(meta_state, preview_hero))
 
 def _character_detail_unlocked_status(equipped: U32) -> String:
   match equipped:
     case 0:
-      "PREVIEW"
+      Content.ui_character_preview()
     case _:
-      "EQUIPPED"
+      Content.ui_character_equipped()
 
 def _character_detail_status_class(meta_state: Meta, preview_hero: U32, profile: HeroProfile) -> String:
   "character-detail__status " ++ _character_detail_status_state_class(meta_state, preview_hero, profile)
@@ -383,7 +384,7 @@ def _menu_start_button() -> HTML(DungeonEvent):
     DungeonEvent,
     start{},
     large{},
-    "Start",
+    Content.ui_menu_start(),
     _full_button_overrides(start_enabled(setup{}))
   )
 
@@ -392,7 +393,7 @@ def _menu_boosters_button() -> HTML(DungeonEvent):
     DungeonEvent,
     open_boosters{},
     medium{},
-    "BOOSTERS",
+    Content.ui_menu_boosters(),
     _full_button_overrides(1)
   )
 
@@ -419,7 +420,7 @@ def _character_back_button() -> HTML(DungeonEvent):
     DungeonEvent,
     close_character_select{},
     medium{},
-    "BACK",
+    Content.ui_menu_back(),
     _fit_button_overrides(1)
   )
 
@@ -437,7 +438,7 @@ def _header_characters_action() -> HTML(DungeonEvent):
     DungeonEvent,
     open_character_select{},
     small{},
-    "Characters",
+    Content.ui_menu_characters(),
     _fit_button_overrides(1)
   )
 

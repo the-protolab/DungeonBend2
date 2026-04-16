@@ -46,5 +46,11 @@
     "level": 4,
     "cost": 72,
     "max_hp": 22
+  },
+  {
+    "hero_id": "hero_3",
+    "level": 1,
+    "cost": 1,
+    "max_hp": 2
   }
 ]

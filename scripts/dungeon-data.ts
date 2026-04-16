@@ -81,10 +81,10 @@ export type RawRules = {
 export type RawHeroPresentation = {
   hero_id: string;
   name_align: string;
-  ultimate_title: string;
   ultimate_icon: string;
-  ultimate_description: string;
 };
+
+export type RawContent = Record<string, string>;
 
 export type GameData = {
   heroes: RawHero[];
@@ -97,6 +97,9 @@ export type GameData = {
   rules: RawRules;
   presentation: {
     heroes: RawHeroPresentation[];
+  };
+  content: {
+    en: RawContent;
   };
 };
 
@@ -117,7 +120,88 @@ const DATA_FILES = {
   boosters: "data/game/boosters.json",
   rules: "data/game/rules.json",
   presentationHeroes: "data/presentation/heroes.json",
+  contentEn: "data/content/en.json",
 } as const;
+
+const STATIC_CONTENT_KEYS = [
+  "item.gold.name",
+  "card.empty",
+  "stat.hp",
+  "stat.dmg",
+  "stat.heal",
+  "stat.gold",
+  "ui.menu.start",
+  "ui.menu.boosters",
+  "ui.menu.back",
+  "ui.menu.characters",
+  "ui.topbar.gold",
+  "ui.topbar.boosters",
+  "ui.topbar.cards",
+  "ui.dungeon.level",
+  "ui.hero.levelPrefixLong",
+  "ui.hero.levelPrefixShort",
+  "ui.hero.unarmed",
+  "ui.ultimate.label",
+  "ui.upgrade.maxLevel",
+  "ui.upgrade.maxLevelShort",
+  "ui.upgrade.upgrade",
+  "ui.upgrade.upgradePrefix",
+  "ui.upgrade.maxShort",
+  "ui.character.locked",
+  "ui.character.preview",
+  "ui.character.equipped",
+  "ui.character.buy",
+  "ui.character.select",
+  "ui.character.selected",
+  "ui.booster.packAlt",
+  "ui.booster.copiesPrefix",
+  "ui.booster.done",
+  "ui.booster.next",
+  "ui.booster.back",
+  "ui.booster.buyMorePrefix",
+  "ui.booster.buyPrefix",
+  "ui.booster.open",
+  "ui.booster.currencySuffix",
+  "ui.gameOver.resumeEyebrow",
+  "ui.gameOver.resumeTitle",
+  "ui.gameOver.resumeBody",
+  "ui.gameOver.endEyebrow",
+  "ui.gameOver.title",
+  "ui.gameOver.ok",
+  "ui.gameOver.resumeDungeon",
+  "ui.gameOver.mainMenu",
+  "fallback.monster.name",
+  "fallback.weapon.name",
+  "fallback.potion.name",
+] as const;
+
+function heroNameKey(heroId: string): string {
+  return `hero.${heroId}.name`;
+}
+
+function heroUltimateTitleKey(heroId: string): string {
+  return `hero.${heroId}.ultimateTitle`;
+}
+
+function heroUltimateDescKey(heroId: string): string {
+  return `hero.${heroId}.ultimateDesc`;
+}
+
+function monsterNameKey(id: string): string {
+  return `monster.${id}.name`;
+}
+
+function weaponNameKey(id: string): string {
+  return `weapon.${id}.name`;
+}
+
+function potionNameKey(id: string): string {
+  return `potion.${id}.name`;
+}
+
+function boosterNameKey(id: string): string {
+  return `booster.${id}.name`;
+}
 
 function fail(message: string): never {
   throw new Error(`Dungeon data error: ${message}`);
@@ -144,6 +228,9 @@ export async function loadGameData(cwd: string): Promise<GameData> {
     presentation: {
       heroes: await readJson<RawHeroPresentation[]>(cwd, DATA_FILES.presentationHeroes),
     },
+    content: {
+      en: await readJson<RawContent>(cwd, DATA_FILES.contentEn),
+    },
   };
   assertValidGameData(data);
   return data;
@@ -153,6 +240,7 @@ export async function writeGameData(cwd: string, data: GameData): Promise<void> 
   assertValidGameData(data);
   await fs.mkdir(path.resolve(cwd, "data/game"), { recursive: true });
   await fs.mkdir(path.resolve(cwd, "data/presentation"), { recursive: true });
+  await fs.mkdir(path.resolve(cwd, "data/content"), { recursive: true });
   await Promise.all([
     Bun.write(path.resolve(cwd, DATA_FILES.heroes), jsonBlock(data.heroes)),
     Bun.write(path.resolve(cwd, DATA_FILES.hero_upgrades), jsonBlock(data.hero_upgrades)),
@@ -163,6 +251,7 @@ export async function writeGameData(cwd: string, data: GameData): Promise<void> 
     Bun.write(path.resolve(cwd, DATA_FILES.boosters), jsonBlock(data.boosters)),
     Bun.write(path.resolve(cwd, DATA_FILES.rules), jsonBlock(data.rules)),
     Bun.write(path.resolve(cwd, DATA_FILES.presentationHeroes), jsonBlock(data.presentation.heroes)),
+    Bun.write(path.resolve(cwd, DATA_FILES.contentEn), jsonBlock(data.content.en)),
   ]);
 }
 
@@ -221,6 +310,60 @@ function requireArray<T>(errors: string[], value: T[] | unknown, label: string):
   return value as T[];
 }
 
+function requireContent(data: GameData, key: string, label = `content.en["${key}"]`): string {
+  const value = data.content?.en?.[key];
+  if (typeof value !== "string" || value.trim() === "") {
+    fail(`${label} must be a non-empty string`);
+  }
+  return value;
+}
+
+function requiredContentKeys(data: GameData): string[] {
+  const keys = new Set<string>(STATIC_CONTENT_KEYS);
+  (Array.isArray(data.heroes) ? data.heroes : []).forEach((hero) => {
+    if (typeof hero?.id === "string" && hero.id.trim() !== "") {
+      keys.add(heroNameKey(hero.id));
+      keys.add(heroUltimateTitleKey(hero.id));
+      keys.add(heroUltimateDescKey(hero.id));
+    }
+  });
+  (Array.isArray(data.monsters) ? data.monsters : []).forEach((monster) => {
+    if (typeof monster?.id === "string" && monster.id.trim() !== "") {
+      keys.add(monsterNameKey(monster.id));
+    }
+  });
+  (Array.isArray(data.weapons) ? data.weapons : []).forEach((weapon) => {
+    if (typeof weapon?.id === "string" && weapon.id.trim() !== "") {
+      keys.add(weaponNameKey(weapon.id));
+    }
+  });
+  (Array.isArray(data.potions) ? data.potions : []).forEach((potion) => {
+    if (typeof potion?.id === "string" && potion.id.trim() !== "") {
+      keys.add(potionNameKey(potion.id));
+    }
+  });
+  (Array.isArray(data.boosters?.packs) ? data.boosters.packs : []).forEach((pack) => {
+    if (typeof pack?.id === "string" && pack.id.trim() !== "") {
+      keys.add(boosterNameKey(pack.id));
+    }
+  });
+  return [...keys].sort();
+}
+
+function addContentErrors(errors: string[], data: GameData): void {
+  if (!isRecord(data.content)) {
+    errors.push("content must be an object");
+    return;
+  }
+  if (!isRecord(data.content.en)) {
+    errors.push("content.en must be an object");
+    return;
+  }
+  requiredContentKeys(data).forEach((key) => {
+    addStringError(errors, data.content.en[key], `content.en["${key}"]`);
+  });
+}
+
 export function getGameDataErrors(data: GameData): string[] {
   const errors: string[] = [];
   if (!isRecord(data)) {
@@ -236,6 +379,7 @@ export function getGameDataErrors(data: GameData): string[] {
   const packs = requireArray<RawPack>(errors, data.boosters?.packs, "boosters.packs");
   const pool = requireArray<RawPackPoolEntry>(errors, data.boosters?.pool, "boosters.pool");
   const presentations = requireArray<RawHeroPresentation>(errors, data.presentation?.heroes, "presentation.heroes");
+  addContentErrors(errors, data);
 
   if (heroes.length === 0) {
     errors.push("heroes must contain at least one hero");
@@ -414,9 +558,7 @@ export function getGameDataErrors(data: GameData): string[] {
     if (!["left", "center", "right"].includes(String(presentation?.name_align))) {
       errors.push(`presentation.heroes[${index}].name_align must be "left", "center", or "right"`);
     }
-    addStringError(errors, presentation?.ultimate_title, `presentation.heroes[${index}].ultimate_title`);
     addStringError(errors, presentation?.ultimate_icon, `presentation.heroes[${index}].ultimate_icon`);
-    addStringError(errors, presentation?.ultimate_description, `presentation.heroes[${index}].ultimate_description`);
   });
   heroes.forEach((hero) => {
     if (!presentationIds.has(hero.id)) {
@@ -444,6 +586,48 @@ export function assertValidGameData(data: GameData): void {
   if (errors.length > 0) {
     fail(errors.join("\n"));
   }
+}
+
+function assetRefs(data: GameData): Array<{ label: string; value: string }> {
+  return [
+    ...data.heroes.map((hero, index) => ({ label: `heroes[${index}].sprite`, value: hero.sprite })),
+    ...data.monsters.map((monster, index) => ({ label: `monsters[${index}].sprite`, value: monster.sprite })),
+    ...data.weapons.map((weapon, index) => ({ label: `weapons[${index}].sprite`, value: weapon.sprite })),
+    ...data.potions.map((potion, index) => ({ label: `potions[${index}].sprite`, value: potion.sprite })),
+    ...data.presentation.heroes.map((presentation, index) => ({
+      label: `presentation.heroes[${index}].ultimate_icon`,
+      value: presentation.ultimate_icon,
+    })),
+  ];
+}
+
+async function getAssetErrors(cwd: string, data: GameData): Promise<string[]> {
+  const errors: string[] = [];
+  await Promise.all(
+    assetRefs(data).map(async (asset) => {
+      if (typeof asset.value !== "string" || asset.value.trim() === "") {
+        return;
+      }
+      if (!asset.value.startsWith("assets/")) {
+        errors.push(`${asset.label} must point to a local assets/ path`);
+        return;
+      }
+      try {
+        await fs.access(path.resolve(cwd, asset.value));
+      } catch {
+        errors.push(`${asset.label} points to missing asset "${asset.value}"`);
+      }
+    })
+  );
+  return errors.sort();
+}
+
+export async function getGameDataErrorsWithAssets(cwd: string, data: GameData): Promise<string[]> {
+  const errors = getGameDataErrors(data);
+  if (errors.length > 0) {
+    return errors;
+  }
+  return getAssetErrors(cwd, data);
 }
 
 function validatePositiveInt(value: number, label: string): number {
@@ -482,6 +666,15 @@ function bendList(items: string[], size: number): string {
   const outer = indent(size);
   const inner = indent(size + 2);
   return `[\n${items.map((item) => `${inner}${item}`).join(",\n")}\n${outer}]`;
+}
+
+function contentFunctionName(key: string): string {
+  const withWordBoundaries = key.replace(/([a-z0-9])([A-Z])/g, "$1_$2");
+  const body = withWordBoundaries
+    .toLowerCase()
+    .replace(/[^a-z0-9]+/g, "_")
+    .replace(/^_+|_+$/g, "");
+  return body.length > 0 ? body : "unnamed";
 }
 
 function renderPresentationAlign(value: string, label: string): string {
@@ -559,7 +752,7 @@ export function renderConfigModule(data: GameData): string {
 
   const heroes = data.heroes.map((hero, index) => {
     const heroId = validateString(hero.id, `heroes[${index}].id`);
-    validateString(hero.name, `heroes[${index}].name`);
+    const heroName = requireContent(data, heroNameKey(heroId));
     validateString(hero.sprite, `heroes[${index}].sprite`);
     validatePositiveInt(hero.base_max_hp, `heroes[${index}].base_max_hp`);
     validateNonNegativeInt(hero.unlock_cost, `heroes[${index}].unlock_cost`);
@@ -568,31 +761,34 @@ export function renderConfigModule(data: GameData): string {
       validatePositiveInt(upgrade.max_hp, `hero_upgrades["${heroId}"][${upgradeIndex}].max_hp`);
       return `upgrade{${upgrade.cost}, ${upgrade.max_hp}}`;
     });
-    return `hero_def{${bendString(heroId)}, ${bendString(hero.name)}, ${bendString(hero.sprite)}, ${hero.base_max_hp}, ${hero.unlock_cost}, ${hero.starts_unlocked ? 1 : 0}, ${bendList(upgrades, 6)}}`;
+    return `hero_def{${bendString(heroId)}, ${bendString(heroName)}, ${bendString(hero.sprite)}, ${hero.base_max_hp}, ${hero.unlock_cost}, ${hero.starts_unlocked ? 1 : 0}, ${bendList(upgrades, 6)}}`;
   });
 
   const monsterDefs = data.monsters.map((monster, index) => {
-    validateString(monster.name, `monsters[${index}].name`);
+    const monsterId = validateString(monster.id, `monsters[${index}].id`);
+    const monsterName = requireContent(data, monsterNameKey(monsterId));
     validateString(monster.sprite, `monsters[${index}].sprite`);
     validatePositiveInt(monster.gold_drop, `monsters[${index}].gold_drop`);
     const hpLevels = monster.hp_by_level.map((value, levelIndex) =>
       String(validatePositiveInt(value, `monsters[${index}].hp_by_level[${levelIndex}]`))
     );
-    return `monster_def{${bendString(monster.name)}, ${bendString(monster.sprite)}, ${monster.gold_drop}, ${bendList(hpLevels, 6)}}`;
+    return `monster_def{${bendString(monsterName)}, ${bendString(monster.sprite)}, ${monster.gold_drop}, ${bendList(hpLevels, 6)}}`;
   });
 
   const swordDefs = data.weapons.map((weapon, index) => {
-    validateString(weapon.name, `weapons[${index}].name`);
+    const weaponId = validateString(weapon.id, `weapons[${index}].id`);
+    const weaponName = requireContent(data, weaponNameKey(weaponId));
     validateString(weapon.sprite, `weapons[${index}].sprite`);
     validatePositiveInt(weapon.dmg, `weapons[${index}].dmg`);
-    return `sword_def{${bendString(weapon.name)}, ${bendString(weapon.sprite)}, ${weapon.dmg}}`;
+    return `sword_def{${bendString(weaponName)}, ${bendString(weapon.sprite)}, ${weapon.dmg}}`;
   });
 
   const potionDefs = data.potions.map((potion, index) => {
-    validateString(potion.name, `potions[${index}].name`);
+    const potionId = validateString(potion.id, `potions[${index}].id`);
+    const potionName = requireContent(data, potionNameKey(potionId));
     validateString(potion.sprite, `potions[${index}].sprite`);
     validatePositiveInt(potion.heal, `potions[${index}].heal`);
-    return `potion_def{${bendString(potion.name)}, ${bendString(potion.sprite)}, ${potion.heal}}`;
+    return `potion_def{${bendString(potionName)}, ${bendString(potion.sprite)}, ${potion.heal}}`;
   });
 
   const baseDeck = data.decks.base_deck.map((entry, index) => {
@@ -637,7 +833,7 @@ export function renderConfigModule(data: GameData): string {
   });
 
   const packs = data.boosters.packs.map((pack, index) => {
-    validateString(pack.name, `boosters.packs[${index}].name`);
+    const packName = requireContent(data, boosterNameKey(pack.id));
     validatePositiveInt(pack.price, `boosters.packs[${index}].price`);
     validatePositiveInt(pack.reveal_count, `boosters.packs[${index}].reveal_count`);
     const poolEntries = packPools.get(pack.id) ?? [];
@@ -654,7 +850,7 @@ export function renderConfigModule(data: GameData): string {
       }
       return `pack_pool_entry{${renderCardRef(card)}, ${entry.weight}}`;
     });
-    return `pack_def{${bendString(pack.name)}, ${pack.price}, ${pack.reveal_count}, ${pack.allow_duplicates ? 1 : 0}, ${bendList(renderedPool, 6)}}`;
+    return `pack_def{${bendString(packName)}, ${pack.price}, ${pack.reveal_count}, ${pack.allow_duplicates ? 1 : 0}, ${bendList(renderedPool, 6)}}`;
   });
 
   return [
@@ -727,9 +923,7 @@ export function renderHeroPresentationModule(data: GameData): string {
     if (presentationByHeroId.has(heroId)) {
       fail(`duplicate hero presentation for "${heroId}"`);
     }
-    validateString(presentation.ultimate_title, `presentation.heroes[${index}].ultimate_title`);
     validateString(presentation.ultimate_icon, `presentation.heroes[${index}].ultimate_icon`);
-    validateString(presentation.ultimate_description, `presentation.heroes[${index}].ultimate_description`);
     renderPresentationAlign(presentation.name_align, `presentation.heroes[${index}].name_align`);
     presentationByHeroId.set(heroId, presentation);
   });
@@ -739,7 +933,9 @@ export function renderHeroPresentationModule(data: GameData): string {
     if (presentation === undefined) {
       fail(`presentation is missing hero_id "${hero.id}"`);
     }
-    return `hero_presentation{${bendString(hero.id)}, ${renderPresentationAlign(presentation.name_align, `presentation["${hero.id}"].name_align`)}, ${bendString(presentation.ultimate_title)}, ${bendString(presentation.ultimate_icon)}, ${bendString(presentation.ultimate_description)}}`;
+    const ultimateTitle = requireContent(data, heroUltimateTitleKey(hero.id));
+    const ultimateDesc = requireContent(data, heroUltimateDescKey(hero.id));
+    return `hero_presentation{${bendString(hero.id)}, ${renderPresentationAlign(presentation.name_align, `presentation["${hero.id}"].name_align`)}, ${bendString(ultimateTitle)}, ${bendString(presentation.ultimate_icon)}, ${bendString(ultimateDesc)}}`;
   });
 
   return [
@@ -752,11 +948,29 @@ export function renderHeroPresentationModule(data: GameData): string {
   ].join("\n");
 }
 
+export function renderContentModule(data: GameData): string {
+  assertValidGameData(data);
+  const keys = [...new Set([...Object.keys(data.content.en), ...requiredContentKeys(data)])].sort();
+  const usedNames = new Set<string>();
+  const functions = keys.map((key) => {
+    let name = contentFunctionName(key);
+    let suffix = 2;
+    while (usedNames.has(name)) {
+      name = `${contentFunctionName(key)}_${suffix}`;
+      suffix += 1;
+    }
+    usedNames.add(name);
+    return [`def ${name}() -> String:`, `  ${bendString(requireContent(data, key))}`].join("\n");
+  });
+  return [...functions, ""].join("\n\n");
+}
+
 export async function generateDungeonConfig(cwd: string): Promise<void> {
   const data = await loadGameData(cwd);
   await Promise.all([
     Bun.write(path.resolve(cwd, "src/Dungeon/generated_config.bend"), renderConfigModule(data)),
     Bun.write(path.resolve(cwd, "src/Dungeon/generated_hero_presentation.bend"), renderHeroPresentationModule(data)),
     Bun.write(path.resolve(cwd, "src/Dungeon/generated_rules.bend"), renderRulesModule(data)),
+    Bun.write(path.resolve(cwd, "src/Dungeon/generated_content.bend"), renderContentModule(data)),
   ]);
 }

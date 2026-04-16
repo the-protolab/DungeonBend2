@@ -2,15 +2,16 @@
   {
     "hero_id": "adventurer",
     "name_align": "center",
-    "ultimate_title": "Ultimate",
-    "ultimate_icon": "assets/item-sword.png",
-    "ultimate_description": "Refills the dungeon with new cards while keeping the hero in place."
+    "ultimate_icon": "assets/item-sword.png"
   },
   {
     "hero_id": "gato_de_botas",
     "name_align": "center",
-    "ultimate_title": "Ultimate",
-    "ultimate_icon": "assets/item-sword.png",
-    "ultimate_description": "Refills the dungeon with new cards while keeping the hero in place."
+    "ultimate_icon": "assets/item-sword.png"
+  },
+  {
+    "hero_id": "hero_3",
+    "name_align": "center",
+    "ultimate_icon": "assets/item-sword.png"
   }
 ]

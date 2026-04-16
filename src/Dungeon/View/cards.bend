@@ -12,12 +12,13 @@ import /Dungeon/hero_helpers/hero_sprite as hero_sprite
 import /Dungeon/View/assets_and_labels/_tile_name as _tile_name
 import /Dungeon/View/assets_and_labels/_tile_sprite as _tile_sprite
 import /Dungeon/View/assets_and_labels/_tile_badge as _tile_badge
+import /Dungeon/Content/ as Content
 
 def _hero_card_values(hero_value: HeroDef, hero_hp: U32, hero_max_hp: U32, weapon_value: Weapon, hp_fx: HpFx, dmg_fx: DmgFx) -> HTML(DungeonEvent):
   Card.neutral(
     DungeonEvent,
     <div class={_hero_card_class(dmg_fx)} data-dmg={_hero_damage_attr(weapon_value)}>
-      <div class={_hero_hp_badge_class(hp_fx)}>{text{"HP " ++ U32.show(hero_hp) ++ "/" ++ U32.show(hero_max_hp)}}</div>
+      <div class={_hero_hp_badge_class(hp_fx)}>{text{Content.stat_hp() ++ " " ++ U32.show(hero_hp) ++ "/" ++ U32.show(hero_max_hp)}}</div>
       <div class="card__art-wrap">
         <img class="card__art" src={hero_sprite(hero_value)} alt={hero_name(hero_value)} />
       </div>
@@ -56,7 +57,7 @@ def _hero_damage_attr(weapon_value: Weapon) -> String:
     case no_weapon{}:
       ""
     case weapon{ref, dmg}:
-      "DMG " ++ U32.show(dmg)
+      Content.stat_dmg() ++ " " ++ U32.show(dmg)
 
 def _tile_card(tile: Tile) -> HTML(DungeonEvent):
   match tile:
@@ -64,7 +65,7 @@ def _tile_card(tile: Tile) -> HTML(DungeonEvent):
       Card.neutral(
         DungeonEvent,
         <div class="card card--empty">
-          <div class="card__empty">{text{"Empty"}}</div>
+          <div class="card__empty">{text{Content.card_empty()}}</div>
         </div>,
         [padding_none{}]
       )

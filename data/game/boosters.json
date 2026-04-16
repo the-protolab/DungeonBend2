@@ -3,20 +3,27 @@
     {
       "id": "starter_booster",
       "name": "Starter Booster",
-      "price": 80,
+      "price": 1,
       "reveal_count": 3,
       "allow_duplicates": false
+    },
+    {
+      "id": "pack_2",
+      "name": "Onde fica?",
+      "price": 20,
+      "reveal_count": 3,
+      "allow_duplicates": true
     }
   ],
   "pool": [
     {
       "pack_id": "starter_booster",
-      "card_id": "rat",
+      "card_id": "potion_2",
       "weight": 1
     },
     {
       "pack_id": "starter_booster",
-      "card_id": "spider",
+      "card_id": "weapon_4",
       "weight": 1
     },
     {
@@ -41,12 +48,22 @@
     },
     {
       "pack_id": "starter_booster",
-      "card_id": "sword_3",
+      "card_id": "monster_5",
       "weight": 1
     },
     {
       "pack_id": "starter_booster",
       "card_id": "potion_1",
+      "weight": 1
+    },
+    {
+      "pack_id": "pack_2",
+      "card_id": "monster_6",
+      "weight": 1
+    },
+    {
+      "pack_id": "pack_2",
+      "card_id": "monster_5",
       "weight": 1
     }
   ]
