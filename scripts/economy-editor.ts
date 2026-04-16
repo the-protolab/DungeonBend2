@@ -6,6 +6,8 @@ import {
   getGameDataErrors,
   getGameDataErrorsWithAssets,
   loadGameData,
+  loadGameDataForEditor,
+  normalizeHeroUpgradeLevels,
   writeGameData,
   type GameData,
 } from "./dungeon-data.ts";
@@ -392,11 +394,12 @@ async function handleRequest(req: Request): Promise<Response> {
 
   try {
     if (url.pathname === "/api/game-data" && req.method === "GET") {
-      const data = await loadGameData(cwd);
+      const { data, normalizedHeroUpgradeLevels } = await loadGameDataForEditor(cwd);
       const editorMetadata = await readEditorMetadata();
       return jsonResponse({
         data,
         editorMetadata,
+        normalizedHeroUpgradeLevels,
         errors: [
           ...(await getGameDataErrorsWithAssets(cwd, data)),
           ...getEditorMetadataErrors(data, editorMetadata),
@@ -438,6 +441,7 @@ async function handleRequest(req: Request): Promise<Response> {
 
     if (url.pathname === "/api/game-data" && req.method === "PUT") {
       const { data, editorMetadata } = unpackGameDataPayload(await req.json());
+      normalizeHeroUpgradeLevels(data);
       const errors = [
         ...(await getGameDataErrorsWithAssets(cwd, data)),
         ...getEditorMetadataErrors(data, editorMetadata),

@@ -200,17 +200,22 @@ async function loadData() {
   const assetsBody = assetsRes.ok ? await assetsRes.json() : { assets: [] };
   normalizeDataShape(body.data);
   state.data = body.data;
+  const normalizedHeroUpgradeLevels = Boolean(body.normalizedHeroUpgradeLevels) || normalizeAllHeroUpgradeLevels();
   state.editorMetadata = normalizeEditorMetadataShape(body.editorMetadata);
   state.assets = Array.isArray(assetsBody.assets) ? assetsBody.assets : [];
   state.serverErrors = body.errors || [];
   state.assetErrors.clear();
-  state.dirty = false;
+  state.dirty = normalizedHeroUpgradeLevels;
   lockCurrentIds(state.data);
   if (!state.selectedHeroId || !heroById(state.selectedHeroId)) {
     state.selectedHeroId = state.data.heroes[0]?.id || "";
   }
   render();
-  setStatus(state.serverErrors.length > 0 ? "Data loaded with validation warnings" : "Data loaded", state.serverErrors.length > 0 ? "error" : "success");
+  if (normalizedHeroUpgradeLevels) {
+    setStatus("Hero upgrade levels were renumbered. Save to update JSON.");
+  } else {
+    setStatus(state.serverErrors.length > 0 ? "Data loaded with validation warnings" : "Data loaded", state.serverErrors.length > 0 ? "error" : "success");
+  }
 }
 
 async function saveData() {
@@ -220,6 +225,7 @@ async function saveData() {
   saveButton.disabled = true;
   setStatus("Saving JSON and regenerating Bend...");
   try {
+    normalizeAllHeroUpgradeLevels();
     updateLegacyNamesFromContent();
     const res = await fetch("/api/game-data", {
       method: "PUT",
@@ -709,6 +715,30 @@ function heroCurveSummary(hero) {
   };
 }
 
+function normalizeAllHeroUpgradeLevels() {
+  if (!state.data?.heroes || !state.data?.hero_upgrades) {
+    return false;
+  }
+  let changed = false;
+  state.data.heroes.forEach((hero) => {
+    const rows = upgradesForHero(hero.id);
+    rows.forEach((row, index) => {
+      const nextLevel = index + 1;
+      if (row.level !== nextLevel) {
+        row.level = nextLevel;
+        changed = true;
+      }
+    });
+  });
+  return changed;
+}
+
+function normalizeAndMarkHeroUpgradeLevels() {
+  if (normalizeAllHeroUpgradeLevels()) {
+    markDirty();
+  }
+}
+
 function renderTabs() {
   tabsNode.replaceChildren();
   tabs.forEach(([id, label]) => {
@@ -812,6 +842,16 @@ function numberInput(value, onInput, options = {}) {
   }
   input.addEventListener("input", () => onInput(Number(input.value)));
   return input;
+}
+
+function unitNumberInput(value, unit, onInput) {
+  const wrap = document.createElement("div");
+  wrap.className = "unit-input";
+  const input = numberInput(value, onInput);
+  const label = document.createElement("span");
+  label.textContent = unit;
+  wrap.append(input, label);
+  return wrap;
 }
 
 function checkboxInput(value, onChange) {
@@ -1236,20 +1276,36 @@ function addUpgradeLevel(heroId) {
     cost: previous ? Math.max(1, previous.cost) : 1,
     max_hp: previous ? previous.max_hp + 1 : Math.max(1, Number(hero?.base_max_hp) + 1),
   });
+  normalizeAllHeroUpgradeLevels();
   markDirty();
   render();
 }
 
-function normalizeHeroLevels(heroId) {
-  upgradesForHero(heroId).forEach((row, index) => {
-    row.level = index + 1;
-  });
+function removeLastUpgradeLevel(heroId) {
+  const rows = upgradesForHero(heroId);
+  if (rows.length <= 1) {
+    return;
+  }
+  const last = rows[rows.length - 1];
+  const index = state.data.hero_upgrades.indexOf(last);
+  if (index >= 0) {
+    state.data.hero_upgrades.splice(index, 1);
+  }
+  normalizeAllHeroUpgradeLevels();
   markDirty();
   render();
 }
 
 function duplicateCurve(targetHeroId, sourceHeroId) {
   if (!sourceHeroId || sourceHeroId === targetHeroId) {
+    return;
+  }
+  const targetHero = heroById(targetHeroId);
+  const sourceHero = heroById(sourceHeroId);
+  const targetName = targetHero ? displayContent(heroNameKey(targetHero.id), targetHero.name) : targetHeroId;
+  const sourceName = sourceHero ? displayContent(heroNameKey(sourceHero.id), sourceHero.name) : sourceHeroId;
+  const confirmed = window.confirm(`Replace ${targetName}'s upgrade curve with ${sourceName}'s curve?`);
+  if (!confirmed) {
     return;
   }
   state.data.hero_upgrades = state.data.hero_upgrades.filter((row) => row.hero_id !== targetHeroId);
@@ -1261,38 +1317,26 @@ function duplicateCurve(targetHeroId, sourceHeroId) {
       max_hp: row.max_hp,
     });
   });
+  normalizeAllHeroUpgradeLevels();
   markDirty();
   render();
 }
 
 function renderHeroUpgrades() {
+  normalizeAndMarkHeroUpgradeLevels();
   if (!heroById(state.selectedHeroId)) {
     state.selectedHeroId = state.data.heroes[0]?.id || "";
   }
   const selectedHero = heroById(state.selectedHeroId);
-  const heroSelect = selectInput(
-    state.selectedHeroId,
-    state.data.heroes.map((hero) => [hero.id, displayContent(heroNameKey(hero.id), hero.name)]),
-    (value) => {
-      state.selectedHeroId = value;
-      render();
-    }
-  );
-  const sourceSelect = selectInput("", [["", "Duplicate from..."], ...state.data.heroes.filter((hero) => hero.id !== state.selectedHeroId).map((hero) => [hero.id, displayContent(heroNameKey(hero.id), hero.name)])], () => {});
   const actions = [
-    viewButton("Curve", state.upgradeView === "curve", () => {
+    viewButton("Edit curve", state.upgradeView === "curve", () => {
       state.upgradeView = "curve";
       render();
     }),
-    viewButton("Compare", state.upgradeView === "compare", () => {
+    viewButton("Compare heroes", state.upgradeView === "compare", () => {
       state.upgradeView = "compare";
       render();
     }),
-    heroSelect,
-    addButton("Add level", () => addUpgradeLevel(state.selectedHeroId)),
-    sourceSelect,
-    addButton("Duplicate curve", () => duplicateCurve(state.selectedHeroId, sourceSelect.value)),
-    addButton("Normalize levels", () => normalizeHeroLevels(state.selectedHeroId)),
   ];
 
   if (!selectedHero) {
@@ -1301,7 +1345,7 @@ function renderHeroUpgrades() {
   }
 
   const fragment = document.createDocumentFragment();
-  fragment.append(panelHeader("Hero Upgrades", "Edit upgrade curves by hero, with compare view for economy checks", actions));
+  fragment.append(panelHeader("Hero Upgrades", "Set how much each hero upgrade costs and how much max HP it unlocks.", actions));
   if (state.upgradeView === "compare") {
     fragment.append(renderHeroUpgradeCompare());
   } else {
@@ -1312,30 +1356,55 @@ function renderHeroUpgrades() {
 
 function renderHeroUpgradeCurve(hero) {
   const fragment = document.createDocumentFragment();
+  const layout = document.createElement("div");
+  layout.className = "hero-upgrade-layout";
+
+  const heroPicker = document.createElement("section");
+  heroPicker.className = "hero-upgrade-section";
+  const heroPickerTitle = document.createElement("h3");
+  heroPickerTitle.textContent = "Editing hero";
+  const heroSelect = selectInput(
+    state.selectedHeroId,
+    state.data.heroes.map((row) => [row.id, displayContent(heroNameKey(row.id), row.name)]),
+    (value) => {
+      state.selectedHeroId = value;
+      render();
+    }
+  );
+  heroPicker.append(heroPickerTitle, field("Hero", heroSelect));
+  layout.append(heroPicker);
+
   const summary = heroCurveSummary(hero);
+  const summarySection = document.createElement("section");
+  summarySection.className = "hero-upgrade-section";
+  const summaryTitle = document.createElement("h3");
+  summaryTitle.textContent = "Progression summary";
   const summaryGrid = document.createElement("div");
   summaryGrid.className = "grid summary-grid";
   summaryGrid.append(
-    statPill("Base HP", hero.base_max_hp),
-    statPill("Final HP", summary.finalHp),
-    statPill("Total Cost", summary.totalCost),
-    statPill("Levels", summary.levels),
-    statPill("HP Gain", `+${summary.hpGain}`),
-    statPill("Avg HP / Cost", summary.avgHpCost)
+    statPill("Starts", `${hero.base_max_hp} HP`),
+    statPill("Ends", `${summary.finalHp} HP`),
+    statPill("Total Cost", `${summary.totalCost} gold`),
+    statPill("Total Gain", `${summary.hpGain >= 0 ? "+" : ""}${summary.hpGain} HP`)
   );
-  fragment.append(summaryGrid);
+  summarySection.append(summaryTitle, summaryGrid);
+  layout.append(summarySection);
 
   const rows = upgradesForHero(hero.id);
   const tableRows = rows.map((row, index) => ({
     row,
     previousHp: index === 0 ? hero.base_max_hp : rows[index - 1].max_hp,
   }));
+  const curveSection = document.createElement("section");
+  curveSection.className = "hero-upgrade-section";
+  const curveTitle = document.createElement("h3");
+  curveTitle.textContent = `Upgrade curve for ${displayContent(heroNameKey(hero.id), hero.name)}`;
   const wrap = document.createElement("div");
   wrap.className = "table-wrap";
   const table = document.createElement("table");
   const thead = document.createElement("thead");
   const head = document.createElement("tr");
-  ["Level", "Cost", "Max HP", "HP Gain", "Curve Read"].forEach((label) => {
+  ["Upgrade", "Cost", "Max HP after upgrade", "HP gained"].forEach((label) => {
     const th = document.createElement("th");
     th.textContent = label;
     head.append(th);
@@ -1345,19 +1414,20 @@ function renderHeroUpgradeCurve(hero) {
   tableRows.forEach(({ row, previousHp }) => {
     const tr = document.createElement("tr");
     [
-      String(row.level),
-      numberInput(row.cost, (value) => {
+      `LV ${row.level} -> ${row.level + 1}`,
+      unitNumberInput(row.cost, "gold", (value) => {
         row.cost = value;
+        normalizeAllHeroUpgradeLevels();
         markDirty();
         render();
       }),
-      numberInput(row.max_hp, (value) => {
+      unitNumberInput(row.max_hp, "HP", (value) => {
         row.max_hp = value;
+        normalizeAllHeroUpgradeLevels();
         markDirty();
         render();
       }),
       `${row.max_hp - previousHp >= 0 ? "+" : ""}${row.max_hp - previousHp}`,
-      `pay ${row.cost} -> max HP ${row.max_hp}`,
     ].forEach((value) => {
       const td = document.createElement("td");
       if (value instanceof HTMLElement) {
@@ -1371,7 +1441,38 @@ function renderHeroUpgradeCurve(hero) {
   });
   table.append(thead, tbody);
   wrap.append(table);
-  fragment.append(wrap);
+  const tableActions = document.createElement("div");
+  tableActions.className = "hero-upgrade-actions";
+  tableActions.append(addButton("Add upgrade level", () => addUpgradeLevel(hero.id)));
+  const removeButton = addButton("Remove last level", () => removeLastUpgradeLevel(hero.id));
+  removeButton.disabled = rows.length <= 1;
+  tableActions.append(removeButton);
+  curveSection.append(curveTitle, wrap, tableActions);
+  layout.append(curveSection);
+
+  const copySection = document.createElement("section");
+  copySection.className = "hero-upgrade-section";
+  const copyTitle = document.createElement("h3");
+  copyTitle.textContent = "Copy another hero's curve";
+  const copyRow = document.createElement("div");
+  copyRow.className = "hero-upgrade-copy-row";
+  let copyButton;
+  const sourceSelect = selectInput(
+    "",
+    [["", "Choose hero to copy from..."], ...state.data.heroes.filter((row) => row.id !== hero.id).map((row) => [row.id, displayContent(heroNameKey(row.id), row.name)])],
+    (value) => {
+      if (copyButton) {
+        copyButton.disabled = !value;
+      }
+    }
+  );
+  copyButton = addButton("Copy curve", () => duplicateCurve(hero.id, sourceSelect.value));
+  copyButton.disabled = true;
+  copyRow.append(field("Source hero", sourceSelect), copyButton);
+  copySection.append(copyTitle, copyRow);
+  layout.append(copySection);
+
+  fragment.append(layout);
   return fragment;
 }
 
@@ -1394,6 +1495,9 @@ function renderHeroUpgradeCompare() {
       head.append(th);
     });
   }
+  const actionTh = document.createElement("th");
+  actionTh.textContent = "Action";
+  head.append(actionTh);
   thead.append(head);
 
   const tbody = document.createElement("tbody");
@@ -1411,22 +1515,21 @@ function renderHeroUpgradeCompare() {
       const costTd = document.createElement("td");
       const hpTd = document.createElement("td");
       if (row) {
-        costTd.append(numberInput(row.cost, (value) => {
-          row.cost = value;
-          markDirty();
-          render();
-        }));
-        hpTd.append(numberInput(row.max_hp, (value) => {
-          row.max_hp = value;
-          markDirty();
-          render();
-        }));
+        costTd.textContent = row.cost;
+        hpTd.textContent = row.max_hp;
       } else {
         costTd.textContent = "--";
         hpTd.textContent = "--";
       }
       tr.append(costTd, hpTd);
     }
+    const actionTd = document.createElement("td");
+    actionTd.append(addButton("Edit curve", () => {
+      state.selectedHeroId = hero.id;
+      state.upgradeView = "curve";
+      render();
+    }));
+    tr.append(actionTd);
     tbody.append(tr);
   });
   table.append(thead, tbody);

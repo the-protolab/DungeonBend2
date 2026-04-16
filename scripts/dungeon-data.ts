@@ -215,8 +215,8 @@ function jsonBlock(value: unknown): string {
   return `${JSON.stringify(value, null, 2)}\n`;
 }
 
-export async function loadGameData(cwd: string): Promise<GameData> {
-  const data = {
+async function readGameDataFiles(cwd: string): Promise<GameData> {
+  return {
     heroes: await readJson<RawHero[]>(cwd, DATA_FILES.heroes),
     hero_upgrades: await readJson<RawHeroUpgrade[]>(cwd, DATA_FILES.hero_upgrades),
     monsters: await readJson<RawMonster[]>(cwd, DATA_FILES.monsters),
@@ -232,8 +232,48 @@ export async function loadGameData(cwd: string): Promise<GameData> {
       en: await readJson<RawContent>(cwd, DATA_FILES.contentEn),
     },
   };
+}
+
+export function normalizeHeroUpgradeLevels(data: GameData): boolean {
+  if (!Array.isArray(data?.heroes) || !Array.isArray(data?.hero_upgrades)) {
+    return false;
+  }
+
+  let changed = false;
+  data.heroes.forEach((hero) => {
+    if (typeof hero?.id !== "string") {
+      return;
+    }
+    const rows = data.hero_upgrades
+      .filter((upgrade) => upgrade?.hero_id === hero.id)
+      .slice()
+      .sort((a, b) => {
+        const left = Number.isFinite(Number(a?.level)) ? Number(a.level) : Number.MAX_SAFE_INTEGER;
+        const right = Number.isFinite(Number(b?.level)) ? Number(b.level) : Number.MAX_SAFE_INTEGER;
+        return left - right;
+      });
+    rows.forEach((upgrade, index) => {
+      const nextLevel = index + 1;
+      if (upgrade.level !== nextLevel) {
+        upgrade.level = nextLevel;
+        changed = true;
+      }
+    });
+  });
+  return changed;
+}
+
+export async function loadGameData(cwd: string): Promise<GameData> {
+  const data = await readGameDataFiles(cwd);
   assertValidGameData(data);
   return data;
+}
+
+export async function loadGameDataForEditor(cwd: string): Promise<{ data: GameData; normalizedHeroUpgradeLevels: boolean }> {
+  const data = await readGameDataFiles(cwd);
+  const normalizedHeroUpgradeLevels = normalizeHeroUpgradeLevels(data);
+  assertValidGameData(data);
+  return { data, normalizedHeroUpgradeLevels };
 }
 
 export async function writeGameData(cwd: string, data: GameData): Promise<void> {

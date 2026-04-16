@@ -437,6 +437,51 @@ button.segmented.active {
   margin-bottom: 12px;
 }
 
+.hero-upgrade-layout {
+  display: grid;
+  gap: 18px;
+}
+
+.hero-upgrade-section {
+  display: grid;
+  gap: 10px;
+}
+
+.hero-upgrade-section + .hero-upgrade-section {
+  padding-top: 18px;
+  border-top: 1px solid var(--line);
+}
+
+.hero-upgrade-section h3 {
+  margin: 0;
+  font-size: 16px;
+}
+
+.hero-upgrade-actions,
+.hero-upgrade-copy-row {
+  display: flex;
+  align-items: end;
+  gap: 8px;
+  flex-wrap: wrap;
+}
+
+.hero-upgrade-copy-row .field {
+  flex: 1 1 260px;
+}
+
+.unit-input {
+  display: grid;
+  grid-template-columns: minmax(100px, 1fr) auto;
+  align-items: center;
+}
+
+.unit-input span {
+  padding: 0 10px;
+  color: var(--muted);
+  font-weight: 700;
+  white-space: nowrap;
+}
+
 .invalid-input {
   outline: 2px solid rgba(179, 38, 30, 0.35);
   outline-offset: -2px;
