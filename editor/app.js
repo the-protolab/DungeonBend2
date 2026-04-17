@@ -580,15 +580,33 @@ function editorMetadataForSave() {
 
 function packColorPicker(pack) {
   const currentColor = displayPackColor(pack.id);
-  const details = document.createElement("details");
-  details.className = "pack-color-picker";
+  const wrap = document.createElement("div");
+  wrap.className = "pack-color-picker";
 
-  const summary = document.createElement("summary");
-  summary.className = `pack-color-current pack-color-${currentColor}`;
-  summary.setAttribute("aria-label", `Pack color: ${currentColor}`);
-  summary.title = currentColor;
-  details.append(summary);
+  const trigger = document.createElement("button");
+  trigger.type = "button";
+  trigger.className = `pack-color-current pack-color-${currentColor}`;
+  trigger.setAttribute("aria-label", `Pack color: ${currentColor}`);
+  trigger.title = currentColor;
+  trigger.addEventListener("click", (event) => {
+    event.preventDefault();
+    event.stopPropagation();
+    openPackColorPalette(pack, trigger);
+  });
+  wrap.append(trigger);
+  return wrap;
+}
 
+function closePackColorPalette() {
+  document.querySelectorAll(".pack-color-palette").forEach((node) => node.remove());
+  document.removeEventListener("click", closePackColorPalette);
+  window.removeEventListener("resize", closePackColorPalette);
+  window.removeEventListener("scroll", closePackColorPalette, true);
+}
+
+function openPackColorPalette(pack, trigger) {
+  closePackColorPalette();
+  const currentColor = displayPackColor(pack.id);
   const palette = document.createElement("div");
   palette.className = "pack-color-palette";
   boosterColorTokens.forEach((color) => {
@@ -599,14 +617,23 @@ function packColorPicker(pack) {
     button.title = color;
     button.addEventListener("click", (event) => {
       event.preventDefault();
+      event.stopPropagation();
       setPackColor(pack.id, color);
-      details.removeAttribute("open");
+      closePackColorPalette();
       render();
     });
     palette.append(button);
   });
-  details.append(palette);
-  return details;
+
+  const rect = trigger.getBoundingClientRect();
+  palette.style.left = `${Math.round(rect.left)}px`;
+  palette.style.top = `${Math.round(rect.bottom + 6)}px`;
+  document.body.append(palette);
+  setTimeout(() => {
+    document.addEventListener("click", closePackColorPalette);
+    window.addEventListener("resize", closePackColorPalette);
+    window.addEventListener("scroll", closePackColorPalette, true);
+  }, 0);
 }
 
 function presentationForHero(heroId) {
@@ -890,6 +917,26 @@ function statPill(label, value) {
   return item;
 }
 
+function overviewLinkPill(label, value, targetTab) {
+  const item = statPill(label, value);
+  item.classList.add("overview-link");
+  item.tabIndex = 0;
+  item.role = "button";
+  item.setAttribute("aria-label", `Open ${label}`);
+  item.addEventListener("click", () => {
+    state.active = targetTab;
+    render();
+  });
+  item.addEventListener("keydown", (event) => {
+    if (event.key === "Enter" || event.key === " ") {
+      event.preventDefault();
+      state.active = targetTab;
+      render();
+    }
+  });
+  return item;
+}
+
 function valueFor(row, column) {
   if (column.get) {
     return column.get(row);
@@ -1038,17 +1085,17 @@ function renderOverview() {
   const grid = document.createElement("div");
   grid.className = "grid";
   [
-    ["Heroes", data.heroes.length],
-    ["Hero upgrades", data.hero_upgrades.length],
-    ["Monsters", data.monsters.length],
-    ["Weapons", data.weapons.length],
-    ["Potions", data.potions.length],
-    ["Base deck rows", data.decks.base_deck.length],
-    ["Booster packs", data.boosters.packs.length],
-    ["Booster pool rows", data.boosters.pool.length],
-    ["Content keys", Object.keys(content()).length],
-    ["Validation issues", issues.length],
-  ].forEach(([label, value]) => grid.append(statPill(label, value)));
+    ["Heroes", data.heroes.length, "heroes"],
+    ["Hero upgrades", data.hero_upgrades.length, "hero_upgrades"],
+    ["Monsters", data.monsters.length, "monsters"],
+    ["Weapons", data.weapons.length, "weapons"],
+    ["Potions", data.potions.length, "potions"],
+    ["Base deck rows", data.decks.base_deck.length, "base_deck"],
+    ["Booster packs", data.boosters.packs.length, "booster_packs"],
+    ["Booster pool rows", data.boosters.pool.length, "booster_pool"],
+    ["Content keys", Object.keys(content()).length, "content"],
+    ["Validation issues", issues.length, "validation"],
+  ].forEach(([label, value, targetTab]) => grid.append(overviewLinkPill(label, value, targetTab)));
   fragment.append(grid);
   const note = document.createElement("p");
   note.className = "note";

@@ -345,6 +345,19 @@ td input[type="checkbox"] {
   color: var(--muted);
 }
 
+.overview-link {
+  cursor: pointer;
+  transition: transform 120ms ease, border-color 120ms ease, box-shadow 120ms ease;
+}
+
+.overview-link:hover,
+.overview-link:focus {
+  transform: scale(1.025);
+  border-color: var(--accent);
+  box-shadow: 0 6px 14px rgba(28, 31, 35, 0.12);
+  outline: none;
+}
+
 .toolbar {
   display: flex;
   gap: 8px;
@@ -740,7 +753,6 @@ button.segmented.active {
 }
 
 .pack-color-picker {
-  position: relative;
   display: grid;
   place-items: center;
   min-width: 40px;
@@ -750,23 +762,19 @@ button.segmented.active {
 .pack-color-current {
   display: block;
   width: 22px;
+  min-width: 22px;
   height: 22px;
+  min-height: 22px;
+  padding: 0;
   border: 1px solid var(--line-strong);
   border-radius: 6px;
   background: var(--pack-color);
   cursor: pointer;
-  list-style: none;
-}
-
-.pack-color-current::-webkit-details-marker {
-  display: none;
 }
 
 .pack-color-palette {
-  position: absolute;
-  top: 30px;
-  left: 6px;
-  z-index: 4;
+  position: fixed;
+  z-index: 20;
   display: grid;
   grid-template-columns: repeat(5, 22px);
   gap: 5px;
