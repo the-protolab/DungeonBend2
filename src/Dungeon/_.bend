@@ -245,8 +245,13 @@ type Impact {
   impact{pos: Nat/V2, fx: ImpactFx}
 }
 
+type DamageOverlay {
+  no_damage_overlay{}
+  damage_overlay{pos: Nat/V2, trigger: ImpactFx, base_tile: Tile, state: Midum/Image/State}
+}
+
 type UiState {
-  ui_state{hp_fx: HpFx, dmg_fx: DmgFx, impact: Impact}
+  ui_state{hp_fx: HpFx, dmg_fx: DmgFx, impact: Impact, damage_overlay: DamageOverlay}
 }
 
 type DungeonState {
@@ -269,6 +274,7 @@ type DungeonEvent {
   done_reward{}
   ultimate{}
   move{dir: Direction}
+  damage_tick{}
   ok{}
   resume_dungeon{}
   abandon_dungeon{}

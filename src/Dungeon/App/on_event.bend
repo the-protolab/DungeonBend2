@@ -6,4 +6,4 @@ import /Dungeon/App/persistence/finalize_update as finalize_update
 
 def on_event(evt: DungeonEvent, state: DungeonState) -> App/Update(DungeonState, DungeonEvent):
   next = _next_state(evt, state);
-  finalize_update(state, next)
+  finalize_update(evt, state, next)

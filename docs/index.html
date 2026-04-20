@@ -210,6 +210,8 @@ export const Dungeon$ImpactFx = null;
 
 export const Dungeon$Impact = null;
 
+export const Dungeon$DamageOverlay = null;
+
 export const Dungeon$UiState = null;
 
 export const Dungeon$DungeonState = null;
@@ -227,6 +229,10 @@ export const Nat$Map = null;
 export const Ord$Map = null;
 
 export const Nat$V2 = null;
+
+export const Midum$Image$State = null;
+
+export const Bool = null;
 
 export function $Dungeon$initial_game() {
   var _r0;
@@ -2450,7 +2456,9 @@ export function $Dungeon$default_ui() {
   _v2 = ({$: "dmg_fx_none"});
   var _v3;
   _v3 = ({$: "no_impact"});
-  _r0 = ({$: "ui_state", hp_fx: _v1, dmg_fx: _v2, impact: _v3});
+  var _v4;
+  _v4 = ({$: "no_damage_overlay"});
+  _r0 = ({$: "ui_state", hp_fx: _v1, dmg_fx: _v2, impact: _v3, damage_overlay: _v4});
   return _r0;
 }
 
@@ -6457,8 +6465,6 @@ export function $Char$eq(x, x$1) {
 }
 
 export const Char$eq = () => ((a0) => ((a1) => ($Char$eq(a0, a1))));
-
-export const Bool = null;
 
 export function $String$eq(x, x$1) {
   while (true) {
@@ -12901,7 +12907,7 @@ export function $Midum$screen(_Event, body$1) {
   var _v47;
   var _v48;
   var _v49;
-  _v49 = Midum$Internal$DOM$Card$base_css();
+  _v49 = Midum$Internal$DOM$Image$base_css();
   _v48 = ({$: "text", value: _v49});
   var _v50;
   _v50 = ({$: "nil"});
@@ -12916,7 +12922,7 @@ export function $Midum$screen(_Event, body$1) {
   var _v55;
   var _v56;
   var _v57;
-  _v57 = Midum$Internal$DOM$Card$role_css();
+  _v57 = Midum$Internal$DOM$Card$base_css();
   _v56 = ({$: "text", value: _v57});
   var _v58;
   _v58 = ({$: "nil"});
@@ -12931,7 +12937,7 @@ export function $Midum$screen(_Event, body$1) {
   var _v63;
   var _v64;
   var _v65;
-  _v65 = Midum$Internal$DOM$Card$style_css();
+  _v65 = Midum$Internal$DOM$Card$role_css();
   _v64 = ({$: "text", value: _v65});
   var _v66;
   _v66 = ({$: "nil"});
@@ -12940,51 +12946,51 @@ export function $Midum$screen(_Event, body$1) {
   var _v67;
   var _v68;
   var _v69;
-  _v69 = "script";
+  _v69 = "style";
   var _v70;
   _v70 = ({$: "nil"});
   var _v71;
   var _v72;
   var _v73;
-  _v73 = Midum$Internal$DOM$Card$surface_script_0();
+  _v73 = Midum$Internal$DOM$Card$style_css();
   _v72 = ({$: "text", value: _v73});
   var _v74;
-  var _v75;
-  var _v76;
-  _v76 = Midum$Internal$DOM$Card$surface_script_1();
-  _v75 = ({$: "text", value: _v76});
-  var _v77;
-  var _v78;
-  var _v79;
-  _v79 = Midum$Internal$DOM$Card$surface_script_2();
-  _v78 = ({$: "text", value: _v79});
-  var _v80;
-  var _v81;
-  var _v82;
-  _v82 = Midum$Internal$DOM$Card$surface_script_3();
-  _v81 = ({$: "text", value: _v82});
-  var _v83;
-  _v83 = ({$: "nil"});
-  _v80 = ({$: "cons", head: _v81, tail: _v83});
-  _v77 = ({$: "cons", head: _v78, tail: _v80});
-  _v74 = ({$: "cons", head: _v75, tail: _v77});
+  _v74 = ({$: "nil"});
   _v71 = ({$: "cons", head: _v72, tail: _v74});
   _v68 = ({$: "node", tag: _v69, attrs: _v70, kids: _v71});
+  var _v75;
+  var _v76;
+  var _v77;
+  _v77 = "script";
+  var _v78;
+  _v78 = ({$: "nil"});
+  var _v79;
+  var _v80;
+  var _v81;
+  _v81 = Midum$Internal$DOM$Card$surface_script_0();
+  _v80 = ({$: "text", value: _v81});
+  var _v82;
+  var _v83;
   var _v84;
+  _v84 = Midum$Internal$DOM$Card$surface_script_1();
+  _v83 = ({$: "text", value: _v84});
   var _v85;
   var _v86;
-  _v86 = "style";
   var _v87;
-  _v87 = ({$: "nil"});
+  _v87 = Midum$Internal$DOM$Card$surface_script_2();
+  _v86 = ({$: "text", value: _v87});
   var _v88;
   var _v89;
   var _v90;
-  _v90 = Midum$Internal$DOM$Button$base_css();
+  _v90 = Midum$Internal$DOM$Card$surface_script_3();
   _v89 = ({$: "text", value: _v90});
   var _v91;
   _v91 = ({$: "nil"});
   _v88 = ({$: "cons", head: _v89, tail: _v91});
-  _v85 = ({$: "node", tag: _v86, attrs: _v87, kids: _v88});
+  _v85 = ({$: "cons", head: _v86, tail: _v88});
+  _v82 = ({$: "cons", head: _v83, tail: _v85});
+  _v79 = ({$: "cons", head: _v80, tail: _v82});
+  _v76 = ({$: "node", tag: _v77, attrs: _v78, kids: _v79});
   var _v92;
   var _v93;
   var _v94;
@@ -12994,7 +13000,7 @@ export function $Midum$screen(_Event, body$1) {
   var _v96;
   var _v97;
   var _v98;
-  _v98 = Midum$Internal$DOM$Button$role_css();
+  _v98 = Midum$Internal$DOM$Button$base_css();
   _v97 = ({$: "text", value: _v98});
   var _v99;
   _v99 = ({$: "nil"});
@@ -13009,7 +13015,7 @@ export function $Midum$screen(_Event, body$1) {
   var _v104;
   var _v105;
   var _v106;
-  _v106 = Midum$Internal$DOM$Button$style_css();
+  _v106 = Midum$Internal$DOM$Button$role_css();
   _v105 = ({$: "text", value: _v106});
   var _v107;
   _v107 = ({$: "nil"});
@@ -13024,7 +13030,7 @@ export function $Midum$screen(_Event, body$1) {
   var _v112;
   var _v113;
   var _v114;
-  _v114 = Midum$Internal$DOM$Text$css();
+  _v114 = Midum$Internal$DOM$Button$style_css();
   _v113 = ({$: "text", value: _v114});
   var _v115;
   _v115 = ({$: "nil"});
@@ -13032,15 +13038,31 @@ export function $Midum$screen(_Event, body$1) {
   _v109 = ({$: "node", tag: _v110, attrs: _v111, kids: _v112});
   var _v116;
   var _v117;
-  _v117 = body$1;
   var _v118;
-  _v118 = ({$: "nil"});
-  _v116 = ({$: "cons", head: _v117, tail: _v118});
+  _v118 = "style";
+  var _v119;
+  _v119 = ({$: "nil"});
+  var _v120;
+  var _v121;
+  var _v122;
+  _v122 = Midum$Internal$DOM$Text$css();
+  _v121 = ({$: "text", value: _v122});
+  var _v123;
+  _v123 = ({$: "nil"});
+  _v120 = ({$: "cons", head: _v121, tail: _v123});
+  _v117 = ({$: "node", tag: _v118, attrs: _v119, kids: _v120});
+  var _v124;
+  var _v125;
+  _v125 = body$1;
+  var _v126;
+  _v126 = ({$: "nil"});
+  _v124 = ({$: "cons", head: _v125, tail: _v126});
+  _v116 = ({$: "cons", head: _v117, tail: _v124});
   _v108 = ({$: "cons", head: _v109, tail: _v116});
   _v100 = ({$: "cons", head: _v101, tail: _v108});
   _v92 = ({$: "cons", head: _v93, tail: _v100});
-  _v84 = ({$: "cons", head: _v85, tail: _v92});
-  _v67 = ({$: "cons", head: _v68, tail: _v84});
+  _v75 = ({$: "cons", head: _v76, tail: _v92});
+  _v67 = ({$: "cons", head: _v68, tail: _v75});
   _v59 = ({$: "cons", head: _v60, tail: _v67});
   _v51 = ({$: "cons", head: _v52, tail: _v59});
   _v43 = ({$: "cons", head: _v44, tail: _v51});
@@ -14961,6 +14983,14 @@ export const Midum$Layout$ContainerConfig = null;
 export const Midum$Layout$FrameConfig = null;
 
 export const Midum$Layout$StackConfig = null;
+
+export function $Midum$Internal$DOM$Image$base_css() {
+  var _r0;
+  _r0 = "\n  .bc-image {\n    display: block;\n    max-width: 100%;\n    object-position: center;\n    background: transparent;\n  }\n\n  .bc-image--empty {\n    visibility: hidden;\n    pointer-events: none;\n  }\n\n  .bc-image-fit-contain {\n    object-fit: contain;\n  }\n\n  .bc-image-fit-cover {\n    object-fit: cover;\n  }\n\n  .bc-image-fit-stretch {\n    object-fit: fill;\n  }\n\n  .bc-image-sampling-smooth {\n    image-rendering: auto;\n  }\n\n  .bc-image-sampling-pixelated {\n    image-rendering: crisp-edges;\n    image-rendering: pixelated;\n  }\n  ";
+  return _r0;
+}
+
+export const Midum$Internal$DOM$Image$base_css = () => ($Midum$Internal$DOM$Image$base_css());
 
 export function $Midum$Internal$DOM$Card$primary(_Event, body$1, cfg$2) {
   var _r0;
@@ -17401,7 +17431,7 @@ export function $Dungeon$View$css$cards_css() {
   var _v1;
   _v1 = "";
   var _v2;
-  _v2 = ".board-slot{position:relative;}.board-slot>*{position:relative;z-index:1;}.board-slot::before{content:'';position:absolute;inset:-3px;border-radius:var(--radius-md);opacity:0;pointer-events:none;z-index:2;}.bc-card{width:100%;}.board .bc-card{min-height:0;aspect-ratio:1 / 1;}.board .bc-card,.board .bc-card *{pointer-events:none;}.card{position:relative;display:flex;min-height:170px;flex-direction:column;justify-content:space-between;padding:12px;background:transparent;border:0;border-radius:0;box-shadow:none;overflow:visible;}.card--tile{justify-content:flex-start;}.board .card{min-height:0;aspect-ratio:1 / 1;padding:10px;background:transparent;border:0;box-shadow:none;}.card__art-wrap{display:flex;flex:1;align-items:center;justify-content:center;padding:16px 10px;}.card__art{width:100%;max-width:116px;max-height:116px;object-fit:contain;}.card__label{font-size:0.95rem;font-weight:700;text-align:center;}.card__label--tile{padding-right:6px;}.card__badge{position:absolute;display:inline-flex;align-items:center;justify-content:center;min-height:34px;padding:6px 10px;border-radius:999px;background:#fff;border:1px solid var(--surface-border);font-size:0.78rem;font-weight:700;}.card__badge--hp{top:10px;right:10px;color:var(--danger);}.card__badge--value{left:10px;bottom:10px;}.board .card__art-wrap{padding:18px 4px 10px;}.board .card__art{max-width:clamp(44px,16vw,92px);max-height:clamp(44px,16vw,92px);}.board .card__label{font-size:clamp(0.64rem,2vw,0.82rem);line-height:1.05;}.board .card__label--tile{margin-bottom:6px;}.board .card__badge{min-height:28px;padding:4px 8px;font-size:0.68rem;}.board .card__badge--hp{top:8px;right:8px;}.board .card__badge--value{left:8px;bottom:8px;}.board .card--hero[data-dmg]::after{content:attr(data-dmg);position:absolute;left:8px;bottom:8px;display:inline-flex;align-items:center;justify-content:center;min-height:28px;padding:4px 8px;border-radius:999px;background:#fff;border:1px solid var(--surface-border);font-size:0.68rem;font-weight:700;color:#0f63c9;}.board .card--hero[data-dmg='']::after{content:none;}.card__empty{display:grid;flex:1;place-items:center;color:var(--text-muted);font-weight:700;letter-spacing:0.06em;text-transform:uppercase;}";
+  _v2 = ".board-slot{position:relative;}.board-slot>*{position:relative;z-index:1;}.board-slot::before{content:'';position:absolute;inset:-3px;border-radius:var(--radius-md);opacity:0;pointer-events:none;z-index:2;}.bc-card{width:100%;}.board .bc-card{min-height:0;aspect-ratio:1 / 1;}.board .bc-card,.board .bc-card *{pointer-events:none;}.card{position:relative;display:flex;min-height:170px;flex-direction:column;justify-content:space-between;padding:12px;background:transparent;border:0;border-radius:0;box-shadow:none;overflow:visible;}.card--tile{justify-content:flex-start;}.board .card{min-height:0;aspect-ratio:1 / 1;padding:10px;background:transparent;border:0;box-shadow:none;}.card__art-wrap{display:flex;flex:1;align-items:center;justify-content:center;padding:16px 10px;}.card__art-wrap--stacked{position:relative;overflow:visible;}.card__art-layer{display:flex;align-items:center;justify-content:center;}.card__art-layer--base{position:relative;z-index:1;}.card__art-layer--fx{position:absolute;inset:0;z-index:2;pointer-events:none;}.card__art{width:100%;max-width:116px;max-height:116px;object-fit:contain;}.card__label{font-size:0.95rem;font-weight:700;text-align:center;}.card__label--tile{padding-right:6px;}.card__badge{position:absolute;z-index:4;display:inline-flex;align-items:center;justify-content:center;min-height:34px;padding:6px 10px;border-radius:999px;background:#fff;border:1px solid var(--surface-border);font-size:0.78rem;font-weight:700;}.card__badge--hp{top:10px;right:10px;color:var(--danger);}.card__badge--value{left:10px;bottom:10px;}.board .card__art-wrap{padding:18px 4px 10px;}.board .card__art{max-width:clamp(44px,16vw,92px);max-height:clamp(44px,16vw,92px);}.board .card__label{font-size:clamp(0.64rem,2vw,0.82rem);line-height:1.05;}.board .card__label--tile{margin-bottom:6px;}.board .card__badge{min-height:28px;padding:4px 8px;font-size:0.68rem;}.board .card__badge--hp{top:8px;right:8px;}.board .card__badge--value{left:8px;bottom:8px;}.board .card--hero[data-dmg]::after{content:attr(data-dmg);position:absolute;z-index:4;left:8px;bottom:8px;display:inline-flex;align-items:center;justify-content:center;min-height:28px;padding:4px 8px;border-radius:999px;background:#fff;border:1px solid var(--surface-border);font-size:0.68rem;font-weight:700;color:#0f63c9;}.board .card--hero[data-dmg='']::after{content:none;}.card__empty{display:grid;flex:1;place-items:center;color:var(--text-muted);font-weight:700;letter-spacing:0.06em;text-transform:uppercase;}";
   _r0 = (_v1 + _v2);
   return _r0;
 }
@@ -29406,55 +29436,54 @@ export function $Dungeon$View$board$_render_dungeon(meta_state, scene_value$1, r
   _v2 = $Dungeon$profile_helpers$selected_hero(_v3);
   hero_value$4 = $Dungeon$hero_helpers$hero_at(_v1, _v2);
   var _v4;
+  _v4 = "div";
   var _v5;
-  _v5 = null;
   var _v6;
   var _v7;
-  _v7 = null;
+  _v7 = 125;
   var _v8;
+  _v8 = ({$: "damage_tick"});
+  _v6 = ({$: "every_ms", ms: _v7, msg: _v8});
   var _v9;
+  _v9 = ({$: "nil"});
+  _v5 = ({$: "cons", head: _v6, tail: _v9});
   var _v10;
-  _v10 = null;
   var _v11;
   var _v12;
-  _v12 = null;
   var _v13;
+  _v13 = null;
   var _v14;
-  _v14 = meta_state;
   var _v15;
-  _v15 = scene_value$1;
-  _v13 = $Dungeon$View$board$_dungeon_header(_v14, _v15);
+  _v15 = null;
   var _v16;
   var _v17;
-  _v17 = ({$: "width_full"});
   var _v18;
+  _v18 = null;
   var _v19;
-  _v19 = ({$: "height_fit"});
   var _v20;
+  _v20 = null;
   var _v21;
-  _v21 = ({$: "inset_none"});
   var _v22;
-  _v22 = ({$: "nil"});
-  _v20 = ({$: "cons", head: _v21, tail: _v22});
-  _v18 = ({$: "cons", head: _v19, tail: _v20});
-  _v16 = ({$: "cons", head: _v17, tail: _v18});
-  _v11 = $Midum$Layout$frame(_v12, _v13, _v16);
-  _v9 = $Midum$Layout$top(_v10, _v11);
+  _v22 = meta_state;
   var _v23;
+  _v23 = scene_value$1;
+  _v21 = $Dungeon$View$board$_dungeon_header(_v22, _v23);
   var _v24;
   var _v25;
-  _v25 = null;
+  _v25 = ({$: "width_full"});
   var _v26;
   var _v27;
-  _v27 = scene_value$1;
+  _v27 = ({$: "height_fit"});
   var _v28;
-  _v28 = run_value$2;
   var _v29;
-  _v29 = ui_value$3;
+  _v29 = ({$: "inset_none"});
   var _v30;
-  _v30 = hero_value$4;
-  _v26 = $Dungeon$View$board$_board_grid(_v27, _v28, _v29, _v30);
-  _v24 = $Midum$Layout$center(_v25, _v26);
+  _v30 = ({$: "nil"});
+  _v28 = ({$: "cons", head: _v29, tail: _v30});
+  _v26 = ({$: "cons", head: _v27, tail: _v28});
+  _v24 = ({$: "cons", head: _v25, tail: _v26});
+  _v19 = $Midum$Layout$frame(_v20, _v21, _v24);
+  _v17 = $Midum$Layout$top(_v18, _v19);
   var _v31;
   var _v32;
   var _v33;
@@ -29462,36 +29491,55 @@ export function $Dungeon$View$board$_render_dungeon(meta_state, scene_value$1, r
   var _v34;
   var _v35;
   _v35 = scene_value$1;
-  _v34 = $Dungeon$View$board$_ultimate_action(_v35);
-  _v32 = $Midum$Layout$bottom(_v33, _v34);
   var _v36;
+  _v36 = run_value$2;
   var _v37;
+  _v37 = ui_value$3;
   var _v38;
-  _v38 = scene_value$1;
-  _v37 = $Dungeon$View$board$_board_modal_layer(_v38);
+  _v38 = hero_value$4;
+  _v34 = $Dungeon$View$board$_board_grid(_v35, _v36, _v37, _v38);
+  _v32 = $Midum$Layout$center(_v33, _v34);
   var _v39;
-  _v39 = ({$: "nil"});
-  _v36 = ({$: "cons", head: _v37, tail: _v39});
-  _v31 = ({$: "cons", head: _v32, tail: _v36});
-  _v23 = ({$: "cons", head: _v24, tail: _v31});
-  _v8 = ({$: "cons", head: _v9, tail: _v23});
-  _v6 = $Midum$Layout$overlay(_v7, _v8);
   var _v40;
   var _v41;
-  _v41 = ({$: "width_full"});
+  _v41 = null;
   var _v42;
   var _v43;
-  _v43 = ({$: "height_full"});
+  _v43 = scene_value$1;
+  _v42 = $Dungeon$View$board$_ultimate_action(_v43);
+  _v40 = $Midum$Layout$bottom(_v41, _v42);
   var _v44;
   var _v45;
-  _v45 = ({$: "inset_none"});
   var _v46;
-  _v46 = ({$: "nil"});
-  _v44 = ({$: "cons", head: _v45, tail: _v46});
-  _v42 = ({$: "cons", head: _v43, tail: _v44});
-  _v40 = ({$: "cons", head: _v41, tail: _v42});
-  _v4 = $Midum$Layout$frame(_v5, _v6, _v40);
-  _r0 = $Dungeon$View$board$_dungeon_shell(_v4);
+  _v46 = scene_value$1;
+  _v45 = $Dungeon$View$board$_board_modal_layer(_v46);
+  var _v47;
+  _v47 = ({$: "nil"});
+  _v44 = ({$: "cons", head: _v45, tail: _v47});
+  _v39 = ({$: "cons", head: _v40, tail: _v44});
+  _v31 = ({$: "cons", head: _v32, tail: _v39});
+  _v16 = ({$: "cons", head: _v17, tail: _v31});
+  _v14 = $Midum$Layout$overlay(_v15, _v16);
+  var _v48;
+  var _v49;
+  _v49 = ({$: "width_full"});
+  var _v50;
+  var _v51;
+  _v51 = ({$: "height_full"});
+  var _v52;
+  var _v53;
+  _v53 = ({$: "inset_none"});
+  var _v54;
+  _v54 = ({$: "nil"});
+  _v52 = ({$: "cons", head: _v53, tail: _v54});
+  _v50 = ({$: "cons", head: _v51, tail: _v52});
+  _v48 = ({$: "cons", head: _v49, tail: _v50});
+  _v12 = $Midum$Layout$frame(_v13, _v14, _v48);
+  _v11 = $Dungeon$View$board$_dungeon_shell(_v12);
+  var _v55;
+  _v55 = ({$: "nil"});
+  _v10 = ({$: "cons", head: _v11, tail: _v55});
+  _r0 = ({$: "node", tag: _v4, attrs: _v5, kids: _v10});
   return _r0;
 }
 
@@ -30346,7 +30394,7 @@ export function $Dungeon$View$board$_board_idx(x, y$1) {
 
 export const Dungeon$View$board$_board_idx = () => ((a0) => ((a1) => ($Dungeon$View$board$_board_idx(a0, a1))));
 
-export function $Dungeon$View$board$_board_card_at(x, x$1, x$2, x$3) {
+export function $Dungeon$View$board$_board_card_at(x, x$1, x$2, x$3, x$4) {
   var _r0;
   switch (x.$) {
     case "run": {
@@ -30379,36 +30427,43 @@ export function $Dungeon$View$board$_board_card_at(x, x$1, x$2, x$3) {
           var _m13 = x$1.hp_fx;
           var _m14 = x$1.dmg_fx;
           var _m15 = x$1.impact;
+          var _m16 = x$1.damage_overlay;
           var hp_fx$12 = _m13;
           var dmg_fx$13 = _m14;
           var impact$14 = _m15;
-          var hero_value$15 = x$2;
-          var idx$16 = x$3;
-          var _v16;
+          var damage_overlay$15 = _m16;
+          var hero_value$16 = x$2;
+          var idx$17 = x$3;
+          var pos$18 = x$4;
           var _v17;
-          _v17 = hero_index$3;
           var _v18;
-          _v18 = idx$16;
-          _v16 = (_v17) === (_v18) ? 1 : 0;
+          _v18 = hero_index$3;
           var _v19;
-          _v19 = hero_value$15;
+          _v19 = idx$17;
+          _v17 = (_v18) === (_v19) ? 1 : 0;
           var _v20;
-          _v20 = hero_hp$1;
+          _v20 = hero_value$16;
           var _v21;
-          _v21 = hero_max_hp$2;
+          _v21 = hero_hp$1;
           var _v22;
-          _v22 = weapon$4;
+          _v22 = hero_max_hp$2;
           var _v23;
-          _v23 = hp_fx$12;
+          _v23 = weapon$4;
           var _v24;
-          _v24 = dmg_fx$13;
+          _v24 = hp_fx$12;
           var _v25;
+          _v25 = dmg_fx$13;
           var _v26;
-          _v26 = board_value$5;
           var _v27;
-          _v27 = idx$16;
-          _v25 = $Dungeon$Board$indexing$board_get(_v26, _v27);
-          _r0 = $Dungeon$View$board$_board_card_identity(_v16, _v19, _v20, _v21, _v22, _v23, _v24, _v25);
+          _v27 = board_value$5;
+          var _v28;
+          _v28 = idx$17;
+          _v26 = $Dungeon$Board$indexing$board_get(_v27, _v28);
+          var _v29;
+          _v29 = pos$18;
+          var _v30;
+          _v30 = damage_overlay$15;
+          _r0 = $Dungeon$View$board$_board_card_identity(_v17, _v20, _v21, _v22, _v23, _v24, _v25, _v26, _v29, _v30);
           break;
         }
         default: {
@@ -30426,9 +30481,9 @@ export function $Dungeon$View$board$_board_card_at(x, x$1, x$2, x$3) {
   return _r0;
 }
 
-export const Dungeon$View$board$_board_card_at = () => ((a0) => ((a1) => ((a2) => ((a3) => ($Dungeon$View$board$_board_card_at(a0, a1, a2, a3))))));
+export const Dungeon$View$board$_board_card_at = () => ((a0) => ((a1) => ((a2) => ((a3) => ((a4) => ($Dungeon$View$board$_board_card_at(a0, a1, a2, a3, a4)))))));
 
-export function $Dungeon$View$board$_board_card_identity(x, x$1, x$2, x$3, x$4, x$5, x$6, x$7) {
+export function $Dungeon$View$board$_board_card_identity(x, x$1, x$2, x$3, x$4, x$5, x$6, x$7, x$8, x$9) {
   var _r0;
   if (((x) >>> 0) === 0) {
     var hero_value = x$1;
@@ -30438,9 +30493,15 @@ export function $Dungeon$View$board$_board_card_identity(x, x$1, x$2, x$3, x$4, 
     var hp_fx$4 = x$5;
     var dmg_fx$5 = x$6;
     var tile_value$6 = x$7;
+    var pos$7 = x$8;
+    var damage_overlay$8 = x$9;
     var _v1;
     _v1 = tile_value$6;
-    _r0 = $Dungeon$View$cards$_tile_card(_v1);
+    var _v2;
+    _v2 = pos$7;
+    var _v3;
+    _v3 = damage_overlay$8;
+    _r0 = $Dungeon$View$cards$_tile_card(_v1, _v2, _v3);
   } else {
     var _ = x;
     var hero_value$1 = x$1;
@@ -30450,24 +30511,26 @@ export function $Dungeon$View$board$_board_card_identity(x, x$1, x$2, x$3, x$4, 
     var hp_fx$5 = x$5;
     var dmg_fx$6 = x$6;
     var tile_value$7 = x$7;
-    var _v2;
-    _v2 = hero_value$1;
-    var _v3;
-    _v3 = hero_hp$2;
+    var pos$8 = x$8;
+    var damage_overlay$9 = x$9;
     var _v4;
-    _v4 = hero_max_hp$3;
+    _v4 = hero_value$1;
     var _v5;
-    _v5 = weapon_value$4;
+    _v5 = hero_hp$2;
     var _v6;
-    _v6 = hp_fx$5;
+    _v6 = hero_max_hp$3;
     var _v7;
-    _v7 = dmg_fx$6;
-    _r0 = $Dungeon$View$cards$_hero_card_values(_v2, _v3, _v4, _v5, _v6, _v7);
+    _v7 = weapon_value$4;
+    var _v8;
+    _v8 = hp_fx$5;
+    var _v9;
+    _v9 = dmg_fx$6;
+    _r0 = $Dungeon$View$cards$_hero_card_values(_v4, _v5, _v6, _v7, _v8, _v9);
   }
   return _r0;
 }
 
-export const Dungeon$View$board$_board_card_identity = () => ((a0) => ((a1) => ((a2) => ((a3) => ((a4) => ((a5) => ((a6) => ((a7) => ($Dungeon$View$board$_board_card_identity(a0, a1, a2, a3, a4, a5, a6, a7))))))))));
+export const Dungeon$View$board$_board_card_identity = () => ((a0) => ((a1) => ((a2) => ((a3) => ((a4) => ((a5) => ((a6) => ((a7) => ((a8) => ((a9) => ($Dungeon$View$board$_board_card_identity(a0, a1, a2, a3, a4, a5, a6, a7, a8, a9))))))))))));
 
 export function $Dungeon$View$board$_board_slot(run_value, ui_value$1, hero_value$2, x$3, y$4) {
   var _r0;
@@ -30502,35 +30565,41 @@ export function $Dungeon$View$board$_board_slot_at(run_value, x$1, x$2, x$3, x$4
       var _m1 = x$1.hp_fx;
       var _m2 = x$1.dmg_fx;
       var _m3 = x$1.impact;
+      var _m4 = x$1.damage_overlay;
       var hp_fx$1 = _m1;
       var dmg_fx$2 = _m2;
       var impact_value$3 = _m3;
-      var hero_value$4 = x$2;
-      var idx$5 = x$3;
-      var pos$6 = x$4;
-      var _v4;
-      _v4 = idx$5;
+      var damage_overlay$4 = _m4;
+      var hero_value$5 = x$2;
+      var idx$6 = x$3;
+      var pos$7 = x$4;
       var _v5;
-      _v5 = pos$6;
+      _v5 = idx$6;
       var _v6;
-      _v6 = impact_value$3;
+      _v6 = pos$7;
       var _v7;
+      _v7 = impact_value$3;
       var _v8;
-      _v8 = run_value;
       var _v9;
+      _v9 = run_value;
       var _v10;
-      _v10 = hp_fx$1;
       var _v11;
-      _v11 = dmg_fx$2;
+      _v11 = hp_fx$1;
       var _v12;
-      _v12 = impact_value$3;
-      _v9 = ({$: "ui_state", hp_fx: _v10, dmg_fx: _v11, impact: _v12});
+      _v12 = dmg_fx$2;
       var _v13;
-      _v13 = hero_value$4;
+      _v13 = impact_value$3;
       var _v14;
-      _v14 = idx$5;
-      _v7 = $Dungeon$View$board$_board_card_at(_v8, _v9, _v13, _v14);
-      _r0 = $Dungeon$View$board$_board_slot_node(_v4, _v5, _v6, _v7);
+      _v14 = damage_overlay$4;
+      _v10 = ({$: "ui_state", hp_fx: _v11, dmg_fx: _v12, impact: _v13, damage_overlay: _v14});
+      var _v15;
+      _v15 = hero_value$5;
+      var _v16;
+      _v16 = idx$6;
+      var _v17;
+      _v17 = pos$7;
+      _v8 = $Dungeon$View$board$_board_card_at(_v9, _v10, _v15, _v16, _v17);
+      _r0 = $Dungeon$View$board$_board_slot_node(_v5, _v6, _v7, _v8);
       break;
     }
     default: {
@@ -31116,10 +31185,40 @@ export function $Dungeon$View$cards$_hero_damage_attr(x) {
 
 export const Dungeon$View$cards$_hero_damage_attr = () => ((a0) => ($Dungeon$View$cards$_hero_damage_attr(a0)));
 
-export function $Dungeon$View$cards$_tile_card(x) {
+export function $Dungeon$View$cards$_monster_fx_overrides() {
+  var _r0;
+  var _v1;
+  var _v2;
+  _v2 = 112;
+  _v1 = ({$: "width_px", value: _v2});
+  var _v3;
+  var _v4;
+  var _v5;
+  _v5 = 112;
+  _v4 = ({$: "height_px", value: _v5});
+  var _v6;
+  var _v7;
+  _v7 = ({$: "fit_contain"});
+  var _v8;
+  var _v9;
+  _v9 = ({$: "sampling_pixelated"});
+  var _v10;
+  _v10 = ({$: "nil"});
+  _v8 = ({$: "cons", head: _v9, tail: _v10});
+  _v6 = ({$: "cons", head: _v7, tail: _v8});
+  _v3 = ({$: "cons", head: _v4, tail: _v6});
+  _r0 = ({$: "cons", head: _v1, tail: _v3});
+  return _r0;
+}
+
+export const Dungeon$View$cards$_monster_fx_overrides = () => ($Dungeon$View$cards$_monster_fx_overrides());
+
+export function $Dungeon$View$cards$_tile_card(x, x$1, x$2) {
   var _r0;
   switch (x.$) {
     case "none": {
+      var pos = x$1;
+      var damage_overlay$1 = x$2;
       var _v1;
       _v1 = null;
       var _v2;
@@ -31178,6 +31277,8 @@ export function $Dungeon$View$cards$_tile_card(x) {
           var _m26 = x.hp;
           var ref = _m25;
           var hp$1 = _m26;
+          var pos$2 = x$1;
+          var damage_overlay$3 = x$2;
           var _v27;
           var _v28;
           _v28 = ref;
@@ -31186,57 +31287,79 @@ export function $Dungeon$View$cards$_tile_card(x) {
           _v27 = ({$: "monster", ref: _v28, hp: _v29});
           var _v30;
           _v30 = "card card--tile card--monster";
-          _r0 = $Dungeon$View$cards$_standard_tile_card(_v27, _v30);
+          var _v31;
+          _v31 = pos$2;
+          var _v32;
+          _v32 = damage_overlay$3;
+          _r0 = $Dungeon$View$cards$_standard_tile_card(_v27, _v30, _v31, _v32);
           break;
         }
         default: {
           switch (x.$) {
             case "sword": {
-              var _m31 = x.ref;
-              var _m32 = x.dmg;
-              var ref = _m31;
-              var dmg$1 = _m32;
-              var _v33;
-              var _v34;
-              _v34 = ref;
+              var _m33 = x.ref;
+              var _m34 = x.dmg;
+              var ref = _m33;
+              var dmg$1 = _m34;
+              var pos$2 = x$1;
+              var damage_overlay$3 = x$2;
               var _v35;
-              _v35 = dmg$1;
-              _v33 = ({$: "sword", ref: _v34, dmg: _v35});
               var _v36;
-              _v36 = "card card--tile card--sword";
-              _r0 = $Dungeon$View$cards$_standard_tile_card(_v33, _v36);
+              _v36 = ref;
+              var _v37;
+              _v37 = dmg$1;
+              _v35 = ({$: "sword", ref: _v36, dmg: _v37});
+              var _v38;
+              _v38 = "card card--tile card--sword";
+              var _v39;
+              _v39 = pos$2;
+              var _v40;
+              _v40 = damage_overlay$3;
+              _r0 = $Dungeon$View$cards$_standard_tile_card(_v35, _v38, _v39, _v40);
               break;
             }
             default: {
               switch (x.$) {
                 case "potion": {
-                  var _m37 = x.ref;
-                  var _m38 = x.heal;
-                  var ref = _m37;
-                  var heal$1 = _m38;
-                  var _v39;
-                  var _v40;
-                  _v40 = ref;
-                  var _v41;
-                  _v41 = heal$1;
-                  _v39 = ({$: "potion", ref: _v40, heal: _v41});
-                  var _v42;
-                  _v42 = "card card--tile card--potion";
-                  _r0 = $Dungeon$View$cards$_standard_tile_card(_v39, _v42);
+                  var _m41 = x.ref;
+                  var _m42 = x.heal;
+                  var ref = _m41;
+                  var heal$1 = _m42;
+                  var pos$2 = x$1;
+                  var damage_overlay$3 = x$2;
+                  var _v43;
+                  var _v44;
+                  _v44 = ref;
+                  var _v45;
+                  _v45 = heal$1;
+                  _v43 = ({$: "potion", ref: _v44, heal: _v45});
+                  var _v46;
+                  _v46 = "card card--tile card--potion";
+                  var _v47;
+                  _v47 = pos$2;
+                  var _v48;
+                  _v48 = damage_overlay$3;
+                  _r0 = $Dungeon$View$cards$_standard_tile_card(_v43, _v46, _v47, _v48);
                   break;
                 }
                 default: {
                   switch (x.$) {
                     case "gold": {
-                      var _m43 = x.amount;
-                      var amount = _m43;
-                      var _v44;
-                      var _v45;
-                      _v45 = amount;
-                      _v44 = ({$: "gold", amount: _v45});
-                      var _v46;
-                      _v46 = "card card--tile card--gold";
-                      _r0 = $Dungeon$View$cards$_standard_tile_card(_v44, _v46);
+                      var _m49 = x.amount;
+                      var amount = _m49;
+                      var pos$1 = x$1;
+                      var damage_overlay$2 = x$2;
+                      var _v50;
+                      var _v51;
+                      _v51 = amount;
+                      _v50 = ({$: "gold", amount: _v51});
+                      var _v52;
+                      _v52 = "card card--tile card--gold";
+                      var _v53;
+                      _v53 = pos$1;
+                      var _v54;
+                      _v54 = damage_overlay$2;
+                      _r0 = $Dungeon$View$cards$_standard_tile_card(_v50, _v52, _v53, _v54);
                       break;
                     }
                     default: {
@@ -31259,7 +31382,7 @@ export function $Dungeon$View$cards$_tile_card(x) {
   return _r0;
 }
 
-export const Dungeon$View$cards$_tile_card = () => ((a0) => ($Dungeon$View$cards$_tile_card(a0)));
+export const Dungeon$View$cards$_tile_card = () => ((a0) => ((a1) => ((a2) => ($Dungeon$View$cards$_tile_card(a0, a1, a2)))));
 
 export function $Dungeon$View$cards$_standard_card_shell(body) {
   var _r0;
@@ -31279,103 +31402,267 @@ export function $Dungeon$View$cards$_standard_card_shell(body) {
 
 export const Dungeon$View$cards$_standard_card_shell = () => ((a0) => ($Dungeon$View$cards$_standard_card_shell(a0)));
 
-export function $Dungeon$View$cards$_tile_card_body(tile, class_name$1) {
+export function $Dungeon$View$cards$_overlay_art_tile(x, x$1) {
   var _r0;
-  var _v1;
-  _v1 = "div";
-  var _v2;
-  var _v3;
-  var _v4;
-  _v4 = "class";
-  var _v5;
-  _v5 = class_name$1;
-  _v3 = ({$: "attr", nam: _v4, val: _v5});
-  var _v6;
-  _v6 = ({$: "nil"});
-  _v2 = ({$: "cons", head: _v3, tail: _v6});
-  var _v7;
-  var _v8;
-  var _v9;
-  _v9 = tile;
-  _v8 = $Dungeon$View$cards$_tile_badge_node(_v9);
-  var _v10;
-  var _v11;
-  var _v12;
-  _v12 = "div";
-  var _v13;
-  var _v14;
-  var _v15;
-  _v15 = "class";
-  var _v16;
-  _v16 = "card__art-wrap";
-  _v14 = ({$: "attr", nam: _v15, val: _v16});
-  var _v17;
-  _v17 = ({$: "nil"});
-  _v13 = ({$: "cons", head: _v14, tail: _v17});
-  var _v18;
-  var _v19;
-  var _v20;
-  _v20 = "img";
-  var _v21;
-  var _v22;
-  var _v23;
-  _v23 = "class";
-  var _v24;
-  _v24 = "card__art";
-  _v22 = ({$: "attr", nam: _v23, val: _v24});
-  var _v25;
-  var _v26;
-  var _v27;
-  _v27 = "src";
-  var _v28;
-  var _v29;
-  _v29 = tile;
-  _v28 = $Dungeon$View$assets_and_labels$_tile_sprite(_v29);
-  _v26 = ({$: "attr", nam: _v27, val: _v28});
-  var _v30;
-  var _v31;
-  var _v32;
-  _v32 = "alt";
-  var _v33;
-  var _v34;
-  _v34 = tile;
-  _v33 = $Dungeon$View$assets_and_labels$_tile_name(_v34);
-  _v31 = ({$: "attr", nam: _v32, val: _v33});
-  var _v35;
-  _v35 = ({$: "nil"});
-  _v30 = ({$: "cons", head: _v31, tail: _v35});
-  _v25 = ({$: "cons", head: _v26, tail: _v30});
-  _v21 = ({$: "cons", head: _v22, tail: _v25});
-  var _v36;
-  _v36 = ({$: "nil"});
-  _v19 = ({$: "node", tag: _v20, attrs: _v21, kids: _v36});
-  var _v37;
-  _v37 = ({$: "nil"});
-  _v18 = ({$: "cons", head: _v19, tail: _v37});
-  _v11 = ({$: "node", tag: _v12, attrs: _v13, kids: _v18});
-  var _v38;
-  _v38 = ({$: "nil"});
-  _v10 = ({$: "cons", head: _v11, tail: _v38});
-  _v7 = ({$: "cons", head: _v8, tail: _v10});
-  _r0 = ({$: "node", tag: _v1, attrs: _v2, kids: _v7});
+  switch (x.$) {
+    case "gold": {
+      var _m1 = x.amount;
+      var amount = _m1;
+      var base_tile$1 = x$1;
+      _r0 = base_tile$1;
+      break;
+    }
+    default: {
+      var _ = x;
+      var base_tile$1 = x$1;
+      _r0 = _;
+      break;
+    }
+  }
   return _r0;
 }
 
-export const Dungeon$View$cards$_tile_card_body = () => ((a0) => ((a1) => ($Dungeon$View$cards$_tile_card_body(a0, a1))));
+export const Dungeon$View$cards$_overlay_art_tile = () => ((a0) => ((a1) => ($Dungeon$View$cards$_overlay_art_tile(a0, a1))));
 
-export function $Dungeon$View$cards$_standard_tile_card(tile, class_name$1) {
+export function $Dungeon$View$cards$_art_tile(tile, pos$1, x$2) {
+  var _r0;
+  switch (x$2.$) {
+    case "no_damage_overlay": {
+      _r0 = tile;
+      break;
+    }
+    default: {
+      switch (x$2.$) {
+        case "damage_overlay": {
+          var _m1 = x$2.pos;
+          var _m2 = x$2.trigger;
+          var _m3 = x$2.base_tile;
+          var _m4 = x$2.state;
+          var overlay_pos$2 = _m1;
+          var trigger$3 = _m2;
+          var base_tile$4 = _m3;
+          var overlay_state$5 = _m4;
+          var _v5;
+          _v5 = tile;
+          var _v6;
+          _v6 = pos$1;
+          var _v7;
+          _v7 = overlay_pos$2;
+          var _v8;
+          _v8 = trigger$3;
+          var _v9;
+          _v9 = base_tile$4;
+          var _v10;
+          _v10 = overlay_state$5;
+          var _v11;
+          var _v12;
+          _v12 = pos$1;
+          var _v13;
+          _v13 = overlay_pos$2;
+          _v11 = $Dungeon$Board$indexing$same_pos(_v12, _v13);
+          _r0 = $Dungeon$View$cards$_art_tile$_0(_v5, _v6, _v7, _v8, _v9, _v10, _v11);
+          break;
+        }
+        default: {
+          throw new Error("EFQ applied");
+          break;
+        }
+      }
+      break;
+    }
+  }
+  return _r0;
+}
+
+export const Dungeon$View$cards$_art_tile = () => ((a0) => ((a1) => ((a2) => ($Dungeon$View$cards$_art_tile(a0, a1, a2)))));
+
+export function $Dungeon$View$cards$_damage_overlay_layer(pos, x$1) {
+  var _r0;
+  switch (x$1.$) {
+    case "no_damage_overlay": {
+      var _v1;
+      _v1 = "";
+      _r0 = ({$: "text", value: _v1});
+      break;
+    }
+    default: {
+      switch (x$1.$) {
+        case "damage_overlay": {
+          var _m2 = x$1.pos;
+          var _m3 = x$1.trigger;
+          var _m4 = x$1.base_tile;
+          var _m5 = x$1.state;
+          var overlay_pos$1 = _m2;
+          var trigger$2 = _m3;
+          var base_tile$3 = _m4;
+          var overlay_state$4 = _m5;
+          var _v6;
+          _v6 = pos;
+          var _v7;
+          _v7 = overlay_pos$1;
+          var _v8;
+          _v8 = trigger$2;
+          var _v9;
+          _v9 = base_tile$3;
+          var _v10;
+          _v10 = overlay_state$4;
+          var _v11;
+          var _v12;
+          _v12 = pos;
+          var _v13;
+          _v13 = overlay_pos$1;
+          _v11 = $Dungeon$Board$indexing$same_pos(_v12, _v13);
+          _r0 = $Dungeon$View$cards$_damage_overlay_layer$_0(_v6, _v7, _v8, _v9, _v10, _v11);
+          break;
+        }
+        default: {
+          throw new Error("EFQ applied");
+          break;
+        }
+      }
+      break;
+    }
+  }
+  return _r0;
+}
+
+export const Dungeon$View$cards$_damage_overlay_layer = () => ((a0) => ((a1) => ($Dungeon$View$cards$_damage_overlay_layer(a0, a1))));
+
+export function $Dungeon$View$cards$_tile_card_body(tile, class_name$1, pos$2, damage_overlay$3) {
+  var _r0;
+  var art_tile$4;
+  var _v1;
+  _v1 = tile;
+  var _v2;
+  _v2 = pos$2;
+  var _v3;
+  _v3 = damage_overlay$3;
+  art_tile$4 = $Dungeon$View$cards$_art_tile(_v1, _v2, _v3);
+  var _v4;
+  _v4 = "div";
+  var _v5;
+  var _v6;
+  var _v7;
+  _v7 = "class";
+  var _v8;
+  _v8 = class_name$1;
+  _v6 = ({$: "attr", nam: _v7, val: _v8});
+  var _v9;
+  _v9 = ({$: "nil"});
+  _v5 = ({$: "cons", head: _v6, tail: _v9});
+  var _v10;
+  var _v11;
+  var _v12;
+  _v12 = tile;
+  _v11 = $Dungeon$View$cards$_tile_badge_node(_v12);
+  var _v13;
+  var _v14;
+  var _v15;
+  _v15 = "div";
+  var _v16;
+  var _v17;
+  var _v18;
+  _v18 = "class";
+  var _v19;
+  _v19 = "card__art-wrap card__art-wrap--stacked";
+  _v17 = ({$: "attr", nam: _v18, val: _v19});
+  var _v20;
+  _v20 = ({$: "nil"});
+  _v16 = ({$: "cons", head: _v17, tail: _v20});
+  var _v21;
+  var _v22;
+  var _v23;
+  _v23 = pos$2;
+  var _v24;
+  _v24 = damage_overlay$3;
+  _v22 = $Dungeon$View$cards$_damage_overlay_layer(_v23, _v24);
+  var _v25;
+  var _v26;
+  var _v27;
+  _v27 = "div";
+  var _v28;
+  var _v29;
+  var _v30;
+  _v30 = "class";
+  var _v31;
+  _v31 = "card__art-layer card__art-layer--base";
+  _v29 = ({$: "attr", nam: _v30, val: _v31});
+  var _v32;
+  _v32 = ({$: "nil"});
+  _v28 = ({$: "cons", head: _v29, tail: _v32});
+  var _v33;
+  var _v34;
+  var _v35;
+  _v35 = "img";
+  var _v36;
+  var _v37;
+  var _v38;
+  _v38 = "class";
+  var _v39;
+  _v39 = "card__art";
+  _v37 = ({$: "attr", nam: _v38, val: _v39});
+  var _v40;
+  var _v41;
+  var _v42;
+  _v42 = "src";
+  var _v43;
+  var _v44;
+  _v44 = art_tile$4;
+  _v43 = $Dungeon$View$assets_and_labels$_tile_sprite(_v44);
+  _v41 = ({$: "attr", nam: _v42, val: _v43});
+  var _v45;
+  var _v46;
+  var _v47;
+  _v47 = "alt";
+  var _v48;
+  var _v49;
+  _v49 = art_tile$4;
+  _v48 = $Dungeon$View$assets_and_labels$_tile_name(_v49);
+  _v46 = ({$: "attr", nam: _v47, val: _v48});
+  var _v50;
+  _v50 = ({$: "nil"});
+  _v45 = ({$: "cons", head: _v46, tail: _v50});
+  _v40 = ({$: "cons", head: _v41, tail: _v45});
+  _v36 = ({$: "cons", head: _v37, tail: _v40});
+  var _v51;
+  _v51 = ({$: "nil"});
+  _v34 = ({$: "node", tag: _v35, attrs: _v36, kids: _v51});
+  var _v52;
+  _v52 = ({$: "nil"});
+  _v33 = ({$: "cons", head: _v34, tail: _v52});
+  _v26 = ({$: "node", tag: _v27, attrs: _v28, kids: _v33});
+  var _v53;
+  _v53 = ({$: "nil"});
+  _v25 = ({$: "cons", head: _v26, tail: _v53});
+  _v21 = ({$: "cons", head: _v22, tail: _v25});
+  _v14 = ({$: "node", tag: _v15, attrs: _v16, kids: _v21});
+  var _v54;
+  _v54 = ({$: "nil"});
+  _v13 = ({$: "cons", head: _v14, tail: _v54});
+  _v10 = ({$: "cons", head: _v11, tail: _v13});
+  _r0 = ({$: "node", tag: _v4, attrs: _v5, kids: _v10});
+  return _r0;
+}
+
+export const Dungeon$View$cards$_tile_card_body = () => ((a0) => ((a1) => ((a2) => ((a3) => ($Dungeon$View$cards$_tile_card_body(a0, a1, a2, a3))))));
+
+export function $Dungeon$View$cards$_standard_tile_card(tile, class_name$1, pos$2, damage_overlay$3) {
   var _r0;
   var _v1;
   var _v2;
   _v2 = tile;
   var _v3;
   _v3 = class_name$1;
-  _v1 = $Dungeon$View$cards$_tile_card_body(_v2, _v3);
+  var _v4;
+  _v4 = pos$2;
+  var _v5;
+  _v5 = damage_overlay$3;
+  _v1 = $Dungeon$View$cards$_tile_card_body(_v2, _v3, _v4, _v5);
   _r0 = $Dungeon$View$cards$_standard_card_shell(_v1);
   return _r0;
 }
 
-export const Dungeon$View$cards$_standard_tile_card = () => ((a0) => ((a1) => ($Dungeon$View$cards$_standard_tile_card(a0, a1))));
+export const Dungeon$View$cards$_standard_tile_card = () => ((a0) => ((a1) => ((a2) => ((a3) => ($Dungeon$View$cards$_standard_tile_card(a0, a1, a2, a3))))));
 
 export function $Dungeon$View$cards$_tile_badge_node(tile) {
   var _r0;
@@ -31407,6 +31694,1937 @@ export function $Dungeon$View$cards$_tile_badge_node(tile) {
 
 export const Dungeon$View$cards$_tile_badge_node = () => ((a0) => ($Dungeon$View$cards$_tile_badge_node(a0)));
 
+export const Midum$Image$Override = null;
+
+export function $Midum$Image$with_width(x, x$1) {
+  var _r0;
+  switch (x.$) {
+    case "image": {
+      var _m1 = x.width;
+      var _m2 = x.height;
+      var _m3 = x.fit;
+      var _m4 = x.sampling;
+      var width = _m1;
+      var height$1 = _m2;
+      var fit$2 = _m3;
+      var sampling$3 = _m4;
+      var next_width$4 = x$1;
+      var _v5;
+      _v5 = next_width$4;
+      var _v6;
+      _v6 = height$1;
+      var _v7;
+      _v7 = fit$2;
+      var _v8;
+      _v8 = sampling$3;
+      _r0 = ({$: "image", width: _v5, height: _v6, fit: _v7, sampling: _v8});
+      break;
+    }
+    default: {
+      throw new Error("EFQ applied");
+      break;
+    }
+  }
+  return _r0;
+}
+
+export const Midum$Image$with_width = () => ((a0) => ((a1) => ($Midum$Image$with_width(a0, a1))));
+
+export function $Midum$Image$with_height(x, x$1) {
+  var _r0;
+  switch (x.$) {
+    case "image": {
+      var _m1 = x.width;
+      var _m2 = x.height;
+      var _m3 = x.fit;
+      var _m4 = x.sampling;
+      var width = _m1;
+      var height$1 = _m2;
+      var fit$2 = _m3;
+      var sampling$3 = _m4;
+      var next_height$4 = x$1;
+      var _v5;
+      _v5 = width;
+      var _v6;
+      _v6 = next_height$4;
+      var _v7;
+      _v7 = fit$2;
+      var _v8;
+      _v8 = sampling$3;
+      _r0 = ({$: "image", width: _v5, height: _v6, fit: _v7, sampling: _v8});
+      break;
+    }
+    default: {
+      throw new Error("EFQ applied");
+      break;
+    }
+  }
+  return _r0;
+}
+
+export const Midum$Image$with_height = () => ((a0) => ((a1) => ($Midum$Image$with_height(a0, a1))));
+
+export function $Midum$Image$with_fit(x, x$1) {
+  var _r0;
+  switch (x.$) {
+    case "image": {
+      var _m1 = x.width;
+      var _m2 = x.height;
+      var _m3 = x.fit;
+      var _m4 = x.sampling;
+      var width = _m1;
+      var height$1 = _m2;
+      var fit$2 = _m3;
+      var sampling$3 = _m4;
+      var next_fit$4 = x$1;
+      var _v5;
+      _v5 = width;
+      var _v6;
+      _v6 = height$1;
+      var _v7;
+      _v7 = next_fit$4;
+      var _v8;
+      _v8 = sampling$3;
+      _r0 = ({$: "image", width: _v5, height: _v6, fit: _v7, sampling: _v8});
+      break;
+    }
+    default: {
+      throw new Error("EFQ applied");
+      break;
+    }
+  }
+  return _r0;
+}
+
+export const Midum$Image$with_fit = () => ((a0) => ((a1) => ($Midum$Image$with_fit(a0, a1))));
+
+export function $Midum$Image$with_sampling(x, x$1) {
+  var _r0;
+  switch (x.$) {
+    case "image": {
+      var _m1 = x.width;
+      var _m2 = x.height;
+      var _m3 = x.fit;
+      var _m4 = x.sampling;
+      var width = _m1;
+      var height$1 = _m2;
+      var fit$2 = _m3;
+      var sampling$3 = _m4;
+      var next_sampling$4 = x$1;
+      var _v5;
+      _v5 = width;
+      var _v6;
+      _v6 = height$1;
+      var _v7;
+      _v7 = fit$2;
+      var _v8;
+      _v8 = next_sampling$4;
+      _r0 = ({$: "image", width: _v5, height: _v6, fit: _v7, sampling: _v8});
+      break;
+    }
+    default: {
+      throw new Error("EFQ applied");
+      break;
+    }
+  }
+  return _r0;
+}
+
+export const Midum$Image$with_sampling = () => ((a0) => ((a1) => ($Midum$Image$with_sampling(a0, a1))));
+
+export function $Midum$Image$apply_override(cfg, x$1) {
+  var _r0;
+  switch (x$1.$) {
+    case "width_px": {
+      var _m1 = x$1.value;
+      var value$1 = _m1;
+      var _v2;
+      _v2 = cfg;
+      var _v3;
+      var _v4;
+      _v4 = value$1;
+      _v3 = ({$: "px", value: _v4});
+      _r0 = $Midum$Image$with_width(_v2, _v3);
+      break;
+    }
+    default: {
+      switch (x$1.$) {
+        case "height_px": {
+          var _m5 = x$1.value;
+          var value$1 = _m5;
+          var _v6;
+          _v6 = cfg;
+          var _v7;
+          var _v8;
+          _v8 = value$1;
+          _v7 = ({$: "px", value: _v8});
+          _r0 = $Midum$Image$with_height(_v6, _v7);
+          break;
+        }
+        default: {
+          switch (x$1.$) {
+            case "fit_contain": {
+              var _v9;
+              _v9 = cfg;
+              var _v10;
+              _v10 = ({$: "contain"});
+              _r0 = $Midum$Image$with_fit(_v9, _v10);
+              break;
+            }
+            default: {
+              switch (x$1.$) {
+                case "fit_cover": {
+                  var _v11;
+                  _v11 = cfg;
+                  var _v12;
+                  _v12 = ({$: "cover"});
+                  _r0 = $Midum$Image$with_fit(_v11, _v12);
+                  break;
+                }
+                default: {
+                  switch (x$1.$) {
+                    case "fit_stretch": {
+                      var _v13;
+                      _v13 = cfg;
+                      var _v14;
+                      _v14 = ({$: "stretch"});
+                      _r0 = $Midum$Image$with_fit(_v13, _v14);
+                      break;
+                    }
+                    default: {
+                      switch (x$1.$) {
+                        case "sampling_smooth": {
+                          var _v15;
+                          _v15 = cfg;
+                          var _v16;
+                          _v16 = ({$: "smooth"});
+                          _r0 = $Midum$Image$with_sampling(_v15, _v16);
+                          break;
+                        }
+                        default: {
+                          switch (x$1.$) {
+                            case "sampling_pixelated": {
+                              var _v17;
+                              _v17 = cfg;
+                              var _v18;
+                              _v18 = ({$: "pixelated"});
+                              _r0 = $Midum$Image$with_sampling(_v17, _v18);
+                              break;
+                            }
+                            default: {
+                              throw new Error("EFQ applied");
+                              break;
+                            }
+                          }
+                          break;
+                        }
+                      }
+                      break;
+                    }
+                  }
+                  break;
+                }
+              }
+              break;
+            }
+          }
+          break;
+        }
+      }
+      break;
+    }
+  }
+  return _r0;
+}
+
+export const Midum$Image$apply_override = () => ((a0) => ((a1) => ($Midum$Image$apply_override(a0, a1))));
+
+export function $Midum$Image$apply_overrides(cfg, x$1) {
+  while (true) {
+    var _r0;
+    switch (x$1.$) {
+      case "nil": {
+        _r0 = cfg;
+        break;
+      }
+      default: {
+        switch (x$1.$) {
+          case "cons": {
+            var _m1 = x$1.head;
+            var _m2 = x$1.tail;
+            var override$1 = _m1;
+            var rest$2 = _m2;
+            var _v3;
+            var _v4;
+            _v4 = cfg;
+            var _v5;
+            _v5 = override$1;
+            _v3 = $Midum$Image$apply_override(_v4, _v5);
+            var _v6;
+            _v6 = rest$2;
+            cfg = _v3;
+            x$1 = _v6;
+            continue;
+            break;
+          }
+          default: {
+            throw new Error("EFQ applied");
+            break;
+          }
+        }
+        break;
+      }
+    }
+    return _r0;
+  }
+}
+
+export const Midum$Image$apply_overrides = () => ((a0) => ((a1) => ($Midum$Image$apply_overrides(a0, a1))));
+
+export function $Midum$Image$config(overrides) {
+  var _r0;
+  var _v1;
+  var _v2;
+  _v2 = ({$: "auto"});
+  var _v3;
+  _v3 = ({$: "auto"});
+  var _v4;
+  _v4 = ({$: "contain"});
+  var _v5;
+  _v5 = ({$: "smooth"});
+  _v1 = ({$: "image", width: _v2, height: _v3, fit: _v4, sampling: _v5});
+  var _v6;
+  _v6 = overrides;
+  _r0 = $Midum$Image$apply_overrides(_v1, _v6);
+  return _r0;
+}
+
+export const Midum$Image$config = () => ((a0) => ($Midum$Image$config(a0)));
+
+export function $Midum$Image$nth_or_empty(x, x$1) {
+  while (true) {
+    var _r0;
+    switch (x.$) {
+      case "nil": {
+        if (_nat_is_zero(x$1)) {
+          _r0 = "";
+        } else {
+          var rest = _nat_sub(x$1, 1);
+          _r0 = "";
+        }
+        break;
+      }
+      default: {
+        switch (x.$) {
+          case "cons": {
+            var _m1 = x.head;
+            var _m2 = x.tail;
+            var head = _m1;
+            var tail$1 = _m2;
+            if (_nat_is_zero(x$1)) {
+              _r0 = head;
+            } else {
+              var rest$2 = _nat_sub(x$1, 1);
+              var _v3;
+              _v3 = tail$1;
+              var _v4;
+              _v4 = rest$2;
+              x = _v3;
+              x$1 = _v4;
+              continue;
+            }
+            break;
+          }
+          default: {
+            throw new Error("EFQ applied");
+            break;
+          }
+        }
+        break;
+      }
+    }
+    return _r0;
+  }
+}
+
+export const Midum$Image$nth_or_empty = () => ((a0) => ((a1) => ($Midum$Image$nth_or_empty(a0, a1))));
+
+export function $Midum$Image$frame_count(x) {
+  var _r0;
+  switch (x.$) {
+    case "animation": {
+      var _m1 = x.frames;
+      var _m2 = x.fps;
+      var _m3 = x.playback;
+      var frames = _m1;
+      var fps$1 = _m2;
+      var playback$2 = _m3;
+      var _v4;
+      _v4 = null;
+      var _v5;
+      _v5 = frames;
+      _r0 = $List$length(_v4, _v5);
+      break;
+    }
+    default: {
+      throw new Error("EFQ applied");
+      break;
+    }
+  }
+  return _r0;
+}
+
+export const Midum$Image$frame_count = () => ((a0) => ($Midum$Image$frame_count(a0)));
+
+export function $Midum$Image$frame_ms(x) {
+  var _r0;
+  switch (x.$) {
+    case "animation": {
+      var _m1 = x.frames;
+      var _m2 = x.fps;
+      var _m3 = x.playback;
+      var frames = _m1;
+      if (_nat_is_zero(_m2)) {
+        var playback$1 = _m3;
+        _r0 = 0;
+      } else {
+        var rest$1 = _nat_sub(_m2, 1);
+        var playback$2 = _m3;
+        var _v4;
+        _v4 = 1;
+        var _v5;
+        var _v6;
+        _v6 = 1000;
+        var _v7;
+        var _v8;
+        _v8 = rest$1;
+        _v7 = _nat_add(_v8, 1);
+        _v5 = $Nat$div(_v6, _v7);
+        _r0 = $Nat$max(_v4, _v5);
+      }
+      break;
+    }
+    default: {
+      throw new Error("EFQ applied");
+      break;
+    }
+  }
+  return _r0;
+}
+
+export const Midum$Image$frame_ms = () => ((a0) => ($Midum$Image$frame_ms(a0)));
+
+export function $Midum$Image$clamp_to_last_with_order(idx, last$1, x$2) {
+  var _r0;
+  switch (x$2.$) {
+    case "lt": {
+      _r0 = idx;
+      break;
+    }
+    default: {
+      switch (x$2.$) {
+        case "eq": {
+          _r0 = idx;
+          break;
+        }
+        default: {
+          switch (x$2.$) {
+            case "gt": {
+              _r0 = last$1;
+              break;
+            }
+            default: {
+              throw new Error("EFQ applied");
+              break;
+            }
+          }
+          break;
+        }
+      }
+      break;
+    }
+  }
+  return _r0;
+}
+
+export const Midum$Image$clamp_to_last_with_order = () => ((a0) => ((a1) => ((a2) => ($Midum$Image$clamp_to_last_with_order(a0, a1, a2)))));
+
+export function $Midum$Image$clamp_to_last(idx, last$1) {
+  var _r0;
+  var _v1;
+  _v1 = idx;
+  var _v2;
+  _v2 = last$1;
+  var _v3;
+  var _v4;
+  _v4 = idx;
+  var _v5;
+  _v5 = last$1;
+  _v3 = $Nat$compare(_v4, _v5);
+  _r0 = $Midum$Image$clamp_to_last_with_order(_v1, _v2, _v3);
+  return _r0;
+}
+
+export const Midum$Image$clamp_to_last = () => ((a0) => ((a1) => ($Midum$Image$clamp_to_last(a0, a1))));
+
+export function $Midum$Image$current_frame_index(x, x$1, x$2, x$3) {
+  var _r0;
+  if (_nat_is_zero(x)) {
+    if (_nat_is_zero(x$1)) {
+      switch (x$2.$) {
+        case "loop": {
+          switch (x$3.$) {
+            case "state": {
+              var _m1 = x$3.elapsed_ms;
+              var _m2 = x$3.finished;
+              var elapsed_ms = _m1;
+              var finished$1 = _m2;
+              _r0 = 0;
+              break;
+            }
+            default: {
+              throw new Error("EFQ applied");
+              break;
+            }
+          }
+          break;
+        }
+        default: {
+          switch (x$2.$) {
+            case "once_hold_last": {
+              switch (x$3.$) {
+                case "state": {
+                  var _m3 = x$3.elapsed_ms;
+                  var _m4 = x$3.finished;
+                  var elapsed_ms = _m3;
+                  var finished$1 = _m4;
+                  _r0 = 0;
+                  break;
+                }
+                default: {
+                  throw new Error("EFQ applied");
+                  break;
+                }
+              }
+              break;
+            }
+            default: {
+              var playback = x$2;
+              switch (x$3.$) {
+                case "state": {
+                  var _m5 = x$3.elapsed_ms;
+                  var _m6 = x$3.finished;
+                  var elapsed_ms$1 = _m5;
+                  var finished$2 = _m6;
+                  _r0 = 0;
+                  break;
+                }
+                default: {
+                  throw new Error("EFQ applied");
+                  break;
+                }
+              }
+              break;
+            }
+          }
+          break;
+        }
+      }
+    } else {
+      var $m1 = _nat_sub(x$1, 1);
+      switch (x$2.$) {
+        case "loop": {
+          switch (x$3.$) {
+            case "state": {
+              var _m7 = x$3.elapsed_ms;
+              var _m8 = x$3.finished;
+              var elapsed_ms$1 = _m7;
+              var finished$2 = _m8;
+              _r0 = 0;
+              break;
+            }
+            default: {
+              throw new Error("EFQ applied");
+              break;
+            }
+          }
+          break;
+        }
+        default: {
+          switch (x$2.$) {
+            case "once_hold_last": {
+              switch (x$3.$) {
+                case "state": {
+                  var _m9 = x$3.elapsed_ms;
+                  var _m10 = x$3.finished;
+                  var elapsed_ms$1 = _m9;
+                  var finished$2 = _m10;
+                  _r0 = 0;
+                  break;
+                }
+                default: {
+                  throw new Error("EFQ applied");
+                  break;
+                }
+              }
+              break;
+            }
+            default: {
+              var playback$1 = x$2;
+              switch (x$3.$) {
+                case "state": {
+                  var _m11 = x$3.elapsed_ms;
+                  var _m12 = x$3.finished;
+                  var elapsed_ms$2 = _m11;
+                  var finished$3 = _m12;
+                  _r0 = 0;
+                  break;
+                }
+                default: {
+                  throw new Error("EFQ applied");
+                  break;
+                }
+              }
+              break;
+            }
+          }
+          break;
+        }
+      }
+    }
+  } else {
+    var $m0 = _nat_sub(x, 1);
+    if (_nat_is_zero(x$1)) {
+      switch (x$2.$) {
+        case "loop": {
+          switch (x$3.$) {
+            case "state": {
+              var _m13 = x$3.elapsed_ms;
+              var _m14 = x$3.finished;
+              var elapsed_ms$1 = _m13;
+              var finished$2 = _m14;
+              _r0 = 0;
+              break;
+            }
+            default: {
+              throw new Error("EFQ applied");
+              break;
+            }
+          }
+          break;
+        }
+        default: {
+          switch (x$2.$) {
+            case "once_hold_last": {
+              switch (x$3.$) {
+                case "state": {
+                  var _m15 = x$3.elapsed_ms;
+                  var _m16 = x$3.finished;
+                  var elapsed_ms$1 = _m15;
+                  var finished$2 = _m16;
+                  _r0 = 0;
+                  break;
+                }
+                default: {
+                  throw new Error("EFQ applied");
+                  break;
+                }
+              }
+              break;
+            }
+            default: {
+              var playback$1 = x$2;
+              switch (x$3.$) {
+                case "state": {
+                  var _m17 = x$3.elapsed_ms;
+                  var _m18 = x$3.finished;
+                  var elapsed_ms$2 = _m17;
+                  var finished$3 = _m18;
+                  _r0 = 0;
+                  break;
+                }
+                default: {
+                  throw new Error("EFQ applied");
+                  break;
+                }
+              }
+              break;
+            }
+          }
+          break;
+        }
+      }
+    } else {
+      var $m35$1 = _nat_sub(x$1, 1);
+      switch (x$2.$) {
+        case "loop": {
+          switch (x$3.$) {
+            case "state": {
+              var _m19 = x$3.elapsed_ms;
+              var _m20 = x$3.finished;
+              var elapsed_ms$2 = _m19;
+              var finished$3 = _m20;
+              var _v21;
+              var _v22;
+              _v22 = elapsed_ms$2;
+              var _v23;
+              var _v24;
+              _v24 = $m35$1;
+              _v23 = _nat_add(_v24, 1);
+              _v21 = $Nat$div(_v22, _v23);
+              var _v25;
+              var _v26;
+              _v26 = $m0;
+              _v25 = _nat_add(_v26, 1);
+              _r0 = $Nat$mod(_v21, _v25);
+              break;
+            }
+            default: {
+              throw new Error("EFQ applied");
+              break;
+            }
+          }
+          break;
+        }
+        default: {
+          switch (x$2.$) {
+            case "once_hold_last": {
+              switch (x$3.$) {
+                case "state": {
+                  var _m27 = x$3.elapsed_ms;
+                  var _m28 = x$3.finished;
+                  var elapsed_ms$2 = _m27;
+                  var finished$3 = _m28;
+                  var _v29;
+                  var _v30;
+                  _v30 = elapsed_ms$2;
+                  var _v31;
+                  var _v32;
+                  _v32 = $m35$1;
+                  _v31 = _nat_add(_v32, 1);
+                  _v29 = $Nat$div(_v30, _v31);
+                  var _v33;
+                  var _v34;
+                  var _v35;
+                  _v35 = $m0;
+                  _v34 = _nat_add(_v35, 1);
+                  _v33 = $Nat$pred(_v34);
+                  _r0 = $Midum$Image$clamp_to_last(_v29, _v33);
+                  break;
+                }
+                default: {
+                  throw new Error("EFQ applied");
+                  break;
+                }
+              }
+              break;
+            }
+            default: {
+              throw new Error("EFQ applied");
+              break;
+            }
+          }
+          break;
+        }
+      }
+    }
+  }
+  return _r0;
+}
+
+export const Midum$Image$current_frame_index = () => ((a0) => ((a1) => ((a2) => ((a3) => ($Midum$Image$current_frame_index(a0, a1, a2, a3))))));
+
+export function $Midum$Image$current_src(x, x$1) {
+  var _r0;
+  switch (x.$) {
+    case "animation": {
+      var _m1 = x.frames;
+      var _m2 = x.fps;
+      var _m3 = x.playback;
+      var frames = _m1;
+      var fps$1 = _m2;
+      var playback$2 = _m3;
+      var state$3 = x$1;
+      var count$4;
+      var _v4;
+      _v4 = null;
+      var _v5;
+      _v5 = frames;
+      count$4 = $List$length(_v4, _v5);
+      var ms$5;
+      var _v6;
+      var _v7;
+      _v7 = frames;
+      var _v8;
+      _v8 = fps$1;
+      var _v9;
+      _v9 = playback$2;
+      _v6 = ({$: "animation", frames: _v7, fps: _v8, playback: _v9});
+      ms$5 = $Midum$Image$frame_ms(_v6);
+      var _v10;
+      _v10 = frames;
+      var _v11;
+      var _v12;
+      _v12 = count$4;
+      var _v13;
+      _v13 = ms$5;
+      var _v14;
+      _v14 = playback$2;
+      var _v15;
+      _v15 = state$3;
+      _v11 = $Midum$Image$current_frame_index(_v12, _v13, _v14, _v15);
+      _r0 = $Midum$Image$nth_or_empty(_v10, _v11);
+      break;
+    }
+    default: {
+      throw new Error("EFQ applied");
+      break;
+    }
+  }
+  return _r0;
+}
+
+export const Midum$Image$current_src = () => ((a0) => ((a1) => ($Midum$Image$current_src(a0, a1))));
+
+export function $Midum$Image$reset_state() {
+  var _r0;
+  var _v1;
+  _v1 = 0;
+  var _v2;
+  _v2 = ({$: "false"});
+  _r0 = ({$: "state", elapsed_ms: _v1, finished: _v2});
+  return _r0;
+}
+
+export const Midum$Image$reset_state = () => ($Midum$Image$reset_state());
+
+export function $Midum$Image$step_empty_or_frozen(elapsed_ms, finished$1) {
+  var _r0;
+  var _v1;
+  var _v2;
+  _v2 = elapsed_ms;
+  var _v3;
+  _v3 = finished$1;
+  _v1 = ({$: "state", elapsed_ms: _v2, finished: _v3});
+  var _v4;
+  _v4 = ({$: "false"});
+  var _v5;
+  _v5 = ({$: "false"});
+  _r0 = ({$: "step", state: _v1, cycled: _v4, finished_now: _v5});
+  return _r0;
+}
+
+export const Midum$Image$step_empty_or_frozen = () => ((a0) => ((a1) => ($Midum$Image$step_empty_or_frozen(a0, a1))));
+
+export function $Midum$Image$step_loop_with_order(cycle_ms, next_elapsed$1, x$2) {
+  var _r0;
+  switch (x$2.$) {
+    case "lt": {
+      var _v1;
+      var _v2;
+      _v2 = next_elapsed$1;
+      var _v3;
+      _v3 = ({$: "false"});
+      _v1 = ({$: "state", elapsed_ms: _v2, finished: _v3});
+      var _v4;
+      _v4 = ({$: "false"});
+      var _v5;
+      _v5 = ({$: "false"});
+      _r0 = ({$: "step", state: _v1, cycled: _v4, finished_now: _v5});
+      break;
+    }
+    default: {
+      switch (x$2.$) {
+        case "eq": {
+          var _v6;
+          var _v7;
+          _v7 = 0;
+          var _v8;
+          _v8 = ({$: "false"});
+          _v6 = ({$: "state", elapsed_ms: _v7, finished: _v8});
+          var _v9;
+          _v9 = ({$: "true"});
+          var _v10;
+          _v10 = ({$: "false"});
+          _r0 = ({$: "step", state: _v6, cycled: _v9, finished_now: _v10});
+          break;
+        }
+        default: {
+          switch (x$2.$) {
+            case "gt": {
+              var _v11;
+              var _v12;
+              var _v13;
+              _v13 = next_elapsed$1;
+              var _v14;
+              _v14 = cycle_ms;
+              _v12 = $Nat$mod(_v13, _v14);
+              var _v15;
+              _v15 = ({$: "false"});
+              _v11 = ({$: "state", elapsed_ms: _v12, finished: _v15});
+              var _v16;
+              _v16 = ({$: "true"});
+              var _v17;
+              _v17 = ({$: "false"});
+              _r0 = ({$: "step", state: _v11, cycled: _v16, finished_now: _v17});
+              break;
+            }
+            default: {
+              throw new Error("EFQ applied");
+              break;
+            }
+          }
+          break;
+        }
+      }
+      break;
+    }
+  }
+  return _r0;
+}
+
+export const Midum$Image$step_loop_with_order = () => ((a0) => ((a1) => ((a2) => ($Midum$Image$step_loop_with_order(a0, a1, a2)))));
+
+export function $Midum$Image$step_loop(count, ms$1, delta_ms$2, elapsed_ms$3) {
+  var _r0;
+  var cycle_ms$4;
+  var _v1;
+  _v1 = count;
+  var _v2;
+  _v2 = ms$1;
+  cycle_ms$4 = $Nat$mul(_v1, _v2);
+  var next_elapsed$5;
+  var _v3;
+  _v3 = elapsed_ms$3;
+  var _v4;
+  _v4 = delta_ms$2;
+  next_elapsed$5 = $Nat$add(_v3, _v4);
+  var _v5;
+  _v5 = cycle_ms$4;
+  var _v6;
+  _v6 = next_elapsed$5;
+  var _v7;
+  var _v8;
+  _v8 = next_elapsed$5;
+  var _v9;
+  _v9 = cycle_ms$4;
+  _v7 = $Nat$compare(_v8, _v9);
+  _r0 = $Midum$Image$step_loop_with_order(_v5, _v6, _v7);
+  return _r0;
+}
+
+export const Midum$Image$step_loop = () => ((a0) => ((a1) => ((a2) => ((a3) => ($Midum$Image$step_loop(a0, a1, a2, a3))))));
+
+export function $Midum$Image$step_once_with_order(total_ms, next_elapsed$1, x$2) {
+  var _r0;
+  switch (x$2.$) {
+    case "lt": {
+      var _v1;
+      var _v2;
+      _v2 = next_elapsed$1;
+      var _v3;
+      _v3 = ({$: "false"});
+      _v1 = ({$: "state", elapsed_ms: _v2, finished: _v3});
+      var _v4;
+      _v4 = ({$: "false"});
+      var _v5;
+      _v5 = ({$: "false"});
+      _r0 = ({$: "step", state: _v1, cycled: _v4, finished_now: _v5});
+      break;
+    }
+    default: {
+      switch (x$2.$) {
+        case "eq": {
+          var _v6;
+          var _v7;
+          _v7 = total_ms;
+          var _v8;
+          _v8 = ({$: "true"});
+          _v6 = ({$: "state", elapsed_ms: _v7, finished: _v8});
+          var _v9;
+          _v9 = ({$: "true"});
+          var _v10;
+          _v10 = ({$: "true"});
+          _r0 = ({$: "step", state: _v6, cycled: _v9, finished_now: _v10});
+          break;
+        }
+        default: {
+          switch (x$2.$) {
+            case "gt": {
+              var _v11;
+              var _v12;
+              _v12 = total_ms;
+              var _v13;
+              _v13 = ({$: "true"});
+              _v11 = ({$: "state", elapsed_ms: _v12, finished: _v13});
+              var _v14;
+              _v14 = ({$: "true"});
+              var _v15;
+              _v15 = ({$: "true"});
+              _r0 = ({$: "step", state: _v11, cycled: _v14, finished_now: _v15});
+              break;
+            }
+            default: {
+              throw new Error("EFQ applied");
+              break;
+            }
+          }
+          break;
+        }
+      }
+      break;
+    }
+  }
+  return _r0;
+}
+
+export const Midum$Image$step_once_with_order = () => ((a0) => ((a1) => ((a2) => ($Midum$Image$step_once_with_order(a0, a1, a2)))));
+
+export function $Midum$Image$step_once(count, ms$1, delta_ms$2, elapsed_ms$3, x$4) {
+  var _r0;
+  switch (x$4.$) {
+    case "true": {
+      var _v1;
+      var _v2;
+      _v2 = elapsed_ms$3;
+      var _v3;
+      _v3 = ({$: "true"});
+      _v1 = ({$: "state", elapsed_ms: _v2, finished: _v3});
+      var _v4;
+      _v4 = ({$: "false"});
+      var _v5;
+      _v5 = ({$: "false"});
+      _r0 = ({$: "step", state: _v1, cycled: _v4, finished_now: _v5});
+      break;
+    }
+    default: {
+      switch (x$4.$) {
+        case "false": {
+          var total_ms$4;
+          var _v6;
+          _v6 = count;
+          var _v7;
+          _v7 = ms$1;
+          total_ms$4 = $Nat$mul(_v6, _v7);
+          var next_elapsed$5;
+          var _v8;
+          _v8 = elapsed_ms$3;
+          var _v9;
+          _v9 = delta_ms$2;
+          next_elapsed$5 = $Nat$add(_v8, _v9);
+          var _v10;
+          _v10 = total_ms$4;
+          var _v11;
+          _v11 = next_elapsed$5;
+          var _v12;
+          var _v13;
+          _v13 = next_elapsed$5;
+          var _v14;
+          _v14 = total_ms$4;
+          _v12 = $Nat$compare(_v13, _v14);
+          _r0 = $Midum$Image$step_once_with_order(_v10, _v11, _v12);
+          break;
+        }
+        default: {
+          throw new Error("EFQ applied");
+          break;
+        }
+      }
+      break;
+    }
+  }
+  return _r0;
+}
+
+export const Midum$Image$step_once = () => ((a0) => ((a1) => ((a2) => ((a3) => ((a4) => ($Midum$Image$step_once(a0, a1, a2, a3, a4)))))));
+
+export function $Midum$Image$step_checked(x, x$1, x$2, x$3, x$4) {
+  var _r0;
+  if (_nat_is_zero(x)) {
+    if (_nat_is_zero(x$1)) {
+      switch (x$2.$) {
+        case "loop": {
+          var delta_ms = x$3;
+          switch (x$4.$) {
+            case "state": {
+              var _m1 = x$4.elapsed_ms;
+              var _m2 = x$4.finished;
+              var elapsed_ms$1 = _m1;
+              var finished$2 = _m2;
+              var _v3;
+              _v3 = elapsed_ms$1;
+              var _v4;
+              _v4 = finished$2;
+              _r0 = $Midum$Image$step_empty_or_frozen(_v3, _v4);
+              break;
+            }
+            default: {
+              throw new Error("EFQ applied");
+              break;
+            }
+          }
+          break;
+        }
+        default: {
+          switch (x$2.$) {
+            case "once_hold_last": {
+              var delta_ms = x$3;
+              switch (x$4.$) {
+                case "state": {
+                  var _m5 = x$4.elapsed_ms;
+                  var _m6 = x$4.finished;
+                  var elapsed_ms$1 = _m5;
+                  var finished$2 = _m6;
+                  var _v7;
+                  _v7 = elapsed_ms$1;
+                  var _v8;
+                  _v8 = finished$2;
+                  _r0 = $Midum$Image$step_empty_or_frozen(_v7, _v8);
+                  break;
+                }
+                default: {
+                  throw new Error("EFQ applied");
+                  break;
+                }
+              }
+              break;
+            }
+            default: {
+              var playback = x$2;
+              var delta_ms$1 = x$3;
+              switch (x$4.$) {
+                case "state": {
+                  var _m9 = x$4.elapsed_ms;
+                  var _m10 = x$4.finished;
+                  var elapsed_ms$2 = _m9;
+                  var finished$3 = _m10;
+                  var _v11;
+                  _v11 = elapsed_ms$2;
+                  var _v12;
+                  _v12 = finished$3;
+                  _r0 = $Midum$Image$step_empty_or_frozen(_v11, _v12);
+                  break;
+                }
+                default: {
+                  throw new Error("EFQ applied");
+                  break;
+                }
+              }
+              break;
+            }
+          }
+          break;
+        }
+      }
+    } else {
+      var $m1 = _nat_sub(x$1, 1);
+      switch (x$2.$) {
+        case "loop": {
+          var delta_ms$1 = x$3;
+          switch (x$4.$) {
+            case "state": {
+              var _m13 = x$4.elapsed_ms;
+              var _m14 = x$4.finished;
+              var elapsed_ms$2 = _m13;
+              var finished$3 = _m14;
+              var _v15;
+              _v15 = elapsed_ms$2;
+              var _v16;
+              _v16 = finished$3;
+              _r0 = $Midum$Image$step_empty_or_frozen(_v15, _v16);
+              break;
+            }
+            default: {
+              throw new Error("EFQ applied");
+              break;
+            }
+          }
+          break;
+        }
+        default: {
+          switch (x$2.$) {
+            case "once_hold_last": {
+              var delta_ms$1 = x$3;
+              switch (x$4.$) {
+                case "state": {
+                  var _m17 = x$4.elapsed_ms;
+                  var _m18 = x$4.finished;
+                  var elapsed_ms$2 = _m17;
+                  var finished$3 = _m18;
+                  var _v19;
+                  _v19 = elapsed_ms$2;
+                  var _v20;
+                  _v20 = finished$3;
+                  _r0 = $Midum$Image$step_empty_or_frozen(_v19, _v20);
+                  break;
+                }
+                default: {
+                  throw new Error("EFQ applied");
+                  break;
+                }
+              }
+              break;
+            }
+            default: {
+              var playback$1 = x$2;
+              var delta_ms$2 = x$3;
+              switch (x$4.$) {
+                case "state": {
+                  var _m21 = x$4.elapsed_ms;
+                  var _m22 = x$4.finished;
+                  var elapsed_ms$3 = _m21;
+                  var finished$4 = _m22;
+                  var _v23;
+                  _v23 = elapsed_ms$3;
+                  var _v24;
+                  _v24 = finished$4;
+                  _r0 = $Midum$Image$step_empty_or_frozen(_v23, _v24);
+                  break;
+                }
+                default: {
+                  throw new Error("EFQ applied");
+                  break;
+                }
+              }
+              break;
+            }
+          }
+          break;
+        }
+      }
+    }
+  } else {
+    var $m0 = _nat_sub(x, 1);
+    if (_nat_is_zero(x$1)) {
+      switch (x$2.$) {
+        case "loop": {
+          var delta_ms$1 = x$3;
+          switch (x$4.$) {
+            case "state": {
+              var _m25 = x$4.elapsed_ms;
+              var _m26 = x$4.finished;
+              var elapsed_ms$2 = _m25;
+              var finished$3 = _m26;
+              var _v27;
+              _v27 = elapsed_ms$2;
+              var _v28;
+              _v28 = finished$3;
+              _r0 = $Midum$Image$step_empty_or_frozen(_v27, _v28);
+              break;
+            }
+            default: {
+              throw new Error("EFQ applied");
+              break;
+            }
+          }
+          break;
+        }
+        default: {
+          switch (x$2.$) {
+            case "once_hold_last": {
+              var delta_ms$1 = x$3;
+              switch (x$4.$) {
+                case "state": {
+                  var _m29 = x$4.elapsed_ms;
+                  var _m30 = x$4.finished;
+                  var elapsed_ms$2 = _m29;
+                  var finished$3 = _m30;
+                  var _v31;
+                  _v31 = elapsed_ms$2;
+                  var _v32;
+                  _v32 = finished$3;
+                  _r0 = $Midum$Image$step_empty_or_frozen(_v31, _v32);
+                  break;
+                }
+                default: {
+                  throw new Error("EFQ applied");
+                  break;
+                }
+              }
+              break;
+            }
+            default: {
+              var playback$1 = x$2;
+              var delta_ms$2 = x$3;
+              switch (x$4.$) {
+                case "state": {
+                  var _m33 = x$4.elapsed_ms;
+                  var _m34 = x$4.finished;
+                  var elapsed_ms$3 = _m33;
+                  var finished$4 = _m34;
+                  var _v35;
+                  _v35 = elapsed_ms$3;
+                  var _v36;
+                  _v36 = finished$4;
+                  _r0 = $Midum$Image$step_empty_or_frozen(_v35, _v36);
+                  break;
+                }
+                default: {
+                  throw new Error("EFQ applied");
+                  break;
+                }
+              }
+              break;
+            }
+          }
+          break;
+        }
+      }
+    } else {
+      var $m47$1 = _nat_sub(x$1, 1);
+      switch (x$2.$) {
+        case "loop": {
+          var delta_ms$2 = x$3;
+          switch (x$4.$) {
+            case "state": {
+              var _m37 = x$4.elapsed_ms;
+              var _m38 = x$4.finished;
+              var elapsed_ms$3 = _m37;
+              var finished$4 = _m38;
+              var _v39;
+              var _v40;
+              _v40 = $m0;
+              _v39 = _nat_add(_v40, 1);
+              var _v41;
+              var _v42;
+              _v42 = $m47$1;
+              _v41 = _nat_add(_v42, 1);
+              var _v43;
+              _v43 = delta_ms$2;
+              var _v44;
+              _v44 = elapsed_ms$3;
+              _r0 = $Midum$Image$step_loop(_v39, _v41, _v43, _v44);
+              break;
+            }
+            default: {
+              throw new Error("EFQ applied");
+              break;
+            }
+          }
+          break;
+        }
+        default: {
+          switch (x$2.$) {
+            case "once_hold_last": {
+              var delta_ms$2 = x$3;
+              switch (x$4.$) {
+                case "state": {
+                  var _m45 = x$4.elapsed_ms;
+                  var _m46 = x$4.finished;
+                  var elapsed_ms$3 = _m45;
+                  var finished$4 = _m46;
+                  var _v47;
+                  var _v48;
+                  _v48 = $m0;
+                  _v47 = _nat_add(_v48, 1);
+                  var _v49;
+                  var _v50;
+                  _v50 = $m47$1;
+                  _v49 = _nat_add(_v50, 1);
+                  var _v51;
+                  _v51 = delta_ms$2;
+                  var _v52;
+                  _v52 = elapsed_ms$3;
+                  var _v53;
+                  _v53 = finished$4;
+                  _r0 = $Midum$Image$step_once(_v47, _v49, _v51, _v52, _v53);
+                  break;
+                }
+                default: {
+                  throw new Error("EFQ applied");
+                  break;
+                }
+              }
+              break;
+            }
+            default: {
+              throw new Error("EFQ applied");
+              break;
+            }
+          }
+          break;
+        }
+      }
+    }
+  }
+  return _r0;
+}
+
+export const Midum$Image$step_checked = () => ((a0) => ((a1) => ((a2) => ((a3) => ((a4) => ($Midum$Image$step_checked(a0, a1, a2, a3, a4)))))));
+
+export function $Midum$Image$step(x, x$1, x$2) {
+  var _r0;
+  switch (x.$) {
+    case "animation": {
+      var _m1 = x.frames;
+      var _m2 = x.fps;
+      var _m3 = x.playback;
+      var frames = _m1;
+      var fps$1 = _m2;
+      var playback$2 = _m3;
+      var delta_ms$3 = x$1;
+      var state$4 = x$2;
+      var count$5;
+      var _v4;
+      _v4 = null;
+      var _v5;
+      _v5 = frames;
+      count$5 = $List$length(_v4, _v5);
+      var ms$6;
+      var _v6;
+      var _v7;
+      _v7 = frames;
+      var _v8;
+      _v8 = fps$1;
+      var _v9;
+      _v9 = playback$2;
+      _v6 = ({$: "animation", frames: _v7, fps: _v8, playback: _v9});
+      ms$6 = $Midum$Image$frame_ms(_v6);
+      var _v10;
+      _v10 = count$5;
+      var _v11;
+      _v11 = ms$6;
+      var _v12;
+      _v12 = playback$2;
+      var _v13;
+      _v13 = delta_ms$3;
+      var _v14;
+      _v14 = state$4;
+      _r0 = $Midum$Image$step_checked(_v10, _v11, _v12, _v13, _v14);
+      break;
+    }
+    default: {
+      throw new Error("EFQ applied");
+      break;
+    }
+  }
+  return _r0;
+}
+
+export const Midum$Image$step = () => ((a0) => ((a1) => ((a2) => ($Midum$Image$step(a0, a1, a2)))));
+
+export function $Midum$Image$view(_Event, src$1, alt$2, overrides$3) {
+  var _r0;
+  var _v1;
+  _v1 = _Event;
+  var _v2;
+  _v2 = src$1;
+  var _v3;
+  _v3 = alt$2;
+  var _v4;
+  var _v5;
+  _v5 = overrides$3;
+  _v4 = $Midum$Image$config(_v5);
+  _r0 = $Midum$Internal$DOM$Image$render(_v1, _v2, _v3, _v4);
+  return _r0;
+}
+
+export const Midum$Image$view = () => ((a0) => ((a1) => ((a2) => ((a3) => ($Midum$Image$view(a0, a1, a2, a3))))));
+
+export function $Midum$Image$animated(_Event, state$1, animation$2, alt$3, overrides$4) {
+  var _r0;
+  var _v1;
+  _v1 = _Event;
+  var _v2;
+  var _v3;
+  _v3 = animation$2;
+  var _v4;
+  _v4 = state$1;
+  _v2 = $Midum$Image$current_src(_v3, _v4);
+  var _v5;
+  _v5 = alt$3;
+  var _v6;
+  var _v7;
+  _v7 = overrides$4;
+  _v6 = $Midum$Image$config(_v7);
+  _r0 = $Midum$Internal$DOM$Image$render(_v1, _v2, _v5, _v6);
+  return _r0;
+}
+
+export const Midum$Image$animated = () => ((a0) => ((a1) => ((a2) => ((a3) => ((a4) => ($Midum$Image$animated(a0, a1, a2, a3, a4)))))));
+
+export const Midum$Image$Config = null;
+
+export const Midum$Image$Size = null;
+
+export const Midum$Image$Fit = null;
+
+export const Midum$Image$Sampling = null;
+
+export const Midum$Image$Animation = null;
+
+export const Midum$Image$Playback = null;
+
+export function $List$length(A, x$1) {
+  var _r0;
+  switch (x$1.$) {
+    case "nil": {
+      _r0 = 0;
+      break;
+    }
+    default: {
+      switch (x$1.$) {
+        case "cons": {
+          var _m1 = x$1.head;
+          var _m2 = x$1.tail;
+          var _$1 = _m1;
+          var t$2 = _m2;
+          var _v3;
+          var _v4;
+          _v4 = A;
+          var _v5;
+          _v5 = t$2;
+          _v3 = $List$length(_v4, _v5);
+          _r0 = _nat_add(_v3, 1);
+          break;
+        }
+        default: {
+          throw new Error("EFQ applied");
+          break;
+        }
+      }
+      break;
+    }
+  }
+  return _r0;
+}
+
+export const List$length = () => ((a0) => ((a1) => ($List$length(a0, a1))));
+
+export function $Nat$max(x, x$1) {
+  var _r0;
+  if (_nat_is_zero(x)) {
+    var b = x$1;
+    _r0 = b;
+  } else {
+    var p = _nat_sub(x, 1);
+    if (_nat_is_zero(x$1)) {
+      var _v1;
+      _v1 = p;
+      _r0 = _nat_add(_v1, 1);
+    } else {
+      var q$1 = _nat_sub(x$1, 1);
+      var _v2;
+      var _v3;
+      _v3 = p;
+      var _v4;
+      _v4 = q$1;
+      _v2 = $Nat$max(_v3, _v4);
+      _r0 = _nat_add(_v2, 1);
+    }
+  }
+  return _r0;
+}
+
+export const Nat$max = () => ((a0) => ((a1) => ($Nat$max(a0, a1))));
+
+export function $Nat$div(a, x$1) {
+  var _r0;
+  if (_nat_is_zero(x$1)) {
+    _r0 = 0;
+  } else {
+    var q$1 = _nat_sub(x$1, 1);
+    var _v1;
+    _v1 = a;
+    var _v2;
+    _v2 = q$1;
+    var _v3;
+    var _v4;
+    _v4 = a;
+    var _v5;
+    var _v6;
+    _v6 = q$1;
+    _v5 = _nat_add(_v6, 1);
+    _v3 = $Nat$compare(_v4, _v5);
+    _r0 = $Nat$div$_0(_v1, _v2, _v3);
+  }
+  return _r0;
+}
+
+export const Nat$div = () => ((a0) => ((a1) => ($Nat$div(a0, a1))));
+
+export function $Nat$mod(a, x$1) {
+  while (true) {
+    var _r0;
+    if (_nat_is_zero(x$1)) {
+      _r0 = a;
+    } else {
+      var q$1 = _nat_sub(x$1, 1);
+      var _v1;
+      _v1 = a;
+      var _v2;
+      _v2 = q$1;
+      var _v3;
+      var _v4;
+      _v4 = a;
+      var _v5;
+      var _v6;
+      _v6 = q$1;
+      _v5 = _nat_add(_v6, 1);
+      _v3 = $Nat$compare(_v4, _v5);
+      var a$2 = _v1;
+      var q$3 = _v2;
+      switch (_v3.$) {
+        case "lt": {
+          _r0 = a;
+          break;
+        }
+        default: {
+          switch (_v3.$) {
+            case "eq": {
+              _r0 = 0;
+              break;
+            }
+            default: {
+              switch (_v3.$) {
+                case "gt": {
+                  var _v7;
+                  var _v8;
+                  _v8 = a;
+                  var _v9;
+                  var _v10;
+                  _v10 = q$1;
+                  _v9 = _nat_add(_v10, 1);
+                  _v7 = $Nat$sub(_v8, _v9);
+                  var _v11;
+                  var _v12;
+                  _v12 = q$1;
+                  _v11 = _nat_add(_v12, 1);
+                  a = _v7;
+                  x$1 = _v11;
+                  continue;
+                  break;
+                }
+                default: {
+                  throw new Error("EFQ applied");
+                  break;
+                }
+              }
+              break;
+            }
+          }
+          break;
+        }
+      }
+    }
+    return _r0;
+  }
+}
+
+export const Nat$mod = () => ((a0) => ((a1) => ($Nat$mod(a0, a1))));
+
+export function $Nat$pred(x) {
+  var _r0;
+  if (_nat_is_zero(x)) {
+    _r0 = 0;
+  } else {
+    var p = _nat_sub(x, 1);
+    _r0 = p;
+  }
+  return _r0;
+}
+
+export const Nat$pred = () => ((a0) => ($Nat$pred(a0)));
+
+export const Midum$Image$Step = null;
+
+export function $Nat$mul(x, x$1) {
+  var _r0;
+  if (_nat_is_zero(x)) {
+    var b = x$1;
+    _r0 = 0;
+  } else {
+    var p = _nat_sub(x, 1);
+    var b$1 = x$1;
+    var _v1;
+    _v1 = b$1;
+    var _v2;
+    var _v3;
+    _v3 = p;
+    var _v4;
+    _v4 = b$1;
+    _v2 = $Nat$mul(_v3, _v4);
+    _r0 = $Nat$add(_v1, _v2);
+  }
+  return _r0;
+}
+
+export const Nat$mul = () => ((a0) => ((a1) => ($Nat$mul(a0, a1))));
+
+export function $Midum$Internal$DOM$Image$css_nat(value) {
+  var _r0;
+  var _v1;
+  _v1 = value;
+  _r0 = $Nat$show(_v1);
+  return _r0;
+}
+
+export const Midum$Internal$DOM$Image$css_nat = () => ((a0) => ($Midum$Internal$DOM$Image$css_nat(a0)));
+
+export function $Midum$Internal$DOM$Image$size_style(x) {
+  var _r0;
+  switch (x.$) {
+    case "auto": {
+      _r0 = "auto";
+      break;
+    }
+    default: {
+      switch (x.$) {
+        case "px": {
+          var _m1 = x.value;
+          var value = _m1;
+          var _v2;
+          var _v3;
+          _v3 = value;
+          _v2 = $Midum$Internal$DOM$Image$css_nat(_v3);
+          var _v4;
+          _v4 = "px";
+          _r0 = (_v2 + _v4);
+          break;
+        }
+        default: {
+          throw new Error("EFQ applied");
+          break;
+        }
+      }
+      break;
+    }
+  }
+  return _r0;
+}
+
+export const Midum$Internal$DOM$Image$size_style = () => ((a0) => ($Midum$Internal$DOM$Image$size_style(a0)));
+
+export function $Midum$Internal$DOM$Image$fit_class(x) {
+  var _r0;
+  switch (x.$) {
+    case "contain": {
+      _r0 = "bc-image-fit-contain";
+      break;
+    }
+    default: {
+      switch (x.$) {
+        case "cover": {
+          _r0 = "bc-image-fit-cover";
+          break;
+        }
+        default: {
+          switch (x.$) {
+            case "stretch": {
+              _r0 = "bc-image-fit-stretch";
+              break;
+            }
+            default: {
+              throw new Error("EFQ applied");
+              break;
+            }
+          }
+          break;
+        }
+      }
+      break;
+    }
+  }
+  return _r0;
+}
+
+export const Midum$Internal$DOM$Image$fit_class = () => ((a0) => ($Midum$Internal$DOM$Image$fit_class(a0)));
+
+export function $Midum$Internal$DOM$Image$sampling_class(x) {
+  var _r0;
+  switch (x.$) {
+    case "smooth": {
+      _r0 = "bc-image-sampling-smooth";
+      break;
+    }
+    default: {
+      switch (x.$) {
+        case "pixelated": {
+          _r0 = "bc-image-sampling-pixelated";
+          break;
+        }
+        default: {
+          throw new Error("EFQ applied");
+          break;
+        }
+      }
+      break;
+    }
+  }
+  return _r0;
+}
+
+export const Midum$Internal$DOM$Image$sampling_class = () => ((a0) => ($Midum$Internal$DOM$Image$sampling_class(a0)));
+
+export function $Midum$Internal$DOM$Image$image_class(fit, sampling$1) {
+  var _r0;
+  var _v1;
+  var _v2;
+  var _v3;
+  _v3 = "bc-image ";
+  var _v4;
+  var _v5;
+  _v5 = fit;
+  _v4 = $Midum$Internal$DOM$Image$fit_class(_v5);
+  _v2 = (_v3 + _v4);
+  var _v6;
+  _v6 = " ";
+  _v1 = (_v2 + _v6);
+  var _v7;
+  var _v8;
+  _v8 = sampling$1;
+  _v7 = $Midum$Internal$DOM$Image$sampling_class(_v8);
+  _r0 = (_v1 + _v7);
+  return _r0;
+}
+
+export const Midum$Internal$DOM$Image$image_class = () => ((a0) => ((a1) => ($Midum$Internal$DOM$Image$image_class(a0, a1))));
+
+export function $Midum$Internal$DOM$Image$empty_class(fit, sampling$1) {
+  var _r0;
+  var _v1;
+  var _v2;
+  _v2 = fit;
+  var _v3;
+  _v3 = sampling$1;
+  _v1 = $Midum$Internal$DOM$Image$image_class(_v2, _v3);
+  var _v4;
+  _v4 = " bc-image--empty";
+  _r0 = (_v1 + _v4);
+  return _r0;
+}
+
+export const Midum$Internal$DOM$Image$empty_class = () => ((a0) => ((a1) => ($Midum$Internal$DOM$Image$empty_class(a0, a1))));
+
+export function $Midum$Internal$DOM$Image$render(_Event, src$1, alt$2, x$3) {
+  var _r0;
+  switch (x$3.$) {
+    case "image": {
+      var _m1 = x$3.width;
+      var _m2 = x$3.height;
+      var _m3 = x$3.fit;
+      var _m4 = x$3.sampling;
+      var width$3 = _m1;
+      var height$4 = _m2;
+      var fit$5 = _m3;
+      var sampling$6 = _m4;
+      var _v5;
+      _v5 = _Event;
+      var _v6;
+      _v6 = src$1;
+      var _v7;
+      _v7 = alt$2;
+      var _v8;
+      _v8 = width$3;
+      var _v9;
+      _v9 = height$4;
+      var _v10;
+      _v10 = fit$5;
+      var _v11;
+      _v11 = sampling$6;
+      var _v12;
+      var _v13;
+      _v13 = src$1;
+      _v12 = $String$is_empty(_v13);
+      _r0 = $Midum$Internal$DOM$Image$render$_0(_v5, _v6, _v7, _v8, _v9, _v10, _v11, _v12);
+      break;
+    }
+    default: {
+      throw new Error("EFQ applied");
+      break;
+    }
+  }
+  return _r0;
+}
+
+export const Midum$Internal$DOM$Image$render = () => ((a0) => ((a1) => ((a2) => ((a3) => ($Midum$Internal$DOM$Image$render(a0, a1, a2, a3))))));
+
+export function $String$is_empty(x) {
+  var _r0;
+  if (typeof x !== "string") {
+    throw new Error("invalid Bend String value");
+  }
+  if (x.length === 0) {
+    _r0 = ({$: "true"});
+  } else {
+    if (typeof x !== "string") {
+      throw new Error("invalid Bend String value");
+    }
+    if (x.length === 0) {
+      throw new Error("EFQ applied");
+    } else {
+      var _s1 = x[0];
+      var _s2 = x.slice(1);
+      var _ = _s1;
+      var _$1 = _s2;
+      _r0 = ({$: "false"});
+    }
+  }
+  return _r0;
+}
+
+export const String$is_empty = () => ((a0) => ($String$is_empty(a0)));
+
+export const Midum$Image$config$Config = null;
+
+export function $Dungeon$monster_damage_animation$frames() {
+  var _r0;
+  var _v1;
+  var _v2;
+  var _v3;
+  var _v4;
+  var _v5;
+  var _v6;
+  var _v7;
+  var _v8;
+  var _v9;
+  _v9 = "assets/attack_00_00.png";
+  var _v10;
+  _v10 = "\n";
+  _v8 = (_v9 + _v10);
+  var _v11;
+  _v11 = "assets/attack_01_00.png";
+  _v7 = (_v8 + _v11);
+  var _v12;
+  _v12 = "\n";
+  _v6 = (_v7 + _v12);
+  var _v13;
+  _v13 = "assets/attack_02_00.png";
+  _v5 = (_v6 + _v13);
+  var _v14;
+  _v14 = "\n";
+  _v4 = (_v5 + _v14);
+  var _v15;
+  _v15 = "assets/attack_03_00.png";
+  _v3 = (_v4 + _v15);
+  var _v16;
+  _v16 = "\n";
+  _v2 = (_v3 + _v16);
+  var _v17;
+  _v17 = "assets/attack_04_00.png";
+  _v1 = (_v2 + _v17);
+  var _v18;
+  _v18 = ({$: "nil"});
+  _r0 = ({$: "cons", head: _v1, tail: _v18});
+  return _r0;
+}
+
+export const Dungeon$monster_damage_animation$frames = () => ($Dungeon$monster_damage_animation$frames());
+
+export function $Dungeon$monster_damage_animation$clip() {
+  var _r0;
+  var _v1;
+  _v1 = Dungeon$monster_damage_animation$frames();
+  var _v2;
+  _v2 = 8;
+  var _v3;
+  _v3 = ({$: "once_hold_last"});
+  _r0 = ({$: "animation", frames: _v1, fps: _v2, playback: _v3});
+  return _r0;
+}
+
+export const Dungeon$monster_damage_animation$clip = () => ($Dungeon$monster_damage_animation$clip());
+
 export function $Dungeon$App$on_event(evt, state$1) {
   var _r0;
   var next$2;
@@ -31416,10 +33634,12 @@ export function $Dungeon$App$on_event(evt, state$1) {
   _v2 = state$1;
   next$2 = $Dungeon$App$scene_flow$_next_state(_v1, _v2);
   var _v3;
-  _v3 = state$1;
+  _v3 = evt;
   var _v4;
-  _v4 = next$2;
-  _r0 = $Dungeon$App$persistence$finalize_update(_v3, _v4);
+  _v4 = state$1;
+  var _v5;
+  _v5 = next$2;
+  _r0 = $Dungeon$App$persistence$finalize_update(_v3, _v4, _v5);
   return _r0;
 }
 
@@ -35085,7 +37305,7 @@ export const Dungeon$App$update_running$_update_running_ultimate_ready = () => (
 export function $Dungeon$App$update_running(x, x$1, x$2, x$3, x$4) {
   var _r0;
   switch (x.$) {
-    case "ultimate": {
+    case "damage_tick": {
       var meta_state = x$1;
       var run_value$1 = x$2;
       var next_seed_value$2 = x$3;
@@ -35093,53 +37313,78 @@ export function $Dungeon$App$update_running(x, x$1, x$2, x$3, x$4) {
       var _v1;
       _v1 = meta_state;
       var _v2;
-      _v2 = run_value$1;
       var _v3;
-      _v3 = next_seed_value$2;
+      _v3 = run_value$1;
+      _v2 = ({$: "running", run: _v3});
       var _v4;
-      _v4 = ui_value$3;
-      _r0 = $Dungeon$App$update_running$_update_running_ultimate(_v1, _v2, _v3, _v4);
+      _v4 = next_seed_value$2;
+      var _v5;
+      var _v6;
+      _v6 = ui_value$3;
+      _v5 = $Dungeon$App$ui_fx$_step_ui_damage_overlay(_v6);
+      _r0 = $Dungeon$App$state_helpers$_state(_v1, _v2, _v4, _v5);
       break;
     }
     default: {
       switch (x.$) {
-        case "move": {
-          var _m5 = x.dir;
-          var dir = _m5;
-          var meta_state$1 = x$1;
-          var run_value$2 = x$2;
-          var next_seed_value$3 = x$3;
-          var ui_value$4 = x$4;
-          var _v6;
-          _v6 = meta_state$1;
+        case "ultimate": {
+          var meta_state = x$1;
+          var run_value$1 = x$2;
+          var next_seed_value$2 = x$3;
+          var ui_value$3 = x$4;
           var _v7;
-          _v7 = run_value$2;
+          _v7 = meta_state;
           var _v8;
-          _v8 = next_seed_value$3;
+          _v8 = run_value$1;
           var _v9;
-          _v9 = dir;
+          _v9 = next_seed_value$2;
           var _v10;
-          _v10 = ui_value$4;
-          _r0 = $Dungeon$App$update_running$_apply_turn(_v6, _v7, _v8, _v9, _v10);
+          _v10 = ui_value$3;
+          _r0 = $Dungeon$App$update_running$_update_running_ultimate(_v7, _v8, _v9, _v10);
           break;
         }
         default: {
-          var _ = x;
-          var meta_state$1 = x$1;
-          var run_value$2 = x$2;
-          var next_seed_value$3 = x$3;
-          var ui_value$4 = x$4;
-          var _v11;
-          _v11 = meta_state$1;
-          var _v12;
-          var _v13;
-          _v13 = run_value$2;
-          _v12 = ({$: "running", run: _v13});
-          var _v14;
-          _v14 = next_seed_value$3;
-          var _v15;
-          _v15 = ui_value$4;
-          _r0 = $Dungeon$App$state_helpers$_state(_v11, _v12, _v14, _v15);
+          switch (x.$) {
+            case "move": {
+              var _m11 = x.dir;
+              var dir = _m11;
+              var meta_state$1 = x$1;
+              var run_value$2 = x$2;
+              var next_seed_value$3 = x$3;
+              var ui_value$4 = x$4;
+              var _v12;
+              _v12 = meta_state$1;
+              var _v13;
+              _v13 = run_value$2;
+              var _v14;
+              _v14 = next_seed_value$3;
+              var _v15;
+              _v15 = dir;
+              var _v16;
+              _v16 = ui_value$4;
+              _r0 = $Dungeon$App$update_running$_apply_turn(_v12, _v13, _v14, _v15, _v16);
+              break;
+            }
+            default: {
+              var _ = x;
+              var meta_state$1 = x$1;
+              var run_value$2 = x$2;
+              var next_seed_value$3 = x$3;
+              var ui_value$4 = x$4;
+              var _v17;
+              _v17 = meta_state$1;
+              var _v18;
+              var _v19;
+              _v19 = run_value$2;
+              _v18 = ({$: "running", run: _v19});
+              var _v20;
+              _v20 = next_seed_value$3;
+              var _v21;
+              _v21 = ui_value$4;
+              _r0 = $Dungeon$App$state_helpers$_state(_v17, _v18, _v20, _v21);
+              break;
+            }
+          }
           break;
         }
       }
@@ -36116,6 +38361,251 @@ export function $Dungeon$App$ui_fx$_impact_from_adjacent(x, x$1, x$2, x$3) {
 
 export const Dungeon$App$ui_fx$_impact_from_adjacent = () => ((a0) => ((a1) => ((a2) => ((a3) => ($Dungeon$App$ui_fx$_impact_from_adjacent(a0, a1, a2, a3))))));
 
+export function $Dungeon$App$ui_fx$_damage_overlay_from_impact(prev_tile, current_overlay$1, x$2) {
+  var _r0;
+  switch (x$2.$) {
+    case "no_impact": {
+      _r0 = current_overlay$1;
+      break;
+    }
+    default: {
+      switch (x$2.$) {
+        case "impact": {
+          var _m1 = x$2.pos;
+          var _m2 = x$2.fx;
+          var pos$2 = _m1;
+          var trigger$3 = _m2;
+          var _v3;
+          _v3 = pos$2;
+          var _v4;
+          _v4 = trigger$3;
+          var _v5;
+          _v5 = prev_tile;
+          var _v6;
+          _v6 = Midum$Image$reset_state();
+          _r0 = ({$: "damage_overlay", pos: _v3, trigger: _v4, base_tile: _v5, state: _v6});
+          break;
+        }
+        default: {
+          throw new Error("EFQ applied");
+          break;
+        }
+      }
+      break;
+    }
+  }
+  return _r0;
+}
+
+export const Dungeon$App$ui_fx$_damage_overlay_from_impact = () => ((a0) => ((a1) => ((a2) => ($Dungeon$App$ui_fx$_damage_overlay_from_impact(a0, a1, a2)))));
+
+export function $Dungeon$App$ui_fx$_damage_overlay_from_target_tile(target_pos, prev_tile$1, next_tile$2, current_overlay$3, current_impact$4) {
+  var _r0;
+  var _v1;
+  _v1 = prev_tile$1;
+  var _v2;
+  _v2 = current_overlay$3;
+  var _v3;
+  var _v4;
+  _v4 = target_pos;
+  var _v5;
+  _v5 = prev_tile$1;
+  var _v6;
+  _v6 = next_tile$2;
+  var _v7;
+  _v7 = current_impact$4;
+  _v3 = $Dungeon$App$ui_fx$_impact_from_target_tile(_v4, _v5, _v6, _v7);
+  _r0 = $Dungeon$App$ui_fx$_damage_overlay_from_impact(_v1, _v2, _v3);
+  return _r0;
+}
+
+export const Dungeon$App$ui_fx$_damage_overlay_from_target_tile = () => ((a0) => ((a1) => ((a2) => ((a3) => ((a4) => ($Dungeon$App$ui_fx$_damage_overlay_from_target_tile(a0, a1, a2, a3, a4)))))));
+
+export function $Dungeon$App$ui_fx$_damage_overlay_from_target_pos(target_pos, current_run$1, next_run$2, current_overlay$3, current_impact$4) {
+  var _r0;
+  var _v1;
+  _v1 = target_pos;
+  var _v2;
+  var _v3;
+  var _v4;
+  _v4 = current_run$1;
+  _v3 = $Dungeon$App$ui_fx$_run_board(_v4);
+  var _v5;
+  _v5 = target_pos;
+  _v2 = $Dungeon$Board$indexing$board_get_pos(_v3, _v5);
+  var _v6;
+  var _v7;
+  var _v8;
+  _v8 = next_run$2;
+  _v7 = $Dungeon$App$ui_fx$_run_board(_v8);
+  var _v9;
+  _v9 = target_pos;
+  _v6 = $Dungeon$Board$indexing$board_get_pos(_v7, _v9);
+  var _v10;
+  _v10 = current_overlay$3;
+  var _v11;
+  _v11 = current_impact$4;
+  _r0 = $Dungeon$App$ui_fx$_damage_overlay_from_target_tile(_v1, _v2, _v6, _v10, _v11);
+  return _r0;
+}
+
+export const Dungeon$App$ui_fx$_damage_overlay_from_target_pos = () => ((a0) => ((a1) => ((a2) => ((a3) => ((a4) => ($Dungeon$App$ui_fx$_damage_overlay_from_target_pos(a0, a1, a2, a3, a4)))))));
+
+export function $Dungeon$App$ui_fx$_damage_overlay_from_turn(current_run, next_run$1, dir$2, current_overlay$3, current_impact$4) {
+  var _r0;
+  var _v1;
+  var _v2;
+  var _v3;
+  _v3 = current_run;
+  _v2 = $Dungeon$App$ui_fx$_run_hero_index(_v3);
+  var _v4;
+  _v4 = dir$2;
+  _v1 = $Dungeon$Board$indexing$adjacent_pos(_v2, _v4);
+  var _v5;
+  _v5 = current_run;
+  var _v6;
+  _v6 = next_run$1;
+  var _v7;
+  _v7 = current_overlay$3;
+  var _v8;
+  _v8 = current_impact$4;
+  _r0 = $Dungeon$App$ui_fx$_damage_overlay_from_adjacent(_v1, _v5, _v6, _v7, _v8);
+  return _r0;
+}
+
+export const Dungeon$App$ui_fx$_damage_overlay_from_turn = () => ((a0) => ((a1) => ((a2) => ((a3) => ((a4) => ($Dungeon$App$ui_fx$_damage_overlay_from_turn(a0, a1, a2, a3, a4)))))));
+
+export function $Dungeon$App$ui_fx$_damage_overlay_from_adjacent(x, x$1, x$2, x$3, x$4) {
+  var _r0;
+  switch (x.$) {
+    case "none": {
+      var current_run = x$1;
+      var next_run$1 = x$2;
+      var current_overlay$2 = x$3;
+      var current_impact$3 = x$4;
+      _r0 = current_overlay$2;
+      break;
+    }
+    default: {
+      switch (x.$) {
+        case "some": {
+          var _m1 = x.val;
+          var target_pos = _m1;
+          var current_run$1 = x$1;
+          var next_run$2 = x$2;
+          var current_overlay$3 = x$3;
+          var current_impact$4 = x$4;
+          var _v2;
+          _v2 = target_pos;
+          var _v3;
+          _v3 = current_run$1;
+          var _v4;
+          _v4 = next_run$2;
+          var _v5;
+          _v5 = current_overlay$3;
+          var _v6;
+          _v6 = current_impact$4;
+          _r0 = $Dungeon$App$ui_fx$_damage_overlay_from_target_pos(_v2, _v3, _v4, _v5, _v6);
+          break;
+        }
+        default: {
+          throw new Error("EFQ applied");
+          break;
+        }
+      }
+      break;
+    }
+  }
+  return _r0;
+}
+
+export const Dungeon$App$ui_fx$_damage_overlay_from_adjacent = () => ((a0) => ((a1) => ((a2) => ((a3) => ((a4) => ($Dungeon$App$ui_fx$_damage_overlay_from_adjacent(a0, a1, a2, a3, a4)))))));
+
+export function $Dungeon$App$ui_fx$_step_damage_overlay(x) {
+  var _r0;
+  switch (x.$) {
+    case "no_damage_overlay": {
+      _r0 = ({$: "no_damage_overlay"});
+      break;
+    }
+    default: {
+      switch (x.$) {
+        case "damage_overlay": {
+          var _m1 = x.pos;
+          var _m2 = x.trigger;
+          var _m3 = x.base_tile;
+          var _m4 = x.state;
+          var pos = _m1;
+          var trigger$1 = _m2;
+          var base_tile$2 = _m3;
+          var overlay_state$3 = _m4;
+          var _v5;
+          _v5 = pos;
+          var _v6;
+          _v6 = trigger$1;
+          var _v7;
+          _v7 = base_tile$2;
+          var _v8;
+          _v8 = overlay_state$3;
+          var _v9;
+          var _v10;
+          _v10 = Dungeon$monster_damage_animation$clip();
+          var _v11;
+          _v11 = 125;
+          var _v12;
+          _v12 = overlay_state$3;
+          _v9 = $Midum$Image$step(_v10, _v11, _v12);
+          _r0 = $Dungeon$App$ui_fx$_step_damage_overlay$_0(_v5, _v6, _v7, _v8, _v9);
+          break;
+        }
+        default: {
+          throw new Error("EFQ applied");
+          break;
+        }
+      }
+      break;
+    }
+  }
+  return _r0;
+}
+
+export const Dungeon$App$ui_fx$_step_damage_overlay = () => ((a0) => ($Dungeon$App$ui_fx$_step_damage_overlay(a0)));
+
+export function $Dungeon$App$ui_fx$_step_ui_damage_overlay(x) {
+  var _r0;
+  switch (x.$) {
+    case "ui_state": {
+      var _m1 = x.hp_fx;
+      var _m2 = x.dmg_fx;
+      var _m3 = x.impact;
+      var _m4 = x.damage_overlay;
+      var current_hp_fx = _m1;
+      var current_dmg_fx$1 = _m2;
+      var current_impact$2 = _m3;
+      var current_damage_overlay$3 = _m4;
+      var _v5;
+      _v5 = current_hp_fx;
+      var _v6;
+      _v6 = current_dmg_fx$1;
+      var _v7;
+      _v7 = current_impact$2;
+      var _v8;
+      var _v9;
+      _v9 = current_damage_overlay$3;
+      _v8 = $Dungeon$App$ui_fx$_step_damage_overlay(_v9);
+      _r0 = ({$: "ui_state", hp_fx: _v5, dmg_fx: _v6, impact: _v7, damage_overlay: _v8});
+      break;
+    }
+    default: {
+      throw new Error("EFQ applied");
+      break;
+    }
+  }
+  return _r0;
+}
+
+export const Dungeon$App$ui_fx$_step_ui_damage_overlay = () => ((a0) => ($Dungeon$App$ui_fx$_step_ui_damage_overlay(a0)));
+
 export function $Dungeon$App$ui_fx$_next_ui_from_turn(current_run, next_run$1, x$2, x$3) {
   var _r0;
   switch (x$2.$) {
@@ -36123,37 +38613,51 @@ export function $Dungeon$App$ui_fx$_next_ui_from_turn(current_run, next_run$1, x
       var _m1 = x$2.hp_fx;
       var _m2 = x$2.dmg_fx;
       var _m3 = x$2.impact;
+      var _m4 = x$2.damage_overlay;
       var current_hp_fx$2 = _m1;
       var current_dmg_fx$3 = _m2;
       var current_impact$4 = _m3;
-      var dir$5 = x$3;
-      var _v4;
+      var current_damage_overlay$5 = _m4;
+      var dir$6 = x$3;
       var _v5;
-      _v5 = current_run;
       var _v6;
-      _v6 = next_run$1;
+      _v6 = current_run;
       var _v7;
-      _v7 = current_hp_fx$2;
-      _v4 = $Dungeon$App$ui_fx$_next_hp_fx(_v5, _v6, _v7);
+      _v7 = next_run$1;
       var _v8;
+      _v8 = current_hp_fx$2;
+      _v5 = $Dungeon$App$ui_fx$_next_hp_fx(_v6, _v7, _v8);
       var _v9;
-      _v9 = current_run;
       var _v10;
-      _v10 = next_run$1;
+      _v10 = current_run;
       var _v11;
-      _v11 = current_dmg_fx$3;
-      _v8 = $Dungeon$App$ui_fx$_next_dmg_fx(_v9, _v10, _v11);
+      _v11 = next_run$1;
       var _v12;
+      _v12 = current_dmg_fx$3;
+      _v9 = $Dungeon$App$ui_fx$_next_dmg_fx(_v10, _v11, _v12);
       var _v13;
-      _v13 = current_run;
       var _v14;
-      _v14 = next_run$1;
+      _v14 = current_run;
       var _v15;
-      _v15 = dir$5;
+      _v15 = next_run$1;
       var _v16;
-      _v16 = current_impact$4;
-      _v12 = $Dungeon$App$ui_fx$_impact_from_turn(_v13, _v14, _v15, _v16);
-      _r0 = ({$: "ui_state", hp_fx: _v4, dmg_fx: _v8, impact: _v12});
+      _v16 = dir$6;
+      var _v17;
+      _v17 = current_impact$4;
+      _v13 = $Dungeon$App$ui_fx$_impact_from_turn(_v14, _v15, _v16, _v17);
+      var _v18;
+      var _v19;
+      _v19 = current_run;
+      var _v20;
+      _v20 = next_run$1;
+      var _v21;
+      _v21 = dir$6;
+      var _v22;
+      _v22 = current_damage_overlay$5;
+      var _v23;
+      _v23 = current_impact$4;
+      _v18 = $Dungeon$App$ui_fx$_damage_overlay_from_turn(_v19, _v20, _v21, _v22, _v23);
+      _r0 = ({$: "ui_state", hp_fx: _v5, dmg_fx: _v9, impact: _v13, damage_overlay: _v18});
       break;
     }
     default: {
@@ -36215,6 +38719,8 @@ export function $Dungeon$App$ui_fx$_advance_with_charge(current_run, x$1) {
 }
 
 export const Dungeon$App$ui_fx$_advance_with_charge = () => ((a0) => ((a1) => ($Dungeon$App$ui_fx$_advance_with_charge(a0, a1))));
+
+export const Midum$Image$step$Step = null;
 
 export function $Dungeon$Run$apply_swipe$_keep_run(meta_state, run_value$1) {
   var _r0;
@@ -37445,7 +39951,7 @@ export const Dungeon$Combat$resolve_and_apply$resolve_monster = () => ((a0) => (
 export function $Dungeon$App$update_resume_prompt(x, x$1, x$2, x$3, x$4) {
   var _r0;
   switch (x.$) {
-    case "resume_dungeon": {
+    case "damage_tick": {
       var meta_state = x$1;
       var run_value$1 = x$2;
       var next_seed_value$2 = x$3;
@@ -37455,49 +39961,74 @@ export function $Dungeon$App$update_resume_prompt(x, x$1, x$2, x$3, x$4) {
       var _v2;
       var _v3;
       _v3 = run_value$1;
-      _v2 = ({$: "running", run: _v3});
+      _v2 = ({$: "resume_prompt", run: _v3});
       var _v4;
       _v4 = next_seed_value$2;
       var _v5;
-      _v5 = Dungeon$default_ui();
+      var _v6;
+      _v6 = ui_value$3;
+      _v5 = $Dungeon$App$ui_fx$_step_ui_damage_overlay(_v6);
       _r0 = $Dungeon$App$state_helpers$_state(_v1, _v2, _v4, _v5);
       break;
     }
     default: {
       switch (x.$) {
-        case "abandon_dungeon": {
+        case "resume_dungeon": {
           var meta_state = x$1;
           var run_value$1 = x$2;
           var next_seed_value$2 = x$3;
           var ui_value$3 = x$4;
-          var _v6;
-          _v6 = meta_state;
           var _v7;
-          _v7 = ({$: "setup"});
+          _v7 = meta_state;
           var _v8;
-          _v8 = next_seed_value$2;
           var _v9;
-          _v9 = Dungeon$default_ui();
-          _r0 = $Dungeon$App$state_helpers$_state(_v6, _v7, _v8, _v9);
+          _v9 = run_value$1;
+          _v8 = ({$: "running", run: _v9});
+          var _v10;
+          _v10 = next_seed_value$2;
+          var _v11;
+          _v11 = Dungeon$default_ui();
+          _r0 = $Dungeon$App$state_helpers$_state(_v7, _v8, _v10, _v11);
           break;
         }
         default: {
-          var _ = x;
-          var meta_state$1 = x$1;
-          var run_value$2 = x$2;
-          var next_seed_value$3 = x$3;
-          var ui_value$4 = x$4;
-          var _v10;
-          _v10 = meta_state$1;
-          var _v11;
-          var _v12;
-          _v12 = run_value$2;
-          _v11 = ({$: "resume_prompt", run: _v12});
-          var _v13;
-          _v13 = next_seed_value$3;
-          var _v14;
-          _v14 = ui_value$4;
-          _r0 = $Dungeon$App$state_helpers$_state(_v10, _v11, _v13, _v14);
+          switch (x.$) {
+            case "abandon_dungeon": {
+              var meta_state = x$1;
+              var run_value$1 = x$2;
+              var next_seed_value$2 = x$3;
+              var ui_value$3 = x$4;
+              var _v12;
+              _v12 = meta_state;
+              var _v13;
+              _v13 = ({$: "setup"});
+              var _v14;
+              _v14 = next_seed_value$2;
+              var _v15;
+              _v15 = Dungeon$default_ui();
+              _r0 = $Dungeon$App$state_helpers$_state(_v12, _v13, _v14, _v15);
+              break;
+            }
+            default: {
+              var _ = x;
+              var meta_state$1 = x$1;
+              var run_value$2 = x$2;
+              var next_seed_value$3 = x$3;
+              var ui_value$4 = x$4;
+              var _v16;
+              _v16 = meta_state$1;
+              var _v17;
+              var _v18;
+              _v18 = run_value$2;
+              _v17 = ({$: "resume_prompt", run: _v18});
+              var _v19;
+              _v19 = next_seed_value$3;
+              var _v20;
+              _v20 = ui_value$4;
+              _r0 = $Dungeon$App$state_helpers$_state(_v16, _v17, _v19, _v20);
+              break;
+            }
+          }
           break;
         }
       }
@@ -37512,7 +40043,7 @@ export const Dungeon$App$update_resume_prompt = () => ((a0) => ((a1) => ((a2) =>
 export function $Dungeon$App$update_game_over(x, x$1, x$2, x$3, x$4) {
   var _r0;
   switch (x.$) {
-    case "ok": {
+    case "damage_tick": {
       var meta_state = x$1;
       var run_value$1 = x$2;
       var next_seed_value$2 = x$3;
@@ -37520,31 +40051,56 @@ export function $Dungeon$App$update_game_over(x, x$1, x$2, x$3, x$4) {
       var _v1;
       _v1 = meta_state;
       var _v2;
-      _v2 = ({$: "setup"});
       var _v3;
-      _v3 = next_seed_value$2;
+      _v3 = run_value$1;
+      _v2 = ({$: "game_over", run: _v3});
       var _v4;
-      _v4 = Dungeon$default_ui();
-      _r0 = $Dungeon$App$state_helpers$_state(_v1, _v2, _v3, _v4);
+      _v4 = next_seed_value$2;
+      var _v5;
+      var _v6;
+      _v6 = ui_value$3;
+      _v5 = $Dungeon$App$ui_fx$_step_ui_damage_overlay(_v6);
+      _r0 = $Dungeon$App$state_helpers$_state(_v1, _v2, _v4, _v5);
       break;
     }
     default: {
-      var _ = x;
-      var meta_state$1 = x$1;
-      var run_value$2 = x$2;
-      var next_seed_value$3 = x$3;
-      var ui_value$4 = x$4;
-      var _v5;
-      _v5 = meta_state$1;
-      var _v6;
-      var _v7;
-      _v7 = run_value$2;
-      _v6 = ({$: "game_over", run: _v7});
-      var _v8;
-      _v8 = next_seed_value$3;
-      var _v9;
-      _v9 = ui_value$4;
-      _r0 = $Dungeon$App$state_helpers$_state(_v5, _v6, _v8, _v9);
+      switch (x.$) {
+        case "ok": {
+          var meta_state = x$1;
+          var run_value$1 = x$2;
+          var next_seed_value$2 = x$3;
+          var ui_value$3 = x$4;
+          var _v7;
+          _v7 = meta_state;
+          var _v8;
+          _v8 = ({$: "setup"});
+          var _v9;
+          _v9 = next_seed_value$2;
+          var _v10;
+          _v10 = Dungeon$default_ui();
+          _r0 = $Dungeon$App$state_helpers$_state(_v7, _v8, _v9, _v10);
+          break;
+        }
+        default: {
+          var _ = x;
+          var meta_state$1 = x$1;
+          var run_value$2 = x$2;
+          var next_seed_value$3 = x$3;
+          var ui_value$4 = x$4;
+          var _v11;
+          _v11 = meta_state$1;
+          var _v12;
+          var _v13;
+          _v13 = run_value$2;
+          _v12 = ({$: "game_over", run: _v13});
+          var _v14;
+          _v14 = next_seed_value$3;
+          var _v15;
+          _v15 = ui_value$4;
+          _r0 = $Dungeon$App$state_helpers$_state(_v11, _v12, _v14, _v15);
+          break;
+        }
+      }
       break;
     }
   }
@@ -37553,23 +40109,41 @@ export function $Dungeon$App$update_game_over(x, x$1, x$2, x$3, x$4) {
 
 export const Dungeon$App$update_game_over = () => ((a0) => ((a1) => ((a2) => ((a3) => ((a4) => ($Dungeon$App$update_game_over(a0, a1, a2, a3, a4)))))));
 
-export function $Dungeon$App$persistence$finalize_update(prev_state, next_state$1) {
+export function $Dungeon$App$persistence$finalize_update(x, x$1, x$2) {
   var _r0;
-  var _v1;
-  _v1 = next_state$1;
-  var _v2;
-  var _v3;
-  _v3 = "dungeon_meta";
-  var _v4;
-  var _v5;
-  _v5 = next_state$1;
-  _v4 = $Dungeon$save_to_string(_v5);
-  _v2 = ({$: "store_set", key: _v3, val: _v4});
-  _r0 = ({$: "update", state: _v1, cmd: _v2});
+  switch (x.$) {
+    case "damage_tick": {
+      var prev_state = x$1;
+      var next_state$1 = x$2;
+      var _v1;
+      _v1 = next_state$1;
+      var _v2;
+      _v2 = ({$: "none"});
+      _r0 = ({$: "update", state: _v1, cmd: _v2});
+      break;
+    }
+    default: {
+      var _ = x;
+      var prev_state$1 = x$1;
+      var next_state$2 = x$2;
+      var _v3;
+      _v3 = next_state$2;
+      var _v4;
+      var _v5;
+      _v5 = "dungeon_meta";
+      var _v6;
+      var _v7;
+      _v7 = next_state$2;
+      _v6 = $Dungeon$save_to_string(_v7);
+      _v4 = ({$: "store_set", key: _v5, val: _v6});
+      _r0 = ({$: "update", state: _v3, cmd: _v4});
+      break;
+    }
+  }
   return _r0;
 }
 
-export const Dungeon$App$persistence$finalize_update = () => ((a0) => ((a1) => ($Dungeon$App$persistence$finalize_update(a0, a1))));
+export const Dungeon$App$persistence$finalize_update = () => ((a0) => ((a1) => ((a2) => ($Dungeon$App$persistence$finalize_update(a0, a1, a2)))));
 
 export function $Dungeon$save_to_string(x) {
   var _r0;
@@ -40642,6 +43216,280 @@ export function $Dungeon$View$boosters$_booster_actions$_0(meta_state, x$1) {
 
 export const Dungeon$View$boosters$_booster_actions$_0 = () => ((a0) => ((a1) => ($Dungeon$View$boosters$_booster_actions$_0(a0, a1))));
 
+export function $Dungeon$View$cards$_art_tile$_0(tile, pos$1, overlay_pos$2, trigger$3, base_tile$4, overlay_state$5, x$6) {
+  var _r0;
+  if (((x$6) >>> 0) === 0) {
+    _r0 = tile;
+  } else {
+    var _$6 = x$6;
+    var _v1;
+    _v1 = tile;
+    var _v2;
+    _v2 = base_tile$4;
+    _r0 = $Dungeon$View$cards$_overlay_art_tile(_v1, _v2);
+  }
+  return _r0;
+}
+
+export const Dungeon$View$cards$_art_tile$_0 = () => ((a0) => ((a1) => ((a2) => ((a3) => ((a4) => ((a5) => ((a6) => ($Dungeon$View$cards$_art_tile$_0(a0, a1, a2, a3, a4, a5, a6)))))))));
+
+export function $Dungeon$View$cards$_damage_overlay_layer$_0(pos, overlay_pos$1, trigger$2, base_tile$3, overlay_state$4, x$5) {
+  var _r0;
+  if (((x$5) >>> 0) === 0) {
+    var _v1;
+    _v1 = "";
+    _r0 = ({$: "text", value: _v1});
+  } else {
+    var _$5 = x$5;
+    var _v2;
+    _v2 = "div";
+    var _v3;
+    var _v4;
+    var _v5;
+    _v5 = "class";
+    var _v6;
+    _v6 = "card__art-layer card__art-layer--fx";
+    _v4 = ({$: "attr", nam: _v5, val: _v6});
+    var _v7;
+    _v7 = ({$: "nil"});
+    _v3 = ({$: "cons", head: _v4, tail: _v7});
+    var _v8;
+    var _v9;
+    var _v10;
+    _v10 = null;
+    var _v11;
+    _v11 = overlay_state$4;
+    var _v12;
+    _v12 = Dungeon$monster_damage_animation$clip();
+    var _v13;
+    _v13 = "";
+    var _v14;
+    _v14 = Dungeon$View$cards$_monster_fx_overrides();
+    _v9 = $Midum$Image$animated(_v10, _v11, _v12, _v13, _v14);
+    var _v15;
+    _v15 = ({$: "nil"});
+    _v8 = ({$: "cons", head: _v9, tail: _v15});
+    _r0 = ({$: "node", tag: _v2, attrs: _v3, kids: _v8});
+  }
+  return _r0;
+}
+
+export const Dungeon$View$cards$_damage_overlay_layer$_0 = () => ((a0) => ((a1) => ((a2) => ((a3) => ((a4) => ((a5) => ($Dungeon$View$cards$_damage_overlay_layer$_0(a0, a1, a2, a3, a4, a5))))))));
+
+export function $Nat$div$_0(a, q$1, x$2) {
+  var _r0;
+  switch (x$2.$) {
+    case "lt": {
+      _r0 = 0;
+      break;
+    }
+    default: {
+      switch (x$2.$) {
+        case "eq": {
+          _r0 = 1;
+          break;
+        }
+        default: {
+          switch (x$2.$) {
+            case "gt": {
+              var _v1;
+              var _v2;
+              var _v3;
+              _v3 = a;
+              var _v4;
+              var _v5;
+              _v5 = q$1;
+              _v4 = _nat_add(_v5, 1);
+              _v2 = $Nat$sub(_v3, _v4);
+              var _v6;
+              var _v7;
+              _v7 = q$1;
+              _v6 = _nat_add(_v7, 1);
+              _v1 = $Nat$div(_v2, _v6);
+              _r0 = _nat_add(_v1, 1);
+              break;
+            }
+            default: {
+              throw new Error("EFQ applied");
+              break;
+            }
+          }
+          break;
+        }
+      }
+      break;
+    }
+  }
+  return _r0;
+}
+
+export const Nat$div$_0 = () => ((a0) => ((a1) => ((a2) => ($Nat$div$_0(a0, a1, a2)))));
+
+export function $Nat$mod$_0(a, q$1, x$2) {
+  var _r0;
+  switch (x$2.$) {
+    case "lt": {
+      _r0 = a;
+      break;
+    }
+    default: {
+      switch (x$2.$) {
+        case "eq": {
+          _r0 = 0;
+          break;
+        }
+        default: {
+          switch (x$2.$) {
+            case "gt": {
+              var _v1;
+              var _v2;
+              _v2 = a;
+              var _v3;
+              var _v4;
+              _v4 = q$1;
+              _v3 = _nat_add(_v4, 1);
+              _v1 = $Nat$sub(_v2, _v3);
+              var _v5;
+              var _v6;
+              _v6 = q$1;
+              _v5 = _nat_add(_v6, 1);
+              _r0 = $Nat$mod(_v1, _v5);
+              break;
+            }
+            default: {
+              throw new Error("EFQ applied");
+              break;
+            }
+          }
+          break;
+        }
+      }
+      break;
+    }
+  }
+  return _r0;
+}
+
+export const Nat$mod$_0 = () => ((a0) => ((a1) => ((a2) => ($Nat$mod$_0(a0, a1, a2)))));
+
+export function $Midum$Internal$DOM$Image$render$_0(_Event, src$1, alt$2, width$3, height$4, fit$5, sampling$6, x$7) {
+  var _r0;
+  switch (x$7.$) {
+    case "true": {
+      var _v1;
+      _v1 = "div";
+      var _v2;
+      var _v3;
+      var _v4;
+      _v4 = "class";
+      var _v5;
+      var _v6;
+      _v6 = fit$5;
+      var _v7;
+      _v7 = sampling$6;
+      _v5 = $Midum$Internal$DOM$Image$empty_class(_v6, _v7);
+      _v3 = ({$: "attr", nam: _v4, val: _v5});
+      var _v8;
+      var _v9;
+      var _v10;
+      _v10 = "width";
+      var _v11;
+      var _v12;
+      _v12 = width$3;
+      _v11 = $Midum$Internal$DOM$Image$size_style(_v12);
+      _v9 = ({$: "style", nam: _v10, val: _v11});
+      var _v13;
+      var _v14;
+      var _v15;
+      _v15 = "height";
+      var _v16;
+      var _v17;
+      _v17 = height$4;
+      _v16 = $Midum$Internal$DOM$Image$size_style(_v17);
+      _v14 = ({$: "style", nam: _v15, val: _v16});
+      var _v18;
+      _v18 = ({$: "nil"});
+      _v13 = ({$: "cons", head: _v14, tail: _v18});
+      _v8 = ({$: "cons", head: _v9, tail: _v13});
+      _v2 = ({$: "cons", head: _v3, tail: _v8});
+      var _v19;
+      _v19 = ({$: "nil"});
+      _r0 = ({$: "node", tag: _v1, attrs: _v2, kids: _v19});
+      break;
+    }
+    default: {
+      switch (x$7.$) {
+        case "false": {
+          var _v20;
+          _v20 = "img";
+          var _v21;
+          var _v22;
+          var _v23;
+          _v23 = "class";
+          var _v24;
+          var _v25;
+          _v25 = fit$5;
+          var _v26;
+          _v26 = sampling$6;
+          _v24 = $Midum$Internal$DOM$Image$image_class(_v25, _v26);
+          _v22 = ({$: "attr", nam: _v23, val: _v24});
+          var _v27;
+          var _v28;
+          var _v29;
+          _v29 = "src";
+          var _v30;
+          _v30 = src$1;
+          _v28 = ({$: "attr", nam: _v29, val: _v30});
+          var _v31;
+          var _v32;
+          var _v33;
+          _v33 = "alt";
+          var _v34;
+          _v34 = alt$2;
+          _v32 = ({$: "attr", nam: _v33, val: _v34});
+          var _v35;
+          var _v36;
+          var _v37;
+          _v37 = "width";
+          var _v38;
+          var _v39;
+          _v39 = width$3;
+          _v38 = $Midum$Internal$DOM$Image$size_style(_v39);
+          _v36 = ({$: "style", nam: _v37, val: _v38});
+          var _v40;
+          var _v41;
+          var _v42;
+          _v42 = "height";
+          var _v43;
+          var _v44;
+          _v44 = height$4;
+          _v43 = $Midum$Internal$DOM$Image$size_style(_v44);
+          _v41 = ({$: "style", nam: _v42, val: _v43});
+          var _v45;
+          _v45 = ({$: "nil"});
+          _v40 = ({$: "cons", head: _v41, tail: _v45});
+          _v35 = ({$: "cons", head: _v36, tail: _v40});
+          _v31 = ({$: "cons", head: _v32, tail: _v35});
+          _v27 = ({$: "cons", head: _v28, tail: _v31});
+          _v21 = ({$: "cons", head: _v22, tail: _v27});
+          var _v46;
+          _v46 = ({$: "nil"});
+          _r0 = ({$: "node", tag: _v20, attrs: _v21, kids: _v46});
+          break;
+        }
+        default: {
+          throw new Error("EFQ applied");
+          break;
+        }
+      }
+      break;
+    }
+  }
+  return _r0;
+}
+
+export const Midum$Internal$DOM$Image$render$_0 = () => ((a0) => ((a1) => ((a2) => ((a3) => ((a4) => ((a5) => ((a6) => ((a7) => ($Midum$Internal$DOM$Image$render$_0(a0, a1, a2, a3, a4, a5, a6, a7))))))))));
+
 export function $Dungeon$Run$upgrade_hero$_upgrade_from_step$_0(meta_state, hero_ref$1, profile$2, step$3, x$4) {
   var _r0;
   if (((x$4) >>> 0) === 0) {
@@ -40743,6 +43591,54 @@ export function $Dungeon$App$update_character_select$_select_or_buy_profile$_0(c
 }
 
 export const Dungeon$App$update_character_select$_select_or_buy_profile$_0 = () => ((a0) => ((a1) => ((a2) => ((a3) => ((a4) => ((a5) => ($Dungeon$App$update_character_select$_select_or_buy_profile$_0(a0, a1, a2, a3, a4, a5))))))));
+
+export function $Dungeon$App$ui_fx$_step_damage_overlay$_0(pos, trigger$1, base_tile$2, overlay_state$3, x$4) {
+  var _r0;
+  switch (x$4.$) {
+    case "step": {
+      var _m1 = x$4.state;
+      var _m2 = x$4.cycled;
+      var _m3 = x$4.finished_now;
+      var next_state$4 = _m1;
+      var cycled$5 = _m2;
+      switch (_m3.$) {
+        case "true": {
+          _r0 = ({$: "no_damage_overlay"});
+          break;
+        }
+        default: {
+          switch (_m3.$) {
+            case "false": {
+              var _v4;
+              _v4 = pos;
+              var _v5;
+              _v5 = trigger$1;
+              var _v6;
+              _v6 = base_tile$2;
+              var _v7;
+              _v7 = next_state$4;
+              _r0 = ({$: "damage_overlay", pos: _v4, trigger: _v5, base_tile: _v6, state: _v7});
+              break;
+            }
+            default: {
+              throw new Error("EFQ applied");
+              break;
+            }
+          }
+          break;
+        }
+      }
+      break;
+    }
+    default: {
+      throw new Error("EFQ applied");
+      break;
+    }
+  }
+  return _r0;
+}
+
+export const Dungeon$App$ui_fx$_step_damage_overlay$_0 = () => ((a0) => ((a1) => ((a2) => ((a3) => ((a4) => ($Dungeon$App$ui_fx$_step_damage_overlay$_0(a0, a1, a2, a3, a4)))))));
 
 
 function __app_fld(obj, nam, idx) {

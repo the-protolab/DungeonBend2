@@ -7,6 +7,7 @@ import /Dungeon/Meta as Meta
 import /Dungeon/Run as Run
 import /Dungeon/Scene as Scene
 import /Dungeon/UiState as UiState
+import /Dungeon/DamageOverlay as DamageOverlay
 import /Dungeon/HpFx as HpFx
 import /Dungeon/DmgFx as DmgFx
 import /Dungeon/Impact as Impact
@@ -36,28 +37,30 @@ import /Midum/Layout/ as Layout
 
 def _render_dungeon(meta_state: Meta, scene_value: Scene, run_value: Run, ui_value: UiState) -> HTML(DungeonEvent):
   hero_value = hero_at(config(), selected_hero(meta_state));
-  _dungeon_shell(
-    Layout.frame(
-      DungeonEvent,
-      Layout.overlay(DungeonEvent, [
-        Layout.top(DungeonEvent,
-          Layout.frame(
-            DungeonEvent,
-            _dungeon_header(meta_state, scene_value),
-            [width_full{} height_fit{} inset_none{}]
+  <div every_ms={125, damage_tick{}}>
+    {_dungeon_shell(
+      Layout.frame(
+        DungeonEvent,
+        Layout.overlay(DungeonEvent, [
+          Layout.top(DungeonEvent,
+            Layout.frame(
+              DungeonEvent,
+              _dungeon_header(meta_state, scene_value),
+              [width_full{} height_fit{} inset_none{}]
+            )
           )
-        )
-        Layout.center(DungeonEvent,
-          _board_grid(scene_value, run_value, ui_value, hero_value)
-        )
-          Layout.bottom(DungeonEvent,
-            _ultimate_action(scene_value)
+          Layout.center(DungeonEvent,
+            _board_grid(scene_value, run_value, ui_value, hero_value)
           )
-          _board_modal_layer(scene_value)
-        ]),
-        [width_full{} height_full{} inset_none{}]
-      )
-  )
+            Layout.bottom(DungeonEvent,
+              _ultimate_action(scene_value)
+            )
+            _board_modal_layer(scene_value)
+          ]),
+          [width_full{} height_full{} inset_none{}]
+        )
+    )}
+  </div>
 
 def _dungeon_shell(body: HTML(DungeonEvent)) -> HTML(DungeonEvent):
   Layout.shell(
@@ -170,15 +173,15 @@ def _game_over_modal(scene_value: Scene) -> HTML(DungeonEvent):
 def _board_idx(x: U32, y: U32) -> U32:
   x + (y * 3)
 
-def _board_card_at(run_value: Run, ui_value: UiState, hero_value: HeroDef, idx: U32) -> HTML(DungeonEvent):
+def _board_card_at(run_value: Run, ui_value: UiState, hero_value: HeroDef, idx: U32, pos: Nat/V2) -> HTML(DungeonEvent):
   match run_value ui_value:
-    case run{dungeon_level, hero_hp, hero_max_hp, hero_index, weapon, board_value, deck_blueprint, draw_counts, remaining, capacity, seed, ult_charge} ui_state{hp_fx, dmg_fx, impact}:
-      _board_card_identity(hero_index === idx, hero_value, hero_hp, hero_max_hp, weapon, hp_fx, dmg_fx, board_get(board_value, idx))
+    case run{dungeon_level, hero_hp, hero_max_hp, hero_index, weapon, board_value, deck_blueprint, draw_counts, remaining, capacity, seed, ult_charge} ui_state{hp_fx, dmg_fx, impact, damage_overlay}:
+      _board_card_identity(hero_index === idx, hero_value, hero_hp, hero_max_hp, weapon, hp_fx, dmg_fx, board_get(board_value, idx), pos, damage_overlay)
 
-def _board_card_identity(is_hero: U32, hero_value: HeroDef, hero_hp: U32, hero_max_hp: U32, weapon_value: Weapon, hp_fx: HpFx, dmg_fx: DmgFx, tile_value: Tile) -> HTML(DungeonEvent):
+def _board_card_identity(is_hero: U32, hero_value: HeroDef, hero_hp: U32, hero_max_hp: U32, weapon_value: Weapon, hp_fx: HpFx, dmg_fx: DmgFx, tile_value: Tile, pos: Nat/V2, damage_overlay: DamageOverlay) -> HTML(DungeonEvent):
   match is_hero:
     case 0:
-      _tile_card(tile_value)
+      _tile_card(tile_value, pos, damage_overlay)
     case _:
       _hero_card_values(hero_value, hero_hp, hero_max_hp, weapon_value, hp_fx, dmg_fx)
 
@@ -187,8 +190,8 @@ def _board_slot(run_value: Run, ui_value: UiState, hero_value: HeroDef, x: U32, 
 
 def _board_slot_at(run_value: Run, ui_value: UiState, hero_value: HeroDef, idx: U32, pos: Nat/V2) -> HTML(DungeonEvent):
   match ui_value:
-    case ui_state{hp_fx, dmg_fx, impact_value}:
-      _board_slot_node(idx, pos, impact_value, _board_card_at(run_value, ui_value, hero_value, idx))
+    case ui_state{hp_fx, dmg_fx, impact_value, damage_overlay}:
+      _board_slot_node(idx, pos, impact_value, _board_card_at(run_value, ui_value, hero_value, idx, pos))
 
 def _board_slot_node(idx: U32, pos: Nat/V2, impact_value: Impact, body: HTML(DungeonEvent)) -> HTML(DungeonEvent):
   <div class={_board_slot_class(pos, impact_value)}>

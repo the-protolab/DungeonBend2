@@ -9,10 +9,13 @@ import /Dungeon/HpFx as HpFx
 import /Dungeon/DmgFx as DmgFx
 import /Dungeon/Impact as Impact
 import /Dungeon/ImpactFx as ImpactFx
+import /Dungeon/DamageOverlay as DamageOverlay
 import /Dungeon/Board/indexing/adjacent_pos as adjacent_pos
 import /Dungeon/Board/indexing/board_get_pos as board_get_pos
+import /Dungeon/monster_damage_animation/clip as monster_damage_clip
 import /Dungeon/rules/ultimate_charge_required as ultimate_charge_required
 import /Dungeon/rules/ultimate_charge_per_move as ultimate_charge_per_move
+import /Midum/Image/ as Image
 
 def _hero_hp(run_value: Run) -> U32:
   match run_value:
@@ -211,13 +214,60 @@ def _impact_from_adjacent(target: Maybe(Nat/V2), current_run: Run, next_run: Run
     case some{target_pos}:
       _impact_from_target_pos(target_pos, current_run, next_run, current_impact)
 
+def _damage_overlay_from_impact(prev_tile: Tile, current_overlay: DamageOverlay, impact_value: Impact) -> DamageOverlay:
+  match impact_value:
+    case no_impact{}:
+      current_overlay
+    case impact{pos, trigger}:
+      damage_overlay{pos, trigger, prev_tile, Image.reset_state()}
+
+def _damage_overlay_from_target_tile(target_pos: Nat/V2, prev_tile: Tile, next_tile: Tile, current_overlay: DamageOverlay, current_impact: Impact) -> DamageOverlay:
+  _damage_overlay_from_impact(prev_tile, current_overlay, _impact_from_target_tile(target_pos, prev_tile, next_tile, current_impact))
+
+def _damage_overlay_from_target_pos(target_pos: Nat/V2, current_run: Run, next_run: Run, current_overlay: DamageOverlay, current_impact: Impact) -> DamageOverlay:
+  _damage_overlay_from_target_tile(target_pos, board_get_pos(_run_board(current_run), target_pos), board_get_pos(_run_board(next_run), target_pos), current_overlay, current_impact)
+
+def _damage_overlay_from_turn(current_run: Run, next_run: Run, dir: Direction, current_overlay: DamageOverlay, current_impact: Impact) -> DamageOverlay:
+  _damage_overlay_from_adjacent(adjacent_pos(_run_hero_index(current_run), dir), current_run, next_run, current_overlay, current_impact)
+
+def _damage_overlay_from_adjacent(target: Maybe(Nat/V2), current_run: Run, next_run: Run, current_overlay: DamageOverlay, current_impact: Impact) -> DamageOverlay:
+  match target:
+    case none{}:
+      current_overlay
+    case some{target_pos}:
+      _damage_overlay_from_target_pos(target_pos, current_run, next_run, current_overlay, current_impact)
+
+def _step_damage_overlay(current_overlay: DamageOverlay) -> DamageOverlay:
+  match current_overlay:
+    case no_damage_overlay{}:
+      no_damage_overlay{}
+    case damage_overlay{pos, trigger, base_tile, overlay_state}:
+      match Image.step(monster_damage_clip(), 125n, overlay_state):
+        case step{state: next_state, cycled, finished_now}:
+          match finished_now:
+            case true{}:
+              no_damage_overlay{}
+            case false{}:
+              damage_overlay{pos, trigger, base_tile, next_state}
+
+def _step_ui_damage_overlay(ui_value: UiState) -> UiState:
+  match ui_value:
+    case ui_state{current_hp_fx, current_dmg_fx, current_impact, current_damage_overlay}:
+      ui_state{
+        current_hp_fx,
+        current_dmg_fx,
+        current_impact,
+        _step_damage_overlay(current_damage_overlay)
+      }
+
 def _next_ui_from_turn(current_run: Run, next_run: Run, current_ui: UiState, dir: Direction) -> UiState:
   match current_ui:
-    case ui_state{current_hp_fx, current_dmg_fx, current_impact}:
+    case ui_state{current_hp_fx, current_dmg_fx, current_impact, current_damage_overlay}:
       ui_state{
         _next_hp_fx(current_run, next_run, current_hp_fx),
         _next_dmg_fx(current_run, next_run, current_dmg_fx),
-        _impact_from_turn(current_run, next_run, dir, current_impact)
+        _impact_from_turn(current_run, next_run, dir, current_impact),
+        _damage_overlay_from_turn(current_run, next_run, dir, current_damage_overlay, current_impact)
       }
 
 def _advance_with_charge(current_run: Run, advance: RunAdvance) -> RunAdvance:

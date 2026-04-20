@@ -3,15 +3,19 @@ import /U32/ as U32
 import /Dungeon/HeroDef as HeroDef
 import /Dungeon/Weapon as Weapon
 import /Dungeon/Tile as Tile
+import /Dungeon/DamageOverlay as DamageOverlay
 import /Dungeon/HpFx as HpFx
 import /Dungeon/DmgFx as DmgFx
 import /Dungeon/DungeonEvent as DungeonEvent
+import /Dungeon/Board/indexing/same_pos as same_pos
 import /Midum/Card/ as Card
+import /Midum/Image/ as Image
 import /Dungeon/hero_helpers/hero_name as hero_name
 import /Dungeon/hero_helpers/hero_sprite as hero_sprite
 import /Dungeon/View/assets_and_labels/_tile_name as _tile_name
 import /Dungeon/View/assets_and_labels/_tile_sprite as _tile_sprite
 import /Dungeon/View/assets_and_labels/_tile_badge as _tile_badge
+import /Dungeon/monster_damage_animation/clip as monster_damage_clip
 import /Dungeon/Content/ as Content
 
 def _hero_card_values(hero_value: HeroDef, hero_hp: U32, hero_max_hp: U32, weapon_value: Weapon, hp_fx: HpFx, dmg_fx: DmgFx) -> HTML(DungeonEvent):
@@ -59,7 +63,10 @@ def _hero_damage_attr(weapon_value: Weapon) -> String:
     case weapon{ref, dmg}:
       Content.stat_dmg() ++ " " ++ U32.show(dmg)
 
-def _tile_card(tile: Tile) -> HTML(DungeonEvent):
+def _monster_fx_overrides() -> List(Midum/Image/Override):
+  [width_px{value: 112n} height_px{value: 112n} fit_contain{} sampling_pixelated{}]
+
+def _tile_card(tile: Tile, pos: Nat/V2, damage_overlay: DamageOverlay) -> HTML(DungeonEvent):
   match tile:
     case none{}:
       Card.neutral(
@@ -70,27 +77,62 @@ def _tile_card(tile: Tile) -> HTML(DungeonEvent):
         [padding_none{}]
       )
     case monster{ref, hp}:
-      _standard_tile_card(monster{ref, hp}, "card card--tile card--monster")
+      _standard_tile_card(monster{ref, hp}, "card card--tile card--monster", pos, damage_overlay)
     case sword{ref, dmg}:
-      _standard_tile_card(sword{ref, dmg}, "card card--tile card--sword")
+      _standard_tile_card(sword{ref, dmg}, "card card--tile card--sword", pos, damage_overlay)
     case potion{ref, heal}:
-      _standard_tile_card(potion{ref, heal}, "card card--tile card--potion")
+      _standard_tile_card(potion{ref, heal}, "card card--tile card--potion", pos, damage_overlay)
     case gold{amount}:
-      _standard_tile_card(gold{amount}, "card card--tile card--gold")
+      _standard_tile_card(gold{amount}, "card card--tile card--gold", pos, damage_overlay)
 
 def _standard_card_shell(body: HTML(DungeonEvent)) -> HTML(DungeonEvent):
   Card.neutral(DungeonEvent, body, [padding_none{}])
 
-def _tile_card_body(tile: Tile, class_name: String) -> HTML(DungeonEvent):
+def _overlay_art_tile(tile: Tile, base_tile: Tile) -> Tile:
+  match tile:
+    case gold{amount}:
+      base_tile
+    case _:
+      tile
+
+def _art_tile(tile: Tile, pos: Nat/V2, damage_overlay: DamageOverlay) -> Tile:
+  match damage_overlay:
+    case no_damage_overlay{}:
+      tile
+    case damage_overlay{overlay_pos, trigger, base_tile, overlay_state}:
+      match same_pos(pos, overlay_pos):
+        case 0:
+          tile
+        case _:
+          _overlay_art_tile(tile, base_tile)
+
+def _damage_overlay_layer(pos: Nat/V2, damage_overlay: DamageOverlay) -> HTML(DungeonEvent):
+  match damage_overlay:
+    case no_damage_overlay{}:
+      text{""}
+    case damage_overlay{overlay_pos, trigger, base_tile, overlay_state}:
+      match same_pos(pos, overlay_pos):
+        case 0:
+          text{""}
+        case _:
+          <div class="card__art-layer card__art-layer--fx">
+            {Image.animated(DungeonEvent, overlay_state, monster_damage_clip(), "", _monster_fx_overrides())}
+          </div>
+
+def _tile_card_body(tile: Tile, class_name: String, pos: Nat/V2, damage_overlay: DamageOverlay) -> HTML(DungeonEvent):
+  art_tile = _art_tile(tile, pos, damage_overlay);
   <div class={class_name}>
     {_tile_badge_node(tile)}
-    <div class="card__art-wrap">
-      <img class="card__art" src={_tile_sprite(tile)} alt={_tile_name(tile)} />
+    <div class="card__art-wrap card__art-wrap--stacked">
+      {_damage_overlay_layer(pos, damage_overlay)}
+      <div class="card__art-layer card__art-layer--base">
+        <img class="card__art" src={_tile_sprite(art_tile)} alt={_tile_name(art_tile)} />
+      </div>
     </div>
   </div>
 
-def _standard_tile_card(tile: Tile, class_name: String) -> HTML(DungeonEvent):
-  _standard_card_shell(_tile_card_body(tile, class_name))
+def _standard_tile_card(tile: Tile, class_name: String, pos: Nat/V2, damage_overlay: DamageOverlay) -> HTML(DungeonEvent):
+  _standard_card_shell(_tile_card_body(tile, class_name, pos, damage_overlay))
 
 def _tile_badge_node(tile: Tile) -> HTML(DungeonEvent):
   <div class="card__badge card__badge--value">{text{_tile_badge(tile)}}</div>
