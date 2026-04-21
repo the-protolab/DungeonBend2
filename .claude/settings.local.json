@@ -12,7 +12,11 @@
       "Bash(bend src/Dungeon/Boosters/_SPEC_.bend)",
       "Bash(bend src/Dungeon/Deck/_SPEC_.bend)",
       "Bash(bend src/Dungeon/Combat/_SPEC_.bend)",
-      "Bash(bend src/Dungeon/Board/_SPEC_.bend)"
+      "Bash(bend src/Dungeon/Board/_SPEC_.bend)",
+      "Bash(sips -g pixelWidth -g pixelHeight /tmp/old-deck2.png)",
+      "Bash(sips -g pixelWidth -g pixelHeight /tmp/old-deck7.png)",
+      "Bash(git show *)",
+      "Read(//tmp/**)"
     ]
   }
 }

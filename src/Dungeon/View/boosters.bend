@@ -16,6 +16,8 @@ import /Dungeon/View/assets_and_labels/_card_name as _card_name
 import /Dungeon/View/assets_and_labels/_card_sprite as _card_sprite
 import /Dungeon/View/assets_and_labels/_card_stat_range as _card_stat_range
 import /Dungeon/Content/ as Content
+import /Dungeon/View/topbar_stats/gold_stat as gold_stat
+import /Dungeon/View/topbar_stats/stat as topbar_stat
 import /Midum/Card/ as Card
 import /Midum/Button/ as Button
 import /Midum/Button/Size
@@ -174,16 +176,10 @@ def _boosters_header(meta_state: Meta) -> HTML(DungeonEvent):
       {_back_button()}
     </div>
     <div class="topbar__stats">
-      {_topbar_stat(Content.ui_topbar_gold(), meta_gold(meta_state))}
-      {_topbar_stat(Content.ui_topbar_boosters(), meta_pack_total(meta_state))}
+      {gold_stat(meta_gold(meta_state))}
+      {topbar_stat(Content.ui_topbar_boosters(), meta_pack_total(meta_state))}
     </div>
   </header>
-
-def _topbar_stat(label: String, value: String) -> HTML(DungeonEvent):
-  <p class="topbar-stat">
-    <span class="topbar-stat__label">{text{label}}</span>
-    <strong class="topbar-stat__value">{text{value}}</strong>
-  </p>
 
 def _back_button() -> HTML(DungeonEvent):
   Button.secondary(DungeonEvent, close_boosters{}, medium{}, Content.ui_booster_back(), [])

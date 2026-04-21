@@ -28,9 +28,9 @@ import /Dungeon/View/selectors/game_over_modal_class as game_over_modal_class
 import /Dungeon/View/menu/_full_button_overrides as _full_button_overrides
 import /Dungeon/View/assets_and_labels/_dungeon_level_badge_backdrop as _dungeon_level_badge_backdrop
 import /Dungeon/View/assets_and_labels/_dungeon_level_value_backdrop as _dungeon_level_value_backdrop
+import /Dungeon/View/assets_and_labels/_gold_icon as _gold_icon
 import /Dungeon/deck_counter_frames/idle_src as deck_counter_idle_src
 import /Dungeon/deck_counter_animation/clip as deck_counter_clip
-import /Dungeon/View/assets_and_labels/_gold_sprite as _gold_sprite
 import /Dungeon/View/cards/_hero_card_values as _hero_card_values
 import /Dungeon/View/cards/_tile_card as _tile_card
 import /Dungeon/Content/ as Content
@@ -72,7 +72,7 @@ def _dungeon_shell(body: HTML(DungeonEvent)) -> HTML(DungeonEvent):
     DungeonEvent,
     body,
     [
-      max_width_px{value: 560n}
+      max_width_px{value: 640n}
       height_viewport{}
       overflow_hidden{}
       safe_area{}
@@ -106,7 +106,7 @@ def _dungeon_deck_counter(scene_value: Scene, ui_value: UiState) -> HTML(Dungeon
 def _dungeon_header(meta_state: Meta, scene_value: Scene, ui_value: UiState) -> HTML(DungeonEvent):
   <header class="topbar topbar--dungeon">
     <div class="dungeon-topbar__left">
-      {_dungeon_resource(_gold_sprite(), Content.ui_topbar_gold(), meta_gold(meta_state), "dungeon-resource--gold")}
+      {_dungeon_resource(_gold_icon(), Content.ui_topbar_gold(), meta_gold(meta_state), "dungeon-resource--gold")}
     </div>
     <div class="dungeon-topbar__center">
       {_dungeon_level(scene_value)}

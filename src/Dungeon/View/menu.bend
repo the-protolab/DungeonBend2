@@ -35,6 +35,8 @@ import /Dungeon/View/selectors/character_upgrade_enabled as character_upgrade_en
 import /Dungeon/View/selectors/character_primary_label as character_primary_label
 import /Dungeon/View/selectors/character_primary_enabled as character_primary_enabled
 import /Dungeon/Content/ as Content
+import /Dungeon/View/topbar_stats/gold_stat as gold_stat
+import /Dungeon/View/topbar_stats/stat as topbar_stat
 import /Midum/Button/ as Button
 import /Midum/Button/Size
 import /Midum/Card/ as Card
@@ -44,13 +46,10 @@ import /Midum/Text/Align
 
 def _dashboard_header(meta_state: Meta, header_action: HTML(DungeonEvent)) -> HTML(DungeonEvent):
   <header class="topbar topbar--menu">
-    <p class="resource-bar">
-      <span class="resource-bar__label">{text{Content.ui_topbar_gold()}}</span>
-      <strong class="resource-bar__value">{text{meta_gold(meta_state)}}</strong>
-    </p>
+    {gold_stat(meta_gold(meta_state))}
     <div class="topbar__actions">
       <div class="topbar__stats">
-        {_menu_stat(Content.ui_topbar_boosters(), meta_pack_total(meta_state))}
+        {topbar_stat(Content.ui_topbar_boosters(), meta_pack_total(meta_state))}
       </div>
       <div class="topbar__slot">
         {header_action}
@@ -467,9 +466,3 @@ def _action_button_overrides(enabled: U32) -> List(Midum/Button/Override):
       [state_disabled{}]
     case _:
       []
-
-def _menu_stat(label: String, value: String) -> HTML(DungeonEvent):
-  <p class="topbar-stat">
-    <span class="topbar-stat__label">{text{label}}</span>
-    <strong class="topbar-stat__value">{text{value}}</strong>
-  </p>

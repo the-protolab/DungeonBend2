@@ -21,6 +21,9 @@ def _hero_sprite() -> String:
 def _gold_name() -> String:
   Content.item_gold_name()
 
+def _gold_icon() -> String:
+  "assets/icon_gold.png"
+
 def _gold_sprite() -> String:
   "assets/item-gold.png"
 
