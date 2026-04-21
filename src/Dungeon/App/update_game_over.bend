@@ -6,12 +6,12 @@ import /Dungeon/DungeonEvent as DungeonEvent
 import /Dungeon/DungeonState as DungeonState
 import /Dungeon/default_ui as default_ui
 import /Dungeon/App/state_helpers/_state as _state
-import /Dungeon/App/ui_fx/_step_ui_damage_overlay as _step_ui_damage_overlay
+import /Dungeon/App/ui_fx/_step_ui_fx as _step_ui_fx
 
 def update_game_over(evt: DungeonEvent, meta_state: Meta, run_value: Run, next_seed_value: U32, ui_value: UiState) -> DungeonState:
   match evt:
     case damage_tick{}:
-      _state(meta_state, game_over{run_value}, next_seed_value, _step_ui_damage_overlay(ui_value))
+      _state(meta_state, game_over{run_value}, next_seed_value, _step_ui_fx(ui_value))
     case ok{}:
       _state(meta_state, setup{}, next_seed_value, default_ui())
     case _:

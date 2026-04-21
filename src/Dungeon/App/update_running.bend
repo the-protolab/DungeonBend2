@@ -18,7 +18,7 @@ import /Dungeon/Run/apply_swipe as apply_swipe
 import /Dungeon/App/state_helpers/_state as _state
 import /Dungeon/App/ui_fx/_next_ui_from_turn as _next_ui_from_turn
 import /Dungeon/App/ui_fx/_advance_with_charge as _advance_with_charge
-import /Dungeon/App/ui_fx/_step_ui_damage_overlay as _step_ui_damage_overlay
+import /Dungeon/App/ui_fx/_step_ui_fx as _step_ui_fx
 import /Dungeon/rules/ultimate_charge_required as ultimate_charge_required
 
 def _state_from_swipe(result: SwipeResult, current_run: Run, next_seed_value: U32, current_ui: UiState, dir: Direction) -> DungeonState:
@@ -78,7 +78,7 @@ def _update_running_ultimate_ready(ultimate_ready_value: U32, meta_state: Meta, 
 def update_running(evt: DungeonEvent, meta_state: Meta, run_value: Run, next_seed_value: U32, ui_value: UiState) -> DungeonState:
   match evt:
     case damage_tick{}:
-      _state(meta_state, running{run_value}, next_seed_value, _step_ui_damage_overlay(ui_value))
+      _state(meta_state, running{run_value}, next_seed_value, _step_ui_fx(ui_value))
     case ultimate{}:
       _update_running_ultimate(meta_state, run_value, next_seed_value, ui_value)
     case move{dir}:

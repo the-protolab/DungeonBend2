@@ -212,6 +212,8 @@ export const Dungeon$Impact = null;
 
 export const Dungeon$DamageOverlay = null;
 
+export const Dungeon$DeckCounterFx = null;
+
 export const Dungeon$UiState = null;
 
 export const Dungeon$DungeonState = null;
@@ -2458,7 +2460,9 @@ export function $Dungeon$default_ui() {
   _v3 = ({$: "no_impact"});
   var _v4;
   _v4 = ({$: "no_damage_overlay"});
-  _r0 = ({$: "ui_state", hp_fx: _v1, dmg_fx: _v2, impact: _v3, damage_overlay: _v4});
+  var _v5;
+  _v5 = ({$: "deck_counter_idle"});
+  _r0 = ({$: "ui_state", hp_fx: _v1, dmg_fx: _v2, impact: _v3, damage_overlay: _v4, deck_counter_fx: _v5});
   return _r0;
 }
 
@@ -17413,13 +17417,13 @@ export function $Dungeon$View$css$dungeon_topbar_css() {
   _v5 = ".topbar--dungeon{display:grid;grid-template-columns:minmax(0,1fr) auto minmax(0,1fr);align-items:start;width:100%;min-height:72px;gap:8px;padding-top:0;}.dungeon-topbar__left,.dungeon-topbar__center,.dungeon-topbar__right{min-width:0;display:flex;align-items:flex-start;}.dungeon-topbar__left{justify-self:start;justify-content:flex-start;}.dungeon-topbar__center{justify-self:center;justify-content:center;}.dungeon-topbar__right{justify-self:end;justify-content:flex-end;}";
   _v3 = (_v4 + _v5);
   var _v6;
-  _v6 = ".dungeon-resource{margin:0;display:inline-grid;grid-template-columns:34px auto;align-items:center;column-gap:7px;min-height:40px;min-width:0;color:var(--text);white-space:nowrap;}.dungeon-resource__icon{width:34px;height:34px;object-fit:contain;flex:0 0 auto;}.dungeon-resource__value{display:block;min-width:0;font-size:1rem;font-weight:900;line-height:1;letter-spacing:0;text-align:left;}.dungeon-resource--cards{grid-template-columns:30px auto;}.dungeon-resource--cards .dungeon-resource__icon{width:30px;height:30px;border-radius:6px;}.dungeon-resource--cards .dungeon-resource__value{text-align:right;}";
+  _v6 = ".dungeon-resource{margin:0;display:inline-grid;grid-template-columns:34px auto;align-items:center;column-gap:7px;min-height:40px;min-width:0;color:var(--text);white-space:nowrap;}.dungeon-resource__icon{width:34px;height:34px;object-fit:contain;flex:0 0 auto;}.dungeon-resource__value{display:block;min-width:0;font-size:1rem;font-weight:900;line-height:1;letter-spacing:0;text-align:left;}.dungeon-resource--deck{grid-template-columns:auto auto;align-items:center;column-gap:10px;}.dungeon-resource--deck .dungeon-resource__value{text-align:right;}.dungeon-resource__deck-visual{display:flex;align-items:center;justify-content:center;}.dungeon-resource__deck-visual .bc-image{width:auto!important;height:auto!important;}";
   _v2 = (_v3 + _v6);
   var _v7;
-  _v7 = ".dungeon-level{display:grid;justify-items:center;align-content:start;gap:3px;min-width:112px;text-align:center;}.dungeon-level__badge{display:inline-flex;align-items:center;justify-content:center;min-height:22px;padding:3px 9px;border:2px solid #323C9F;border-radius:6px;background:linear-gradient(180deg,#759DE5 0%,#5878C8 100%);color:#ffffff;font-size:0.72rem;font-weight:900;line-height:1;letter-spacing:0;text-transform:uppercase;white-space:nowrap;-webkit-text-stroke:0.7px #323C9F;paint-order:stroke fill;text-shadow:0 1px 0 #323C9F,1px 0 0 #323C9F,-1px 0 0 #323C9F,0 -1px 0 #323C9F;box-shadow:inset 0 -2px 0 #8AAEEF,0 3px 0 #323C9F;}.dungeon-level__value{display:block;color:var(--text);font-size:1.92rem;font-weight:900;line-height:0.9;letter-spacing:0;}";
+  _v7 = ".dungeon-level{display:grid;justify-items:center;align-content:start;gap:0;min-width:209px;text-align:center;}.dungeon-level__badge-frame,.dungeon-level__value-frame{display:grid;place-items:center;position:relative;}.dungeon-level__badge-frame{z-index:2;}.dungeon-level__value-frame{z-index:1;margin-top:0;}.dungeon-level__badge-art,.dungeon-level__badge-text,.dungeon-level__value-art,.dungeon-level__value-text{grid-area:1 / 1;}.dungeon-level__badge-art,.dungeon-level__value-art{pointer-events:none;}.dungeon-level__badge-art .bc-image,.dungeon-level__value-art .bc-image{width:auto!important;height:auto!important;}.dungeon-level__badge-text{display:inline-flex;align-items:center;justify-content:center;padding:0 24px;color:#ffffff;font-size:0.72rem;font-weight:900;line-height:1;letter-spacing:0;text-transform:uppercase;white-space:nowrap;-webkit-text-stroke:0.7px #323C9F;paint-order:stroke fill;text-shadow:0 1px 0 #323C9F,1px 0 0 #323C9F,-1px 0 0 #323C9F,0 -1px 0 #323C9F;transform:translateY(-1px);}.dungeon-level__value-text{display:flex;align-items:center;justify-content:center;min-width:0;color:var(--text);font-size:1.92rem;font-weight:900;line-height:0.9;letter-spacing:0;transform:none;}";
   _v1 = (_v2 + _v7);
   var _v8;
-  _v8 = "@media (max-width:800px){.topbar--dungeon{min-height:66px;gap:6px;}.dungeon-resource{grid-template-columns:30px auto;column-gap:6px;min-height:36px;}.dungeon-resource__icon{width:30px;height:30px;}.dungeon-resource__value{font-size:0.9rem;}.dungeon-resource--cards{grid-template-columns:27px auto;}.dungeon-resource--cards .dungeon-resource__icon{width:27px;height:27px;}.dungeon-level{min-width:98px;gap:2px;}.dungeon-level__badge{min-height:19px;padding:2px 7px;font-size:0.61rem;-webkit-text-stroke:0.6px #323C9F;box-shadow:inset 0 -2px 0 #8AAEEF,0 3px 0 #323C9F;}.dungeon-level__value{font-size:1.64rem;}}";
+  _v8 = "@media (max-width:800px){.topbar--dungeon{min-height:66px;gap:6px;}.dungeon-resource{grid-template-columns:30px auto;column-gap:6px;min-height:36px;}.dungeon-resource__icon{width:30px;height:30px;}.dungeon-resource__value{font-size:0.9rem;}.dungeon-resource--deck{grid-template-columns:auto auto;column-gap:8px;}.dungeon-resource__deck-visual .bc-image{width:auto!important;height:auto!important;}.dungeon-level{min-width:209px;gap:0;}.dungeon-level__value-frame{margin-top:0;}.dungeon-level__badge-text{padding:0 24px;font-size:0.61rem;-webkit-text-stroke:0.6px #323C9F;}.dungeon-level__value-text{font-size:1.64rem;}}";
   _r0 = (_v1 + _v8);
   return _r0;
 }
@@ -27704,6 +27708,22 @@ export function $Dungeon$View$assets_and_labels$_gold_sprite() {
 
 export const Dungeon$View$assets_and_labels$_gold_sprite = () => ($Dungeon$View$assets_and_labels$_gold_sprite());
 
+export function $Dungeon$View$assets_and_labels$_dungeon_level_badge_backdrop() {
+  var _r0;
+  _r0 = "assets/ui/dungeon/dungeon-level.png";
+  return _r0;
+}
+
+export const Dungeon$View$assets_and_labels$_dungeon_level_badge_backdrop = () => ($Dungeon$View$assets_and_labels$_dungeon_level_badge_backdrop());
+
+export function $Dungeon$View$assets_and_labels$_dungeon_level_value_backdrop() {
+  var _r0;
+  _r0 = "assets/ui/dungeon/paper-back.png";
+  return _r0;
+}
+
+export const Dungeon$View$assets_and_labels$_dungeon_level_value_backdrop = () => ($Dungeon$View$assets_and_labels$_dungeon_level_value_backdrop());
+
 export function $Dungeon$View$assets_and_labels$_monster_name(ref) {
   var _r0;
   var _v1;
@@ -29467,78 +29487,80 @@ export function $Dungeon$View$board$_render_dungeon(meta_state, scene_value$1, r
   _v22 = meta_state;
   var _v23;
   _v23 = scene_value$1;
-  _v21 = $Dungeon$View$board$_dungeon_header(_v22, _v23);
   var _v24;
+  _v24 = ui_value$3;
+  _v21 = $Dungeon$View$board$_dungeon_header(_v22, _v23, _v24);
   var _v25;
-  _v25 = ({$: "width_full"});
   var _v26;
+  _v26 = ({$: "width_full"});
   var _v27;
-  _v27 = ({$: "height_fit"});
   var _v28;
+  _v28 = ({$: "height_fit"});
   var _v29;
-  _v29 = ({$: "inset_none"});
   var _v30;
-  _v30 = ({$: "nil"});
-  _v28 = ({$: "cons", head: _v29, tail: _v30});
-  _v26 = ({$: "cons", head: _v27, tail: _v28});
-  _v24 = ({$: "cons", head: _v25, tail: _v26});
-  _v19 = $Midum$Layout$frame(_v20, _v21, _v24);
-  _v17 = $Midum$Layout$top(_v18, _v19);
+  _v30 = ({$: "inset_none"});
   var _v31;
+  _v31 = ({$: "nil"});
+  _v29 = ({$: "cons", head: _v30, tail: _v31});
+  _v27 = ({$: "cons", head: _v28, tail: _v29});
+  _v25 = ({$: "cons", head: _v26, tail: _v27});
+  _v19 = $Midum$Layout$frame(_v20, _v21, _v25);
+  _v17 = $Midum$Layout$top(_v18, _v19);
   var _v32;
   var _v33;
-  _v33 = null;
   var _v34;
+  _v34 = null;
   var _v35;
-  _v35 = scene_value$1;
   var _v36;
-  _v36 = run_value$2;
+  _v36 = scene_value$1;
   var _v37;
-  _v37 = ui_value$3;
+  _v37 = run_value$2;
   var _v38;
-  _v38 = hero_value$4;
-  _v34 = $Dungeon$View$board$_board_grid(_v35, _v36, _v37, _v38);
-  _v32 = $Midum$Layout$center(_v33, _v34);
+  _v38 = ui_value$3;
   var _v39;
+  _v39 = hero_value$4;
+  _v35 = $Dungeon$View$board$_board_grid(_v36, _v37, _v38, _v39);
+  _v33 = $Midum$Layout$center(_v34, _v35);
   var _v40;
   var _v41;
-  _v41 = null;
   var _v42;
+  _v42 = null;
   var _v43;
-  _v43 = scene_value$1;
-  _v42 = $Dungeon$View$board$_ultimate_action(_v43);
-  _v40 = $Midum$Layout$bottom(_v41, _v42);
   var _v44;
+  _v44 = scene_value$1;
+  _v43 = $Dungeon$View$board$_ultimate_action(_v44);
+  _v41 = $Midum$Layout$bottom(_v42, _v43);
   var _v45;
   var _v46;
-  _v46 = scene_value$1;
-  _v45 = $Dungeon$View$board$_board_modal_layer(_v46);
   var _v47;
-  _v47 = ({$: "nil"});
-  _v44 = ({$: "cons", head: _v45, tail: _v47});
-  _v39 = ({$: "cons", head: _v40, tail: _v44});
-  _v31 = ({$: "cons", head: _v32, tail: _v39});
-  _v16 = ({$: "cons", head: _v17, tail: _v31});
-  _v14 = $Midum$Layout$overlay(_v15, _v16);
+  _v47 = scene_value$1;
+  _v46 = $Dungeon$View$board$_board_modal_layer(_v47);
   var _v48;
+  _v48 = ({$: "nil"});
+  _v45 = ({$: "cons", head: _v46, tail: _v48});
+  _v40 = ({$: "cons", head: _v41, tail: _v45});
+  _v32 = ({$: "cons", head: _v33, tail: _v40});
+  _v16 = ({$: "cons", head: _v17, tail: _v32});
+  _v14 = $Midum$Layout$overlay(_v15, _v16);
   var _v49;
-  _v49 = ({$: "width_full"});
   var _v50;
+  _v50 = ({$: "width_full"});
   var _v51;
-  _v51 = ({$: "height_full"});
   var _v52;
+  _v52 = ({$: "height_full"});
   var _v53;
-  _v53 = ({$: "inset_none"});
   var _v54;
-  _v54 = ({$: "nil"});
-  _v52 = ({$: "cons", head: _v53, tail: _v54});
-  _v50 = ({$: "cons", head: _v51, tail: _v52});
-  _v48 = ({$: "cons", head: _v49, tail: _v50});
-  _v12 = $Midum$Layout$frame(_v13, _v14, _v48);
-  _v11 = $Dungeon$View$board$_dungeon_shell(_v12);
+  _v54 = ({$: "inset_none"});
   var _v55;
   _v55 = ({$: "nil"});
-  _v10 = ({$: "cons", head: _v11, tail: _v55});
+  _v53 = ({$: "cons", head: _v54, tail: _v55});
+  _v51 = ({$: "cons", head: _v52, tail: _v53});
+  _v49 = ({$: "cons", head: _v50, tail: _v51});
+  _v12 = $Midum$Layout$frame(_v13, _v14, _v49);
+  _v11 = $Dungeon$View$board$_dungeon_shell(_v12);
+  var _v56;
+  _v56 = ({$: "nil"});
+  _v10 = ({$: "cons", head: _v11, tail: _v56});
   _r0 = ({$: "node", tag: _v4, attrs: _v5, kids: _v10});
   return _r0;
 }
@@ -29601,7 +29623,169 @@ export function $Dungeon$View$board$_dungeon_shell(body) {
 
 export const Dungeon$View$board$_dungeon_shell = () => ((a0) => ($Dungeon$View$board$_dungeon_shell(a0)));
 
-export function $Dungeon$View$board$_dungeon_header(meta_state, scene_value$1) {
+export function $Dungeon$View$board$_deck_counter_overrides() {
+  var _r0;
+  _r0 = ({$: "nil"});
+  return _r0;
+}
+
+export const Dungeon$View$board$_deck_counter_overrides = () => ($Dungeon$View$board$_deck_counter_overrides());
+
+export function $Dungeon$View$board$_deck_counter_visual(x) {
+  var _r0;
+  switch (x.$) {
+    case "ui_state": {
+      var _m1 = x.hp_fx;
+      var _m2 = x.dmg_fx;
+      var _m3 = x.impact;
+      var _m4 = x.damage_overlay;
+      var _m5 = x.deck_counter_fx;
+      var hp_fx = _m1;
+      var dmg_fx$1 = _m2;
+      var impact$2 = _m3;
+      var damage_overlay$3 = _m4;
+      switch (_m5.$) {
+        case "deck_counter_idle": {
+          var _v6;
+          _v6 = "div";
+          var _v7;
+          var _v8;
+          var _v9;
+          _v9 = "class";
+          var _v10;
+          _v10 = "dungeon-resource__deck-visual";
+          _v8 = ({$: "attr", nam: _v9, val: _v10});
+          var _v11;
+          _v11 = ({$: "nil"});
+          _v7 = ({$: "cons", head: _v8, tail: _v11});
+          var _v12;
+          var _v13;
+          var _v14;
+          _v14 = null;
+          var _v15;
+          _v15 = Dungeon$deck_counter_frames$idle_src();
+          var _v16;
+          _v16 = Dungeon$Content$ui_topbar_cards();
+          var _v17;
+          _v17 = Dungeon$View$board$_deck_counter_overrides();
+          _v13 = $Midum$Image$view(_v14, _v15, _v16, _v17);
+          var _v18;
+          _v18 = ({$: "nil"});
+          _v12 = ({$: "cons", head: _v13, tail: _v18});
+          _r0 = ({$: "node", tag: _v6, attrs: _v7, kids: _v12});
+          break;
+        }
+        default: {
+          switch (_m5.$) {
+            case "deck_counter_playing": {
+              var _m19 = _m5.state;
+              var deck_counter_state$4 = _m19;
+              var _v20;
+              _v20 = "div";
+              var _v21;
+              var _v22;
+              var _v23;
+              _v23 = "class";
+              var _v24;
+              _v24 = "dungeon-resource__deck-visual";
+              _v22 = ({$: "attr", nam: _v23, val: _v24});
+              var _v25;
+              _v25 = ({$: "nil"});
+              _v21 = ({$: "cons", head: _v22, tail: _v25});
+              var _v26;
+              var _v27;
+              var _v28;
+              _v28 = null;
+              var _v29;
+              _v29 = deck_counter_state$4;
+              var _v30;
+              _v30 = Dungeon$deck_counter_animation$clip();
+              var _v31;
+              _v31 = Dungeon$Content$ui_topbar_cards();
+              var _v32;
+              _v32 = Dungeon$View$board$_deck_counter_overrides();
+              _v27 = $Midum$Image$animated(_v28, _v29, _v30, _v31, _v32);
+              var _v33;
+              _v33 = ({$: "nil"});
+              _v26 = ({$: "cons", head: _v27, tail: _v33});
+              _r0 = ({$: "node", tag: _v20, attrs: _v21, kids: _v26});
+              break;
+            }
+            default: {
+              throw new Error("EFQ applied");
+              break;
+            }
+          }
+          break;
+        }
+      }
+      break;
+    }
+    default: {
+      throw new Error("EFQ applied");
+      break;
+    }
+  }
+  return _r0;
+}
+
+export const Dungeon$View$board$_deck_counter_visual = () => ((a0) => ($Dungeon$View$board$_deck_counter_visual(a0)));
+
+export function $Dungeon$View$board$_dungeon_deck_counter(scene_value, ui_value$1) {
+  var _r0;
+  var _v1;
+  _v1 = "p";
+  var _v2;
+  var _v3;
+  var _v4;
+  _v4 = "class";
+  var _v5;
+  _v5 = "dungeon-resource dungeon-resource--deck";
+  _v3 = ({$: "attr", nam: _v4, val: _v5});
+  var _v6;
+  _v6 = ({$: "nil"});
+  _v2 = ({$: "cons", head: _v3, tail: _v6});
+  var _v7;
+  var _v8;
+  var _v9;
+  _v9 = ui_value$1;
+  _v8 = $Dungeon$View$board$_deck_counter_visual(_v9);
+  var _v10;
+  var _v11;
+  var _v12;
+  _v12 = "strong";
+  var _v13;
+  var _v14;
+  var _v15;
+  _v15 = "class";
+  var _v16;
+  _v16 = "dungeon-resource__value";
+  _v14 = ({$: "attr", nam: _v15, val: _v16});
+  var _v17;
+  _v17 = ({$: "nil"});
+  _v13 = ({$: "cons", head: _v14, tail: _v17});
+  var _v18;
+  var _v19;
+  var _v20;
+  var _v21;
+  _v21 = scene_value;
+  _v20 = $Dungeon$View$selectors$remaining_value(_v21);
+  _v19 = ({$: "text", value: _v20});
+  var _v22;
+  _v22 = ({$: "nil"});
+  _v18 = ({$: "cons", head: _v19, tail: _v22});
+  _v11 = ({$: "node", tag: _v12, attrs: _v13, kids: _v18});
+  var _v23;
+  _v23 = ({$: "nil"});
+  _v10 = ({$: "cons", head: _v11, tail: _v23});
+  _v7 = ({$: "cons", head: _v8, tail: _v10});
+  _r0 = ({$: "node", tag: _v1, attrs: _v2, kids: _v7});
+  return _r0;
+}
+
+export const Dungeon$View$board$_dungeon_deck_counter = () => ((a0) => ((a1) => ($Dungeon$View$board$_dungeon_deck_counter(a0, a1))));
+
+export function $Dungeon$View$board$_dungeon_header(meta_state, scene_value$1, ui_value$2) {
   var _r0;
   var _v1;
   _v1 = "header";
@@ -29686,30 +29870,24 @@ export function $Dungeon$View$board$_dungeon_header(meta_state, scene_value$1) {
   var _v43;
   var _v44;
   var _v45;
-  _v45 = "assets/icon-cards-placeholder.png";
+  _v45 = scene_value$1;
   var _v46;
-  _v46 = Dungeon$Content$ui_topbar_cards();
+  _v46 = ui_value$2;
+  _v44 = $Dungeon$View$board$_dungeon_deck_counter(_v45, _v46);
   var _v47;
-  var _v48;
-  _v48 = scene_value$1;
-  _v47 = $Dungeon$View$selectors$remaining_value(_v48);
-  var _v49;
-  _v49 = "dungeon-resource--cards";
-  _v44 = $Dungeon$View$board$_dungeon_resource(_v45, _v46, _v47, _v49);
-  var _v50;
-  _v50 = ({$: "nil"});
-  _v43 = ({$: "cons", head: _v44, tail: _v50});
+  _v47 = ({$: "nil"});
+  _v43 = ({$: "cons", head: _v44, tail: _v47});
   _v36 = ({$: "node", tag: _v37, attrs: _v38, kids: _v43});
-  var _v51;
-  _v51 = ({$: "nil"});
-  _v35 = ({$: "cons", head: _v36, tail: _v51});
+  var _v48;
+  _v48 = ({$: "nil"});
+  _v35 = ({$: "cons", head: _v36, tail: _v48});
   _v23 = ({$: "cons", head: _v24, tail: _v35});
   _v7 = ({$: "cons", head: _v8, tail: _v23});
   _r0 = ({$: "node", tag: _v1, attrs: _v2, kids: _v7});
   return _r0;
 }
 
-export const Dungeon$View$board$_dungeon_header = () => ((a0) => ((a1) => ($Dungeon$View$board$_dungeon_header(a0, a1))));
+export const Dungeon$View$board$_dungeon_header = () => ((a0) => ((a1) => ((a2) => ($Dungeon$View$board$_dungeon_header(a0, a1, a2)))));
 
 export function $Dungeon$View$board$_dungeon_resource(src, alt$1, value$2, role_class$3) {
   var _r0;
@@ -29812,13 +29990,13 @@ export function $Dungeon$View$board$_dungeon_level(scene_value) {
   var _v7;
   var _v8;
   var _v9;
-  _v9 = "span";
+  _v9 = "div";
   var _v10;
   var _v11;
   var _v12;
   _v12 = "class";
   var _v13;
-  _v13 = "dungeon-level__badge";
+  _v13 = "dungeon-level__badge-frame";
   _v11 = ({$: "attr", nam: _v12, val: _v13});
   var _v14;
   _v14 = ({$: "nil"});
@@ -29826,41 +30004,137 @@ export function $Dungeon$View$board$_dungeon_level(scene_value) {
   var _v15;
   var _v16;
   var _v17;
-  _v17 = Dungeon$Content$ui_dungeon_level();
-  _v16 = ({$: "text", value: _v17});
+  _v17 = "div";
   var _v18;
-  _v18 = ({$: "nil"});
-  _v15 = ({$: "cons", head: _v16, tail: _v18});
-  _v8 = ({$: "node", tag: _v9, attrs: _v10, kids: _v15});
   var _v19;
   var _v20;
+  _v20 = "class";
   var _v21;
-  _v21 = "strong";
+  _v21 = "dungeon-level__badge-art";
+  _v19 = ({$: "attr", nam: _v20, val: _v21});
   var _v22;
+  _v22 = ({$: "nil"});
+  _v18 = ({$: "cons", head: _v19, tail: _v22});
   var _v23;
   var _v24;
-  _v24 = "class";
   var _v25;
-  _v25 = "dungeon-level__value";
-  _v23 = ({$: "attr", nam: _v24, val: _v25});
+  _v25 = null;
   var _v26;
-  _v26 = ({$: "nil"});
-  _v22 = ({$: "cons", head: _v23, tail: _v26});
+  _v26 = Dungeon$View$assets_and_labels$_dungeon_level_badge_backdrop();
   var _v27;
+  _v27 = "";
   var _v28;
+  _v28 = ({$: "nil"});
+  _v24 = $Midum$Image$view(_v25, _v26, _v27, _v28);
   var _v29;
+  _v29 = ({$: "nil"});
+  _v23 = ({$: "cons", head: _v24, tail: _v29});
+  _v16 = ({$: "node", tag: _v17, attrs: _v18, kids: _v23});
   var _v30;
-  _v30 = scene_value;
-  _v29 = $Dungeon$View$selectors$dungeon_level_value(_v30);
-  _v28 = ({$: "text", value: _v29});
   var _v31;
-  _v31 = ({$: "nil"});
-  _v27 = ({$: "cons", head: _v28, tail: _v31});
-  _v20 = ({$: "node", tag: _v21, attrs: _v22, kids: _v27});
   var _v32;
-  _v32 = ({$: "nil"});
-  _v19 = ({$: "cons", head: _v20, tail: _v32});
-  _v7 = ({$: "cons", head: _v8, tail: _v19});
+  _v32 = "span";
+  var _v33;
+  var _v34;
+  var _v35;
+  _v35 = "class";
+  var _v36;
+  _v36 = "dungeon-level__badge-text";
+  _v34 = ({$: "attr", nam: _v35, val: _v36});
+  var _v37;
+  _v37 = ({$: "nil"});
+  _v33 = ({$: "cons", head: _v34, tail: _v37});
+  var _v38;
+  var _v39;
+  var _v40;
+  _v40 = Dungeon$Content$ui_dungeon_level();
+  _v39 = ({$: "text", value: _v40});
+  var _v41;
+  _v41 = ({$: "nil"});
+  _v38 = ({$: "cons", head: _v39, tail: _v41});
+  _v31 = ({$: "node", tag: _v32, attrs: _v33, kids: _v38});
+  var _v42;
+  _v42 = ({$: "nil"});
+  _v30 = ({$: "cons", head: _v31, tail: _v42});
+  _v15 = ({$: "cons", head: _v16, tail: _v30});
+  _v8 = ({$: "node", tag: _v9, attrs: _v10, kids: _v15});
+  var _v43;
+  var _v44;
+  var _v45;
+  _v45 = "div";
+  var _v46;
+  var _v47;
+  var _v48;
+  _v48 = "class";
+  var _v49;
+  _v49 = "dungeon-level__value-frame";
+  _v47 = ({$: "attr", nam: _v48, val: _v49});
+  var _v50;
+  _v50 = ({$: "nil"});
+  _v46 = ({$: "cons", head: _v47, tail: _v50});
+  var _v51;
+  var _v52;
+  var _v53;
+  _v53 = "div";
+  var _v54;
+  var _v55;
+  var _v56;
+  _v56 = "class";
+  var _v57;
+  _v57 = "dungeon-level__value-art";
+  _v55 = ({$: "attr", nam: _v56, val: _v57});
+  var _v58;
+  _v58 = ({$: "nil"});
+  _v54 = ({$: "cons", head: _v55, tail: _v58});
+  var _v59;
+  var _v60;
+  var _v61;
+  _v61 = null;
+  var _v62;
+  _v62 = Dungeon$View$assets_and_labels$_dungeon_level_value_backdrop();
+  var _v63;
+  _v63 = "";
+  var _v64;
+  _v64 = ({$: "nil"});
+  _v60 = $Midum$Image$view(_v61, _v62, _v63, _v64);
+  var _v65;
+  _v65 = ({$: "nil"});
+  _v59 = ({$: "cons", head: _v60, tail: _v65});
+  _v52 = ({$: "node", tag: _v53, attrs: _v54, kids: _v59});
+  var _v66;
+  var _v67;
+  var _v68;
+  _v68 = "strong";
+  var _v69;
+  var _v70;
+  var _v71;
+  _v71 = "class";
+  var _v72;
+  _v72 = "dungeon-level__value-text";
+  _v70 = ({$: "attr", nam: _v71, val: _v72});
+  var _v73;
+  _v73 = ({$: "nil"});
+  _v69 = ({$: "cons", head: _v70, tail: _v73});
+  var _v74;
+  var _v75;
+  var _v76;
+  var _v77;
+  _v77 = scene_value;
+  _v76 = $Dungeon$View$selectors$dungeon_level_value(_v77);
+  _v75 = ({$: "text", value: _v76});
+  var _v78;
+  _v78 = ({$: "nil"});
+  _v74 = ({$: "cons", head: _v75, tail: _v78});
+  _v67 = ({$: "node", tag: _v68, attrs: _v69, kids: _v74});
+  var _v79;
+  _v79 = ({$: "nil"});
+  _v66 = ({$: "cons", head: _v67, tail: _v79});
+  _v51 = ({$: "cons", head: _v52, tail: _v66});
+  _v44 = ({$: "node", tag: _v45, attrs: _v46, kids: _v51});
+  var _v80;
+  _v80 = ({$: "nil"});
+  _v43 = ({$: "cons", head: _v44, tail: _v80});
+  _v7 = ({$: "cons", head: _v8, tail: _v43});
   _r0 = ({$: "node", tag: _v1, attrs: _v2, kids: _v7});
   return _r0;
 }
@@ -30428,42 +30702,44 @@ export function $Dungeon$View$board$_board_card_at(x, x$1, x$2, x$3, x$4) {
           var _m14 = x$1.dmg_fx;
           var _m15 = x$1.impact;
           var _m16 = x$1.damage_overlay;
+          var _m17 = x$1.deck_counter_fx;
           var hp_fx$12 = _m13;
           var dmg_fx$13 = _m14;
           var impact$14 = _m15;
           var damage_overlay$15 = _m16;
-          var hero_value$16 = x$2;
-          var idx$17 = x$3;
-          var pos$18 = x$4;
-          var _v17;
+          var deck_counter_fx$16 = _m17;
+          var hero_value$17 = x$2;
+          var idx$18 = x$3;
+          var pos$19 = x$4;
           var _v18;
-          _v18 = hero_index$3;
           var _v19;
-          _v19 = idx$17;
-          _v17 = (_v18) === (_v19) ? 1 : 0;
+          _v19 = hero_index$3;
           var _v20;
-          _v20 = hero_value$16;
+          _v20 = idx$18;
+          _v18 = (_v19) === (_v20) ? 1 : 0;
           var _v21;
-          _v21 = hero_hp$1;
+          _v21 = hero_value$17;
           var _v22;
-          _v22 = hero_max_hp$2;
+          _v22 = hero_hp$1;
           var _v23;
-          _v23 = weapon$4;
+          _v23 = hero_max_hp$2;
           var _v24;
-          _v24 = hp_fx$12;
+          _v24 = weapon$4;
           var _v25;
-          _v25 = dmg_fx$13;
+          _v25 = hp_fx$12;
           var _v26;
+          _v26 = dmg_fx$13;
           var _v27;
-          _v27 = board_value$5;
           var _v28;
-          _v28 = idx$17;
-          _v26 = $Dungeon$Board$indexing$board_get(_v27, _v28);
+          _v28 = board_value$5;
           var _v29;
-          _v29 = pos$18;
+          _v29 = idx$18;
+          _v27 = $Dungeon$Board$indexing$board_get(_v28, _v29);
           var _v30;
-          _v30 = damage_overlay$15;
-          _r0 = $Dungeon$View$board$_board_card_identity(_v17, _v20, _v21, _v22, _v23, _v24, _v25, _v26, _v29, _v30);
+          _v30 = pos$19;
+          var _v31;
+          _v31 = damage_overlay$15;
+          _r0 = $Dungeon$View$board$_board_card_identity(_v18, _v21, _v22, _v23, _v24, _v25, _v26, _v27, _v30, _v31);
           break;
         }
         default: {
@@ -30566,40 +30842,44 @@ export function $Dungeon$View$board$_board_slot_at(run_value, x$1, x$2, x$3, x$4
       var _m2 = x$1.dmg_fx;
       var _m3 = x$1.impact;
       var _m4 = x$1.damage_overlay;
+      var _m5 = x$1.deck_counter_fx;
       var hp_fx$1 = _m1;
       var dmg_fx$2 = _m2;
       var impact_value$3 = _m3;
       var damage_overlay$4 = _m4;
-      var hero_value$5 = x$2;
-      var idx$6 = x$3;
-      var pos$7 = x$4;
-      var _v5;
-      _v5 = idx$6;
+      var deck_counter_fx$5 = _m5;
+      var hero_value$6 = x$2;
+      var idx$7 = x$3;
+      var pos$8 = x$4;
       var _v6;
-      _v6 = pos$7;
+      _v6 = idx$7;
       var _v7;
-      _v7 = impact_value$3;
+      _v7 = pos$8;
       var _v8;
+      _v8 = impact_value$3;
       var _v9;
-      _v9 = run_value;
       var _v10;
+      _v10 = run_value;
       var _v11;
-      _v11 = hp_fx$1;
       var _v12;
-      _v12 = dmg_fx$2;
+      _v12 = hp_fx$1;
       var _v13;
-      _v13 = impact_value$3;
+      _v13 = dmg_fx$2;
       var _v14;
-      _v14 = damage_overlay$4;
-      _v10 = ({$: "ui_state", hp_fx: _v11, dmg_fx: _v12, impact: _v13, damage_overlay: _v14});
+      _v14 = impact_value$3;
       var _v15;
-      _v15 = hero_value$5;
+      _v15 = damage_overlay$4;
       var _v16;
-      _v16 = idx$6;
+      _v16 = deck_counter_fx$5;
+      _v11 = ({$: "ui_state", hp_fx: _v12, dmg_fx: _v13, impact: _v14, damage_overlay: _v15, deck_counter_fx: _v16});
       var _v17;
-      _v17 = pos$7;
-      _v8 = $Dungeon$View$board$_board_card_at(_v9, _v10, _v15, _v16, _v17);
-      _r0 = $Dungeon$View$board$_board_slot_node(_v5, _v6, _v7, _v8);
+      _v17 = hero_value$6;
+      var _v18;
+      _v18 = idx$7;
+      var _v19;
+      _v19 = pos$8;
+      _v9 = $Dungeon$View$board$_board_card_at(_v10, _v11, _v17, _v18, _v19);
+      _r0 = $Dungeon$View$board$_board_slot_node(_v6, _v7, _v8, _v9);
       break;
     }
     default: {
@@ -30830,869 +31110,6 @@ export function $Dungeon$View$board$_resume_menu_button() {
 }
 
 export const Dungeon$View$board$_resume_menu_button = () => ($Dungeon$View$board$_resume_menu_button());
-
-export function $U32$grid(A, w$1, h$2, f$3) {
-  var _r0;
-  var tot$4;
-  var _v1;
-  _v1 = w$1;
-  var _v2;
-  _v2 = h$2;
-  tot$4 = ((Math.imul((_v1), (_v2))) >>> 0);
-  var _v3;
-  _v3 = A;
-  var _v4;
-  _v4 = w$1;
-  var _v5;
-  _v5 = tot$4;
-  var _v6;
-  _v6 = tot$4;
-  var _v7;
-  _v7 = f$3;
-  _r0 = $U32$grid$_0(_v3, _v4, _v5, _v6, _v7);
-  return _r0;
-}
-
-export const U32$grid = () => ((a0) => ((a1) => ((a2) => ((a3) => ($U32$grid(a0, a1, a2, a3))))));
-
-export function $U32$grid$_0(A, w$1, tot$2, x$3, x$4) {
-  var _r0;
-  if (((x$3) >>> 0) === 0) {
-    var f$3 = x$4;
-    _r0 = ({$: "nil"});
-  } else {
-    var r$3 = x$3;
-    var f$4 = x$4;
-    var i$5;
-    var _v1;
-    _v1 = tot$2;
-    var _v2;
-    _v2 = r$3;
-    i$5 = (((_v1) - (_v2)) >>> 0);
-    var _v3;
-    var _v4;
-    var _v5;
-    _v5 = i$5;
-    var _v6;
-    _v6 = w$1;
-    _v4 = (((_v6) === 0 ? 0 : ((_v5) % (_v6))) >>> 0);
-    var _v7;
-    var _v8;
-    _v8 = i$5;
-    var _v9;
-    _v9 = w$1;
-    _v7 = (((_v9) === 0 ? 0 : ((_v8) / (_v9))) >>> 0);
-    _v3 = f$4;
-    var _a10 = (_v3)(_v4);
-    var _a11 = (_a10)(_v7);
-    _v3 = _a11;
-    var _v12;
-    var _v13;
-    _v13 = A;
-    var _v14;
-    _v14 = w$1;
-    var _v15;
-    _v15 = tot$2;
-    var _v16;
-    var _v17;
-    _v17 = r$3;
-    var _v18;
-    _v18 = 1;
-    _v16 = (((_v17) - (_v18)) >>> 0);
-    var _v19;
-    _v19 = f$4;
-    _v12 = $U32$grid$_0(_v13, _v14, _v15, _v16, _v19);
-    _r0 = ({$: "cons", head: _v3, tail: _v12});
-  }
-  return _r0;
-}
-
-export const U32$grid$_0 = () => ((a0) => ((a1) => ((a2) => ((a3) => ((a4) => ($U32$grid$_0(a0, a1, a2, a3, a4)))))));
-
-export function $Dungeon$View$cards$_hero_card_values(hero_value, hero_hp$1, hero_max_hp$2, weapon_value$3, hp_fx$4, dmg_fx$5) {
-  var _r0;
-  var _v1;
-  _v1 = null;
-  var _v2;
-  var _v3;
-  _v3 = "div";
-  var _v4;
-  var _v5;
-  var _v6;
-  _v6 = "class";
-  var _v7;
-  var _v8;
-  _v8 = dmg_fx$5;
-  _v7 = $Dungeon$View$cards$_hero_card_class(_v8);
-  _v5 = ({$: "attr", nam: _v6, val: _v7});
-  var _v9;
-  var _v10;
-  var _v11;
-  _v11 = "data-dmg";
-  var _v12;
-  var _v13;
-  _v13 = weapon_value$3;
-  _v12 = $Dungeon$View$cards$_hero_damage_attr(_v13);
-  _v10 = ({$: "attr", nam: _v11, val: _v12});
-  var _v14;
-  _v14 = ({$: "nil"});
-  _v9 = ({$: "cons", head: _v10, tail: _v14});
-  _v4 = ({$: "cons", head: _v5, tail: _v9});
-  var _v15;
-  var _v16;
-  var _v17;
-  _v17 = "div";
-  var _v18;
-  var _v19;
-  var _v20;
-  _v20 = "class";
-  var _v21;
-  var _v22;
-  _v22 = hp_fx$4;
-  _v21 = $Dungeon$View$cards$_hero_hp_badge_class(_v22);
-  _v19 = ({$: "attr", nam: _v20, val: _v21});
-  var _v23;
-  _v23 = ({$: "nil"});
-  _v18 = ({$: "cons", head: _v19, tail: _v23});
-  var _v24;
-  var _v25;
-  var _v26;
-  var _v27;
-  var _v28;
-  var _v29;
-  var _v30;
-  _v30 = Dungeon$Content$stat_hp();
-  var _v31;
-  _v31 = " ";
-  _v29 = (_v30 + _v31);
-  var _v32;
-  var _v33;
-  _v33 = hero_hp$1;
-  _v32 = $U32$show(_v33);
-  _v28 = (_v29 + _v32);
-  var _v34;
-  _v34 = "/";
-  _v27 = (_v28 + _v34);
-  var _v35;
-  var _v36;
-  _v36 = hero_max_hp$2;
-  _v35 = $U32$show(_v36);
-  _v26 = (_v27 + _v35);
-  _v25 = ({$: "text", value: _v26});
-  var _v37;
-  _v37 = ({$: "nil"});
-  _v24 = ({$: "cons", head: _v25, tail: _v37});
-  _v16 = ({$: "node", tag: _v17, attrs: _v18, kids: _v24});
-  var _v38;
-  var _v39;
-  var _v40;
-  _v40 = "div";
-  var _v41;
-  var _v42;
-  var _v43;
-  _v43 = "class";
-  var _v44;
-  _v44 = "card__art-wrap";
-  _v42 = ({$: "attr", nam: _v43, val: _v44});
-  var _v45;
-  _v45 = ({$: "nil"});
-  _v41 = ({$: "cons", head: _v42, tail: _v45});
-  var _v46;
-  var _v47;
-  var _v48;
-  _v48 = "img";
-  var _v49;
-  var _v50;
-  var _v51;
-  _v51 = "class";
-  var _v52;
-  _v52 = "card__art";
-  _v50 = ({$: "attr", nam: _v51, val: _v52});
-  var _v53;
-  var _v54;
-  var _v55;
-  _v55 = "src";
-  var _v56;
-  var _v57;
-  _v57 = hero_value;
-  _v56 = $Dungeon$hero_helpers$hero_sprite(_v57);
-  _v54 = ({$: "attr", nam: _v55, val: _v56});
-  var _v58;
-  var _v59;
-  var _v60;
-  _v60 = "alt";
-  var _v61;
-  var _v62;
-  _v62 = hero_value;
-  _v61 = $Dungeon$hero_helpers$hero_name(_v62);
-  _v59 = ({$: "attr", nam: _v60, val: _v61});
-  var _v63;
-  _v63 = ({$: "nil"});
-  _v58 = ({$: "cons", head: _v59, tail: _v63});
-  _v53 = ({$: "cons", head: _v54, tail: _v58});
-  _v49 = ({$: "cons", head: _v50, tail: _v53});
-  var _v64;
-  _v64 = ({$: "nil"});
-  _v47 = ({$: "node", tag: _v48, attrs: _v49, kids: _v64});
-  var _v65;
-  _v65 = ({$: "nil"});
-  _v46 = ({$: "cons", head: _v47, tail: _v65});
-  _v39 = ({$: "node", tag: _v40, attrs: _v41, kids: _v46});
-  var _v66;
-  _v66 = ({$: "nil"});
-  _v38 = ({$: "cons", head: _v39, tail: _v66});
-  _v15 = ({$: "cons", head: _v16, tail: _v38});
-  _v2 = ({$: "node", tag: _v3, attrs: _v4, kids: _v15});
-  var _v67;
-  var _v68;
-  _v68 = ({$: "padding_none"});
-  var _v69;
-  _v69 = ({$: "nil"});
-  _v67 = ({$: "cons", head: _v68, tail: _v69});
-  _r0 = $Midum$Card$neutral(_v1, _v2, _v67);
-  return _r0;
-}
-
-export const Dungeon$View$cards$_hero_card_values = () => ((a0) => ((a1) => ((a2) => ((a3) => ((a4) => ((a5) => ($Dungeon$View$cards$_hero_card_values(a0, a1, a2, a3, a4, a5))))))));
-
-export function $Dungeon$View$cards$_hero_card_class(x) {
-  var _r0;
-  switch (x.$) {
-    case "dmg_fx_up_a": {
-      _r0 = "card card--hero card--hero-dmg-up-a";
-      break;
-    }
-    default: {
-      switch (x.$) {
-        case "dmg_fx_up_b": {
-          _r0 = "card card--hero card--hero-dmg-up-b";
-          break;
-        }
-        default: {
-          switch (x.$) {
-            case "dmg_fx_down_a": {
-              _r0 = "card card--hero card--hero-dmg-down-a";
-              break;
-            }
-            default: {
-              switch (x.$) {
-                case "dmg_fx_down_b": {
-                  _r0 = "card card--hero card--hero-dmg-down-b";
-                  break;
-                }
-                default: {
-                  var _ = x;
-                  _r0 = "card card--hero";
-                  break;
-                }
-              }
-              break;
-            }
-          }
-          break;
-        }
-      }
-      break;
-    }
-  }
-  return _r0;
-}
-
-export const Dungeon$View$cards$_hero_card_class = () => ((a0) => ($Dungeon$View$cards$_hero_card_class(a0)));
-
-export function $Dungeon$View$cards$_hero_hp_badge_class(x) {
-  var _r0;
-  switch (x.$) {
-    case "hp_fx_heal_a": {
-      _r0 = "card__badge card__badge--hp card__badge--hp-heal-a";
-      break;
-    }
-    default: {
-      switch (x.$) {
-        case "hp_fx_heal_b": {
-          _r0 = "card__badge card__badge--hp card__badge--hp-heal-b";
-          break;
-        }
-        default: {
-          switch (x.$) {
-            case "hp_fx_hurt_a": {
-              _r0 = "card__badge card__badge--hp card__badge--hp-hurt-a";
-              break;
-            }
-            default: {
-              switch (x.$) {
-                case "hp_fx_hurt_b": {
-                  _r0 = "card__badge card__badge--hp card__badge--hp-hurt-b";
-                  break;
-                }
-                default: {
-                  var _ = x;
-                  _r0 = "card__badge card__badge--hp";
-                  break;
-                }
-              }
-              break;
-            }
-          }
-          break;
-        }
-      }
-      break;
-    }
-  }
-  return _r0;
-}
-
-export const Dungeon$View$cards$_hero_hp_badge_class = () => ((a0) => ($Dungeon$View$cards$_hero_hp_badge_class(a0)));
-
-export function $Dungeon$View$cards$_hero_damage_attr(x) {
-  var _r0;
-  switch (x.$) {
-    case "no_weapon": {
-      _r0 = "";
-      break;
-    }
-    default: {
-      switch (x.$) {
-        case "weapon": {
-          var _m1 = x.ref;
-          var _m2 = x.dmg;
-          var ref = _m1;
-          var dmg$1 = _m2;
-          var _v3;
-          var _v4;
-          _v4 = Dungeon$Content$stat_dmg();
-          var _v5;
-          _v5 = " ";
-          _v3 = (_v4 + _v5);
-          var _v6;
-          var _v7;
-          _v7 = dmg$1;
-          _v6 = $U32$show(_v7);
-          _r0 = (_v3 + _v6);
-          break;
-        }
-        default: {
-          throw new Error("EFQ applied");
-          break;
-        }
-      }
-      break;
-    }
-  }
-  return _r0;
-}
-
-export const Dungeon$View$cards$_hero_damage_attr = () => ((a0) => ($Dungeon$View$cards$_hero_damage_attr(a0)));
-
-export function $Dungeon$View$cards$_monster_fx_overrides() {
-  var _r0;
-  var _v1;
-  var _v2;
-  _v2 = 112;
-  _v1 = ({$: "width_px", value: _v2});
-  var _v3;
-  var _v4;
-  var _v5;
-  _v5 = 112;
-  _v4 = ({$: "height_px", value: _v5});
-  var _v6;
-  var _v7;
-  _v7 = ({$: "fit_contain"});
-  var _v8;
-  var _v9;
-  _v9 = ({$: "sampling_pixelated"});
-  var _v10;
-  _v10 = ({$: "nil"});
-  _v8 = ({$: "cons", head: _v9, tail: _v10});
-  _v6 = ({$: "cons", head: _v7, tail: _v8});
-  _v3 = ({$: "cons", head: _v4, tail: _v6});
-  _r0 = ({$: "cons", head: _v1, tail: _v3});
-  return _r0;
-}
-
-export const Dungeon$View$cards$_monster_fx_overrides = () => ($Dungeon$View$cards$_monster_fx_overrides());
-
-export function $Dungeon$View$cards$_tile_card(x, x$1, x$2) {
-  var _r0;
-  switch (x.$) {
-    case "none": {
-      var pos = x$1;
-      var damage_overlay$1 = x$2;
-      var _v1;
-      _v1 = null;
-      var _v2;
-      var _v3;
-      _v3 = "div";
-      var _v4;
-      var _v5;
-      var _v6;
-      _v6 = "class";
-      var _v7;
-      _v7 = "card card--empty";
-      _v5 = ({$: "attr", nam: _v6, val: _v7});
-      var _v8;
-      _v8 = ({$: "nil"});
-      _v4 = ({$: "cons", head: _v5, tail: _v8});
-      var _v9;
-      var _v10;
-      var _v11;
-      _v11 = "div";
-      var _v12;
-      var _v13;
-      var _v14;
-      _v14 = "class";
-      var _v15;
-      _v15 = "card__empty";
-      _v13 = ({$: "attr", nam: _v14, val: _v15});
-      var _v16;
-      _v16 = ({$: "nil"});
-      _v12 = ({$: "cons", head: _v13, tail: _v16});
-      var _v17;
-      var _v18;
-      var _v19;
-      _v19 = Dungeon$Content$card_empty();
-      _v18 = ({$: "text", value: _v19});
-      var _v20;
-      _v20 = ({$: "nil"});
-      _v17 = ({$: "cons", head: _v18, tail: _v20});
-      _v10 = ({$: "node", tag: _v11, attrs: _v12, kids: _v17});
-      var _v21;
-      _v21 = ({$: "nil"});
-      _v9 = ({$: "cons", head: _v10, tail: _v21});
-      _v2 = ({$: "node", tag: _v3, attrs: _v4, kids: _v9});
-      var _v22;
-      var _v23;
-      _v23 = ({$: "padding_none"});
-      var _v24;
-      _v24 = ({$: "nil"});
-      _v22 = ({$: "cons", head: _v23, tail: _v24});
-      _r0 = $Midum$Card$neutral(_v1, _v2, _v22);
-      break;
-    }
-    default: {
-      switch (x.$) {
-        case "monster": {
-          var _m25 = x.ref;
-          var _m26 = x.hp;
-          var ref = _m25;
-          var hp$1 = _m26;
-          var pos$2 = x$1;
-          var damage_overlay$3 = x$2;
-          var _v27;
-          var _v28;
-          _v28 = ref;
-          var _v29;
-          _v29 = hp$1;
-          _v27 = ({$: "monster", ref: _v28, hp: _v29});
-          var _v30;
-          _v30 = "card card--tile card--monster";
-          var _v31;
-          _v31 = pos$2;
-          var _v32;
-          _v32 = damage_overlay$3;
-          _r0 = $Dungeon$View$cards$_standard_tile_card(_v27, _v30, _v31, _v32);
-          break;
-        }
-        default: {
-          switch (x.$) {
-            case "sword": {
-              var _m33 = x.ref;
-              var _m34 = x.dmg;
-              var ref = _m33;
-              var dmg$1 = _m34;
-              var pos$2 = x$1;
-              var damage_overlay$3 = x$2;
-              var _v35;
-              var _v36;
-              _v36 = ref;
-              var _v37;
-              _v37 = dmg$1;
-              _v35 = ({$: "sword", ref: _v36, dmg: _v37});
-              var _v38;
-              _v38 = "card card--tile card--sword";
-              var _v39;
-              _v39 = pos$2;
-              var _v40;
-              _v40 = damage_overlay$3;
-              _r0 = $Dungeon$View$cards$_standard_tile_card(_v35, _v38, _v39, _v40);
-              break;
-            }
-            default: {
-              switch (x.$) {
-                case "potion": {
-                  var _m41 = x.ref;
-                  var _m42 = x.heal;
-                  var ref = _m41;
-                  var heal$1 = _m42;
-                  var pos$2 = x$1;
-                  var damage_overlay$3 = x$2;
-                  var _v43;
-                  var _v44;
-                  _v44 = ref;
-                  var _v45;
-                  _v45 = heal$1;
-                  _v43 = ({$: "potion", ref: _v44, heal: _v45});
-                  var _v46;
-                  _v46 = "card card--tile card--potion";
-                  var _v47;
-                  _v47 = pos$2;
-                  var _v48;
-                  _v48 = damage_overlay$3;
-                  _r0 = $Dungeon$View$cards$_standard_tile_card(_v43, _v46, _v47, _v48);
-                  break;
-                }
-                default: {
-                  switch (x.$) {
-                    case "gold": {
-                      var _m49 = x.amount;
-                      var amount = _m49;
-                      var pos$1 = x$1;
-                      var damage_overlay$2 = x$2;
-                      var _v50;
-                      var _v51;
-                      _v51 = amount;
-                      _v50 = ({$: "gold", amount: _v51});
-                      var _v52;
-                      _v52 = "card card--tile card--gold";
-                      var _v53;
-                      _v53 = pos$1;
-                      var _v54;
-                      _v54 = damage_overlay$2;
-                      _r0 = $Dungeon$View$cards$_standard_tile_card(_v50, _v52, _v53, _v54);
-                      break;
-                    }
-                    default: {
-                      throw new Error("EFQ applied");
-                      break;
-                    }
-                  }
-                  break;
-                }
-              }
-              break;
-            }
-          }
-          break;
-        }
-      }
-      break;
-    }
-  }
-  return _r0;
-}
-
-export const Dungeon$View$cards$_tile_card = () => ((a0) => ((a1) => ((a2) => ($Dungeon$View$cards$_tile_card(a0, a1, a2)))));
-
-export function $Dungeon$View$cards$_standard_card_shell(body) {
-  var _r0;
-  var _v1;
-  _v1 = null;
-  var _v2;
-  _v2 = body;
-  var _v3;
-  var _v4;
-  _v4 = ({$: "padding_none"});
-  var _v5;
-  _v5 = ({$: "nil"});
-  _v3 = ({$: "cons", head: _v4, tail: _v5});
-  _r0 = $Midum$Card$neutral(_v1, _v2, _v3);
-  return _r0;
-}
-
-export const Dungeon$View$cards$_standard_card_shell = () => ((a0) => ($Dungeon$View$cards$_standard_card_shell(a0)));
-
-export function $Dungeon$View$cards$_overlay_art_tile(x, x$1) {
-  var _r0;
-  switch (x.$) {
-    case "gold": {
-      var _m1 = x.amount;
-      var amount = _m1;
-      var base_tile$1 = x$1;
-      _r0 = base_tile$1;
-      break;
-    }
-    default: {
-      var _ = x;
-      var base_tile$1 = x$1;
-      _r0 = _;
-      break;
-    }
-  }
-  return _r0;
-}
-
-export const Dungeon$View$cards$_overlay_art_tile = () => ((a0) => ((a1) => ($Dungeon$View$cards$_overlay_art_tile(a0, a1))));
-
-export function $Dungeon$View$cards$_art_tile(tile, pos$1, x$2) {
-  var _r0;
-  switch (x$2.$) {
-    case "no_damage_overlay": {
-      _r0 = tile;
-      break;
-    }
-    default: {
-      switch (x$2.$) {
-        case "damage_overlay": {
-          var _m1 = x$2.pos;
-          var _m2 = x$2.trigger;
-          var _m3 = x$2.base_tile;
-          var _m4 = x$2.state;
-          var overlay_pos$2 = _m1;
-          var trigger$3 = _m2;
-          var base_tile$4 = _m3;
-          var overlay_state$5 = _m4;
-          var _v5;
-          _v5 = tile;
-          var _v6;
-          _v6 = pos$1;
-          var _v7;
-          _v7 = overlay_pos$2;
-          var _v8;
-          _v8 = trigger$3;
-          var _v9;
-          _v9 = base_tile$4;
-          var _v10;
-          _v10 = overlay_state$5;
-          var _v11;
-          var _v12;
-          _v12 = pos$1;
-          var _v13;
-          _v13 = overlay_pos$2;
-          _v11 = $Dungeon$Board$indexing$same_pos(_v12, _v13);
-          _r0 = $Dungeon$View$cards$_art_tile$_0(_v5, _v6, _v7, _v8, _v9, _v10, _v11);
-          break;
-        }
-        default: {
-          throw new Error("EFQ applied");
-          break;
-        }
-      }
-      break;
-    }
-  }
-  return _r0;
-}
-
-export const Dungeon$View$cards$_art_tile = () => ((a0) => ((a1) => ((a2) => ($Dungeon$View$cards$_art_tile(a0, a1, a2)))));
-
-export function $Dungeon$View$cards$_damage_overlay_layer(pos, x$1) {
-  var _r0;
-  switch (x$1.$) {
-    case "no_damage_overlay": {
-      var _v1;
-      _v1 = "";
-      _r0 = ({$: "text", value: _v1});
-      break;
-    }
-    default: {
-      switch (x$1.$) {
-        case "damage_overlay": {
-          var _m2 = x$1.pos;
-          var _m3 = x$1.trigger;
-          var _m4 = x$1.base_tile;
-          var _m5 = x$1.state;
-          var overlay_pos$1 = _m2;
-          var trigger$2 = _m3;
-          var base_tile$3 = _m4;
-          var overlay_state$4 = _m5;
-          var _v6;
-          _v6 = pos;
-          var _v7;
-          _v7 = overlay_pos$1;
-          var _v8;
-          _v8 = trigger$2;
-          var _v9;
-          _v9 = base_tile$3;
-          var _v10;
-          _v10 = overlay_state$4;
-          var _v11;
-          var _v12;
-          _v12 = pos;
-          var _v13;
-          _v13 = overlay_pos$1;
-          _v11 = $Dungeon$Board$indexing$same_pos(_v12, _v13);
-          _r0 = $Dungeon$View$cards$_damage_overlay_layer$_0(_v6, _v7, _v8, _v9, _v10, _v11);
-          break;
-        }
-        default: {
-          throw new Error("EFQ applied");
-          break;
-        }
-      }
-      break;
-    }
-  }
-  return _r0;
-}
-
-export const Dungeon$View$cards$_damage_overlay_layer = () => ((a0) => ((a1) => ($Dungeon$View$cards$_damage_overlay_layer(a0, a1))));
-
-export function $Dungeon$View$cards$_tile_card_body(tile, class_name$1, pos$2, damage_overlay$3) {
-  var _r0;
-  var art_tile$4;
-  var _v1;
-  _v1 = tile;
-  var _v2;
-  _v2 = pos$2;
-  var _v3;
-  _v3 = damage_overlay$3;
-  art_tile$4 = $Dungeon$View$cards$_art_tile(_v1, _v2, _v3);
-  var _v4;
-  _v4 = "div";
-  var _v5;
-  var _v6;
-  var _v7;
-  _v7 = "class";
-  var _v8;
-  _v8 = class_name$1;
-  _v6 = ({$: "attr", nam: _v7, val: _v8});
-  var _v9;
-  _v9 = ({$: "nil"});
-  _v5 = ({$: "cons", head: _v6, tail: _v9});
-  var _v10;
-  var _v11;
-  var _v12;
-  _v12 = tile;
-  _v11 = $Dungeon$View$cards$_tile_badge_node(_v12);
-  var _v13;
-  var _v14;
-  var _v15;
-  _v15 = "div";
-  var _v16;
-  var _v17;
-  var _v18;
-  _v18 = "class";
-  var _v19;
-  _v19 = "card__art-wrap card__art-wrap--stacked";
-  _v17 = ({$: "attr", nam: _v18, val: _v19});
-  var _v20;
-  _v20 = ({$: "nil"});
-  _v16 = ({$: "cons", head: _v17, tail: _v20});
-  var _v21;
-  var _v22;
-  var _v23;
-  _v23 = pos$2;
-  var _v24;
-  _v24 = damage_overlay$3;
-  _v22 = $Dungeon$View$cards$_damage_overlay_layer(_v23, _v24);
-  var _v25;
-  var _v26;
-  var _v27;
-  _v27 = "div";
-  var _v28;
-  var _v29;
-  var _v30;
-  _v30 = "class";
-  var _v31;
-  _v31 = "card__art-layer card__art-layer--base";
-  _v29 = ({$: "attr", nam: _v30, val: _v31});
-  var _v32;
-  _v32 = ({$: "nil"});
-  _v28 = ({$: "cons", head: _v29, tail: _v32});
-  var _v33;
-  var _v34;
-  var _v35;
-  _v35 = "img";
-  var _v36;
-  var _v37;
-  var _v38;
-  _v38 = "class";
-  var _v39;
-  _v39 = "card__art";
-  _v37 = ({$: "attr", nam: _v38, val: _v39});
-  var _v40;
-  var _v41;
-  var _v42;
-  _v42 = "src";
-  var _v43;
-  var _v44;
-  _v44 = art_tile$4;
-  _v43 = $Dungeon$View$assets_and_labels$_tile_sprite(_v44);
-  _v41 = ({$: "attr", nam: _v42, val: _v43});
-  var _v45;
-  var _v46;
-  var _v47;
-  _v47 = "alt";
-  var _v48;
-  var _v49;
-  _v49 = art_tile$4;
-  _v48 = $Dungeon$View$assets_and_labels$_tile_name(_v49);
-  _v46 = ({$: "attr", nam: _v47, val: _v48});
-  var _v50;
-  _v50 = ({$: "nil"});
-  _v45 = ({$: "cons", head: _v46, tail: _v50});
-  _v40 = ({$: "cons", head: _v41, tail: _v45});
-  _v36 = ({$: "cons", head: _v37, tail: _v40});
-  var _v51;
-  _v51 = ({$: "nil"});
-  _v34 = ({$: "node", tag: _v35, attrs: _v36, kids: _v51});
-  var _v52;
-  _v52 = ({$: "nil"});
-  _v33 = ({$: "cons", head: _v34, tail: _v52});
-  _v26 = ({$: "node", tag: _v27, attrs: _v28, kids: _v33});
-  var _v53;
-  _v53 = ({$: "nil"});
-  _v25 = ({$: "cons", head: _v26, tail: _v53});
-  _v21 = ({$: "cons", head: _v22, tail: _v25});
-  _v14 = ({$: "node", tag: _v15, attrs: _v16, kids: _v21});
-  var _v54;
-  _v54 = ({$: "nil"});
-  _v13 = ({$: "cons", head: _v14, tail: _v54});
-  _v10 = ({$: "cons", head: _v11, tail: _v13});
-  _r0 = ({$: "node", tag: _v4, attrs: _v5, kids: _v10});
-  return _r0;
-}
-
-export const Dungeon$View$cards$_tile_card_body = () => ((a0) => ((a1) => ((a2) => ((a3) => ($Dungeon$View$cards$_tile_card_body(a0, a1, a2, a3))))));
-
-export function $Dungeon$View$cards$_standard_tile_card(tile, class_name$1, pos$2, damage_overlay$3) {
-  var _r0;
-  var _v1;
-  var _v2;
-  _v2 = tile;
-  var _v3;
-  _v3 = class_name$1;
-  var _v4;
-  _v4 = pos$2;
-  var _v5;
-  _v5 = damage_overlay$3;
-  _v1 = $Dungeon$View$cards$_tile_card_body(_v2, _v3, _v4, _v5);
-  _r0 = $Dungeon$View$cards$_standard_card_shell(_v1);
-  return _r0;
-}
-
-export const Dungeon$View$cards$_standard_tile_card = () => ((a0) => ((a1) => ((a2) => ((a3) => ($Dungeon$View$cards$_standard_tile_card(a0, a1, a2, a3))))));
-
-export function $Dungeon$View$cards$_tile_badge_node(tile) {
-  var _r0;
-  var _v1;
-  _v1 = "div";
-  var _v2;
-  var _v3;
-  var _v4;
-  _v4 = "class";
-  var _v5;
-  _v5 = "card__badge card__badge--value";
-  _v3 = ({$: "attr", nam: _v4, val: _v5});
-  var _v6;
-  _v6 = ({$: "nil"});
-  _v2 = ({$: "cons", head: _v3, tail: _v6});
-  var _v7;
-  var _v8;
-  var _v9;
-  var _v10;
-  _v10 = tile;
-  _v9 = $Dungeon$View$assets_and_labels$_tile_badge(_v10);
-  _v8 = ({$: "text", value: _v9});
-  var _v11;
-  _v11 = ({$: "nil"});
-  _v7 = ({$: "cons", head: _v8, tail: _v11});
-  _r0 = ({$: "node", tag: _v1, attrs: _v2, kids: _v7});
-  return _r0;
-}
-
-export const Dungeon$View$cards$_tile_badge_node = () => ((a0) => ($Dungeon$View$cards$_tile_badge_node(a0)));
 
 export const Midum$Image$Override = null;
 
@@ -33567,54 +32984,999 @@ export const String$is_empty = () => ((a0) => ($String$is_empty(a0)));
 
 export const Midum$Image$config$Config = null;
 
-export function $Dungeon$monster_damage_animation$frames() {
+export function $Dungeon$deck_counter_frames$idle_src() {
   var _r0;
-  var _v1;
-  var _v2;
-  var _v3;
-  var _v4;
-  var _v5;
-  var _v6;
-  var _v7;
-  var _v8;
-  var _v9;
-  _v9 = "assets/attack_00_00.png";
-  var _v10;
-  _v10 = "\n";
-  _v8 = (_v9 + _v10);
-  var _v11;
-  _v11 = "assets/attack_01_00.png";
-  _v7 = (_v8 + _v11);
-  var _v12;
-  _v12 = "\n";
-  _v6 = (_v7 + _v12);
-  var _v13;
-  _v13 = "assets/attack_02_00.png";
-  _v5 = (_v6 + _v13);
-  var _v14;
-  _v14 = "\n";
-  _v4 = (_v5 + _v14);
-  var _v15;
-  _v15 = "assets/attack_03_00.png";
-  _v3 = (_v4 + _v15);
-  var _v16;
-  _v16 = "\n";
-  _v2 = (_v3 + _v16);
-  var _v17;
-  _v17 = "assets/attack_04_00.png";
-  _v1 = (_v2 + _v17);
-  var _v18;
-  _v18 = ({$: "nil"});
-  _r0 = ({$: "cons", head: _v1, tail: _v18});
+  _r0 = "assets/ui/dungeon/deck-counter/deck-animation1.png";
   return _r0;
 }
 
-export const Dungeon$monster_damage_animation$frames = () => ($Dungeon$monster_damage_animation$frames());
+export const Dungeon$deck_counter_frames$idle_src = () => ($Dungeon$deck_counter_frames$idle_src());
+
+export function $Dungeon$deck_counter_frames$frame_01() {
+  var _r0;
+  _r0 = "assets/ui/dungeon/deck-counter/deck-animation1.png";
+  return _r0;
+}
+
+export const Dungeon$deck_counter_frames$frame_01 = () => ($Dungeon$deck_counter_frames$frame_01());
+
+export function $Dungeon$deck_counter_frames$frame_02() {
+  var _r0;
+  _r0 = "assets/ui/dungeon/deck-counter/deck-animation2.png";
+  return _r0;
+}
+
+export const Dungeon$deck_counter_frames$frame_02 = () => ($Dungeon$deck_counter_frames$frame_02());
+
+export function $Dungeon$deck_counter_frames$frame_03() {
+  var _r0;
+  _r0 = "assets/ui/dungeon/deck-counter/deck-animation3.png";
+  return _r0;
+}
+
+export const Dungeon$deck_counter_frames$frame_03 = () => ($Dungeon$deck_counter_frames$frame_03());
+
+export function $Dungeon$deck_counter_frames$frame_04() {
+  var _r0;
+  _r0 = "assets/ui/dungeon/deck-counter/deck-animation4.png";
+  return _r0;
+}
+
+export const Dungeon$deck_counter_frames$frame_04 = () => ($Dungeon$deck_counter_frames$frame_04());
+
+export function $Dungeon$deck_counter_frames$frame_05() {
+  var _r0;
+  _r0 = "assets/ui/dungeon/deck-counter/deck-animation5.png";
+  return _r0;
+}
+
+export const Dungeon$deck_counter_frames$frame_05 = () => ($Dungeon$deck_counter_frames$frame_05());
+
+export function $Dungeon$deck_counter_frames$frame_06() {
+  var _r0;
+  _r0 = "assets/ui/dungeon/deck-counter/deck-animation6.png";
+  return _r0;
+}
+
+export const Dungeon$deck_counter_frames$frame_06 = () => ($Dungeon$deck_counter_frames$frame_06());
+
+export function $Dungeon$deck_counter_frames$frame_07() {
+  var _r0;
+  _r0 = "assets/ui/dungeon/deck-counter/deck-animation7.png";
+  return _r0;
+}
+
+export const Dungeon$deck_counter_frames$frame_07 = () => ($Dungeon$deck_counter_frames$frame_07());
+
+export function $Dungeon$deck_counter_frames$frame_08() {
+  var _r0;
+  _r0 = "assets/ui/dungeon/deck-counter/deck-animation8.png";
+  return _r0;
+}
+
+export const Dungeon$deck_counter_frames$frame_08 = () => ($Dungeon$deck_counter_frames$frame_08());
+
+export function $Dungeon$deck_counter_frames$frames() {
+  var _r0;
+  var _v1;
+  _v1 = Dungeon$deck_counter_frames$frame_01();
+  var _v2;
+  var _v3;
+  _v3 = Dungeon$deck_counter_frames$frame_02();
+  var _v4;
+  var _v5;
+  _v5 = Dungeon$deck_counter_frames$frame_03();
+  var _v6;
+  var _v7;
+  _v7 = Dungeon$deck_counter_frames$frame_04();
+  var _v8;
+  var _v9;
+  _v9 = Dungeon$deck_counter_frames$frame_05();
+  var _v10;
+  var _v11;
+  _v11 = Dungeon$deck_counter_frames$frame_06();
+  var _v12;
+  var _v13;
+  _v13 = Dungeon$deck_counter_frames$frame_07();
+  var _v14;
+  var _v15;
+  _v15 = Dungeon$deck_counter_frames$frame_08();
+  var _v16;
+  _v16 = ({$: "nil"});
+  _v14 = ({$: "cons", head: _v15, tail: _v16});
+  _v12 = ({$: "cons", head: _v13, tail: _v14});
+  _v10 = ({$: "cons", head: _v11, tail: _v12});
+  _v8 = ({$: "cons", head: _v9, tail: _v10});
+  _v6 = ({$: "cons", head: _v7, tail: _v8});
+  _v4 = ({$: "cons", head: _v5, tail: _v6});
+  _v2 = ({$: "cons", head: _v3, tail: _v4});
+  _r0 = ({$: "cons", head: _v1, tail: _v2});
+  return _r0;
+}
+
+export const Dungeon$deck_counter_frames$frames = () => ($Dungeon$deck_counter_frames$frames());
+
+export function $Dungeon$deck_counter_animation$clip() {
+  var _r0;
+  var _v1;
+  _v1 = Dungeon$deck_counter_frames$frames();
+  var _v2;
+  _v2 = 8;
+  var _v3;
+  _v3 = ({$: "once_hold_last"});
+  _r0 = ({$: "animation", frames: _v1, fps: _v2, playback: _v3});
+  return _r0;
+}
+
+export const Dungeon$deck_counter_animation$clip = () => ($Dungeon$deck_counter_animation$clip());
+
+export function $U32$grid(A, w$1, h$2, f$3) {
+  var _r0;
+  var tot$4;
+  var _v1;
+  _v1 = w$1;
+  var _v2;
+  _v2 = h$2;
+  tot$4 = ((Math.imul((_v1), (_v2))) >>> 0);
+  var _v3;
+  _v3 = A;
+  var _v4;
+  _v4 = w$1;
+  var _v5;
+  _v5 = tot$4;
+  var _v6;
+  _v6 = tot$4;
+  var _v7;
+  _v7 = f$3;
+  _r0 = $U32$grid$_0(_v3, _v4, _v5, _v6, _v7);
+  return _r0;
+}
+
+export const U32$grid = () => ((a0) => ((a1) => ((a2) => ((a3) => ($U32$grid(a0, a1, a2, a3))))));
+
+export function $U32$grid$_0(A, w$1, tot$2, x$3, x$4) {
+  var _r0;
+  if (((x$3) >>> 0) === 0) {
+    var f$3 = x$4;
+    _r0 = ({$: "nil"});
+  } else {
+    var r$3 = x$3;
+    var f$4 = x$4;
+    var i$5;
+    var _v1;
+    _v1 = tot$2;
+    var _v2;
+    _v2 = r$3;
+    i$5 = (((_v1) - (_v2)) >>> 0);
+    var _v3;
+    var _v4;
+    var _v5;
+    _v5 = i$5;
+    var _v6;
+    _v6 = w$1;
+    _v4 = (((_v6) === 0 ? 0 : ((_v5) % (_v6))) >>> 0);
+    var _v7;
+    var _v8;
+    _v8 = i$5;
+    var _v9;
+    _v9 = w$1;
+    _v7 = (((_v9) === 0 ? 0 : ((_v8) / (_v9))) >>> 0);
+    _v3 = f$4;
+    var _a10 = (_v3)(_v4);
+    var _a11 = (_a10)(_v7);
+    _v3 = _a11;
+    var _v12;
+    var _v13;
+    _v13 = A;
+    var _v14;
+    _v14 = w$1;
+    var _v15;
+    _v15 = tot$2;
+    var _v16;
+    var _v17;
+    _v17 = r$3;
+    var _v18;
+    _v18 = 1;
+    _v16 = (((_v17) - (_v18)) >>> 0);
+    var _v19;
+    _v19 = f$4;
+    _v12 = $U32$grid$_0(_v13, _v14, _v15, _v16, _v19);
+    _r0 = ({$: "cons", head: _v3, tail: _v12});
+  }
+  return _r0;
+}
+
+export const U32$grid$_0 = () => ((a0) => ((a1) => ((a2) => ((a3) => ((a4) => ($U32$grid$_0(a0, a1, a2, a3, a4)))))));
+
+export function $Dungeon$View$cards$_hero_card_values(hero_value, hero_hp$1, hero_max_hp$2, weapon_value$3, hp_fx$4, dmg_fx$5) {
+  var _r0;
+  var _v1;
+  _v1 = null;
+  var _v2;
+  var _v3;
+  _v3 = "div";
+  var _v4;
+  var _v5;
+  var _v6;
+  _v6 = "class";
+  var _v7;
+  var _v8;
+  _v8 = dmg_fx$5;
+  _v7 = $Dungeon$View$cards$_hero_card_class(_v8);
+  _v5 = ({$: "attr", nam: _v6, val: _v7});
+  var _v9;
+  var _v10;
+  var _v11;
+  _v11 = "data-dmg";
+  var _v12;
+  var _v13;
+  _v13 = weapon_value$3;
+  _v12 = $Dungeon$View$cards$_hero_damage_attr(_v13);
+  _v10 = ({$: "attr", nam: _v11, val: _v12});
+  var _v14;
+  _v14 = ({$: "nil"});
+  _v9 = ({$: "cons", head: _v10, tail: _v14});
+  _v4 = ({$: "cons", head: _v5, tail: _v9});
+  var _v15;
+  var _v16;
+  var _v17;
+  _v17 = "div";
+  var _v18;
+  var _v19;
+  var _v20;
+  _v20 = "class";
+  var _v21;
+  var _v22;
+  _v22 = hp_fx$4;
+  _v21 = $Dungeon$View$cards$_hero_hp_badge_class(_v22);
+  _v19 = ({$: "attr", nam: _v20, val: _v21});
+  var _v23;
+  _v23 = ({$: "nil"});
+  _v18 = ({$: "cons", head: _v19, tail: _v23});
+  var _v24;
+  var _v25;
+  var _v26;
+  var _v27;
+  var _v28;
+  var _v29;
+  var _v30;
+  _v30 = Dungeon$Content$stat_hp();
+  var _v31;
+  _v31 = " ";
+  _v29 = (_v30 + _v31);
+  var _v32;
+  var _v33;
+  _v33 = hero_hp$1;
+  _v32 = $U32$show(_v33);
+  _v28 = (_v29 + _v32);
+  var _v34;
+  _v34 = "/";
+  _v27 = (_v28 + _v34);
+  var _v35;
+  var _v36;
+  _v36 = hero_max_hp$2;
+  _v35 = $U32$show(_v36);
+  _v26 = (_v27 + _v35);
+  _v25 = ({$: "text", value: _v26});
+  var _v37;
+  _v37 = ({$: "nil"});
+  _v24 = ({$: "cons", head: _v25, tail: _v37});
+  _v16 = ({$: "node", tag: _v17, attrs: _v18, kids: _v24});
+  var _v38;
+  var _v39;
+  var _v40;
+  _v40 = "div";
+  var _v41;
+  var _v42;
+  var _v43;
+  _v43 = "class";
+  var _v44;
+  _v44 = "card__art-wrap";
+  _v42 = ({$: "attr", nam: _v43, val: _v44});
+  var _v45;
+  _v45 = ({$: "nil"});
+  _v41 = ({$: "cons", head: _v42, tail: _v45});
+  var _v46;
+  var _v47;
+  var _v48;
+  _v48 = "img";
+  var _v49;
+  var _v50;
+  var _v51;
+  _v51 = "class";
+  var _v52;
+  _v52 = "card__art";
+  _v50 = ({$: "attr", nam: _v51, val: _v52});
+  var _v53;
+  var _v54;
+  var _v55;
+  _v55 = "src";
+  var _v56;
+  var _v57;
+  _v57 = hero_value;
+  _v56 = $Dungeon$hero_helpers$hero_sprite(_v57);
+  _v54 = ({$: "attr", nam: _v55, val: _v56});
+  var _v58;
+  var _v59;
+  var _v60;
+  _v60 = "alt";
+  var _v61;
+  var _v62;
+  _v62 = hero_value;
+  _v61 = $Dungeon$hero_helpers$hero_name(_v62);
+  _v59 = ({$: "attr", nam: _v60, val: _v61});
+  var _v63;
+  _v63 = ({$: "nil"});
+  _v58 = ({$: "cons", head: _v59, tail: _v63});
+  _v53 = ({$: "cons", head: _v54, tail: _v58});
+  _v49 = ({$: "cons", head: _v50, tail: _v53});
+  var _v64;
+  _v64 = ({$: "nil"});
+  _v47 = ({$: "node", tag: _v48, attrs: _v49, kids: _v64});
+  var _v65;
+  _v65 = ({$: "nil"});
+  _v46 = ({$: "cons", head: _v47, tail: _v65});
+  _v39 = ({$: "node", tag: _v40, attrs: _v41, kids: _v46});
+  var _v66;
+  _v66 = ({$: "nil"});
+  _v38 = ({$: "cons", head: _v39, tail: _v66});
+  _v15 = ({$: "cons", head: _v16, tail: _v38});
+  _v2 = ({$: "node", tag: _v3, attrs: _v4, kids: _v15});
+  var _v67;
+  var _v68;
+  _v68 = ({$: "padding_none"});
+  var _v69;
+  _v69 = ({$: "nil"});
+  _v67 = ({$: "cons", head: _v68, tail: _v69});
+  _r0 = $Midum$Card$neutral(_v1, _v2, _v67);
+  return _r0;
+}
+
+export const Dungeon$View$cards$_hero_card_values = () => ((a0) => ((a1) => ((a2) => ((a3) => ((a4) => ((a5) => ($Dungeon$View$cards$_hero_card_values(a0, a1, a2, a3, a4, a5))))))));
+
+export function $Dungeon$View$cards$_hero_card_class(x) {
+  var _r0;
+  switch (x.$) {
+    case "dmg_fx_up_a": {
+      _r0 = "card card--hero card--hero-dmg-up-a";
+      break;
+    }
+    default: {
+      switch (x.$) {
+        case "dmg_fx_up_b": {
+          _r0 = "card card--hero card--hero-dmg-up-b";
+          break;
+        }
+        default: {
+          switch (x.$) {
+            case "dmg_fx_down_a": {
+              _r0 = "card card--hero card--hero-dmg-down-a";
+              break;
+            }
+            default: {
+              switch (x.$) {
+                case "dmg_fx_down_b": {
+                  _r0 = "card card--hero card--hero-dmg-down-b";
+                  break;
+                }
+                default: {
+                  var _ = x;
+                  _r0 = "card card--hero";
+                  break;
+                }
+              }
+              break;
+            }
+          }
+          break;
+        }
+      }
+      break;
+    }
+  }
+  return _r0;
+}
+
+export const Dungeon$View$cards$_hero_card_class = () => ((a0) => ($Dungeon$View$cards$_hero_card_class(a0)));
+
+export function $Dungeon$View$cards$_hero_hp_badge_class(x) {
+  var _r0;
+  switch (x.$) {
+    case "hp_fx_heal_a": {
+      _r0 = "card__badge card__badge--hp card__badge--hp-heal-a";
+      break;
+    }
+    default: {
+      switch (x.$) {
+        case "hp_fx_heal_b": {
+          _r0 = "card__badge card__badge--hp card__badge--hp-heal-b";
+          break;
+        }
+        default: {
+          switch (x.$) {
+            case "hp_fx_hurt_a": {
+              _r0 = "card__badge card__badge--hp card__badge--hp-hurt-a";
+              break;
+            }
+            default: {
+              switch (x.$) {
+                case "hp_fx_hurt_b": {
+                  _r0 = "card__badge card__badge--hp card__badge--hp-hurt-b";
+                  break;
+                }
+                default: {
+                  var _ = x;
+                  _r0 = "card__badge card__badge--hp";
+                  break;
+                }
+              }
+              break;
+            }
+          }
+          break;
+        }
+      }
+      break;
+    }
+  }
+  return _r0;
+}
+
+export const Dungeon$View$cards$_hero_hp_badge_class = () => ((a0) => ($Dungeon$View$cards$_hero_hp_badge_class(a0)));
+
+export function $Dungeon$View$cards$_hero_damage_attr(x) {
+  var _r0;
+  switch (x.$) {
+    case "no_weapon": {
+      _r0 = "";
+      break;
+    }
+    default: {
+      switch (x.$) {
+        case "weapon": {
+          var _m1 = x.ref;
+          var _m2 = x.dmg;
+          var ref = _m1;
+          var dmg$1 = _m2;
+          var _v3;
+          var _v4;
+          _v4 = Dungeon$Content$stat_dmg();
+          var _v5;
+          _v5 = " ";
+          _v3 = (_v4 + _v5);
+          var _v6;
+          var _v7;
+          _v7 = dmg$1;
+          _v6 = $U32$show(_v7);
+          _r0 = (_v3 + _v6);
+          break;
+        }
+        default: {
+          throw new Error("EFQ applied");
+          break;
+        }
+      }
+      break;
+    }
+  }
+  return _r0;
+}
+
+export const Dungeon$View$cards$_hero_damage_attr = () => ((a0) => ($Dungeon$View$cards$_hero_damage_attr(a0)));
+
+export function $Dungeon$View$cards$_monster_fx_overrides() {
+  var _r0;
+  var _v1;
+  var _v2;
+  _v2 = 112;
+  _v1 = ({$: "width_px", value: _v2});
+  var _v3;
+  var _v4;
+  var _v5;
+  _v5 = 112;
+  _v4 = ({$: "height_px", value: _v5});
+  var _v6;
+  var _v7;
+  _v7 = ({$: "fit_contain"});
+  var _v8;
+  var _v9;
+  _v9 = ({$: "sampling_pixelated"});
+  var _v10;
+  _v10 = ({$: "nil"});
+  _v8 = ({$: "cons", head: _v9, tail: _v10});
+  _v6 = ({$: "cons", head: _v7, tail: _v8});
+  _v3 = ({$: "cons", head: _v4, tail: _v6});
+  _r0 = ({$: "cons", head: _v1, tail: _v3});
+  return _r0;
+}
+
+export const Dungeon$View$cards$_monster_fx_overrides = () => ($Dungeon$View$cards$_monster_fx_overrides());
+
+export function $Dungeon$View$cards$_tile_card(x, x$1, x$2) {
+  var _r0;
+  switch (x.$) {
+    case "none": {
+      var pos = x$1;
+      var damage_overlay$1 = x$2;
+      var _v1;
+      _v1 = null;
+      var _v2;
+      var _v3;
+      _v3 = "div";
+      var _v4;
+      var _v5;
+      var _v6;
+      _v6 = "class";
+      var _v7;
+      _v7 = "card card--empty";
+      _v5 = ({$: "attr", nam: _v6, val: _v7});
+      var _v8;
+      _v8 = ({$: "nil"});
+      _v4 = ({$: "cons", head: _v5, tail: _v8});
+      var _v9;
+      var _v10;
+      var _v11;
+      _v11 = "div";
+      var _v12;
+      var _v13;
+      var _v14;
+      _v14 = "class";
+      var _v15;
+      _v15 = "card__empty";
+      _v13 = ({$: "attr", nam: _v14, val: _v15});
+      var _v16;
+      _v16 = ({$: "nil"});
+      _v12 = ({$: "cons", head: _v13, tail: _v16});
+      var _v17;
+      var _v18;
+      var _v19;
+      _v19 = Dungeon$Content$card_empty();
+      _v18 = ({$: "text", value: _v19});
+      var _v20;
+      _v20 = ({$: "nil"});
+      _v17 = ({$: "cons", head: _v18, tail: _v20});
+      _v10 = ({$: "node", tag: _v11, attrs: _v12, kids: _v17});
+      var _v21;
+      _v21 = ({$: "nil"});
+      _v9 = ({$: "cons", head: _v10, tail: _v21});
+      _v2 = ({$: "node", tag: _v3, attrs: _v4, kids: _v9});
+      var _v22;
+      var _v23;
+      _v23 = ({$: "padding_none"});
+      var _v24;
+      _v24 = ({$: "nil"});
+      _v22 = ({$: "cons", head: _v23, tail: _v24});
+      _r0 = $Midum$Card$neutral(_v1, _v2, _v22);
+      break;
+    }
+    default: {
+      switch (x.$) {
+        case "monster": {
+          var _m25 = x.ref;
+          var _m26 = x.hp;
+          var ref = _m25;
+          var hp$1 = _m26;
+          var pos$2 = x$1;
+          var damage_overlay$3 = x$2;
+          var _v27;
+          var _v28;
+          _v28 = ref;
+          var _v29;
+          _v29 = hp$1;
+          _v27 = ({$: "monster", ref: _v28, hp: _v29});
+          var _v30;
+          _v30 = "card card--tile card--monster";
+          var _v31;
+          _v31 = pos$2;
+          var _v32;
+          _v32 = damage_overlay$3;
+          _r0 = $Dungeon$View$cards$_standard_tile_card(_v27, _v30, _v31, _v32);
+          break;
+        }
+        default: {
+          switch (x.$) {
+            case "sword": {
+              var _m33 = x.ref;
+              var _m34 = x.dmg;
+              var ref = _m33;
+              var dmg$1 = _m34;
+              var pos$2 = x$1;
+              var damage_overlay$3 = x$2;
+              var _v35;
+              var _v36;
+              _v36 = ref;
+              var _v37;
+              _v37 = dmg$1;
+              _v35 = ({$: "sword", ref: _v36, dmg: _v37});
+              var _v38;
+              _v38 = "card card--tile card--sword";
+              var _v39;
+              _v39 = pos$2;
+              var _v40;
+              _v40 = damage_overlay$3;
+              _r0 = $Dungeon$View$cards$_standard_tile_card(_v35, _v38, _v39, _v40);
+              break;
+            }
+            default: {
+              switch (x.$) {
+                case "potion": {
+                  var _m41 = x.ref;
+                  var _m42 = x.heal;
+                  var ref = _m41;
+                  var heal$1 = _m42;
+                  var pos$2 = x$1;
+                  var damage_overlay$3 = x$2;
+                  var _v43;
+                  var _v44;
+                  _v44 = ref;
+                  var _v45;
+                  _v45 = heal$1;
+                  _v43 = ({$: "potion", ref: _v44, heal: _v45});
+                  var _v46;
+                  _v46 = "card card--tile card--potion";
+                  var _v47;
+                  _v47 = pos$2;
+                  var _v48;
+                  _v48 = damage_overlay$3;
+                  _r0 = $Dungeon$View$cards$_standard_tile_card(_v43, _v46, _v47, _v48);
+                  break;
+                }
+                default: {
+                  switch (x.$) {
+                    case "gold": {
+                      var _m49 = x.amount;
+                      var amount = _m49;
+                      var pos$1 = x$1;
+                      var damage_overlay$2 = x$2;
+                      var _v50;
+                      var _v51;
+                      _v51 = amount;
+                      _v50 = ({$: "gold", amount: _v51});
+                      var _v52;
+                      _v52 = "card card--tile card--gold";
+                      var _v53;
+                      _v53 = pos$1;
+                      var _v54;
+                      _v54 = damage_overlay$2;
+                      _r0 = $Dungeon$View$cards$_standard_tile_card(_v50, _v52, _v53, _v54);
+                      break;
+                    }
+                    default: {
+                      throw new Error("EFQ applied");
+                      break;
+                    }
+                  }
+                  break;
+                }
+              }
+              break;
+            }
+          }
+          break;
+        }
+      }
+      break;
+    }
+  }
+  return _r0;
+}
+
+export const Dungeon$View$cards$_tile_card = () => ((a0) => ((a1) => ((a2) => ($Dungeon$View$cards$_tile_card(a0, a1, a2)))));
+
+export function $Dungeon$View$cards$_standard_card_shell(body) {
+  var _r0;
+  var _v1;
+  _v1 = null;
+  var _v2;
+  _v2 = body;
+  var _v3;
+  var _v4;
+  _v4 = ({$: "padding_none"});
+  var _v5;
+  _v5 = ({$: "nil"});
+  _v3 = ({$: "cons", head: _v4, tail: _v5});
+  _r0 = $Midum$Card$neutral(_v1, _v2, _v3);
+  return _r0;
+}
+
+export const Dungeon$View$cards$_standard_card_shell = () => ((a0) => ($Dungeon$View$cards$_standard_card_shell(a0)));
+
+export function $Dungeon$View$cards$_overlay_art_tile(x, x$1) {
+  var _r0;
+  switch (x.$) {
+    case "gold": {
+      var _m1 = x.amount;
+      var amount = _m1;
+      var base_tile$1 = x$1;
+      _r0 = base_tile$1;
+      break;
+    }
+    default: {
+      var _ = x;
+      var base_tile$1 = x$1;
+      _r0 = _;
+      break;
+    }
+  }
+  return _r0;
+}
+
+export const Dungeon$View$cards$_overlay_art_tile = () => ((a0) => ((a1) => ($Dungeon$View$cards$_overlay_art_tile(a0, a1))));
+
+export function $Dungeon$View$cards$_art_tile(tile, pos$1, x$2) {
+  var _r0;
+  switch (x$2.$) {
+    case "no_damage_overlay": {
+      _r0 = tile;
+      break;
+    }
+    default: {
+      switch (x$2.$) {
+        case "damage_overlay": {
+          var _m1 = x$2.pos;
+          var _m2 = x$2.trigger;
+          var _m3 = x$2.base_tile;
+          var _m4 = x$2.state;
+          var overlay_pos$2 = _m1;
+          var trigger$3 = _m2;
+          var base_tile$4 = _m3;
+          var overlay_state$5 = _m4;
+          var _v5;
+          _v5 = tile;
+          var _v6;
+          _v6 = pos$1;
+          var _v7;
+          _v7 = overlay_pos$2;
+          var _v8;
+          _v8 = trigger$3;
+          var _v9;
+          _v9 = base_tile$4;
+          var _v10;
+          _v10 = overlay_state$5;
+          var _v11;
+          var _v12;
+          _v12 = pos$1;
+          var _v13;
+          _v13 = overlay_pos$2;
+          _v11 = $Dungeon$Board$indexing$same_pos(_v12, _v13);
+          _r0 = $Dungeon$View$cards$_art_tile$_0(_v5, _v6, _v7, _v8, _v9, _v10, _v11);
+          break;
+        }
+        default: {
+          throw new Error("EFQ applied");
+          break;
+        }
+      }
+      break;
+    }
+  }
+  return _r0;
+}
+
+export const Dungeon$View$cards$_art_tile = () => ((a0) => ((a1) => ((a2) => ($Dungeon$View$cards$_art_tile(a0, a1, a2)))));
+
+export function $Dungeon$View$cards$_damage_overlay_layer(pos, x$1) {
+  var _r0;
+  switch (x$1.$) {
+    case "no_damage_overlay": {
+      var _v1;
+      _v1 = "";
+      _r0 = ({$: "text", value: _v1});
+      break;
+    }
+    default: {
+      switch (x$1.$) {
+        case "damage_overlay": {
+          var _m2 = x$1.pos;
+          var _m3 = x$1.trigger;
+          var _m4 = x$1.base_tile;
+          var _m5 = x$1.state;
+          var overlay_pos$1 = _m2;
+          var trigger$2 = _m3;
+          var base_tile$3 = _m4;
+          var overlay_state$4 = _m5;
+          var _v6;
+          _v6 = pos;
+          var _v7;
+          _v7 = overlay_pos$1;
+          var _v8;
+          _v8 = trigger$2;
+          var _v9;
+          _v9 = base_tile$3;
+          var _v10;
+          _v10 = overlay_state$4;
+          var _v11;
+          var _v12;
+          _v12 = pos;
+          var _v13;
+          _v13 = overlay_pos$1;
+          _v11 = $Dungeon$Board$indexing$same_pos(_v12, _v13);
+          _r0 = $Dungeon$View$cards$_damage_overlay_layer$_0(_v6, _v7, _v8, _v9, _v10, _v11);
+          break;
+        }
+        default: {
+          throw new Error("EFQ applied");
+          break;
+        }
+      }
+      break;
+    }
+  }
+  return _r0;
+}
+
+export const Dungeon$View$cards$_damage_overlay_layer = () => ((a0) => ((a1) => ($Dungeon$View$cards$_damage_overlay_layer(a0, a1))));
+
+export function $Dungeon$View$cards$_tile_card_body(tile, class_name$1, pos$2, damage_overlay$3) {
+  var _r0;
+  var art_tile$4;
+  var _v1;
+  _v1 = tile;
+  var _v2;
+  _v2 = pos$2;
+  var _v3;
+  _v3 = damage_overlay$3;
+  art_tile$4 = $Dungeon$View$cards$_art_tile(_v1, _v2, _v3);
+  var _v4;
+  _v4 = "div";
+  var _v5;
+  var _v6;
+  var _v7;
+  _v7 = "class";
+  var _v8;
+  _v8 = class_name$1;
+  _v6 = ({$: "attr", nam: _v7, val: _v8});
+  var _v9;
+  _v9 = ({$: "nil"});
+  _v5 = ({$: "cons", head: _v6, tail: _v9});
+  var _v10;
+  var _v11;
+  var _v12;
+  _v12 = tile;
+  _v11 = $Dungeon$View$cards$_tile_badge_node(_v12);
+  var _v13;
+  var _v14;
+  var _v15;
+  _v15 = "div";
+  var _v16;
+  var _v17;
+  var _v18;
+  _v18 = "class";
+  var _v19;
+  _v19 = "card__art-wrap card__art-wrap--stacked";
+  _v17 = ({$: "attr", nam: _v18, val: _v19});
+  var _v20;
+  _v20 = ({$: "nil"});
+  _v16 = ({$: "cons", head: _v17, tail: _v20});
+  var _v21;
+  var _v22;
+  var _v23;
+  _v23 = pos$2;
+  var _v24;
+  _v24 = damage_overlay$3;
+  _v22 = $Dungeon$View$cards$_damage_overlay_layer(_v23, _v24);
+  var _v25;
+  var _v26;
+  var _v27;
+  _v27 = "div";
+  var _v28;
+  var _v29;
+  var _v30;
+  _v30 = "class";
+  var _v31;
+  _v31 = "card__art-layer card__art-layer--base";
+  _v29 = ({$: "attr", nam: _v30, val: _v31});
+  var _v32;
+  _v32 = ({$: "nil"});
+  _v28 = ({$: "cons", head: _v29, tail: _v32});
+  var _v33;
+  var _v34;
+  var _v35;
+  _v35 = "img";
+  var _v36;
+  var _v37;
+  var _v38;
+  _v38 = "class";
+  var _v39;
+  _v39 = "card__art";
+  _v37 = ({$: "attr", nam: _v38, val: _v39});
+  var _v40;
+  var _v41;
+  var _v42;
+  _v42 = "src";
+  var _v43;
+  var _v44;
+  _v44 = art_tile$4;
+  _v43 = $Dungeon$View$assets_and_labels$_tile_sprite(_v44);
+  _v41 = ({$: "attr", nam: _v42, val: _v43});
+  var _v45;
+  var _v46;
+  var _v47;
+  _v47 = "alt";
+  var _v48;
+  var _v49;
+  _v49 = art_tile$4;
+  _v48 = $Dungeon$View$assets_and_labels$_tile_name(_v49);
+  _v46 = ({$: "attr", nam: _v47, val: _v48});
+  var _v50;
+  _v50 = ({$: "nil"});
+  _v45 = ({$: "cons", head: _v46, tail: _v50});
+  _v40 = ({$: "cons", head: _v41, tail: _v45});
+  _v36 = ({$: "cons", head: _v37, tail: _v40});
+  var _v51;
+  _v51 = ({$: "nil"});
+  _v34 = ({$: "node", tag: _v35, attrs: _v36, kids: _v51});
+  var _v52;
+  _v52 = ({$: "nil"});
+  _v33 = ({$: "cons", head: _v34, tail: _v52});
+  _v26 = ({$: "node", tag: _v27, attrs: _v28, kids: _v33});
+  var _v53;
+  _v53 = ({$: "nil"});
+  _v25 = ({$: "cons", head: _v26, tail: _v53});
+  _v21 = ({$: "cons", head: _v22, tail: _v25});
+  _v14 = ({$: "node", tag: _v15, attrs: _v16, kids: _v21});
+  var _v54;
+  _v54 = ({$: "nil"});
+  _v13 = ({$: "cons", head: _v14, tail: _v54});
+  _v10 = ({$: "cons", head: _v11, tail: _v13});
+  _r0 = ({$: "node", tag: _v4, attrs: _v5, kids: _v10});
+  return _r0;
+}
+
+export const Dungeon$View$cards$_tile_card_body = () => ((a0) => ((a1) => ((a2) => ((a3) => ($Dungeon$View$cards$_tile_card_body(a0, a1, a2, a3))))));
+
+export function $Dungeon$View$cards$_standard_tile_card(tile, class_name$1, pos$2, damage_overlay$3) {
+  var _r0;
+  var _v1;
+  var _v2;
+  _v2 = tile;
+  var _v3;
+  _v3 = class_name$1;
+  var _v4;
+  _v4 = pos$2;
+  var _v5;
+  _v5 = damage_overlay$3;
+  _v1 = $Dungeon$View$cards$_tile_card_body(_v2, _v3, _v4, _v5);
+  _r0 = $Dungeon$View$cards$_standard_card_shell(_v1);
+  return _r0;
+}
+
+export const Dungeon$View$cards$_standard_tile_card = () => ((a0) => ((a1) => ((a2) => ((a3) => ($Dungeon$View$cards$_standard_tile_card(a0, a1, a2, a3))))));
+
+export function $Dungeon$View$cards$_tile_badge_node(tile) {
+  var _r0;
+  var _v1;
+  _v1 = "div";
+  var _v2;
+  var _v3;
+  var _v4;
+  _v4 = "class";
+  var _v5;
+  _v5 = "card__badge card__badge--value";
+  _v3 = ({$: "attr", nam: _v4, val: _v5});
+  var _v6;
+  _v6 = ({$: "nil"});
+  _v2 = ({$: "cons", head: _v3, tail: _v6});
+  var _v7;
+  var _v8;
+  var _v9;
+  var _v10;
+  _v10 = tile;
+  _v9 = $Dungeon$View$assets_and_labels$_tile_badge(_v10);
+  _v8 = ({$: "text", value: _v9});
+  var _v11;
+  _v11 = ({$: "nil"});
+  _v7 = ({$: "cons", head: _v8, tail: _v11});
+  _r0 = ({$: "node", tag: _v1, attrs: _v2, kids: _v7});
+  return _r0;
+}
+
+export const Dungeon$View$cards$_tile_badge_node = () => ((a0) => ($Dungeon$View$cards$_tile_badge_node(a0)));
 
 export function $Dungeon$monster_damage_animation$clip() {
   var _r0;
   var _v1;
-  _v1 = Dungeon$monster_damage_animation$frames();
+  _v1 = Dungeon$monster_damage_frames$frames();
   var _v2;
   _v2 = 8;
   var _v3;
@@ -33624,6 +33986,74 @@ export function $Dungeon$monster_damage_animation$clip() {
 }
 
 export const Dungeon$monster_damage_animation$clip = () => ($Dungeon$monster_damage_animation$clip());
+
+export function $Dungeon$monster_damage_frames$attack_00() {
+  var _r0;
+  _r0 = "assets/attack_00_00.png";
+  return _r0;
+}
+
+export const Dungeon$monster_damage_frames$attack_00 = () => ($Dungeon$monster_damage_frames$attack_00());
+
+export function $Dungeon$monster_damage_frames$attack_01() {
+  var _r0;
+  _r0 = "assets/attack_01_00.png";
+  return _r0;
+}
+
+export const Dungeon$monster_damage_frames$attack_01 = () => ($Dungeon$monster_damage_frames$attack_01());
+
+export function $Dungeon$monster_damage_frames$attack_02() {
+  var _r0;
+  _r0 = "assets/attack_02_00.png";
+  return _r0;
+}
+
+export const Dungeon$monster_damage_frames$attack_02 = () => ($Dungeon$monster_damage_frames$attack_02());
+
+export function $Dungeon$monster_damage_frames$attack_03() {
+  var _r0;
+  _r0 = "assets/attack_03_00.png";
+  return _r0;
+}
+
+export const Dungeon$monster_damage_frames$attack_03 = () => ($Dungeon$monster_damage_frames$attack_03());
+
+export function $Dungeon$monster_damage_frames$attack_04() {
+  var _r0;
+  _r0 = "assets/attack_04_00.png";
+  return _r0;
+}
+
+export const Dungeon$monster_damage_frames$attack_04 = () => ($Dungeon$monster_damage_frames$attack_04());
+
+export function $Dungeon$monster_damage_frames$frames() {
+  var _r0;
+  var _v1;
+  _v1 = Dungeon$monster_damage_frames$attack_00();
+  var _v2;
+  var _v3;
+  _v3 = Dungeon$monster_damage_frames$attack_01();
+  var _v4;
+  var _v5;
+  _v5 = Dungeon$monster_damage_frames$attack_02();
+  var _v6;
+  var _v7;
+  _v7 = Dungeon$monster_damage_frames$attack_03();
+  var _v8;
+  var _v9;
+  _v9 = Dungeon$monster_damage_frames$attack_04();
+  var _v10;
+  _v10 = ({$: "nil"});
+  _v8 = ({$: "cons", head: _v9, tail: _v10});
+  _v6 = ({$: "cons", head: _v7, tail: _v8});
+  _v4 = ({$: "cons", head: _v5, tail: _v6});
+  _v2 = ({$: "cons", head: _v3, tail: _v4});
+  _r0 = ({$: "cons", head: _v1, tail: _v2});
+  return _r0;
+}
+
+export const Dungeon$monster_damage_frames$frames = () => ($Dungeon$monster_damage_frames$frames());
 
 export function $Dungeon$App$on_event(evt, state$1) {
   var _r0;
@@ -37321,7 +37751,7 @@ export function $Dungeon$App$update_running(x, x$1, x$2, x$3, x$4) {
       var _v5;
       var _v6;
       _v6 = ui_value$3;
-      _v5 = $Dungeon$App$ui_fx$_step_ui_damage_overlay(_v6);
+      _v5 = $Dungeon$App$ui_fx$_step_ui_fx(_v6);
       _r0 = $Dungeon$App$state_helpers$_state(_v1, _v2, _v4, _v5);
       break;
     }
@@ -38571,7 +39001,78 @@ export function $Dungeon$App$ui_fx$_step_damage_overlay(x) {
 
 export const Dungeon$App$ui_fx$_step_damage_overlay = () => ((a0) => ($Dungeon$App$ui_fx$_step_damage_overlay(a0)));
 
-export function $Dungeon$App$ui_fx$_step_ui_damage_overlay(x) {
+export function $Dungeon$App$ui_fx$_next_deck_counter_fx_move(x, x$1) {
+  var _r0;
+  if (((x) >>> 0) === 0) {
+    var current_fx = x$1;
+    _r0 = current_fx;
+  } else {
+    var _ = x;
+    var current_fx$1 = x$1;
+    var _v1;
+    _v1 = Midum$Image$reset_state();
+    _r0 = ({$: "deck_counter_playing", state: _v1});
+  }
+  return _r0;
+}
+
+export const Dungeon$App$ui_fx$_next_deck_counter_fx_move = () => ((a0) => ((a1) => ($Dungeon$App$ui_fx$_next_deck_counter_fx_move(a0, a1))));
+
+export function $Dungeon$App$ui_fx$_next_deck_counter_fx(current_run, next_run$1, current_fx$2) {
+  var _r0;
+  var _v1;
+  var _v2;
+  _v2 = current_run;
+  var _v3;
+  _v3 = next_run$1;
+  _v1 = $Dungeon$App$ui_fx$_run_moved(_v2, _v3);
+  var _v4;
+  _v4 = current_fx$2;
+  _r0 = $Dungeon$App$ui_fx$_next_deck_counter_fx_move(_v1, _v4);
+  return _r0;
+}
+
+export const Dungeon$App$ui_fx$_next_deck_counter_fx = () => ((a0) => ((a1) => ((a2) => ($Dungeon$App$ui_fx$_next_deck_counter_fx(a0, a1, a2)))));
+
+export function $Dungeon$App$ui_fx$_step_deck_counter_fx(x) {
+  var _r0;
+  switch (x.$) {
+    case "deck_counter_idle": {
+      _r0 = ({$: "deck_counter_idle"});
+      break;
+    }
+    default: {
+      switch (x.$) {
+        case "deck_counter_playing": {
+          var _m1 = x.state;
+          var current_state = _m1;
+          var _v2;
+          _v2 = current_state;
+          var _v3;
+          var _v4;
+          _v4 = Dungeon$deck_counter_animation$clip();
+          var _v5;
+          _v5 = 125;
+          var _v6;
+          _v6 = current_state;
+          _v3 = $Midum$Image$step(_v4, _v5, _v6);
+          _r0 = $Dungeon$App$ui_fx$_step_deck_counter_fx$_0(_v2, _v3);
+          break;
+        }
+        default: {
+          throw new Error("EFQ applied");
+          break;
+        }
+      }
+      break;
+    }
+  }
+  return _r0;
+}
+
+export const Dungeon$App$ui_fx$_step_deck_counter_fx = () => ((a0) => ($Dungeon$App$ui_fx$_step_deck_counter_fx(a0)));
+
+export function $Dungeon$App$ui_fx$_step_ui_fx(x) {
   var _r0;
   switch (x.$) {
     case "ui_state": {
@@ -38579,21 +39080,27 @@ export function $Dungeon$App$ui_fx$_step_ui_damage_overlay(x) {
       var _m2 = x.dmg_fx;
       var _m3 = x.impact;
       var _m4 = x.damage_overlay;
+      var _m5 = x.deck_counter_fx;
       var current_hp_fx = _m1;
       var current_dmg_fx$1 = _m2;
       var current_impact$2 = _m3;
       var current_damage_overlay$3 = _m4;
-      var _v5;
-      _v5 = current_hp_fx;
+      var current_deck_counter_fx$4 = _m5;
       var _v6;
-      _v6 = current_dmg_fx$1;
+      _v6 = current_hp_fx;
       var _v7;
-      _v7 = current_impact$2;
+      _v7 = current_dmg_fx$1;
       var _v8;
+      _v8 = current_impact$2;
       var _v9;
-      _v9 = current_damage_overlay$3;
-      _v8 = $Dungeon$App$ui_fx$_step_damage_overlay(_v9);
-      _r0 = ({$: "ui_state", hp_fx: _v5, dmg_fx: _v6, impact: _v7, damage_overlay: _v8});
+      var _v10;
+      _v10 = current_damage_overlay$3;
+      _v9 = $Dungeon$App$ui_fx$_step_damage_overlay(_v10);
+      var _v11;
+      var _v12;
+      _v12 = current_deck_counter_fx$4;
+      _v11 = $Dungeon$App$ui_fx$_step_deck_counter_fx(_v12);
+      _r0 = ({$: "ui_state", hp_fx: _v6, dmg_fx: _v7, impact: _v8, damage_overlay: _v9, deck_counter_fx: _v11});
       break;
     }
     default: {
@@ -38604,7 +39111,7 @@ export function $Dungeon$App$ui_fx$_step_ui_damage_overlay(x) {
   return _r0;
 }
 
-export const Dungeon$App$ui_fx$_step_ui_damage_overlay = () => ((a0) => ($Dungeon$App$ui_fx$_step_ui_damage_overlay(a0)));
+export const Dungeon$App$ui_fx$_step_ui_fx = () => ((a0) => ($Dungeon$App$ui_fx$_step_ui_fx(a0)));
 
 export function $Dungeon$App$ui_fx$_next_ui_from_turn(current_run, next_run$1, x$2, x$3) {
   var _r0;
@@ -38614,50 +39121,60 @@ export function $Dungeon$App$ui_fx$_next_ui_from_turn(current_run, next_run$1, x
       var _m2 = x$2.dmg_fx;
       var _m3 = x$2.impact;
       var _m4 = x$2.damage_overlay;
+      var _m5 = x$2.deck_counter_fx;
       var current_hp_fx$2 = _m1;
       var current_dmg_fx$3 = _m2;
       var current_impact$4 = _m3;
       var current_damage_overlay$5 = _m4;
-      var dir$6 = x$3;
-      var _v5;
+      var current_deck_counter_fx$6 = _m5;
+      var dir$7 = x$3;
       var _v6;
-      _v6 = current_run;
       var _v7;
-      _v7 = next_run$1;
+      _v7 = current_run;
       var _v8;
-      _v8 = current_hp_fx$2;
-      _v5 = $Dungeon$App$ui_fx$_next_hp_fx(_v6, _v7, _v8);
+      _v8 = next_run$1;
       var _v9;
+      _v9 = current_hp_fx$2;
+      _v6 = $Dungeon$App$ui_fx$_next_hp_fx(_v7, _v8, _v9);
       var _v10;
-      _v10 = current_run;
       var _v11;
-      _v11 = next_run$1;
+      _v11 = current_run;
       var _v12;
-      _v12 = current_dmg_fx$3;
-      _v9 = $Dungeon$App$ui_fx$_next_dmg_fx(_v10, _v11, _v12);
+      _v12 = next_run$1;
       var _v13;
+      _v13 = current_dmg_fx$3;
+      _v10 = $Dungeon$App$ui_fx$_next_dmg_fx(_v11, _v12, _v13);
       var _v14;
-      _v14 = current_run;
       var _v15;
-      _v15 = next_run$1;
+      _v15 = current_run;
       var _v16;
-      _v16 = dir$6;
+      _v16 = next_run$1;
       var _v17;
-      _v17 = current_impact$4;
-      _v13 = $Dungeon$App$ui_fx$_impact_from_turn(_v14, _v15, _v16, _v17);
+      _v17 = dir$7;
       var _v18;
+      _v18 = current_impact$4;
+      _v14 = $Dungeon$App$ui_fx$_impact_from_turn(_v15, _v16, _v17, _v18);
       var _v19;
-      _v19 = current_run;
       var _v20;
-      _v20 = next_run$1;
+      _v20 = current_run;
       var _v21;
-      _v21 = dir$6;
+      _v21 = next_run$1;
       var _v22;
-      _v22 = current_damage_overlay$5;
+      _v22 = dir$7;
       var _v23;
-      _v23 = current_impact$4;
-      _v18 = $Dungeon$App$ui_fx$_damage_overlay_from_turn(_v19, _v20, _v21, _v22, _v23);
-      _r0 = ({$: "ui_state", hp_fx: _v5, dmg_fx: _v9, impact: _v13, damage_overlay: _v18});
+      _v23 = current_damage_overlay$5;
+      var _v24;
+      _v24 = current_impact$4;
+      _v19 = $Dungeon$App$ui_fx$_damage_overlay_from_turn(_v20, _v21, _v22, _v23, _v24);
+      var _v25;
+      var _v26;
+      _v26 = current_run;
+      var _v27;
+      _v27 = next_run$1;
+      var _v28;
+      _v28 = current_deck_counter_fx$6;
+      _v25 = $Dungeon$App$ui_fx$_next_deck_counter_fx(_v26, _v27, _v28);
+      _r0 = ({$: "ui_state", hp_fx: _v6, dmg_fx: _v10, impact: _v14, damage_overlay: _v19, deck_counter_fx: _v25});
       break;
     }
     default: {
@@ -39967,7 +40484,7 @@ export function $Dungeon$App$update_resume_prompt(x, x$1, x$2, x$3, x$4) {
       var _v5;
       var _v6;
       _v6 = ui_value$3;
-      _v5 = $Dungeon$App$ui_fx$_step_ui_damage_overlay(_v6);
+      _v5 = $Dungeon$App$ui_fx$_step_ui_fx(_v6);
       _r0 = $Dungeon$App$state_helpers$_state(_v1, _v2, _v4, _v5);
       break;
     }
@@ -40059,7 +40576,7 @@ export function $Dungeon$App$update_game_over(x, x$1, x$2, x$3, x$4) {
       var _v5;
       var _v6;
       _v6 = ui_value$3;
-      _v5 = $Dungeon$App$ui_fx$_step_ui_damage_overlay(_v6);
+      _v5 = $Dungeon$App$ui_fx$_step_ui_fx(_v6);
       _r0 = $Dungeon$App$state_helpers$_state(_v1, _v2, _v4, _v5);
       break;
     }
@@ -43216,66 +43733,6 @@ export function $Dungeon$View$boosters$_booster_actions$_0(meta_state, x$1) {
 
 export const Dungeon$View$boosters$_booster_actions$_0 = () => ((a0) => ((a1) => ($Dungeon$View$boosters$_booster_actions$_0(a0, a1))));
 
-export function $Dungeon$View$cards$_art_tile$_0(tile, pos$1, overlay_pos$2, trigger$3, base_tile$4, overlay_state$5, x$6) {
-  var _r0;
-  if (((x$6) >>> 0) === 0) {
-    _r0 = tile;
-  } else {
-    var _$6 = x$6;
-    var _v1;
-    _v1 = tile;
-    var _v2;
-    _v2 = base_tile$4;
-    _r0 = $Dungeon$View$cards$_overlay_art_tile(_v1, _v2);
-  }
-  return _r0;
-}
-
-export const Dungeon$View$cards$_art_tile$_0 = () => ((a0) => ((a1) => ((a2) => ((a3) => ((a4) => ((a5) => ((a6) => ($Dungeon$View$cards$_art_tile$_0(a0, a1, a2, a3, a4, a5, a6)))))))));
-
-export function $Dungeon$View$cards$_damage_overlay_layer$_0(pos, overlay_pos$1, trigger$2, base_tile$3, overlay_state$4, x$5) {
-  var _r0;
-  if (((x$5) >>> 0) === 0) {
-    var _v1;
-    _v1 = "";
-    _r0 = ({$: "text", value: _v1});
-  } else {
-    var _$5 = x$5;
-    var _v2;
-    _v2 = "div";
-    var _v3;
-    var _v4;
-    var _v5;
-    _v5 = "class";
-    var _v6;
-    _v6 = "card__art-layer card__art-layer--fx";
-    _v4 = ({$: "attr", nam: _v5, val: _v6});
-    var _v7;
-    _v7 = ({$: "nil"});
-    _v3 = ({$: "cons", head: _v4, tail: _v7});
-    var _v8;
-    var _v9;
-    var _v10;
-    _v10 = null;
-    var _v11;
-    _v11 = overlay_state$4;
-    var _v12;
-    _v12 = Dungeon$monster_damage_animation$clip();
-    var _v13;
-    _v13 = "";
-    var _v14;
-    _v14 = Dungeon$View$cards$_monster_fx_overrides();
-    _v9 = $Midum$Image$animated(_v10, _v11, _v12, _v13, _v14);
-    var _v15;
-    _v15 = ({$: "nil"});
-    _v8 = ({$: "cons", head: _v9, tail: _v15});
-    _r0 = ({$: "node", tag: _v2, attrs: _v3, kids: _v8});
-  }
-  return _r0;
-}
-
-export const Dungeon$View$cards$_damage_overlay_layer$_0 = () => ((a0) => ((a1) => ((a2) => ((a3) => ((a4) => ((a5) => ($Dungeon$View$cards$_damage_overlay_layer$_0(a0, a1, a2, a3, a4, a5))))))));
-
 export function $Nat$div$_0(a, q$1, x$2) {
   var _r0;
   switch (x$2.$) {
@@ -43490,6 +43947,66 @@ export function $Midum$Internal$DOM$Image$render$_0(_Event, src$1, alt$2, width$
 
 export const Midum$Internal$DOM$Image$render$_0 = () => ((a0) => ((a1) => ((a2) => ((a3) => ((a4) => ((a5) => ((a6) => ((a7) => ($Midum$Internal$DOM$Image$render$_0(a0, a1, a2, a3, a4, a5, a6, a7))))))))));
 
+export function $Dungeon$View$cards$_art_tile$_0(tile, pos$1, overlay_pos$2, trigger$3, base_tile$4, overlay_state$5, x$6) {
+  var _r0;
+  if (((x$6) >>> 0) === 0) {
+    _r0 = tile;
+  } else {
+    var _$6 = x$6;
+    var _v1;
+    _v1 = tile;
+    var _v2;
+    _v2 = base_tile$4;
+    _r0 = $Dungeon$View$cards$_overlay_art_tile(_v1, _v2);
+  }
+  return _r0;
+}
+
+export const Dungeon$View$cards$_art_tile$_0 = () => ((a0) => ((a1) => ((a2) => ((a3) => ((a4) => ((a5) => ((a6) => ($Dungeon$View$cards$_art_tile$_0(a0, a1, a2, a3, a4, a5, a6)))))))));
+
+export function $Dungeon$View$cards$_damage_overlay_layer$_0(pos, overlay_pos$1, trigger$2, base_tile$3, overlay_state$4, x$5) {
+  var _r0;
+  if (((x$5) >>> 0) === 0) {
+    var _v1;
+    _v1 = "";
+    _r0 = ({$: "text", value: _v1});
+  } else {
+    var _$5 = x$5;
+    var _v2;
+    _v2 = "div";
+    var _v3;
+    var _v4;
+    var _v5;
+    _v5 = "class";
+    var _v6;
+    _v6 = "card__art-layer card__art-layer--fx";
+    _v4 = ({$: "attr", nam: _v5, val: _v6});
+    var _v7;
+    _v7 = ({$: "nil"});
+    _v3 = ({$: "cons", head: _v4, tail: _v7});
+    var _v8;
+    var _v9;
+    var _v10;
+    _v10 = null;
+    var _v11;
+    _v11 = overlay_state$4;
+    var _v12;
+    _v12 = Dungeon$monster_damage_animation$clip();
+    var _v13;
+    _v13 = "";
+    var _v14;
+    _v14 = Dungeon$View$cards$_monster_fx_overrides();
+    _v9 = $Midum$Image$animated(_v10, _v11, _v12, _v13, _v14);
+    var _v15;
+    _v15 = ({$: "nil"});
+    _v8 = ({$: "cons", head: _v9, tail: _v15});
+    _r0 = ({$: "node", tag: _v2, attrs: _v3, kids: _v8});
+  }
+  return _r0;
+}
+
+export const Dungeon$View$cards$_damage_overlay_layer$_0 = () => ((a0) => ((a1) => ((a2) => ((a3) => ((a4) => ((a5) => ($Dungeon$View$cards$_damage_overlay_layer$_0(a0, a1, a2, a3, a4, a5))))))));
+
 export function $Dungeon$Run$upgrade_hero$_upgrade_from_step$_0(meta_state, hero_ref$1, profile$2, step$3, x$4) {
   var _r0;
   if (((x$4) >>> 0) === 0) {
@@ -43639,6 +44156,48 @@ export function $Dungeon$App$ui_fx$_step_damage_overlay$_0(pos, trigger$1, base_
 }
 
 export const Dungeon$App$ui_fx$_step_damage_overlay$_0 = () => ((a0) => ((a1) => ((a2) => ((a3) => ((a4) => ($Dungeon$App$ui_fx$_step_damage_overlay$_0(a0, a1, a2, a3, a4)))))));
+
+export function $Dungeon$App$ui_fx$_step_deck_counter_fx$_0(current_state, x$1) {
+  var _r0;
+  switch (x$1.$) {
+    case "step": {
+      var _m1 = x$1.state;
+      var _m2 = x$1.cycled;
+      var _m3 = x$1.finished_now;
+      var next_state$1 = _m1;
+      var cycled$2 = _m2;
+      switch (_m3.$) {
+        case "true": {
+          _r0 = ({$: "deck_counter_idle"});
+          break;
+        }
+        default: {
+          switch (_m3.$) {
+            case "false": {
+              var _v4;
+              _v4 = next_state$1;
+              _r0 = ({$: "deck_counter_playing", state: _v4});
+              break;
+            }
+            default: {
+              throw new Error("EFQ applied");
+              break;
+            }
+          }
+          break;
+        }
+      }
+      break;
+    }
+    default: {
+      throw new Error("EFQ applied");
+      break;
+    }
+  }
+  return _r0;
+}
+
+export const Dungeon$App$ui_fx$_step_deck_counter_fx$_0 = () => ((a0) => ((a1) => ($Dungeon$App$ui_fx$_step_deck_counter_fx$_0(a0, a1))));
 
 
 function __app_fld(obj, nam, idx) {

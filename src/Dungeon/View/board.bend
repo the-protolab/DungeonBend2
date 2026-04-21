@@ -28,6 +28,8 @@ import /Dungeon/View/selectors/game_over_modal_class as game_over_modal_class
 import /Dungeon/View/menu/_full_button_overrides as _full_button_overrides
 import /Dungeon/View/assets_and_labels/_dungeon_level_badge_backdrop as _dungeon_level_badge_backdrop
 import /Dungeon/View/assets_and_labels/_dungeon_level_value_backdrop as _dungeon_level_value_backdrop
+import /Dungeon/deck_counter_frames/idle_src as deck_counter_idle_src
+import /Dungeon/deck_counter_animation/clip as deck_counter_clip
 import /Dungeon/View/assets_and_labels/_gold_sprite as _gold_sprite
 import /Dungeon/View/cards/_hero_card_values as _hero_card_values
 import /Dungeon/View/cards/_tile_card as _tile_card
@@ -48,7 +50,7 @@ def _render_dungeon(meta_state: Meta, scene_value: Scene, run_value: Run, ui_val
           Layout.top(DungeonEvent,
             Layout.frame(
               DungeonEvent,
-              _dungeon_header(meta_state, scene_value),
+              _dungeon_header(meta_state, scene_value, ui_value),
               [width_full{} height_fit{} inset_none{}]
             )
           )
@@ -79,7 +81,29 @@ def _dungeon_shell(body: HTML(DungeonEvent)) -> HTML(DungeonEvent):
     ]
   )
 
-def _dungeon_header(meta_state: Meta, scene_value: Scene) -> HTML(DungeonEvent):
+def _deck_counter_overrides() -> List(Midum/Image/Override):
+  []
+
+def _deck_counter_visual(ui_value: UiState) -> HTML(DungeonEvent):
+  match ui_value:
+    case ui_state{hp_fx, dmg_fx, impact, damage_overlay, deck_counter_fx}:
+      match deck_counter_fx:
+        case deck_counter_idle{}:
+          <div class="dungeon-resource__deck-visual">
+            {Image.view(DungeonEvent, deck_counter_idle_src(), Content.ui_topbar_cards(), _deck_counter_overrides())}
+          </div>
+        case deck_counter_playing{deck_counter_state}:
+          <div class="dungeon-resource__deck-visual">
+            {Image.animated(DungeonEvent, deck_counter_state, deck_counter_clip(), Content.ui_topbar_cards(), _deck_counter_overrides())}
+          </div>
+
+def _dungeon_deck_counter(scene_value: Scene, ui_value: UiState) -> HTML(DungeonEvent):
+  <p class="dungeon-resource dungeon-resource--deck">
+    {_deck_counter_visual(ui_value)}
+    <strong class="dungeon-resource__value">{text{remaining_value(scene_value)}}</strong>
+  </p>
+
+def _dungeon_header(meta_state: Meta, scene_value: Scene, ui_value: UiState) -> HTML(DungeonEvent):
   <header class="topbar topbar--dungeon">
     <div class="dungeon-topbar__left">
       {_dungeon_resource(_gold_sprite(), Content.ui_topbar_gold(), meta_gold(meta_state), "dungeon-resource--gold")}
@@ -88,7 +112,7 @@ def _dungeon_header(meta_state: Meta, scene_value: Scene) -> HTML(DungeonEvent):
       {_dungeon_level(scene_value)}
     </div>
     <div class="dungeon-topbar__right">
-      {_dungeon_resource("assets/icon-cards-placeholder.png", Content.ui_topbar_cards(), remaining_value(scene_value), "dungeon-resource--cards")}
+      {_dungeon_deck_counter(scene_value, ui_value)}
     </div>
   </header>
 
@@ -188,7 +212,7 @@ def _board_idx(x: U32, y: U32) -> U32:
 
 def _board_card_at(run_value: Run, ui_value: UiState, hero_value: HeroDef, idx: U32, pos: Nat/V2) -> HTML(DungeonEvent):
   match run_value ui_value:
-    case run{dungeon_level, hero_hp, hero_max_hp, hero_index, weapon, board_value, deck_blueprint, draw_counts, remaining, capacity, seed, ult_charge} ui_state{hp_fx, dmg_fx, impact, damage_overlay}:
+    case run{dungeon_level, hero_hp, hero_max_hp, hero_index, weapon, board_value, deck_blueprint, draw_counts, remaining, capacity, seed, ult_charge} ui_state{hp_fx, dmg_fx, impact, damage_overlay, deck_counter_fx}:
       _board_card_identity(hero_index === idx, hero_value, hero_hp, hero_max_hp, weapon, hp_fx, dmg_fx, board_get(board_value, idx), pos, damage_overlay)
 
 def _board_card_identity(is_hero: U32, hero_value: HeroDef, hero_hp: U32, hero_max_hp: U32, weapon_value: Weapon, hp_fx: HpFx, dmg_fx: DmgFx, tile_value: Tile, pos: Nat/V2, damage_overlay: DamageOverlay) -> HTML(DungeonEvent):
@@ -203,7 +227,7 @@ def _board_slot(run_value: Run, ui_value: UiState, hero_value: HeroDef, x: U32, 
 
 def _board_slot_at(run_value: Run, ui_value: UiState, hero_value: HeroDef, idx: U32, pos: Nat/V2) -> HTML(DungeonEvent):
   match ui_value:
-    case ui_state{hp_fx, dmg_fx, impact_value, damage_overlay}:
+    case ui_state{hp_fx, dmg_fx, impact_value, damage_overlay, deck_counter_fx}:
       _board_slot_node(idx, pos, impact_value, _board_card_at(run_value, ui_value, hero_value, idx, pos))
 
 def _board_slot_node(idx: U32, pos: Nat/V2, impact_value: Impact, body: HTML(DungeonEvent)) -> HTML(DungeonEvent):

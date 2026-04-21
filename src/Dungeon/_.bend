@@ -250,8 +250,13 @@ type DamageOverlay {
   damage_overlay{pos: Nat/V2, trigger: ImpactFx, base_tile: Tile, state: Midum/Image/State}
 }
 
+type DeckCounterFx {
+  deck_counter_idle{}
+  deck_counter_playing{state: Midum/Image/State}
+}
+
 type UiState {
-  ui_state{hp_fx: HpFx, dmg_fx: DmgFx, impact: Impact, damage_overlay: DamageOverlay}
+  ui_state{hp_fx: HpFx, dmg_fx: DmgFx, impact: Impact, damage_overlay: DamageOverlay, deck_counter_fx: DeckCounterFx}
 }
 
 type DungeonState {
