@@ -6,6 +6,7 @@ import /Dungeon/UiState as UiState
 import /Dungeon/DungeonEvent as DungeonEvent
 import /Dungeon/App/key_event as key_event
 import /Dungeon/View/css as css
+import /Dungeon/View/assets_and_labels/_dungeon_bg as _dungeon_bg
 import /Dungeon/View/menu/_render_menu as _render_menu
 import /Dungeon/View/menu/_render_character_select as _render_character_select
 import /Dungeon/View/boosters/_render_boosters as _render_boosters
@@ -17,6 +18,15 @@ def _frame(body: HTML(DungeonEvent)) -> HTML(DungeonEvent):
     DungeonEvent,
     <div class="page" tabindex="0" autofocus="autofocus" style="outline:none" on_key_down={key_event}>
       <style>{text{css()}}</style>
+      <img
+        class="page-preload-image"
+        src={_dungeon_bg()}
+        alt=""
+        aria-hidden="true"
+        loading="eager"
+        decoding="async"
+        fetchpriority="high"
+      />
       {body}
     </div>
   )

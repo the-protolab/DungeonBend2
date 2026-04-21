@@ -43,28 +43,30 @@ import /Midum/Layout/ as Layout
 def _render_dungeon(meta_state: Meta, scene_value: Scene, run_value: Run, ui_value: UiState) -> HTML(DungeonEvent):
   hero_value = hero_at(config(), selected_hero(meta_state));
   <div every_ms={125, damage_tick{}}>
-    {_dungeon_shell(
-      Layout.frame(
-        DungeonEvent,
-        Layout.overlay(DungeonEvent, [
-          Layout.top(DungeonEvent,
-            Layout.frame(
-              DungeonEvent,
-              _dungeon_header(meta_state, scene_value, ui_value),
-              [width_full{} height_fit{} inset_none{}]
+    <div class="dungeon-scene">
+      {_dungeon_shell(
+        Layout.frame(
+          DungeonEvent,
+          Layout.overlay(DungeonEvent, [
+            Layout.top(DungeonEvent,
+              Layout.frame(
+                DungeonEvent,
+                _dungeon_header(meta_state, scene_value, ui_value),
+                [width_full{} height_fit{} inset_none{}]
+              )
             )
-          )
-          Layout.center(DungeonEvent,
-            _board_grid(scene_value, run_value, ui_value, hero_value)
-          )
-            Layout.bottom(DungeonEvent,
-              _ultimate_action(scene_value)
+            Layout.center(DungeonEvent,
+              _board_grid(scene_value, run_value, ui_value, hero_value)
             )
-            _board_modal_layer(scene_value)
-          ]),
-          [width_full{} height_full{} inset_none{}]
-        )
-    )}
+              Layout.bottom(DungeonEvent,
+                _ultimate_action(scene_value)
+              )
+              _board_modal_layer(scene_value)
+            ]),
+            [width_full{} height_full{} inset_none{}]
+          )
+      )}
+    </div>
   </div>
 
 def _dungeon_shell(body: HTML(DungeonEvent)) -> HTML(DungeonEvent):
@@ -72,7 +74,7 @@ def _dungeon_shell(body: HTML(DungeonEvent)) -> HTML(DungeonEvent):
     DungeonEvent,
     body,
     [
-      max_width_px{value: 640n}
+      max_width_px{value: 760n}
       height_viewport{}
       overflow_hidden{}
       safe_area{}
