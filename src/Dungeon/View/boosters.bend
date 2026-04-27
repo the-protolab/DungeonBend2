@@ -36,7 +36,7 @@ def _boosters_shell(body: HTML(DungeonEvent)) -> HTML(DungeonEvent):
     DungeonEvent,
     body,
     [
-      max_width_px{value: 560n}
+      max_width_px{value: 1080n}
       height_viewport{}
       overflow_hidden{}
       safe_area{}
@@ -186,27 +186,27 @@ def _back_button() -> HTML(DungeonEvent):
 def _booster_actions(meta_state: Meta) -> HTML(DungeonEvent):
   match booster_open_enabled(meta_state):
     case 1:
-      Layout.frame(
-        DungeonEvent,
-        Layout.group(
-          DungeonEvent,
-          [
-            Button.secondary(DungeonEvent, buy_pack{0}, medium{}, Content.ui_booster_buy_more_prefix() ++ U32.show(active_pack_price()) ++ Content.ui_booster_currency_suffix(), _full_button_overrides(booster_buy_enabled(meta_state)))
-            Button.primary(DungeonEvent, open_pack{0}, large{}, Content.ui_booster_open(), _full_button_overrides(1))
-          ],
-          [direction_column{} gap_sm{} align_stretch{}]
-        ),
-        [width_px{value: 280n} height_fit{} inset_none{}]
-      )
+      <section class="boosters-actions">
+        <div class="boosters-actions__inner">
+          {Layout.group(
+            DungeonEvent,
+            [
+              Button.secondary(DungeonEvent, buy_pack{0}, medium{}, Content.ui_booster_buy_more_prefix() ++ U32.show(active_pack_price()) ++ Content.ui_booster_currency_suffix(), _full_button_overrides(booster_buy_enabled(meta_state)))
+              Button.primary(DungeonEvent, open_pack{0}, large{}, Content.ui_booster_open(), _full_button_overrides(1))
+            ],
+            [direction_column{} gap_sm{} align_stretch{}]
+          )}
+        </div>
+      </section>
     case _:
-      Layout.frame(
-        DungeonEvent,
-        Layout.group(
-          DungeonEvent,
-          [
-            Button.primary(DungeonEvent, buy_pack{0}, large{}, Content.ui_booster_buy_prefix() ++ U32.show(active_pack_price()) ++ Content.ui_booster_currency_suffix(), _full_button_overrides(booster_buy_enabled(meta_state)))
-          ],
-          [direction_column{} gap_sm{} align_stretch{}]
-        ),
-        [width_px{value: 280n} height_fit{} inset_none{}]
-      )
+      <section class="boosters-actions">
+        <div class="boosters-actions__inner">
+          {Layout.group(
+            DungeonEvent,
+            [
+              Button.primary(DungeonEvent, buy_pack{0}, large{}, Content.ui_booster_buy_prefix() ++ U32.show(active_pack_price()) ++ Content.ui_booster_currency_suffix(), _full_button_overrides(booster_buy_enabled(meta_state)))
+            ],
+            [direction_column{} gap_sm{} align_stretch{}]
+          )}
+        </div>
+      </section>

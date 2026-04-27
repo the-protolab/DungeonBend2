@@ -11,6 +11,7 @@ import /Dungeon/App/update_character_select as update_character_select
 import /Dungeon/App/update_boosters as update_boosters
 import /Dungeon/App/update_ultimate_preview as update_ultimate_preview
 import /Dungeon/App/update_running as update_running
+import /Dungeon/App/update_paused as update_paused
 import /Dungeon/App/update_ultimate_cinematic as update_ultimate_cinematic
 import /Dungeon/App/update_resume_prompt as update_resume_prompt
 import /Dungeon/App/update_game_over as update_game_over
@@ -30,6 +31,8 @@ def _next_state_scene(evt: DungeonEvent, state: DungeonState) -> DungeonState:
       update_ultimate_cinematic(evt, meta_state, run_value, ticks_remaining, next_seed_value, ui_value)
     case dungeon{game_state{meta_state, running{run_value}, next_seed_value}, ui_value}:
       update_running(evt, meta_state, run_value, next_seed_value, ui_value)
+    case dungeon{game_state{meta_state, paused{run_value}, next_seed_value}, ui_value}:
+      update_paused(evt, meta_state, run_value, next_seed_value, ui_value)
     case dungeon{game_state{meta_state, resume_prompt{run_value}, next_seed_value}, ui_value}:
       update_resume_prompt(evt, meta_state, run_value, next_seed_value, ui_value)
     case dungeon{game_state{meta_state, game_over{run_value}, next_seed_value}, ui_value}:

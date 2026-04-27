@@ -12920,7 +12920,7 @@ export function $Dungeon$View$frame$_screen_root(meta_state, x$1, x$2) {
                         }
                         default: {
                           switch (x$1.$) {
-                            case "resume_prompt": {
+                            case "paused": {
                               var _m26 = x$1.run;
                               var run_value$1 = _m26;
                               var ui_value$2 = x$2;
@@ -12929,7 +12929,7 @@ export function $Dungeon$View$frame$_screen_root(meta_state, x$1, x$2) {
                               var _v28;
                               var _v29;
                               _v29 = run_value$1;
-                              _v28 = ({$: "resume_prompt", run: _v29});
+                              _v28 = ({$: "paused", run: _v29});
                               var _v30;
                               _v30 = run_value$1;
                               var _v31;
@@ -12939,7 +12939,7 @@ export function $Dungeon$View$frame$_screen_root(meta_state, x$1, x$2) {
                             }
                             default: {
                               switch (x$1.$) {
-                                case "game_over": {
+                                case "resume_prompt": {
                                   var _m32 = x$1.run;
                                   var run_value$1 = _m32;
                                   var ui_value$2 = x$2;
@@ -12948,7 +12948,7 @@ export function $Dungeon$View$frame$_screen_root(meta_state, x$1, x$2) {
                                   var _v34;
                                   var _v35;
                                   _v35 = run_value$1;
-                                  _v34 = ({$: "game_over", run: _v35});
+                                  _v34 = ({$: "resume_prompt", run: _v35});
                                   var _v36;
                                   _v36 = run_value$1;
                                   var _v37;
@@ -12957,7 +12957,29 @@ export function $Dungeon$View$frame$_screen_root(meta_state, x$1, x$2) {
                                   break;
                                 }
                                 default: {
-                                  throw new Error("EFQ applied");
+                                  switch (x$1.$) {
+                                    case "game_over": {
+                                      var _m38 = x$1.run;
+                                      var run_value$1 = _m38;
+                                      var ui_value$2 = x$2;
+                                      var _v39;
+                                      _v39 = meta_state;
+                                      var _v40;
+                                      var _v41;
+                                      _v41 = run_value$1;
+                                      _v40 = ({$: "game_over", run: _v41});
+                                      var _v42;
+                                      _v42 = run_value$1;
+                                      var _v43;
+                                      _v43 = ui_value$2;
+                                      _r0 = $Dungeon$View$board$_render_dungeon(_v39, _v40, _v42, _v43);
+                                      break;
+                                    }
+                                    default: {
+                                      throw new Error("EFQ applied");
+                                      break;
+                                    }
+                                  }
                                   break;
                                 }
                               }
@@ -17535,94 +17557,98 @@ export const Midum$Text$Config = null;
 
 export function $Dungeon$App$key_event(x) {
   var _r0;
-  if (((x) >>> 0) === 37) {
-    var _v1;
-    _v1 = ({$: "left"});
-    _r0 = ({$: "move", dir: _v1});
+  if (((x) >>> 0) === 27) {
+    _r0 = ({$: "pause_dungeon"});
   } else {
-    if (((x) >>> 0) === 63234) {
-      var _v2;
-      _v2 = ({$: "left"});
-      _r0 = ({$: "move", dir: _v2});
+    if (((x) >>> 0) === 37) {
+      var _v1;
+      _v1 = ({$: "left"});
+      _r0 = ({$: "move", dir: _v1});
     } else {
-      if (((x) >>> 0) === 65) {
-        var _v3;
-        _v3 = ({$: "left"});
-        _r0 = ({$: "move", dir: _v3});
+      if (((x) >>> 0) === 63234) {
+        var _v2;
+        _v2 = ({$: "left"});
+        _r0 = ({$: "move", dir: _v2});
       } else {
-        if (((x) >>> 0) === 97) {
-          var _v4;
-          _v4 = ({$: "left"});
-          _r0 = ({$: "move", dir: _v4});
+        if (((x) >>> 0) === 65) {
+          var _v3;
+          _v3 = ({$: "left"});
+          _r0 = ({$: "move", dir: _v3});
         } else {
-          if (((x) >>> 0) === 38) {
-            var _v5;
-            _v5 = ({$: "up"});
-            _r0 = ({$: "move", dir: _v5});
+          if (((x) >>> 0) === 97) {
+            var _v4;
+            _v4 = ({$: "left"});
+            _r0 = ({$: "move", dir: _v4});
           } else {
-            if (((x) >>> 0) === 63232) {
-              var _v6;
-              _v6 = ({$: "up"});
-              _r0 = ({$: "move", dir: _v6});
+            if (((x) >>> 0) === 38) {
+              var _v5;
+              _v5 = ({$: "up"});
+              _r0 = ({$: "move", dir: _v5});
             } else {
-              if (((x) >>> 0) === 87) {
-                var _v7;
-                _v7 = ({$: "up"});
-                _r0 = ({$: "move", dir: _v7});
+              if (((x) >>> 0) === 63232) {
+                var _v6;
+                _v6 = ({$: "up"});
+                _r0 = ({$: "move", dir: _v6});
               } else {
-                if (((x) >>> 0) === 119) {
-                  var _v8;
-                  _v8 = ({$: "up"});
-                  _r0 = ({$: "move", dir: _v8});
+                if (((x) >>> 0) === 87) {
+                  var _v7;
+                  _v7 = ({$: "up"});
+                  _r0 = ({$: "move", dir: _v7});
                 } else {
-                  if (((x) >>> 0) === 39) {
-                    var _v9;
-                    _v9 = ({$: "right"});
-                    _r0 = ({$: "move", dir: _v9});
+                  if (((x) >>> 0) === 119) {
+                    var _v8;
+                    _v8 = ({$: "up"});
+                    _r0 = ({$: "move", dir: _v8});
                   } else {
-                    if (((x) >>> 0) === 63235) {
-                      var _v10;
-                      _v10 = ({$: "right"});
-                      _r0 = ({$: "move", dir: _v10});
+                    if (((x) >>> 0) === 39) {
+                      var _v9;
+                      _v9 = ({$: "right"});
+                      _r0 = ({$: "move", dir: _v9});
                     } else {
-                      if (((x) >>> 0) === 68) {
-                        var _v11;
-                        _v11 = ({$: "right"});
-                        _r0 = ({$: "move", dir: _v11});
+                      if (((x) >>> 0) === 63235) {
+                        var _v10;
+                        _v10 = ({$: "right"});
+                        _r0 = ({$: "move", dir: _v10});
                       } else {
-                        if (((x) >>> 0) === 100) {
-                          var _v12;
-                          _v12 = ({$: "right"});
-                          _r0 = ({$: "move", dir: _v12});
+                        if (((x) >>> 0) === 68) {
+                          var _v11;
+                          _v11 = ({$: "right"});
+                          _r0 = ({$: "move", dir: _v11});
                         } else {
-                          if (((x) >>> 0) === 40) {
-                            var _v13;
-                            _v13 = ({$: "down"});
-                            _r0 = ({$: "move", dir: _v13});
+                          if (((x) >>> 0) === 100) {
+                            var _v12;
+                            _v12 = ({$: "right"});
+                            _r0 = ({$: "move", dir: _v12});
                           } else {
-                            if (((x) >>> 0) === 63233) {
-                              var _v14;
-                              _v14 = ({$: "down"});
-                              _r0 = ({$: "move", dir: _v14});
+                            if (((x) >>> 0) === 40) {
+                              var _v13;
+                              _v13 = ({$: "down"});
+                              _r0 = ({$: "move", dir: _v13});
                             } else {
-                              if (((x) >>> 0) === 83) {
-                                var _v15;
-                                _v15 = ({$: "down"});
-                                _r0 = ({$: "move", dir: _v15});
+                              if (((x) >>> 0) === 63233) {
+                                var _v14;
+                                _v14 = ({$: "down"});
+                                _r0 = ({$: "move", dir: _v14});
                               } else {
-                                if (((x) >>> 0) === 115) {
-                                  var _v16;
-                                  _v16 = ({$: "down"});
-                                  _r0 = ({$: "move", dir: _v16});
+                                if (((x) >>> 0) === 83) {
+                                  var _v15;
+                                  _v15 = ({$: "down"});
+                                  _r0 = ({$: "move", dir: _v15});
                                 } else {
-                                  if (((x) >>> 0) === 32) {
-                                    _r0 = ({$: "ignore"});
+                                  if (((x) >>> 0) === 115) {
+                                    var _v16;
+                                    _v16 = ({$: "down"});
+                                    _r0 = ({$: "move", dir: _v16});
                                   } else {
-                                    if (((x) >>> 0) === 82) {
+                                    if (((x) >>> 0) === 32) {
                                       _r0 = ({$: "ignore"});
                                     } else {
-                                      var _ = x;
-                                      _r0 = ({$: "ignore"});
+                                      if (((x) >>> 0) === 82) {
+                                        _r0 = ({$: "ignore"});
+                                      } else {
+                                        var _ = x;
+                                        _r0 = ({$: "ignore"});
+                                      }
                                     }
                                   }
                                 }
@@ -17704,7 +17730,7 @@ export function $Dungeon$View$css$menu_screen_css() {
   var _v2;
   _v2 = "";
   var _v3;
-  _v3 = ".menu-screen{width:100%;height:100%;min-height:0;display:grid;grid-template-rows:auto minmax(0,1fr) auto;align-items:stretch;gap:14px;}.menu-screen__header,.menu-screen__body,.menu-screen__footer{min-width:0;display:grid;}.menu-screen__header{align-content:start;}.menu-screen__body{min-height:0;align-content:stretch;}.menu-screen__footer{align-content:end;justify-items:center;}";
+  _v3 = ".menu-screen{width:100%;height:100%;min-height:0;display:grid;grid-template-rows:auto minmax(0,1fr) auto;align-items:stretch;gap:14px;}.menu-screen__header,.menu-screen__body,.menu-screen__footer{min-width:0;display:grid;}.menu-screen__header{align-content:start;}.menu-screen__body{min-height:0;align-content:stretch;}.menu-screen__footer{align-content:end;justify-items:stretch;}";
   _v1 = (_v2 + _v3);
   var _v4;
   _v4 = "@media (max-width:800px){.menu-screen{gap:16px;}}";
@@ -17720,19 +17746,31 @@ export function $Dungeon$View$css$menu_home_css() {
   var _v2;
   var _v3;
   var _v4;
-  _v4 = "";
   var _v5;
-  _v5 = ".menu-home-headers{width:100%;display:grid;}.menu-stage{display:grid;min-height:0;place-items:center;padding-block:8px;}.menu-stage__content{width:100%;min-height:0;max-height:100%;display:grid;justify-items:center;align-content:center;}.menu-stage--home{padding-block:0 8px;}.menu-stage__content--home{align-content:stretch;}.menu-home{width:100%;display:grid;justify-items:center;align-content:center;}.menu-home__hero{position:relative;width:min(100%,420px);display:grid;place-items:center;padding:20px 0 18px;}.topbar--menu-home-mobile{display:none;align-items:flex-start;min-height:48px;}.menu-hero-panel{width:100%;min-height:0;justify-items:center;align-content:center;gap:18px;}.menu-hero-panel--desktop{display:grid;appearance:none;padding:0;border:0;background:transparent;color:inherit;font:inherit;text-align:inherit;cursor:pointer;}.menu-hero-panel--mobile{display:none;}.menu-hero-panel__portrait{width:min(100%,320px);min-height:0;max-height:clamp(220px,44vh,340px);display:grid;place-items:center;}.menu-hero-panel__image{width:auto;height:auto;min-height:0;max-width:100%;max-height:100%;object-fit:contain;}.menu-home-info{position:relative;width:100%;min-height:30px;display:grid;place-items:center;}.menu-home-info__default,.menu-home-info__change{grid-area:1 / 1;display:grid;place-items:center;transition:opacity 140ms ease,transform 140ms ease;}.menu-home-info__default--hud .hero-hud{width:min(100%,204px);}.menu-home-info__change{opacity:0;pointer-events:none;transform:translateY(4px);}.menu-home-info__change-label{position:relative;display:inline-flex;align-items:center;justify-content:center;min-height:28px;padding:0 14px;color:#ffffff;font-size:0.78rem;font-weight:900;letter-spacing:0.12em;text-transform:uppercase;isolation:isolate;}.menu-home-info__change-label::before{content:'';position:absolute;inset:0;background:#111111;transform:scaleX(0);transform-origin:left center;z-index:-1;}.menu-home__upgrade{position:absolute;left:18%;top:42%;z-index:3;transform:translate(-62%,-72%);}.menu-home__upgrade>.bc-btn{width:auto;min-width:0;}.menu-actions{width:100%;display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);align-items:end;gap:18px;}.menu-actions__booster{width:min(100%,190px);justify-self:start;}.menu-actions__primary{width:min(100%,220px);justify-self:end;display:grid;gap:12px;}.menu-actions__slot,.menu-actions__slot>.bc-btn{width:100%;}.menu-booster-cta{position:relative;overflow:visible;justify-content:flex-start;padding-right:50px;}.menu-booster-cta .bc-btn-content{width:100%;justify-content:flex-start;}.menu-booster-cta__count{position:absolute;top:50%;right:0;display:inline-flex;align-items:center;justify-content:center;min-width:34px;min-height:24px;padding:4px 8px;border:1px solid var(--surface-border);border-radius:10px;background:var(--surface-strong);color:var(--text);font-size:0.78rem;font-weight:900;letter-spacing:0.04em;transform:translate(28%,-50%);pointer-events:none;box-shadow:0 6px 14px rgba(17,17,17,0.08);}";
-  _v3 = (_v4 + _v5);
   var _v6;
-  _v6 = "@media (hover:hover) and (pointer:fine){.menu-hero-panel--desktop:hover .menu-home-info__default,.menu-hero-panel--desktop:focus-visible .menu-home-info__default{opacity:0;transform:translateY(-4px);}.menu-hero-panel--desktop:hover .menu-home-info__change,.menu-hero-panel--desktop:focus-visible .menu-home-info__change{opacity:1;transform:translateY(0);}.menu-hero-panel--desktop:hover .menu-home-info__change-label::before,.menu-hero-panel--desktop:focus-visible .menu-home-info__change-label::before{animation:menu-marker-sweep 220ms cubic-bezier(0.18,0.8,0.18,1) both;}}";
-  _v2 = (_v3 + _v6);
   var _v7;
-  _v7 = "@keyframes menu-marker-sweep{0%{transform:scaleX(0);}100%{transform:scaleX(1);}}";
-  _v1 = (_v2 + _v7);
+  _v7 = "";
   var _v8;
-  _v8 = "@media (max-width:800px){.topbar--menu-home-desktop,.menu-hero-panel--desktop{display:none;}.topbar--menu-home-mobile{display:flex;}.menu-hero-panel--mobile{display:grid;gap:14px;}.menu-home__hero{width:min(100%,320px);padding:14px 0 16px;}.menu-hero-panel__portrait{width:min(100%,236px);max-height:clamp(176px,34vh,236px);}.menu-home-info__change{display:none;}.menu-home__upgrade{left:10%;top:42%;transform:translate(0,-76%);}.menu-actions{grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:12px;}.menu-actions__booster,.menu-actions__primary{width:100%;}.menu-actions__primary{gap:10px;}.menu-booster-cta{padding-right:44px;}.menu-booster-cta__count{min-width:30px;min-height:22px;font-size:0.72rem;transform:translate(18%,-50%);}}";
-  _r0 = (_v1 + _v8);
+  _v8 = ".menu-home-page{position:relative;width:100%;height:100%;min-height:0;isolation:isolate;}.menu-home-page::before{content:'';position:fixed;inset:0;z-index:-1;pointer-events:none;background-color:#60C5F7;background-image:url(\"";
+  _v6 = (_v7 + _v8);
+  var _v9;
+  _v9 = Dungeon$View$assets_and_labels$_menu_home_bg();
+  _v5 = (_v6 + _v9);
+  var _v10;
+  _v10 = "\"),radial-gradient(circle at 50% 68%,#84E2F7 0%,#60C5F7 74%);background-position:center center;background-repeat:no-repeat;background-size:cover,100% 100%;}.menu-home-scene{width:100%;height:100%;min-height:0;}.menu-home-headers{width:100%;display:grid;}.menu-stage{display:grid;min-height:0;place-items:center;padding-block:8px;}.menu-stage__content{width:100%;min-height:0;max-height:100%;display:grid;justify-items:center;align-content:center;}.menu-stage--home{padding-block:0 8px;}.menu-stage__content--home{align-content:stretch;}.menu-home{width:100%;display:grid;justify-items:center;align-content:center;}.menu-home__hero{position:relative;width:min(100%,420px);display:grid;place-items:center;padding:20px 0 18px;}.topbar--menu-home-mobile{display:none;align-items:flex-start;min-height:48px;}.menu-hero-panel{width:100%;min-height:0;justify-items:center;align-content:center;gap:18px;}.menu-hero-panel--desktop{display:grid;appearance:none;padding:0;border:0;background:transparent;color:inherit;font:inherit;text-align:inherit;cursor:pointer;}.menu-hero-panel--mobile{display:none;}.menu-hero-panel__portrait{width:min(100%,320px);min-height:0;max-height:clamp(220px,44vh,340px);display:grid;place-items:center;}.menu-hero-panel__image{width:auto;height:auto;min-height:0;max-width:100%;max-height:100%;object-fit:contain;}.menu-home-info{position:relative;width:100%;min-height:30px;display:grid;place-items:center;}.menu-home-info__default,.menu-home-info__change{grid-area:1 / 1;display:grid;place-items:center;transition:opacity 140ms ease,transform 140ms ease;}.menu-home-info__default--hud .hero-hud{width:min(100%,204px);}.menu-home-info__change{opacity:0;pointer-events:none;transform:translateY(4px);}.menu-home-info__change-label{position:relative;display:inline-flex;align-items:center;justify-content:center;min-height:28px;padding:0 14px;color:#ffffff;font-size:0.78rem;font-weight:900;letter-spacing:0.12em;text-transform:uppercase;isolation:isolate;}.menu-home-info__change-label::before{content:'';position:absolute;inset:0;background:#111111;transform:scaleX(0);transform-origin:left center;z-index:-1;}.menu-home__upgrade{position:absolute;left:18%;top:42%;z-index:3;transform:translate(-62%,-72%);}.menu-home__upgrade>.bc-btn{width:56px;min-width:56px;height:56px;padding:0;}.menu-home__upgrade .bc-btn-content{width:100%;height:100%;justify-content:center;gap:0;}.menu-home__upgrade .bc-btn-label{display:none;}.menu-home__upgrade .bc-btn-icon{width:28px;height:28px;}.menu-actions{width:100%;display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);align-items:end;gap:18px;}.menu-actions__booster{width:min(100%,190px);justify-self:start;}.menu-actions__primary{width:min(100%,220px);justify-self:end;display:grid;gap:12px;}.menu-actions__slot,.menu-actions__slot>.bc-btn{width:100%;}.menu-booster-cta{position:relative;overflow:visible;justify-content:flex-start;padding-right:50px;}.menu-booster-cta .bc-btn-content{width:100%;justify-content:flex-start;}.menu-booster-cta__count{position:absolute;top:50%;right:0;display:inline-flex;align-items:center;justify-content:center;min-width:34px;min-height:24px;padding:4px 8px;border:1px solid var(--surface-border);border-radius:10px;background:var(--surface-strong);color:var(--text);font-size:0.78rem;font-weight:900;letter-spacing:0.04em;transform:translate(28%,-50%);pointer-events:none;box-shadow:0 6px 14px rgba(17,17,17,0.08);}";
+  _v4 = (_v5 + _v10);
+  var _v11;
+  _v11 = "@media (hover:hover) and (pointer:fine){.menu-hero-panel--desktop:hover .menu-home-info__default,.menu-hero-panel--desktop:focus-visible .menu-home-info__default{opacity:0;transform:translateY(-4px);}.menu-hero-panel--desktop:hover .menu-home-info__change,.menu-hero-panel--desktop:focus-visible .menu-home-info__change{opacity:1;transform:translateY(0);}.menu-hero-panel--desktop:hover .menu-home-info__change-label::before,.menu-hero-panel--desktop:focus-visible .menu-home-info__change-label::before{animation:menu-marker-sweep 220ms cubic-bezier(0.18,0.8,0.18,1) both;}}";
+  _v3 = (_v4 + _v11);
+  var _v12;
+  _v12 = "@keyframes menu-marker-sweep{0%{transform:scaleX(0);}100%{transform:scaleX(1);}}";
+  _v2 = (_v3 + _v12);
+  var _v13;
+  _v13 = "@media (min-width:801px){.menu-home__hero{width:min(100%,520px);}.menu-hero-panel__portrait{width:min(100%,380px);max-height:clamp(260px,50vh,400px);}.menu-home-info__default--hud .hero-hud{width:min(100%,236px);}.menu-actions{gap:24px;}.menu-actions__booster{width:min(100%,224px);}.menu-actions__primary{width:min(100%,244px);}}";
+  _v1 = (_v2 + _v13);
+  var _v14;
+  _v14 = "@media (max-width:800px){.topbar--menu-home-desktop,.menu-hero-panel--desktop{display:none;}.topbar--menu-home-mobile{display:flex;}.menu-hero-panel--mobile{display:grid;gap:14px;}.menu-home__hero{width:min(100%,320px);padding:14px 0 16px;}.menu-hero-panel__portrait{width:min(100%,236px);max-height:clamp(176px,34vh,236px);}.menu-home-info__change{display:none;}.menu-home__upgrade{left:10%;top:42%;transform:translate(0,-76%);}.menu-home__upgrade>.bc-btn{width:48px;min-width:48px;height:48px;}.menu-home__upgrade .bc-btn-icon{width:24px;height:24px;}.menu-actions{grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:12px;}.menu-actions__booster,.menu-actions__primary{width:100%;}.menu-actions__primary{gap:10px;}.menu-booster-cta{padding-right:44px;}.menu-booster-cta__count{min-width:30px;min-height:22px;font-size:0.72rem;transform:translate(18%,-50%);}}";
+  _r0 = (_v1 + _v14);
   return _r0;
 }
 
@@ -17743,16 +17781,28 @@ export function $Dungeon$View$css$character_select_css() {
   var _v1;
   var _v2;
   var _v3;
-  _v3 = "";
   var _v4;
-  _v4 = ".character-select-headers{width:100%;display:grid;}.topbar--character-select{justify-content:space-between;gap:12px;padding-top:4px;}.topbar--character-select-mobile{display:none;justify-content:space-between;align-items:flex-start;min-height:48px;}.character-select-stage{display:grid;min-height:0;place-items:center;padding-block:8px;}.character-select-stage__content{width:100%;display:grid;justify-items:center;align-content:start;padding-top:8px;}.character-select{width:100%;display:grid;grid-template-columns:minmax(0,1fr);gap:24px;align-items:start;}.character-select__main,.character-select__side{min-width:0;display:grid;gap:16px;align-content:start;}.character-select__side{justify-items:stretch;}.character-select-footer{display:none;width:100%;justify-items:start;}.character-detail{width:100%;display:grid;}.character-detail__layout{display:grid;grid-template-columns:minmax(0,0.95fr) minmax(0,1.05fr);gap:16px;align-items:start;}.character-detail__portrait{width:min(100%,240px);height:clamp(220px,34vh,300px);display:grid;place-items:end center;justify-self:center;align-self:start;padding:0 10px;}.character-detail__image{width:auto;height:auto;max-width:100%;max-height:100%;object-fit:contain;object-position:center bottom;filter:drop-shadow(0 16px 28px rgba(17,17,17,0.16));}.character-detail__info{width:100%;display:grid;min-width:0;text-align:left;align-self:start;}.character-detail__stack{width:100%;display:flex;flex-direction:column;gap:8px;align-items:stretch;min-width:0;}.character-detail__name-outline,.character-detail__lore,.character-detail__stats,.character-detail__lock-slot,.character-detail__ultimate-slot,.character-detail__upgrade-slot{width:100%;min-width:0;}.character-detail__name-outline{display:grid;align-content:end;min-height:44px;}.character-detail__name-outline .bc-text{color:#fff;font-size:1.2rem;font-weight:900;letter-spacing:0.01em;line-height:1.02;text-align:left;-webkit-text-stroke:1px #1d1d1d;paint-order:stroke fill;text-shadow:0 2px 0 #1d1d1d,1px 0 0 #1d1d1d,-1px 0 0 #1d1d1d,0 -1px 0 #1d1d1d;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden;max-width:100%;}.character-detail__lore{display:grid;align-content:start;min-height:40px;}.character-detail__lore .bc-text{color:var(--text-muted);font-size:0.86rem;font-weight:700;line-height:1.35;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden;}.character-detail__stats{display:flex;flex-wrap:wrap;align-items:center;justify-content:flex-start;gap:8px 16px;min-height:24px;}.character-detail__stat{margin:0;color:#b4482e;font-size:0.9rem;font-weight:900;letter-spacing:0.05em;line-height:1;text-transform:uppercase;white-space:nowrap;}.character-detail__lock-slot{display:grid;align-content:start;}.character-detail__locked{margin:0;display:inline-flex;align-items:center;justify-content:center;min-height:28px;padding:5px 10px;border-radius:999px;border:1px solid #efb2b2;background:#f4e6e6;color:var(--danger);font-size:0.72rem;font-weight:900;letter-spacing:0.08em;text-transform:uppercase;justify-self:start;}.character-detail__ultimate-slot{display:grid;align-content:start;min-height:102px;}.character-ultimate{width:100%;height:100%;display:grid;grid-template-rows:auto minmax(0,1fr);gap:8px;color:var(--text-muted);align-content:start;}.character-ultimate__body{display:grid;grid-template-columns:42px minmax(0,1fr);align-items:start;gap:10px;height:100%;}.character-ultimate__icon{width:42px;height:42px;object-fit:contain;padding:5px;border:2px solid #7bbf42;background:#fff;box-shadow:0 2px 0 rgba(17,17,17,0.18);}.character-ultimate__description{min-width:0;color:var(--text);overflow:hidden;}.character-ultimate__description .bc-text{font-size:0.74rem;font-weight:800;line-height:1.25;letter-spacing:0.01em;display:-webkit-box;-webkit-line-clamp:4;-webkit-box-orient:vertical;overflow:hidden;}.character-detail__upgrade-slot{display:grid;align-content:start;min-height:44px;}.character-upgrade{display:grid;justify-items:start;align-content:start;gap:0;height:auto;padding-top:0;}.character-upgrade__row{display:flex;align-items:center;gap:10px;flex-wrap:wrap;}.character-upgrade__price,.character-upgrade__max{margin:0;color:var(--text-muted);font-size:0.76rem;font-weight:900;letter-spacing:0.08em;line-height:1;text-transform:uppercase;}.character-upgrade__price{display:inline-flex;align-items:center;gap:6px;min-height:36px;padding:0 12px;border:1px solid var(--surface-border);border-radius:999px;background:rgba(255,255,255,0.82);}.character-upgrade__price-icon{width:20px;height:20px;object-fit:contain;flex:0 0 auto;}.character-upgrade__price-value{display:block;color:var(--text);}.character-upgrade__action>.bc-btn{width:auto;min-width:136px;}.character-roster{width:100%;display:grid;}.character-roster__grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:12px;}.character-roster-card{appearance:none;width:100%;padding:0;border:0;background:transparent;color:inherit;font:inherit;text-align:center;cursor:pointer;}.character-roster-card>.bc-card{width:100%;height:100%;min-height:160px;transition:border-color 120ms ease,transform 120ms ease,box-shadow 120ms ease;}.character-roster-card>.bc-card>.bc-card-body{height:100%;padding:0;}.character-roster-card:hover>.bc-card{transform:translateY(-1px);}.character-roster-card--locked{opacity:0.74;}.character-roster-card--active>.bc-card{border-color:var(--accent);box-shadow:0 0 0 2px rgba(17,17,17,0.08),var(--shadow);}.character-roster-card--selected>.bc-card{border-color:#74b646;box-shadow:0 0 0 3px rgba(116,182,70,0.24),var(--shadow);}.character-roster-card__content{height:100%;display:grid;grid-template-rows:minmax(0,1fr) auto;}.character-roster-card__image-wrap{width:100%;min-height:0;display:grid;place-items:center;padding:12px 10px 8px;}.character-roster-card__image{width:auto;height:auto;max-width:100%;max-height:102px;object-fit:contain;}.character-roster-card__footer{display:flex;align-items:center;justify-content:center;min-height:36px;border-top:1px solid var(--surface-border);font-size:0.78rem;font-weight:900;letter-spacing:0.08em;line-height:1;text-transform:uppercase;}.character-boosters{width:100%;display:grid;justify-items:center;gap:8px;padding:0;border:0;border-radius:0;background:none;}.character-boosters__hint{margin:0;color:#8a8a8a;font-size:0.82rem;font-weight:700;line-height:1.35;text-align:center;}.character-boosters__action{display:flex;justify-content:center;}.character-boosters__action>.bc-btn{width:100%;}";
-  _v2 = (_v3 + _v4);
   var _v5;
-  _v5 = "@media (min-width:801px){.character-select{grid-template-columns:minmax(0,1.86fr) minmax(176px,196px);gap:58px;align-items:stretch;}.character-select__main{padding-right:0;}.character-select__side{width:100%;max-width:196px;justify-self:end;align-self:stretch;gap:14px;grid-template-rows:auto auto;padding:6px 0 6px 30px;border-left:1px solid rgba(17,17,17,0.14);}.character-detail__layout{grid-template-columns:minmax(0,1.08fr) minmax(0,0.92fr);gap:26px;align-items:stretch;min-height:clamp(360px,60vh,520px);}.character-detail__portrait{width:min(100%,400px);height:clamp(360px,60vh,520px);padding:0 18px 6px;}.character-detail__info{min-height:clamp(360px,60vh,520px);align-self:stretch;}.character-detail__stack{gap:10px;}.character-detail__name-outline{min-height:60px;}.character-detail__lore{min-height:48px;}.character-detail__name-outline .bc-text{font-size:1.52rem;}.character-detail__lore .bc-text{font-size:0.92rem;}.character-detail__stat{font-size:0.98rem;}.character-detail__ultimate-slot{min-height:118px;}.character-ultimate__description .bc-text{font-size:0.78rem;}.character-detail__upgrade-slot{min-height:48px;}.character-roster__grid{gap:8px;}.character-roster-card>.bc-card{min-height:132px;}.character-roster-card__image-wrap{padding:10px 8px 8px;}.character-roster-card__image{max-height:72px;}.character-roster-card__footer{min-height:30px;font-size:0.7rem;}.character-boosters__action>.bc-btn{min-width:0;}.character-boosters__hint{font-size:0.78rem;}}";
-  _v1 = (_v2 + _v5);
   var _v6;
-  _v6 = "@media (max-width:800px){.topbar--character-select-desktop{display:none;}.topbar--character-select-mobile{display:flex;}.character-select-stage{padding-block:0;}.character-select__main,.character-select__side{gap:16px;}.character-select__side{justify-items:stretch;padding-top:18px;border-top:1px solid rgba(17,17,17,0.12);}.character-select-footer{display:grid;}.character-detail{padding-top:8px;}.character-detail__layout{gap:12px;}.character-detail__portrait{width:min(100%,188px);height:clamp(196px,28vh,236px);padding:0 2px 2px;}.character-detail__name-outline .bc-text{font-size:1.02rem;}.character-detail__lore .bc-text{font-size:0.76rem;}.character-detail__stat{font-size:0.78rem;}.character-ultimate__body{gap:8px;}.character-upgrade{padding-top:2px;}.character-upgrade__row{gap:8px;}.character-upgrade__price{min-height:32px;padding:0 10px;font-size:0.72rem;}.character-upgrade__price-icon{width:18px;height:18px;}.character-upgrade__action>.bc-btn{min-width:112px;}.character-roster,.character-boosters{width:100%;}.character-roster__grid{width:100%;grid-template-columns:repeat(auto-fill,78px);justify-content:start;gap:10px;}.character-roster-card{width:78px;justify-self:start;}.character-roster-card>.bc-card{min-height:108px;}.character-roster-card__image-wrap{padding:8px 6px 6px;}.character-roster-card__image{max-height:52px;}.character-roster-card__footer{min-height:24px;font-size:0.64rem;}.character-boosters{gap:8px;}.character-boosters__action>.bc-btn{width:auto;min-width:132px;}.character-boosters__hint{font-size:0.74rem;}}";
-  _r0 = (_v1 + _v6);
+  _v6 = "";
+  var _v7;
+  _v7 = ".character-select-headers{width:100%;display:grid;}.topbar--character-select{justify-content:space-between;gap:12px;padding-top:4px;}.topbar--character-select-mobile{display:none;justify-content:space-between;align-items:flex-start;min-height:48px;}.character-select-stage{display:grid;min-height:0;place-items:center;padding-block:8px;}.character-select-stage__content{width:100%;display:grid;justify-items:center;align-content:start;padding-top:8px;}.character-select{width:100%;display:grid;grid-template-columns:minmax(0,1fr);gap:24px;align-items:start;}.character-select__main,.character-select__side{min-width:0;display:grid;gap:16px;align-content:start;}.character-select__side{justify-items:stretch;}.character-select-footer{display:none;width:100%;justify-items:start;}.character-detail{width:100%;display:grid;}.character-detail__layout{display:grid;grid-template-columns:minmax(0,0.95fr) minmax(0,1.05fr);gap:16px;align-items:start;}.character-detail__portrait{width:min(100%,240px);height:clamp(220px,34vh,300px);display:grid;place-items:end center;justify-self:center;align-self:start;padding:0 10px;}.character-detail__image{width:auto;height:auto;max-width:100%;max-height:100%;object-fit:contain;object-position:center bottom;filter:drop-shadow(0 16px 28px rgba(17,17,17,0.16));}.character-detail__info{width:100%;display:grid;min-width:0;text-align:left;align-self:start;}.character-detail__stack{width:100%;display:flex;flex-direction:column;gap:8px;align-items:stretch;min-width:0;}.character-detail__name-outline,.character-detail__lore,.character-detail__stats,.character-detail__lock-slot,.character-detail__ultimate-slot,.character-detail__upgrade-slot{width:100%;min-width:0;}.character-detail__name-outline{display:grid;align-content:end;min-height:44px;}.character-detail__name-outline .bc-text{color:#fff;font-size:1.2rem;font-weight:900;letter-spacing:0.01em;line-height:1.02;text-align:left;-webkit-text-stroke:1px #1d1d1d;paint-order:stroke fill;text-shadow:0 2px 0 #1d1d1d,1px 0 0 #1d1d1d,-1px 0 0 #1d1d1d,0 -1px 0 #1d1d1d;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden;max-width:100%;}.character-detail__lore{display:grid;align-content:start;min-height:40px;}.character-detail__lore .bc-text{color:var(--text-muted);font-size:0.86rem;font-weight:700;line-height:1.35;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden;}.character-detail__stats{display:flex;flex-wrap:wrap;align-items:center;justify-content:flex-start;gap:8px 16px;min-height:24px;}.character-detail__stat{margin:0;color:#b4482e;font-size:0.9rem;font-weight:900;letter-spacing:0.05em;line-height:1;text-transform:uppercase;white-space:nowrap;}.character-detail__lock-slot{display:grid;align-content:start;}.character-detail__locked{margin:0;display:inline-flex;align-items:center;justify-content:center;min-height:28px;padding:5px 10px;border-radius:999px;border:1px solid #efb2b2;background:#f4e6e6;color:var(--danger);font-size:0.72rem;font-weight:900;letter-spacing:0.08em;text-transform:uppercase;justify-self:start;}.character-detail__ultimate-slot{display:grid;align-content:start;min-height:102px;}.character-ultimate{width:100%;height:100%;display:grid;grid-template-rows:auto minmax(0,1fr);gap:8px;color:var(--text-muted);align-content:start;}.character-ultimate__body{display:grid;grid-template-columns:42px minmax(0,1fr);align-items:start;gap:10px;height:100%;}.character-ultimate__icon{width:42px;height:42px;object-fit:contain;padding:5px;border:2px solid #7bbf42;background:#fff;box-shadow:0 2px 0 rgba(17,17,17,0.18);}.character-ultimate__description{min-width:0;color:var(--text);overflow:hidden;}.character-ultimate__description .bc-text{font-size:0.74rem;font-weight:800;line-height:1.25;letter-spacing:0.01em;display:-webkit-box;-webkit-line-clamp:4;-webkit-box-orient:vertical;overflow:hidden;}.character-detail__upgrade-slot{display:grid;align-content:start;min-height:44px;}.character-upgrade{display:grid;justify-items:start;align-content:start;gap:0;height:auto;padding-top:0;}.character-upgrade__row{display:flex;align-items:center;gap:10px;flex-wrap:wrap;}.character-upgrade__price,.character-upgrade__max{margin:0;color:var(--text-muted);font-size:0.76rem;font-weight:900;letter-spacing:0.08em;line-height:1;text-transform:uppercase;}.character-upgrade__price{display:inline-flex;align-items:center;gap:6px;min-height:36px;padding:0 12px;border:1px solid var(--surface-border);border-radius:999px;background:rgba(255,255,255,0.82);}.character-upgrade__price-icon{width:20px;height:20px;object-fit:contain;flex:0 0 auto;}.character-upgrade__price-value{display:block;color:var(--text);}.character-upgrade__action>.bc-btn{width:auto;min-width:136px;}.character-roster{width:100%;display:grid;}.character-roster__grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:12px;}.character-roster-card{appearance:none;width:100%;padding:0;border:0;background:transparent;color:inherit;font:inherit;text-align:center;cursor:pointer;}.character-roster-card>.bc-card{width:100%;height:100%;min-height:160px;transition:border-color 120ms ease,transform 120ms ease,box-shadow 120ms ease;}.character-roster-card>.bc-card>.bc-card-body{height:100%;padding:0;}.character-roster-card:hover>.bc-card{transform:translateY(-1px);}.character-roster-card--locked{opacity:0.74;}.character-roster-card--active>.bc-card{border-color:var(--accent);box-shadow:0 0 0 2px rgba(17,17,17,0.08),var(--shadow);}.character-roster-card--selected>.bc-card{border-color:#74b646;box-shadow:0 0 0 3px rgba(116,182,70,0.24),var(--shadow);}.character-roster-card__content{height:100%;display:grid;grid-template-rows:minmax(0,1fr) auto;}.character-roster-card__image-wrap{width:100%;min-height:0;display:grid;place-items:center;padding:12px 10px 8px;}.character-roster-card__image{width:auto;height:auto;max-width:100%;max-height:102px;object-fit:contain;}.character-roster-card__footer{display:flex;align-items:center;justify-content:center;min-height:36px;border-top:1px solid var(--surface-border);font-size:0.78rem;font-weight:900;letter-spacing:0.08em;line-height:1;text-transform:uppercase;}.character-boosters{width:100%;display:grid;justify-items:center;gap:8px;padding:0;border:0;border-radius:0;background:none;}.character-boosters__hint{margin:0;color:#8a8a8a;font-size:0.82rem;font-weight:700;line-height:1.35;text-align:center;}.character-boosters__action{display:flex;justify-content:center;}.character-boosters__action>.bc-btn{width:100%;}";
+  _v5 = (_v6 + _v7);
+  var _v8;
+  _v8 = ".character-detail__stat-heart{display:inline-flex;align-items:center;justify-content:center;min-height:38px;}.character-detail__stat-heart .hero-hud__heart{width:38px;flex-basis:38px;filter:drop-shadow(0 4px 10px rgba(17,17,17,0.12));}.character-detail__stat-heart .hero-hud__heart-value{font-size:0.9rem;}";
+  _v4 = (_v5 + _v8);
+  var _v9;
+  _v9 = "@media (min-width:801px){.character-detail__stat-heart .hero-hud__heart{width:42px;flex-basis:42px;}.character-detail__stat-heart .hero-hud__heart-value{font-size:0.96rem;}}";
+  _v3 = (_v4 + _v9);
+  var _v10;
+  _v10 = "@media (max-width:800px){.character-detail__stat-heart{min-height:34px;}.character-detail__stat-heart .hero-hud__heart{width:36px;flex-basis:36px;}.character-detail__stat-heart .hero-hud__heart-value{font-size:0.84rem;}}";
+  _v2 = (_v3 + _v10);
+  var _v11;
+  _v11 = "@media (min-width:801px){.character-select{grid-template-columns:minmax(0,1.86fr) minmax(176px,196px);gap:58px;align-items:stretch;}.character-select__main{padding-right:0;}.character-select__side{width:100%;max-width:196px;justify-self:end;align-self:stretch;gap:14px;grid-template-rows:auto auto;padding:6px 0 6px 30px;border-left:1px solid rgba(17,17,17,0.14);}.character-detail__layout{grid-template-columns:minmax(0,1.08fr) minmax(0,0.92fr);gap:26px;align-items:stretch;min-height:clamp(360px,60vh,520px);}.character-detail__portrait{width:min(100%,400px);height:clamp(360px,60vh,520px);padding:0 18px 6px;}.character-detail__info{min-height:clamp(360px,60vh,520px);align-self:stretch;}.character-detail__stack{gap:10px;}.character-detail__name-outline{min-height:60px;}.character-detail__lore{min-height:48px;}.character-detail__name-outline .bc-text{font-size:1.52rem;}.character-detail__lore .bc-text{font-size:0.92rem;}.character-detail__stat{font-size:0.98rem;}.character-detail__ultimate-slot{min-height:118px;}.character-ultimate__description .bc-text{font-size:0.78rem;}.character-detail__upgrade-slot{min-height:48px;}.character-roster__grid{gap:8px;}.character-roster-card>.bc-card{min-height:132px;}.character-roster-card__image-wrap{padding:10px 8px 8px;}.character-roster-card__image{max-height:72px;}.character-roster-card__footer{min-height:30px;font-size:0.7rem;}.character-boosters__action>.bc-btn{min-width:0;}.character-boosters__hint{font-size:0.78rem;}}";
+  _v1 = (_v2 + _v11);
+  var _v12;
+  _v12 = "@media (max-width:800px){.topbar--character-select-desktop{display:none;}.topbar--character-select-mobile{display:flex;}.character-select-stage{padding-block:0;}.character-select__main,.character-select__side{gap:16px;}.character-select__side{justify-items:stretch;padding-top:18px;border-top:1px solid rgba(17,17,17,0.12);}.character-select-footer{display:grid;}.character-detail{padding-top:8px;}.character-detail__layout{gap:12px;}.character-detail__portrait{width:min(100%,188px);height:clamp(196px,28vh,236px);padding:0 2px 2px;}.character-detail__name-outline .bc-text{font-size:1.02rem;}.character-detail__lore .bc-text{font-size:0.76rem;}.character-detail__stat{font-size:0.78rem;}.character-ultimate__body{gap:8px;}.character-upgrade{padding-top:2px;}.character-upgrade__row{gap:8px;}.character-upgrade__price{min-height:32px;padding:0 10px;font-size:0.72rem;}.character-upgrade__price-icon{width:18px;height:18px;}.character-upgrade__action>.bc-btn{min-width:112px;}.character-roster,.character-boosters{width:100%;}.character-roster__grid{width:100%;grid-template-columns:repeat(auto-fill,78px);justify-content:start;gap:10px;}.character-roster-card{width:78px;justify-self:start;}.character-roster-card>.bc-card{min-height:108px;}.character-roster-card__image-wrap{padding:8px 6px 6px;}.character-roster-card__image{max-height:52px;}.character-roster-card__footer{min-height:24px;font-size:0.64rem;}.character-boosters{gap:8px;}.character-boosters__action>.bc-btn{width:auto;min-width:132px;}.character-boosters__hint{font-size:0.74rem;}}";
+  _r0 = (_v1 + _v12);
   return _r0;
 }
 
@@ -17778,13 +17828,17 @@ export function $Dungeon$View$css$boosters_css() {
   var _r0;
   var _v1;
   var _v2;
-  _v2 = "";
   var _v3;
-  _v3 = ".boosters-stage{display:grid;min-height:0;place-items:center;padding-block:8px;}.boosters-stage__content{width:100%;min-height:0;display:grid;justify-items:center;align-content:center;gap:18px;}.boosters-stage--reveal{padding-block:0;}.boosters-stage__content--reveal{height:100%;max-height:100%;align-content:center;}.booster-reveal-panel{width:100%;min-height:0;display:grid;justify-items:center;align-content:center;gap:18px;}.booster-reveal-panel__visual{width:100%;display:grid;justify-items:center;}.booster-reveal-panel__meta{width:min(100%,280px);display:grid;gap:10px;}.booster-reveal-panel__footer{width:100%;display:flex;justify-content:flex-end;padding-top:18px;}.booster-reveal-panel__action{width:min(100%,168px);}.booster-reveal-panel__action>.bc-btn{width:100%;font-weight:700;letter-spacing:0.04em;text-transform:uppercase;background:rgba(255,255,255,0.42);color:var(--text-muted);border-color:rgba(17,17,17,0.12);box-shadow:none;}.booster-reveal-panel__action>.bc-btn:hover{background:rgba(255,255,255,0.56);color:var(--text);border-color:rgba(17,17,17,0.16);box-shadow:none;}.booster-reveal-panel__action>.bc-btn:active{background:rgba(255,255,255,0.68);color:var(--text);border-color:rgba(17,17,17,0.2);box-shadow:none;}.reveal-meta{display:grid;gap:8px;}.reveal-meta__top{display:grid;grid-template-columns:minmax(0,1fr) auto;align-items:end;gap:12px;}.reveal-name{margin:0;color:var(--text);font-size:1.12rem;font-weight:900;font-style:italic;letter-spacing:0.01em;line-height:1;text-transform:uppercase;}.reveal-copies{margin:0;color:#b7b7b7;font-size:0.92rem;font-weight:800;letter-spacing:0.04em;line-height:1;text-transform:uppercase;white-space:nowrap;text-align:right;}.reveal-stat{margin:0;color:var(--text);white-space:nowrap;}.reveal-stat--detail{font-size:0.98rem;font-weight:900;letter-spacing:0.02em;line-height:1.05;text-transform:uppercase;text-align:left;}.reveal-stat--empty{display:block;min-height:1rem;visibility:hidden;}.reveal-position{margin:0;color:var(--text-muted);font-size:0.82rem;font-weight:800;letter-spacing:0.08em;text-transform:uppercase;white-space:nowrap;}.booster-visual{width:min(100%,280px);aspect-ratio:0.72;display:grid;place-items:center;padding:18px;border-radius:var(--radius-lg);background:#c62626;box-shadow:var(--shadow);}.booster-visual--pack{background:none;box-shadow:none;padding:0;aspect-ratio:auto;}.booster-visual__pack-img{width:100%;height:auto;object-fit:contain;filter:drop-shadow(0 12px 24px rgba(17,17,17,0.16));}.booster-visual--revealed{grid-template-rows:minmax(0,1fr) auto;align-content:stretch;background:linear-gradient(180deg,#fdf8ef 0%,#f3ede3 100%);border:1px solid var(--surface-border);max-height:clamp(320px,52vh,400px);}.booster-visual--midum{padding:0;background:none;border:0;box-shadow:none;}.booster-visual--midum>.bc-card{width:100%;height:100%;box-shadow:var(--shadow);}.booster-visual--midum>.bc-card>.bc-card-body{height:100%;}.booster-visual__detail{width:100%;height:100%;display:grid;grid-template-rows:minmax(0,1fr) auto;justify-items:center;align-items:center;gap:14px;}.booster-visual__detail--midum{padding:18px;}.booster-visual__image-wrap{width:100%;height:100%;display:grid;place-items:center;}.booster-visual__image{width:auto;height:auto;max-width:100%;max-height:180px;object-fit:contain;filter:drop-shadow(0 12px 24px rgba(17,17,17,0.16));}.booster-visual__image--midum{transform:translateY(-12px);}.booster-visual__stat{margin:0;display:inline-flex;align-items:center;justify-content:center;min-height:34px;padding:6px 12px;border-radius:999px;background:#fff;border:1px solid var(--surface-border);color:var(--text);font-size:0.78rem;font-weight:800;letter-spacing:0.04em;text-transform:uppercase;}.booster-visual__nav{width:100%;display:grid;grid-template-columns:auto 1fr auto;align-items:center;gap:10px;}.booster-visual__nav>.bc-btn{width:auto;min-width:0;}.booster-visual__index{margin:0;color:var(--text-muted);font-size:0.78rem;font-weight:800;letter-spacing:0.08em;text-transform:uppercase;text-align:center;}.boosters-stage__open{display:grid;justify-items:center;}.boosters-stage__buy{width:min(100%,280px);}.boosters-stage__buy>.bc-btn{width:100%;}.boosters-stage__price{margin:0;color:var(--text);font-size:0.92rem;font-weight:800;letter-spacing:0.08em;text-transform:uppercase;}";
-  _v1 = (_v2 + _v3);
+  _v3 = "";
   var _v4;
-  _v4 = "@media (max-width:800px){.booster-reveal-panel{gap:14px;}.booster-reveal-panel__meta{width:min(100%,248px);}.booster-reveal-panel__footer{padding-top:26px;}.booster-reveal-panel__action{width:min(100%,156px);}.reveal-meta{gap:6px;}.reveal-name{font-size:1rem;}.reveal-copies{font-size:0.82rem;}.reveal-stat--detail{font-size:0.88rem;}.reveal-position{font-size:0.82rem;}.booster-visual{width:min(100%,248px);padding:14px;}.booster-visual--revealed{max-height:clamp(280px,48vh,360px);}.booster-visual--midum{padding:0;}.booster-visual__detail--midum{padding:14px;}.booster-visual__image{max-height:156px;}.booster-visual__image--midum{transform:translateY(-9px);}.booster-visual__nav{gap:8px;}.boosters-stage__buy{width:min(100%,260px);}}";
-  _r0 = (_v1 + _v4);
+  _v4 = ".boosters-stage{display:grid;min-height:0;place-items:center;padding-block:8px;}.boosters-stage__content{width:100%;min-height:0;display:grid;justify-items:center;align-content:center;gap:18px;}.boosters-stage--reveal{padding-block:0;}.boosters-stage__content--reveal{height:100%;max-height:100%;align-content:center;}.boosters-actions{width:100%;display:grid;justify-items:center;}.boosters-actions__inner{width:min(100%,280px);display:grid;}.booster-reveal-panel{width:100%;min-height:0;display:grid;justify-items:center;align-content:center;gap:18px;}.booster-reveal-panel__visual{width:100%;display:grid;justify-items:center;}.booster-reveal-panel__meta{width:min(100%,280px);display:grid;gap:10px;}.booster-reveal-panel__footer{width:100%;display:flex;justify-content:flex-end;padding-top:18px;}.booster-reveal-panel__action{width:min(100%,168px);}.booster-reveal-panel__action>.bc-btn{width:100%;font-weight:700;letter-spacing:0.04em;text-transform:uppercase;background:rgba(255,255,255,0.42);color:var(--text-muted);border-color:rgba(17,17,17,0.12);box-shadow:none;}.booster-reveal-panel__action>.bc-btn:hover{background:rgba(255,255,255,0.56);color:var(--text);border-color:rgba(17,17,17,0.16);box-shadow:none;}.booster-reveal-panel__action>.bc-btn:active{background:rgba(255,255,255,0.68);color:var(--text);border-color:rgba(17,17,17,0.2);box-shadow:none;}.reveal-meta{display:grid;gap:8px;}.reveal-meta__top{display:grid;grid-template-columns:minmax(0,1fr) auto;align-items:end;gap:12px;}.reveal-name{margin:0;color:var(--text);font-size:1.12rem;font-weight:900;font-style:italic;letter-spacing:0.01em;line-height:1;text-transform:uppercase;}.reveal-copies{margin:0;color:#b7b7b7;font-size:0.92rem;font-weight:800;letter-spacing:0.04em;line-height:1;text-transform:uppercase;white-space:nowrap;text-align:right;}.reveal-stat{margin:0;color:var(--text);white-space:nowrap;}.reveal-stat--detail{font-size:0.98rem;font-weight:900;letter-spacing:0.02em;line-height:1.05;text-transform:uppercase;text-align:left;}.reveal-stat--empty{display:block;min-height:1rem;visibility:hidden;}.reveal-position{margin:0;color:var(--text-muted);font-size:0.82rem;font-weight:800;letter-spacing:0.08em;text-transform:uppercase;white-space:nowrap;}.booster-visual{width:min(100%,280px);aspect-ratio:0.72;display:grid;place-items:center;padding:18px;border-radius:var(--radius-lg);background:#c62626;box-shadow:var(--shadow);}.booster-visual--pack{background:none;box-shadow:none;padding:0;aspect-ratio:auto;}.booster-visual__pack-img{width:100%;height:auto;object-fit:contain;filter:drop-shadow(0 12px 24px rgba(17,17,17,0.16));}.booster-visual--revealed{grid-template-rows:minmax(0,1fr) auto;align-content:stretch;background:linear-gradient(180deg,#fdf8ef 0%,#f3ede3 100%);border:1px solid var(--surface-border);max-height:clamp(320px,52vh,400px);}.booster-visual--midum{padding:0;background:none;border:0;box-shadow:none;}.booster-visual--midum>.bc-card{width:100%;height:100%;box-shadow:var(--shadow);}.booster-visual--midum>.bc-card>.bc-card-body{height:100%;}.booster-visual__detail{width:100%;height:100%;display:grid;grid-template-rows:minmax(0,1fr) auto;justify-items:center;align-items:center;gap:14px;}.booster-visual__detail--midum{padding:18px;}.booster-visual__image-wrap{width:100%;height:100%;display:grid;place-items:center;}.booster-visual__image{width:auto;height:auto;max-width:100%;max-height:180px;object-fit:contain;filter:drop-shadow(0 12px 24px rgba(17,17,17,0.16));}.booster-visual__image--midum{transform:translateY(-12px);}.booster-visual__stat{margin:0;display:inline-flex;align-items:center;justify-content:center;min-height:34px;padding:6px 12px;border-radius:999px;background:#fff;border:1px solid var(--surface-border);color:var(--text);font-size:0.78rem;font-weight:800;letter-spacing:0.04em;text-transform:uppercase;}.booster-visual__nav{width:100%;display:grid;grid-template-columns:auto 1fr auto;align-items:center;gap:10px;}.booster-visual__nav>.bc-btn{width:auto;min-width:0;}.booster-visual__index{margin:0;color:var(--text-muted);font-size:0.78rem;font-weight:800;letter-spacing:0.08em;text-transform:uppercase;text-align:center;}.boosters-stage__open{display:grid;justify-items:center;}.boosters-stage__buy{width:min(100%,280px);}.boosters-stage__buy>.bc-btn{width:100%;}.boosters-stage__price{margin:0;color:var(--text);font-size:0.92rem;font-weight:800;letter-spacing:0.08em;text-transform:uppercase;}";
+  _v2 = (_v3 + _v4);
+  var _v5;
+  _v5 = "@media (min-width:801px){.boosters-stage__content{gap:24px;}.boosters-actions__inner{width:min(100%,300px);}.booster-visual--pack{width:min(100%,340px);}}";
+  _v1 = (_v2 + _v5);
+  var _v6;
+  _v6 = "@media (max-width:800px){.booster-reveal-panel{gap:14px;}.booster-reveal-panel__meta{width:min(100%,248px);}.booster-reveal-panel__footer{padding-top:26px;}.booster-reveal-panel__action{width:min(100%,156px);}.reveal-meta{gap:6px;}.reveal-name{font-size:1rem;}.reveal-copies{font-size:0.82rem;}.reveal-stat--detail{font-size:0.88rem;}.reveal-position{font-size:0.82rem;}.booster-visual{width:min(100%,248px);padding:14px;}.booster-visual--revealed{max-height:clamp(280px,48vh,360px);}.booster-visual--midum{padding:0;}.booster-visual__detail--midum{padding:14px;}.booster-visual__image{max-height:156px;}.booster-visual__image--midum{transform:translateY(-9px);}.booster-visual__nav{gap:8px;}.boosters-stage__buy{width:min(100%,260px);}}";
+  _r0 = (_v1 + _v6);
   return _r0;
 }
 
@@ -17796,10 +17850,10 @@ export function $Dungeon$View$css$board_layout_css() {
   var _v2;
   _v2 = "";
   var _v3;
-  _v3 = ".board{position:relative;display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:10px;width:min(100%,460px);touch-action:none;transition:transform 140ms ease,filter 140ms ease;}.board--over{transform:scale(0.985);filter:blur(1px);}.ultimate-action{width:min(100%,460px);}.ultimate-action>.bc-btn{width:100%;letter-spacing:0.08em;text-transform:uppercase;}.game-over-modal{position:absolute;inset:0;display:grid;place-items:center;padding:16px;opacity:0;pointer-events:none;background:rgba(17,17,17,0);transition:opacity 140ms ease,background-color 140ms ease;}.game-over-modal--visible{opacity:1;pointer-events:auto;background:rgba(17,17,17,0.32);}.game-over-modal>.bc-card{width:min(100%,280px);}.game-over-card{display:grid;gap:12px;justify-items:center;text-align:center;}.game-over-card__action{width:100%;}.game-over-card__action>.bc-btn{width:100%;}.game-over-card__actions{width:100%;display:grid;justify-items:center;gap:12px;padding-top:4px;}.game-over-card__primary,.game-over-card__secondary{width:min(100%,280px);justify-self:center;}.game-over-card__primary>.bc-btn,.game-over-card__secondary>.bc-btn{width:100%;}.game-over-card__eyebrow{margin:0;color:var(--danger);font-size:0.74rem;font-weight:700;letter-spacing:0.06em;text-transform:uppercase;}.game-over-card__title{margin:0;font-size:1.4rem;line-height:1;}.game-over-card__body{margin:0;color:var(--text-muted);font-size:0.92rem;line-height:1.35;}";
+  _v3 = ".board{position:relative;display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:10px;width:min(100%,460px);touch-action:none;transition:transform 140ms ease,filter 140ms ease;}.board--over{transform:scale(0.985);filter:blur(1px);}.ultimate-action{width:min(100%,460px);}.ultimate-action>.bc-btn{width:100%;letter-spacing:0.08em;text-transform:uppercase;}.dungeon-pause-action{position:fixed;top:calc(env(safe-area-inset-top,0px) + 24px);right:calc(env(safe-area-inset-right,0px) + 20px);z-index:12;display:grid;justify-items:end;pointer-events:auto;}.dungeon-pause-action>.bc-btn{min-width:0;letter-spacing:0.08em;text-transform:uppercase;}.game-over-modal{position:absolute;inset:0;display:grid;place-items:center;padding:16px;opacity:0;pointer-events:none;background:rgba(17,17,17,0);transition:opacity 140ms ease,background-color 140ms ease;}.game-over-modal--visible{opacity:1;pointer-events:auto;background:rgba(17,17,17,0.32);}.game-over-modal>.bc-card{width:min(100%,280px);}.game-over-card{display:grid;gap:12px;justify-items:center;text-align:center;}.game-over-card__action{width:100%;}.game-over-card__action>.bc-btn{width:100%;}.game-over-card__actions{width:100%;display:grid;justify-items:center;gap:12px;padding-top:4px;}.game-over-card__primary,.game-over-card__secondary{width:min(100%,280px);justify-self:center;}.game-over-card__primary>.bc-btn,.game-over-card__secondary>.bc-btn{width:100%;}.game-over-card__eyebrow{margin:0;color:var(--danger);font-size:0.74rem;font-weight:700;letter-spacing:0.06em;text-transform:uppercase;}.game-over-card__title{margin:0;font-size:1.4rem;line-height:1;}.game-over-card__body{margin:0;color:var(--text-muted);font-size:0.92rem;line-height:1.35;}";
   _v1 = (_v2 + _v3);
   var _v4;
-  _v4 = "@media (max-width:800px){.board{gap:8px;width:min(100%,400px);}.ultimate-action{width:min(100%,400px);}.game-over-modal>.bc-card{width:min(100%,240px);}}";
+  _v4 = "@media (max-width:800px){.board{gap:8px;width:min(100%,400px);}.ultimate-action{width:min(100%,400px);}.dungeon-pause-action{display:none;}.game-over-modal>.bc-card{width:min(100%,240px);}}";
   _r0 = (_v1 + _v4);
   return _r0;
 }
@@ -18093,6 +18147,22 @@ export function $Dungeon$View$assets_and_labels$_dungeon_bg() {
 }
 
 export const Dungeon$View$assets_and_labels$_dungeon_bg = () => ($Dungeon$View$assets_and_labels$_dungeon_bg());
+
+export function $Dungeon$View$assets_and_labels$_menu_home_bg() {
+  var _r0;
+  _r0 = "assets/ui/menu/home-bg.png";
+  return _r0;
+}
+
+export const Dungeon$View$assets_and_labels$_menu_home_bg = () => ($Dungeon$View$assets_and_labels$_menu_home_bg());
+
+export function $Dungeon$View$assets_and_labels$_menu_upgrade_icon() {
+  var _r0;
+  _r0 = "assets/ui/menu/upgrade-icon.png";
+  return _r0;
+}
+
+export const Dungeon$View$assets_and_labels$_menu_upgrade_icon = () => ($Dungeon$View$assets_and_labels$_menu_upgrade_icon());
 
 export function $Dungeon$View$assets_and_labels$_monster_name(ref) {
   var _r0;
@@ -20023,6 +20093,14 @@ export function $Dungeon$Content$ui_dungeon_level() {
 
 export const Dungeon$Content$ui_dungeon_level = () => ($Dungeon$Content$ui_dungeon_level());
 
+export function $Dungeon$Content$ui_dungeon_pause() {
+  var _r0;
+  _r0 = $Dungeon$generated_content$ui_dungeon_pause();
+  return _r0;
+}
+
+export const Dungeon$Content$ui_dungeon_pause = () => ($Dungeon$Content$ui_dungeon_pause());
+
 export function $Dungeon$Content$ui_game_over_end_eyebrow() {
   var _r0;
   _r0 = $Dungeon$generated_content$ui_game_over_end_eyebrow();
@@ -20142,6 +20220,38 @@ export function $Dungeon$Content$ui_menu_start() {
 }
 
 export const Dungeon$Content$ui_menu_start = () => ($Dungeon$Content$ui_menu_start());
+
+export function $Dungeon$Content$ui_pause_body() {
+  var _r0;
+  _r0 = $Dungeon$generated_content$ui_pause_body();
+  return _r0;
+}
+
+export const Dungeon$Content$ui_pause_body = () => ($Dungeon$Content$ui_pause_body());
+
+export function $Dungeon$Content$ui_pause_eyebrow() {
+  var _r0;
+  _r0 = $Dungeon$generated_content$ui_pause_eyebrow();
+  return _r0;
+}
+
+export const Dungeon$Content$ui_pause_eyebrow = () => ($Dungeon$Content$ui_pause_eyebrow());
+
+export function $Dungeon$Content$ui_pause_resume() {
+  var _r0;
+  _r0 = $Dungeon$generated_content$ui_pause_resume();
+  return _r0;
+}
+
+export const Dungeon$Content$ui_pause_resume = () => ($Dungeon$Content$ui_pause_resume());
+
+export function $Dungeon$Content$ui_pause_title() {
+  var _r0;
+  _r0 = $Dungeon$generated_content$ui_pause_title();
+  return _r0;
+}
+
+export const Dungeon$Content$ui_pause_title = () => ($Dungeon$Content$ui_pause_title());
 
 export function $Dungeon$Content$ui_topbar_boosters() {
   var _r0;
@@ -20535,6 +20645,14 @@ export function $Dungeon$generated_content$ui_dungeon_level() {
 
 export const Dungeon$generated_content$ui_dungeon_level = () => ($Dungeon$generated_content$ui_dungeon_level());
 
+export function $Dungeon$generated_content$ui_dungeon_pause() {
+  var _r0;
+  _r0 = "PAUSE";
+  return _r0;
+}
+
+export const Dungeon$generated_content$ui_dungeon_pause = () => ($Dungeon$generated_content$ui_dungeon_pause());
+
 export function $Dungeon$generated_content$ui_game_over_end_eyebrow() {
   var _r0;
   _r0 = "Run ended";
@@ -20654,6 +20772,38 @@ export function $Dungeon$generated_content$ui_menu_start() {
 }
 
 export const Dungeon$generated_content$ui_menu_start = () => ($Dungeon$generated_content$ui_menu_start());
+
+export function $Dungeon$generated_content$ui_pause_body() {
+  var _r0;
+  _r0 = "Your run is on hold. Resume when you're ready.";
+  return _r0;
+}
+
+export const Dungeon$generated_content$ui_pause_body = () => ($Dungeon$generated_content$ui_pause_body());
+
+export function $Dungeon$generated_content$ui_pause_eyebrow() {
+  var _r0;
+  _r0 = "Dungeon paused";
+  return _r0;
+}
+
+export const Dungeon$generated_content$ui_pause_eyebrow = () => ($Dungeon$generated_content$ui_pause_eyebrow());
+
+export function $Dungeon$generated_content$ui_pause_resume() {
+  var _r0;
+  _r0 = "RESUME";
+  return _r0;
+}
+
+export const Dungeon$generated_content$ui_pause_resume = () => ($Dungeon$generated_content$ui_pause_resume());
+
+export function $Dungeon$generated_content$ui_pause_title() {
+  var _r0;
+  _r0 = "Pause menu";
+  return _r0;
+}
+
+export const Dungeon$generated_content$ui_pause_title = () => ($Dungeon$generated_content$ui_pause_title());
 
 export function $Dungeon$generated_content$ui_topbar_boosters() {
   var _r0;
@@ -20900,78 +21050,114 @@ export function $Dungeon$View$menu$_render_menu(meta_state) {
   _v4 = meta_state;
   profile$3 = $Dungeon$profile_helpers$active_profile(_v4);
   var _v5;
+  _v5 = "div";
   var _v6;
-  _v6 = null;
   var _v7;
   var _v8;
+  _v8 = "class";
   var _v9;
-  _v9 = meta_state;
-  _v8 = $Dungeon$View$menu$_menu_header(_v9);
+  _v9 = "menu-home-page";
+  _v7 = ({$: "attr", nam: _v8, val: _v9});
   var _v10;
+  _v10 = ({$: "nil"});
+  _v6 = ({$: "cons", head: _v7, tail: _v10});
   var _v11;
-  _v11 = "section";
   var _v12;
   var _v13;
   var _v14;
-  _v14 = "class";
+  _v14 = null;
   var _v15;
-  _v15 = "menu-stage menu-stage--home";
-  _v13 = ({$: "attr", nam: _v14, val: _v15});
   var _v16;
-  _v16 = ({$: "nil"});
-  _v12 = ({$: "cons", head: _v13, tail: _v16});
+  _v16 = "div";
   var _v17;
   var _v18;
   var _v19;
-  _v19 = "div";
+  _v19 = "class";
   var _v20;
+  _v20 = "menu-home-scene";
+  _v18 = ({$: "attr", nam: _v19, val: _v20});
   var _v21;
+  _v21 = ({$: "nil"});
+  _v17 = ({$: "cons", head: _v18, tail: _v21});
   var _v22;
-  _v22 = "class";
   var _v23;
-  _v23 = "menu-stage__content menu-stage__content--home";
-  _v21 = ({$: "attr", nam: _v22, val: _v23});
   var _v24;
-  _v24 = ({$: "nil"});
-  _v20 = ({$: "cons", head: _v21, tail: _v24});
   var _v25;
+  _v25 = meta_state;
+  _v24 = $Dungeon$View$menu$_menu_header(_v25);
   var _v26;
   var _v27;
-  _v27 = meta_state;
+  _v27 = "section";
   var _v28;
-  _v28 = hero_value$2;
   var _v29;
-  _v29 = profile$3;
-  _v26 = $Dungeon$View$menu$_menu_home(_v27, _v28, _v29);
   var _v30;
-  _v30 = ({$: "nil"});
-  _v25 = ({$: "cons", head: _v26, tail: _v30});
-  _v18 = ({$: "node", tag: _v19, attrs: _v20, kids: _v25});
+  _v30 = "class";
   var _v31;
-  _v31 = ({$: "nil"});
-  _v17 = ({$: "cons", head: _v18, tail: _v31});
-  _v10 = ({$: "node", tag: _v11, attrs: _v12, kids: _v17});
+  _v31 = "menu-stage menu-stage--home";
+  _v29 = ({$: "attr", nam: _v30, val: _v31});
   var _v32;
+  _v32 = ({$: "nil"});
+  _v28 = ({$: "cons", head: _v29, tail: _v32});
   var _v33;
-  _v33 = meta_state;
-  _v32 = $Dungeon$View$menu$_menu_actions_layout(_v33);
-  _v7 = $Dungeon$View$menu_screen$_menu_screen_frame(_v8, _v10, _v32);
   var _v34;
   var _v35;
-  _v35 = ({$: "width_full"});
+  _v35 = "div";
   var _v36;
   var _v37;
-  _v37 = ({$: "height_full"});
   var _v38;
+  _v38 = "class";
   var _v39;
-  _v39 = ({$: "inset_none"});
+  _v39 = "menu-stage__content menu-stage__content--home";
+  _v37 = ({$: "attr", nam: _v38, val: _v39});
   var _v40;
   _v40 = ({$: "nil"});
-  _v38 = ({$: "cons", head: _v39, tail: _v40});
-  _v36 = ({$: "cons", head: _v37, tail: _v38});
-  _v34 = ({$: "cons", head: _v35, tail: _v36});
-  _v5 = $Midum$Layout$frame(_v6, _v7, _v34);
-  _r0 = $Dungeon$View$menu$_menu_shell(_v5);
+  _v36 = ({$: "cons", head: _v37, tail: _v40});
+  var _v41;
+  var _v42;
+  var _v43;
+  _v43 = meta_state;
+  var _v44;
+  _v44 = hero_value$2;
+  var _v45;
+  _v45 = profile$3;
+  _v42 = $Dungeon$View$menu$_menu_home(_v43, _v44, _v45);
+  var _v46;
+  _v46 = ({$: "nil"});
+  _v41 = ({$: "cons", head: _v42, tail: _v46});
+  _v34 = ({$: "node", tag: _v35, attrs: _v36, kids: _v41});
+  var _v47;
+  _v47 = ({$: "nil"});
+  _v33 = ({$: "cons", head: _v34, tail: _v47});
+  _v26 = ({$: "node", tag: _v27, attrs: _v28, kids: _v33});
+  var _v48;
+  var _v49;
+  _v49 = meta_state;
+  _v48 = $Dungeon$View$menu$_menu_actions_layout(_v49);
+  _v23 = $Dungeon$View$menu_screen$_menu_screen_frame(_v24, _v26, _v48);
+  var _v50;
+  _v50 = ({$: "nil"});
+  _v22 = ({$: "cons", head: _v23, tail: _v50});
+  _v15 = ({$: "node", tag: _v16, attrs: _v17, kids: _v22});
+  var _v51;
+  var _v52;
+  _v52 = ({$: "width_full"});
+  var _v53;
+  var _v54;
+  _v54 = ({$: "height_full"});
+  var _v55;
+  var _v56;
+  _v56 = ({$: "inset_none"});
+  var _v57;
+  _v57 = ({$: "nil"});
+  _v55 = ({$: "cons", head: _v56, tail: _v57});
+  _v53 = ({$: "cons", head: _v54, tail: _v55});
+  _v51 = ({$: "cons", head: _v52, tail: _v53});
+  _v13 = $Midum$Layout$frame(_v14, _v15, _v51);
+  _v12 = $Dungeon$View$menu$_menu_shell(_v13);
+  var _v58;
+  _v58 = ({$: "nil"});
+  _v11 = ({$: "cons", head: _v12, tail: _v58});
+  _r0 = ({$: "node", tag: _v5, attrs: _v6, kids: _v11});
   return _r0;
 }
 
@@ -20986,7 +21172,7 @@ export function $Dungeon$View$menu$_menu_shell(body) {
   var _v3;
   var _v4;
   var _v5;
-  _v5 = 560;
+  _v5 = 1080;
   _v4 = ({$: "max_width_px", value: _v5});
   var _v6;
   var _v7;
@@ -21899,13 +22085,13 @@ export function $Dungeon$View$menu$_character_stats_row(hero_value, profile$1) {
   var _v21;
   var _v22;
   var _v23;
-  _v23 = "p";
+  _v23 = "div";
   var _v24;
   var _v25;
   var _v26;
   _v26 = "class";
   var _v27;
-  _v27 = "character-detail__stat";
+  _v27 = "character-detail__stat-heart";
   _v25 = ({$: "attr", nam: _v26, val: _v27});
   var _v28;
   _v28 = ({$: "nil"});
@@ -21913,25 +22099,89 @@ export function $Dungeon$View$menu$_character_stats_row(hero_value, profile$1) {
   var _v29;
   var _v30;
   var _v31;
+  _v31 = "div";
   var _v32;
   var _v33;
-  _v33 = Dungeon$Content$stat_hp();
   var _v34;
-  _v34 = " ";
-  _v32 = (_v33 + _v34);
+  _v34 = "class";
   var _v35;
+  _v35 = "hero-hud__heart";
+  _v33 = ({$: "attr", nam: _v34, val: _v35});
   var _v36;
-  _v36 = hero_value;
-  _v35 = $Dungeon$View$selectors$hero_base_hp_text(_v36);
-  _v31 = (_v32 + _v35);
-  _v30 = ({$: "text", value: _v31});
+  _v36 = ({$: "nil"});
+  _v32 = ({$: "cons", head: _v33, tail: _v36});
   var _v37;
-  _v37 = ({$: "nil"});
-  _v29 = ({$: "cons", head: _v30, tail: _v37});
-  _v22 = ({$: "node", tag: _v23, attrs: _v24, kids: _v29});
   var _v38;
-  _v38 = ({$: "nil"});
-  _v21 = ({$: "cons", head: _v22, tail: _v38});
+  var _v39;
+  _v39 = "img";
+  var _v40;
+  var _v41;
+  var _v42;
+  _v42 = "class";
+  var _v43;
+  _v43 = "hero-hud__heart-image";
+  _v41 = ({$: "attr", nam: _v42, val: _v43});
+  var _v44;
+  var _v45;
+  var _v46;
+  _v46 = "src";
+  var _v47;
+  _v47 = "assets/icon_heart.png";
+  _v45 = ({$: "attr", nam: _v46, val: _v47});
+  var _v48;
+  var _v49;
+  var _v50;
+  _v50 = "alt";
+  var _v51;
+  _v51 = Dungeon$Content$stat_hp();
+  _v49 = ({$: "attr", nam: _v50, val: _v51});
+  var _v52;
+  _v52 = ({$: "nil"});
+  _v48 = ({$: "cons", head: _v49, tail: _v52});
+  _v44 = ({$: "cons", head: _v45, tail: _v48});
+  _v40 = ({$: "cons", head: _v41, tail: _v44});
+  var _v53;
+  _v53 = ({$: "nil"});
+  _v38 = ({$: "node", tag: _v39, attrs: _v40, kids: _v53});
+  var _v54;
+  var _v55;
+  var _v56;
+  _v56 = "span";
+  var _v57;
+  var _v58;
+  var _v59;
+  _v59 = "class";
+  var _v60;
+  _v60 = "hero-hud__heart-value";
+  _v58 = ({$: "attr", nam: _v59, val: _v60});
+  var _v61;
+  _v61 = ({$: "nil"});
+  _v57 = ({$: "cons", head: _v58, tail: _v61});
+  var _v62;
+  var _v63;
+  var _v64;
+  var _v65;
+  _v65 = hero_value;
+  var _v66;
+  _v66 = profile$1;
+  _v64 = $Dungeon$View$selectors$hero_menu_max_hp_text(_v65, _v66);
+  _v63 = ({$: "text", value: _v64});
+  var _v67;
+  _v67 = ({$: "nil"});
+  _v62 = ({$: "cons", head: _v63, tail: _v67});
+  _v55 = ({$: "node", tag: _v56, attrs: _v57, kids: _v62});
+  var _v68;
+  _v68 = ({$: "nil"});
+  _v54 = ({$: "cons", head: _v55, tail: _v68});
+  _v37 = ({$: "cons", head: _v38, tail: _v54});
+  _v30 = ({$: "node", tag: _v31, attrs: _v32, kids: _v37});
+  var _v69;
+  _v69 = ({$: "nil"});
+  _v29 = ({$: "cons", head: _v30, tail: _v69});
+  _v22 = ({$: "node", tag: _v23, attrs: _v24, kids: _v29});
+  var _v70;
+  _v70 = ({$: "nil"});
+  _v21 = ({$: "cons", head: _v22, tail: _v70});
   _v7 = ({$: "cons", head: _v8, tail: _v21});
   _r0 = ({$: "node", tag: _v1, attrs: _v2, kids: _v7});
   return _r0;
@@ -23118,10 +23368,10 @@ export function $Dungeon$View$menu$_menu_home_hud(hero_value, profile$1) {
   var _v65;
   var _v66;
   var _v67;
+  _v67 = hero_value;
   var _v68;
-  _v68 = hero_value;
-  _v67 = $Dungeon$hero_helpers$hero_base_max_hp(_v68);
-  _v66 = $U32$show(_v67);
+  _v68 = profile$1;
+  _v66 = $Dungeon$View$selectors$hero_menu_max_hp_text(_v67, _v68);
   _v65 = ({$: "text", value: _v66});
   var _v69;
   _v69 = ({$: "nil"});
@@ -23363,7 +23613,7 @@ export function $Dungeon$View$menu$_menu_deck_button() {
   var _v3;
   _v3 = ({$: "medium"});
   var _v4;
-  _v4 = "DECK";
+  _v4 = "DUNGEON DECK";
   var _v5;
   var _v6;
   _v6 = 0;
@@ -23374,7 +23624,7 @@ export function $Dungeon$View$menu$_menu_deck_button() {
 
 export const Dungeon$View$menu$_menu_deck_button = () => ($Dungeon$View$menu$_menu_deck_button());
 
-export function $Dungeon$View$menu$_menu_upgrade_button(hero_value, profile$1) {
+export function $Dungeon$View$menu$_menu_upgrade_button() {
   var _r0;
   var _v1;
   _v1 = null;
@@ -23383,20 +23633,14 @@ export function $Dungeon$View$menu$_menu_upgrade_button(hero_value, profile$1) {
   var _v3;
   _v3 = ({$: "medium"});
   var _v4;
+  _v4 = "";
   var _v5;
-  _v5 = hero_value;
-  var _v6;
-  _v6 = profile$1;
-  _v4 = $Dungeon$View$selectors$menu_upgrade_label(_v5, _v6);
-  var _v7;
-  var _v8;
-  _v8 = 1;
-  _v7 = $Dungeon$View$menu$_fit_button_overrides(_v8);
-  _r0 = $Midum$Button$secondary(_v1, _v2, _v3, _v4, _v7);
+  _v5 = Dungeon$View$menu$_menu_upgrade_button_overrides();
+  _r0 = $Midum$Button$secondary(_v1, _v2, _v3, _v4, _v5);
   return _r0;
 }
 
-export const Dungeon$View$menu$_menu_upgrade_button = () => ((a0) => ((a1) => ($Dungeon$View$menu$_menu_upgrade_button(a0, a1))));
+export const Dungeon$View$menu$_menu_upgrade_button = () => ($Dungeon$View$menu$_menu_upgrade_button());
 
 export function $Dungeon$View$menu$_character_upgrade_button(meta_state, hero_value$1, profile$2) {
   var _r0;
@@ -23525,6 +23769,24 @@ export function $Dungeon$View$menu$_fit_button_overrides(x) {
 }
 
 export const Dungeon$View$menu$_fit_button_overrides = () => ((a0) => ($Dungeon$View$menu$_fit_button_overrides(a0)));
+
+export function $Dungeon$View$menu$_menu_upgrade_button_overrides() {
+  var _r0;
+  var _v1;
+  var _v2;
+  _v2 = Dungeon$View$assets_and_labels$_menu_upgrade_icon();
+  _v1 = ({$: "icon_left", src: _v2});
+  var _v3;
+  var _v4;
+  _v4 = ({$: "shape_square"});
+  var _v5;
+  _v5 = ({$: "nil"});
+  _v3 = ({$: "cons", head: _v4, tail: _v5});
+  _r0 = ({$: "cons", head: _v1, tail: _v3});
+  return _r0;
+}
+
+export const Dungeon$View$menu$_menu_upgrade_button_overrides = () => ($Dungeon$View$menu$_menu_upgrade_button_overrides());
 
 export function $Dungeon$View$menu$_action_button_overrides(x) {
   var _r0;
@@ -24306,7 +24568,7 @@ export function $Dungeon$View$selectors$dungeon_level_value(x) {
                         }
                         default: {
                           switch (x.$) {
-                            case "resume_prompt": {
+                            case "paused": {
                               var _m11 = x.run;
                               var run_value = _m11;
                               var _v12;
@@ -24316,7 +24578,7 @@ export function $Dungeon$View$selectors$dungeon_level_value(x) {
                             }
                             default: {
                               switch (x.$) {
-                                case "game_over": {
+                                case "resume_prompt": {
                                   var _m13 = x.run;
                                   var run_value = _m13;
                                   var _v14;
@@ -24325,7 +24587,20 @@ export function $Dungeon$View$selectors$dungeon_level_value(x) {
                                   break;
                                 }
                                 default: {
-                                  throw new Error("EFQ applied");
+                                  switch (x.$) {
+                                    case "game_over": {
+                                      var _m15 = x.run;
+                                      var run_value = _m15;
+                                      var _v16;
+                                      _v16 = run_value;
+                                      _r0 = $Dungeon$View$selectors$_run_dungeon_level_text(_v16);
+                                      break;
+                                    }
+                                    default: {
+                                      throw new Error("EFQ applied");
+                                      break;
+                                    }
+                                  }
                                   break;
                                 }
                               }
@@ -24414,7 +24689,7 @@ export function $Dungeon$View$selectors$remaining_value(x) {
                         }
                         default: {
                           switch (x.$) {
-                            case "resume_prompt": {
+                            case "paused": {
                               var _m11 = x.run;
                               var run_value = _m11;
                               var _v12;
@@ -24424,7 +24699,7 @@ export function $Dungeon$View$selectors$remaining_value(x) {
                             }
                             default: {
                               switch (x.$) {
-                                case "game_over": {
+                                case "resume_prompt": {
                                   var _m13 = x.run;
                                   var run_value = _m13;
                                   var _v14;
@@ -24433,7 +24708,20 @@ export function $Dungeon$View$selectors$remaining_value(x) {
                                   break;
                                 }
                                 default: {
-                                  throw new Error("EFQ applied");
+                                  switch (x.$) {
+                                    case "game_over": {
+                                      var _m15 = x.run;
+                                      var run_value = _m15;
+                                      var _v16;
+                                      _v16 = run_value;
+                                      _r0 = $Dungeon$View$selectors$_run_remaining_text(_v16);
+                                      break;
+                                    }
+                                    default: {
+                                      throw new Error("EFQ applied");
+                                      break;
+                                    }
+                                  }
                                   break;
                                 }
                               }
@@ -24522,7 +24810,7 @@ export function $Dungeon$View$selectors$weapon_value(x) {
                         }
                         default: {
                           switch (x.$) {
-                            case "resume_prompt": {
+                            case "paused": {
                               var _m11 = x.run;
                               var run_value = _m11;
                               var _v12;
@@ -24532,7 +24820,7 @@ export function $Dungeon$View$selectors$weapon_value(x) {
                             }
                             default: {
                               switch (x.$) {
-                                case "game_over": {
+                                case "resume_prompt": {
                                   var _m13 = x.run;
                                   var run_value = _m13;
                                   var _v14;
@@ -24541,7 +24829,20 @@ export function $Dungeon$View$selectors$weapon_value(x) {
                                   break;
                                 }
                                 default: {
-                                  throw new Error("EFQ applied");
+                                  switch (x.$) {
+                                    case "game_over": {
+                                      var _m15 = x.run;
+                                      var run_value = _m15;
+                                      var _v16;
+                                      _v16 = run_value;
+                                      _r0 = $Dungeon$View$selectors$_run_weapon_text(_v16);
+                                      break;
+                                    }
+                                    default: {
+                                      throw new Error("EFQ applied");
+                                      break;
+                                    }
+                                  }
                                   break;
                                 }
                               }
@@ -24670,7 +24971,7 @@ export function $Dungeon$View$selectors$ultimate_label(x) {
                         }
                         default: {
                           switch (x.$) {
-                            case "resume_prompt": {
+                            case "paused": {
                               var _m31 = x.run;
                               var run_value = _m31;
                               var _v32;
@@ -24680,7 +24981,7 @@ export function $Dungeon$View$selectors$ultimate_label(x) {
                             }
                             default: {
                               switch (x.$) {
-                                case "game_over": {
+                                case "resume_prompt": {
                                   var _m33 = x.run;
                                   var run_value = _m33;
                                   var _v34;
@@ -24689,7 +24990,20 @@ export function $Dungeon$View$selectors$ultimate_label(x) {
                                   break;
                                 }
                                 default: {
-                                  throw new Error("EFQ applied");
+                                  switch (x.$) {
+                                    case "game_over": {
+                                      var _m35 = x.run;
+                                      var run_value = _m35;
+                                      var _v36;
+                                      _v36 = run_value;
+                                      _r0 = $Dungeon$View$selectors$_run_ult_label(_v36);
+                                      break;
+                                    }
+                                    default: {
+                                      throw new Error("EFQ applied");
+                                      break;
+                                    }
+                                  }
                                   break;
                                 }
                               }
@@ -25238,7 +25552,7 @@ export const Dungeon$View$selectors$_character_select_enabled = () => ((a0) => (
 export function $Dungeon$View$selectors$game_over_modal_class(x) {
   var _r0;
   switch (x.$) {
-    case "resume_prompt": {
+    case "paused": {
       var _m1 = x.run;
       var run_value = _m1;
       _r0 = "game-over-modal game-over-modal--visible";
@@ -25246,15 +25560,26 @@ export function $Dungeon$View$selectors$game_over_modal_class(x) {
     }
     default: {
       switch (x.$) {
-        case "game_over": {
+        case "resume_prompt": {
           var _m2 = x.run;
           var run_value = _m2;
           _r0 = "game-over-modal game-over-modal--visible";
           break;
         }
         default: {
-          var _ = x;
-          _r0 = "game-over-modal";
+          switch (x.$) {
+            case "game_over": {
+              var _m3 = x.run;
+              var run_value = _m3;
+              _r0 = "game-over-modal game-over-modal--visible";
+              break;
+            }
+            default: {
+              var _ = x;
+              _r0 = "game-over-modal";
+              break;
+            }
+          }
           break;
         }
       }
@@ -30221,7 +30546,7 @@ export function $Dungeon$View$boosters$_boosters_shell(body) {
   var _v3;
   var _v4;
   var _v5;
-  _v5 = 560;
+  _v5 = 1080;
   _v4 = ({$: "max_width_px", value: _v5});
   var _v6;
   var _v7;
@@ -31763,58 +32088,68 @@ export function $Dungeon$View$board$_render_dungeon(meta_state, scene_value$1, r
   var _v43;
   var _v44;
   _v44 = scene_value$1;
+  _v43 = $Dungeon$View$board$_pause_action(_v44);
+  _v41 = $Midum$Layout$top_right(_v42, _v43);
   var _v45;
-  _v45 = run_value$2;
   var _v46;
-  _v46 = ui_value$3;
   var _v47;
-  _v47 = hero_value$4;
-  _v43 = $Dungeon$View$board$_board_grid(_v44, _v45, _v46, _v47);
-  _v41 = $Midum$Layout$center(_v42, _v43);
+  _v47 = null;
   var _v48;
   var _v49;
+  _v49 = scene_value$1;
   var _v50;
-  _v50 = null;
+  _v50 = run_value$2;
   var _v51;
+  _v51 = ui_value$3;
   var _v52;
-  _v52 = scene_value$1;
-  _v51 = $Dungeon$View$board$_ultimate_action(_v52);
-  _v49 = $Midum$Layout$bottom(_v50, _v51);
+  _v52 = hero_value$4;
+  _v48 = $Dungeon$View$board$_board_grid(_v49, _v50, _v51, _v52);
+  _v46 = $Midum$Layout$center(_v47, _v48);
   var _v53;
   var _v54;
   var _v55;
-  _v55 = scene_value$1;
-  _v54 = $Dungeon$View$board$_board_modal_layer(_v55);
+  _v55 = null;
   var _v56;
-  _v56 = ({$: "nil"});
-  _v53 = ({$: "cons", head: _v54, tail: _v56});
-  _v48 = ({$: "cons", head: _v49, tail: _v53});
-  _v40 = ({$: "cons", head: _v41, tail: _v48});
-  _v24 = ({$: "cons", head: _v25, tail: _v40});
-  _v22 = $Midum$Layout$overlay(_v23, _v24);
   var _v57;
+  _v57 = scene_value$1;
+  _v56 = $Dungeon$View$board$_ultimate_action(_v57);
+  _v54 = $Midum$Layout$bottom(_v55, _v56);
   var _v58;
-  _v58 = ({$: "width_full"});
   var _v59;
   var _v60;
-  _v60 = ({$: "height_full"});
+  _v60 = scene_value$1;
+  _v59 = $Dungeon$View$board$_board_modal_layer(_v60);
   var _v61;
+  _v61 = ({$: "nil"});
+  _v58 = ({$: "cons", head: _v59, tail: _v61});
+  _v53 = ({$: "cons", head: _v54, tail: _v58});
+  _v45 = ({$: "cons", head: _v46, tail: _v53});
+  _v40 = ({$: "cons", head: _v41, tail: _v45});
+  _v24 = ({$: "cons", head: _v25, tail: _v40});
+  _v22 = $Midum$Layout$overlay(_v23, _v24);
   var _v62;
-  _v62 = ({$: "inset_none"});
   var _v63;
-  _v63 = ({$: "nil"});
-  _v61 = ({$: "cons", head: _v62, tail: _v63});
-  _v59 = ({$: "cons", head: _v60, tail: _v61});
-  _v57 = ({$: "cons", head: _v58, tail: _v59});
-  _v20 = $Midum$Layout$frame(_v21, _v22, _v57);
-  _v19 = $Dungeon$View$board$_dungeon_shell(_v20);
+  _v63 = ({$: "width_full"});
   var _v64;
-  _v64 = ({$: "nil"});
-  _v18 = ({$: "cons", head: _v19, tail: _v64});
-  _v11 = ({$: "node", tag: _v12, attrs: _v13, kids: _v18});
   var _v65;
-  _v65 = ({$: "nil"});
-  _v10 = ({$: "cons", head: _v11, tail: _v65});
+  _v65 = ({$: "height_full"});
+  var _v66;
+  var _v67;
+  _v67 = ({$: "inset_none"});
+  var _v68;
+  _v68 = ({$: "nil"});
+  _v66 = ({$: "cons", head: _v67, tail: _v68});
+  _v64 = ({$: "cons", head: _v65, tail: _v66});
+  _v62 = ({$: "cons", head: _v63, tail: _v64});
+  _v20 = $Midum$Layout$frame(_v21, _v22, _v62);
+  _v19 = $Dungeon$View$board$_dungeon_shell(_v20);
+  var _v69;
+  _v69 = ({$: "nil"});
+  _v18 = ({$: "cons", head: _v19, tail: _v69});
+  _v11 = ({$: "node", tag: _v12, attrs: _v13, kids: _v18});
+  var _v70;
+  _v70 = ({$: "nil"});
+  _v10 = ({$: "cons", head: _v11, tail: _v70});
   _r0 = ({$: "node", tag: _v4, attrs: _v5, kids: _v10});
   return _r0;
 }
@@ -31830,7 +32165,7 @@ export function $Dungeon$View$board$_dungeon_shell(body) {
   var _v3;
   var _v4;
   var _v5;
-  _v5 = 760;
+  _v5 = 1080;
   _v4 = ({$: "max_width_px", value: _v5});
   var _v6;
   var _v7;
@@ -32469,10 +32804,50 @@ export function $Dungeon$View$board$_ultimate_action(scene_value) {
 
 export const Dungeon$View$board$_ultimate_action = () => ((a0) => ($Dungeon$View$board$_ultimate_action(a0)));
 
+export function $Dungeon$View$board$_pause_action(x) {
+  var _r0;
+  switch (x.$) {
+    case "running": {
+      var _m1 = x.run;
+      var run_value = _m1;
+      var _v2;
+      _v2 = "div";
+      var _v3;
+      var _v4;
+      var _v5;
+      _v5 = "class";
+      var _v6;
+      _v6 = "dungeon-pause-action";
+      _v4 = ({$: "attr", nam: _v5, val: _v6});
+      var _v7;
+      _v7 = ({$: "nil"});
+      _v3 = ({$: "cons", head: _v4, tail: _v7});
+      var _v8;
+      var _v9;
+      _v9 = Dungeon$View$board$_pause_button();
+      var _v10;
+      _v10 = ({$: "nil"});
+      _v8 = ({$: "cons", head: _v9, tail: _v10});
+      _r0 = ({$: "node", tag: _v2, attrs: _v3, kids: _v8});
+      break;
+    }
+    default: {
+      var _ = x;
+      var _v11;
+      _v11 = "";
+      _r0 = ({$: "text", value: _v11});
+      break;
+    }
+  }
+  return _r0;
+}
+
+export const Dungeon$View$board$_pause_action = () => ((a0) => ($Dungeon$View$board$_pause_action(a0)));
+
 export function $Dungeon$View$board$_board_class(x) {
   var _r0;
   switch (x.$) {
-    case "resume_prompt": {
+    case "paused": {
       var _m1 = x.run;
       var run_value = _m1;
       _r0 = "board board--over";
@@ -32480,15 +32855,26 @@ export function $Dungeon$View$board$_board_class(x) {
     }
     default: {
       switch (x.$) {
-        case "game_over": {
+        case "resume_prompt": {
           var _m2 = x.run;
           var run_value = _m2;
           _r0 = "board board--over";
           break;
         }
         default: {
-          var _ = x;
-          _r0 = "board";
+          switch (x.$) {
+            case "game_over": {
+              var _m3 = x.run;
+              var run_value = _m3;
+              _r0 = "board board--over";
+              break;
+            }
+            default: {
+              var _ = x;
+              _r0 = "board";
+              break;
+            }
+          }
           break;
         }
       }
@@ -32567,7 +32953,7 @@ export function $Dungeon$View$board$_board_modal_layer(x) {
                         }
                         default: {
                           switch (x.$) {
-                            case "resume_prompt": {
+                            case "paused": {
                               var _m15 = x.run;
                               var run_value = _m15;
                               var _v16;
@@ -32576,14 +32962,14 @@ export function $Dungeon$View$board$_board_modal_layer(x) {
                               var _v18;
                               var _v19;
                               _v19 = run_value;
-                              _v18 = ({$: "resume_prompt", run: _v19});
-                              _v17 = $Dungeon$View$board$_resume_prompt_modal(_v18);
+                              _v18 = ({$: "paused", run: _v19});
+                              _v17 = $Dungeon$View$board$_pause_modal(_v18);
                               _r0 = $Midum$Layout$center(_v16, _v17);
                               break;
                             }
                             default: {
                               switch (x.$) {
-                                case "game_over": {
+                                case "resume_prompt": {
                                   var _m20 = x.run;
                                   var run_value = _m20;
                                   var _v21;
@@ -32592,13 +32978,32 @@ export function $Dungeon$View$board$_board_modal_layer(x) {
                                   var _v23;
                                   var _v24;
                                   _v24 = run_value;
-                                  _v23 = ({$: "game_over", run: _v24});
-                                  _v22 = $Dungeon$View$board$_game_over_modal(_v23);
+                                  _v23 = ({$: "resume_prompt", run: _v24});
+                                  _v22 = $Dungeon$View$board$_resume_prompt_modal(_v23);
                                   _r0 = $Midum$Layout$center(_v21, _v22);
                                   break;
                                 }
                                 default: {
-                                  throw new Error("EFQ applied");
+                                  switch (x.$) {
+                                    case "game_over": {
+                                      var _m25 = x.run;
+                                      var run_value = _m25;
+                                      var _v26;
+                                      _v26 = null;
+                                      var _v27;
+                                      var _v28;
+                                      var _v29;
+                                      _v29 = run_value;
+                                      _v28 = ({$: "game_over", run: _v29});
+                                      _v27 = $Dungeon$View$board$_game_over_modal(_v28);
+                                      _r0 = $Midum$Layout$center(_v26, _v27);
+                                      break;
+                                    }
+                                    default: {
+                                      throw new Error("EFQ applied");
+                                      break;
+                                    }
+                                  }
                                   break;
                                 }
                               }
@@ -32627,6 +33032,192 @@ export function $Dungeon$View$board$_board_modal_layer(x) {
 }
 
 export const Dungeon$View$board$_board_modal_layer = () => ((a0) => ($Dungeon$View$board$_board_modal_layer(a0)));
+
+export function $Dungeon$View$board$_pause_modal(scene_value) {
+  var _r0;
+  var _v1;
+  _v1 = "div";
+  var _v2;
+  var _v3;
+  var _v4;
+  _v4 = "class";
+  var _v5;
+  var _v6;
+  _v6 = scene_value;
+  _v5 = $Dungeon$View$selectors$game_over_modal_class(_v6);
+  _v3 = ({$: "attr", nam: _v4, val: _v5});
+  var _v7;
+  _v7 = ({$: "nil"});
+  _v2 = ({$: "cons", head: _v3, tail: _v7});
+  var _v8;
+  var _v9;
+  var _v10;
+  _v10 = null;
+  var _v11;
+  var _v12;
+  _v12 = "div";
+  var _v13;
+  var _v14;
+  var _v15;
+  _v15 = "class";
+  var _v16;
+  _v16 = "game-over-card";
+  _v14 = ({$: "attr", nam: _v15, val: _v16});
+  var _v17;
+  _v17 = ({$: "nil"});
+  _v13 = ({$: "cons", head: _v14, tail: _v17});
+  var _v18;
+  var _v19;
+  var _v20;
+  _v20 = "p";
+  var _v21;
+  var _v22;
+  var _v23;
+  _v23 = "class";
+  var _v24;
+  _v24 = "game-over-card__eyebrow";
+  _v22 = ({$: "attr", nam: _v23, val: _v24});
+  var _v25;
+  _v25 = ({$: "nil"});
+  _v21 = ({$: "cons", head: _v22, tail: _v25});
+  var _v26;
+  var _v27;
+  var _v28;
+  _v28 = Dungeon$Content$ui_pause_eyebrow();
+  _v27 = ({$: "text", value: _v28});
+  var _v29;
+  _v29 = ({$: "nil"});
+  _v26 = ({$: "cons", head: _v27, tail: _v29});
+  _v19 = ({$: "node", tag: _v20, attrs: _v21, kids: _v26});
+  var _v30;
+  var _v31;
+  var _v32;
+  _v32 = "h2";
+  var _v33;
+  var _v34;
+  var _v35;
+  _v35 = "class";
+  var _v36;
+  _v36 = "game-over-card__title";
+  _v34 = ({$: "attr", nam: _v35, val: _v36});
+  var _v37;
+  _v37 = ({$: "nil"});
+  _v33 = ({$: "cons", head: _v34, tail: _v37});
+  var _v38;
+  var _v39;
+  var _v40;
+  _v40 = Dungeon$Content$ui_pause_title();
+  _v39 = ({$: "text", value: _v40});
+  var _v41;
+  _v41 = ({$: "nil"});
+  _v38 = ({$: "cons", head: _v39, tail: _v41});
+  _v31 = ({$: "node", tag: _v32, attrs: _v33, kids: _v38});
+  var _v42;
+  var _v43;
+  var _v44;
+  _v44 = "p";
+  var _v45;
+  var _v46;
+  var _v47;
+  _v47 = "class";
+  var _v48;
+  _v48 = "game-over-card__body";
+  _v46 = ({$: "attr", nam: _v47, val: _v48});
+  var _v49;
+  _v49 = ({$: "nil"});
+  _v45 = ({$: "cons", head: _v46, tail: _v49});
+  var _v50;
+  var _v51;
+  var _v52;
+  _v52 = Dungeon$Content$ui_pause_body();
+  _v51 = ({$: "text", value: _v52});
+  var _v53;
+  _v53 = ({$: "nil"});
+  _v50 = ({$: "cons", head: _v51, tail: _v53});
+  _v43 = ({$: "node", tag: _v44, attrs: _v45, kids: _v50});
+  var _v54;
+  var _v55;
+  var _v56;
+  _v56 = "section";
+  var _v57;
+  var _v58;
+  var _v59;
+  _v59 = "class";
+  var _v60;
+  _v60 = "game-over-card__actions";
+  _v58 = ({$: "attr", nam: _v59, val: _v60});
+  var _v61;
+  _v61 = ({$: "nil"});
+  _v57 = ({$: "cons", head: _v58, tail: _v61});
+  var _v62;
+  var _v63;
+  var _v64;
+  _v64 = "div";
+  var _v65;
+  var _v66;
+  var _v67;
+  _v67 = "class";
+  var _v68;
+  _v68 = "menu-secondary-action game-over-card__secondary";
+  _v66 = ({$: "attr", nam: _v67, val: _v68});
+  var _v69;
+  _v69 = ({$: "nil"});
+  _v65 = ({$: "cons", head: _v66, tail: _v69});
+  var _v70;
+  var _v71;
+  _v71 = Dungeon$View$board$_resume_menu_button();
+  var _v72;
+  _v72 = ({$: "nil"});
+  _v70 = ({$: "cons", head: _v71, tail: _v72});
+  _v63 = ({$: "node", tag: _v64, attrs: _v65, kids: _v70});
+  var _v73;
+  var _v74;
+  var _v75;
+  _v75 = "div";
+  var _v76;
+  var _v77;
+  var _v78;
+  _v78 = "class";
+  var _v79;
+  _v79 = "menu-start-action game-over-card__primary";
+  _v77 = ({$: "attr", nam: _v78, val: _v79});
+  var _v80;
+  _v80 = ({$: "nil"});
+  _v76 = ({$: "cons", head: _v77, tail: _v80});
+  var _v81;
+  var _v82;
+  _v82 = Dungeon$View$board$_pause_resume_button();
+  var _v83;
+  _v83 = ({$: "nil"});
+  _v81 = ({$: "cons", head: _v82, tail: _v83});
+  _v74 = ({$: "node", tag: _v75, attrs: _v76, kids: _v81});
+  var _v84;
+  _v84 = ({$: "nil"});
+  _v73 = ({$: "cons", head: _v74, tail: _v84});
+  _v62 = ({$: "cons", head: _v63, tail: _v73});
+  _v55 = ({$: "node", tag: _v56, attrs: _v57, kids: _v62});
+  var _v85;
+  _v85 = ({$: "nil"});
+  _v54 = ({$: "cons", head: _v55, tail: _v85});
+  _v42 = ({$: "cons", head: _v43, tail: _v54});
+  _v30 = ({$: "cons", head: _v31, tail: _v42});
+  _v18 = ({$: "cons", head: _v19, tail: _v30});
+  _v11 = ({$: "node", tag: _v12, attrs: _v13, kids: _v18});
+  var _v86;
+  var _v87;
+  _v87 = ({$: "padding_md"});
+  var _v88;
+  _v88 = ({$: "nil"});
+  _v86 = ({$: "cons", head: _v87, tail: _v88});
+  _v9 = $Midum$Card$neutral(_v10, _v11, _v86);
+  var _v89;
+  _v89 = ({$: "nil"});
+  _v8 = ({$: "cons", head: _v9, tail: _v89});
+  _r0 = ({$: "node", tag: _v1, attrs: _v2, kids: _v8});
+  return _r0;
+}
+
+export const Dungeon$View$board$_pause_modal = () => ((a0) => ($Dungeon$View$board$_pause_modal(a0)));
 
 export function $Dungeon$View$board$_resume_prompt_modal(scene_value) {
   var _r0;
@@ -33352,6 +33943,46 @@ export function $Dungeon$View$board$_game_over_ok_button() {
 }
 
 export const Dungeon$View$board$_game_over_ok_button = () => ($Dungeon$View$board$_game_over_ok_button());
+
+export function $Dungeon$View$board$_pause_button() {
+  var _r0;
+  var _v1;
+  _v1 = null;
+  var _v2;
+  _v2 = ({$: "pause_dungeon"});
+  var _v3;
+  _v3 = ({$: "small"});
+  var _v4;
+  _v4 = Dungeon$Content$ui_dungeon_pause();
+  var _v5;
+  _v5 = ({$: "nil"});
+  _r0 = $Midum$Button$secondary(_v1, _v2, _v3, _v4, _v5);
+  return _r0;
+}
+
+export const Dungeon$View$board$_pause_button = () => ($Dungeon$View$board$_pause_button());
+
+export function $Dungeon$View$board$_pause_resume_button() {
+  var _r0;
+  var _v1;
+  _v1 = null;
+  var _v2;
+  _v2 = ({$: "resume_dungeon"});
+  var _v3;
+  _v3 = ({$: "large"});
+  var _v4;
+  _v4 = Dungeon$Content$ui_pause_resume();
+  var _v5;
+  var _v6;
+  _v6 = ({$: "width_full"});
+  var _v7;
+  _v7 = ({$: "nil"});
+  _v5 = ({$: "cons", head: _v6, tail: _v7});
+  _r0 = $Midum$Button$primary(_v1, _v2, _v3, _v4, _v5);
+  return _r0;
+}
+
+export const Dungeon$View$board$_pause_resume_button = () => ($Dungeon$View$board$_pause_resume_button());
 
 export function $Dungeon$View$board$_resume_dungeon_button() {
   var _r0;
@@ -36502,7 +37133,7 @@ export function $Dungeon$App$scene_flow$_next_state_scene(evt, x$1) {
                                 }
                                 default: {
                                   switch (_m4.$) {
-                                    case "resume_prompt": {
+                                    case "paused": {
                                       var _m46 = _m4.run;
                                       var run_value$2 = _m46;
                                       var next_seed_value$3 = _m5;
@@ -36517,12 +37148,12 @@ export function $Dungeon$App$scene_flow$_next_state_scene(evt, x$1) {
                                       _v50 = next_seed_value$3;
                                       var _v51;
                                       _v51 = ui_value$4;
-                                      _r0 = $Dungeon$App$update_resume_prompt(_v47, _v48, _v49, _v50, _v51);
+                                      _r0 = $Dungeon$App$update_paused(_v47, _v48, _v49, _v50, _v51);
                                       break;
                                     }
                                     default: {
                                       switch (_m4.$) {
-                                        case "game_over": {
+                                        case "resume_prompt": {
                                           var _m52 = _m4.run;
                                           var run_value$2 = _m52;
                                           var next_seed_value$3 = _m5;
@@ -36537,11 +37168,34 @@ export function $Dungeon$App$scene_flow$_next_state_scene(evt, x$1) {
                                           _v56 = next_seed_value$3;
                                           var _v57;
                                           _v57 = ui_value$4;
-                                          _r0 = $Dungeon$App$update_game_over(_v53, _v54, _v55, _v56, _v57);
+                                          _r0 = $Dungeon$App$update_resume_prompt(_v53, _v54, _v55, _v56, _v57);
                                           break;
                                         }
                                         default: {
-                                          throw new Error("EFQ applied");
+                                          switch (_m4.$) {
+                                            case "game_over": {
+                                              var _m58 = _m4.run;
+                                              var run_value$2 = _m58;
+                                              var next_seed_value$3 = _m5;
+                                              var ui_value$4 = _m2;
+                                              var _v59;
+                                              _v59 = evt;
+                                              var _v60;
+                                              _v60 = meta_state$1;
+                                              var _v61;
+                                              _v61 = run_value$2;
+                                              var _v62;
+                                              _v62 = next_seed_value$3;
+                                              var _v63;
+                                              _v63 = ui_value$4;
+                                              _r0 = $Dungeon$App$update_game_over(_v59, _v60, _v61, _v62, _v63);
+                                              break;
+                                            }
+                                            default: {
+                                              throw new Error("EFQ applied");
+                                              break;
+                                            }
+                                          }
                                           break;
                                         }
                                       }
@@ -40377,7 +41031,7 @@ export function $Dungeon$App$update_running(x, x$1, x$2, x$3, x$4) {
     }
     default: {
       switch (x.$) {
-        case "ultimate": {
+        case "pause_dungeon": {
           var meta_state = x$1;
           var run_value$1 = x$2;
           var next_seed_value$2 = x$3;
@@ -40385,53 +41039,76 @@ export function $Dungeon$App$update_running(x, x$1, x$2, x$3, x$4) {
           var _v7;
           _v7 = meta_state;
           var _v8;
-          _v8 = run_value$1;
           var _v9;
-          _v9 = next_seed_value$2;
+          _v9 = run_value$1;
+          _v8 = ({$: "paused", run: _v9});
           var _v10;
-          _v10 = ui_value$3;
-          _r0 = $Dungeon$App$update_running$_update_running_ultimate(_v7, _v8, _v9, _v10);
+          _v10 = next_seed_value$2;
+          var _v11;
+          _v11 = ui_value$3;
+          _r0 = $Dungeon$App$state_helpers$_state(_v7, _v8, _v10, _v11);
           break;
         }
         default: {
           switch (x.$) {
-            case "move": {
-              var _m11 = x.dir;
-              var dir = _m11;
-              var meta_state$1 = x$1;
-              var run_value$2 = x$2;
-              var next_seed_value$3 = x$3;
-              var ui_value$4 = x$4;
+            case "ultimate": {
+              var meta_state = x$1;
+              var run_value$1 = x$2;
+              var next_seed_value$2 = x$3;
+              var ui_value$3 = x$4;
               var _v12;
-              _v12 = meta_state$1;
+              _v12 = meta_state;
               var _v13;
-              _v13 = run_value$2;
+              _v13 = run_value$1;
               var _v14;
-              _v14 = next_seed_value$3;
+              _v14 = next_seed_value$2;
               var _v15;
-              _v15 = dir;
-              var _v16;
-              _v16 = ui_value$4;
-              _r0 = $Dungeon$App$update_running$_apply_turn(_v12, _v13, _v14, _v15, _v16);
+              _v15 = ui_value$3;
+              _r0 = $Dungeon$App$update_running$_update_running_ultimate(_v12, _v13, _v14, _v15);
               break;
             }
             default: {
-              var _ = x;
-              var meta_state$1 = x$1;
-              var run_value$2 = x$2;
-              var next_seed_value$3 = x$3;
-              var ui_value$4 = x$4;
-              var _v17;
-              _v17 = meta_state$1;
-              var _v18;
-              var _v19;
-              _v19 = run_value$2;
-              _v18 = ({$: "running", run: _v19});
-              var _v20;
-              _v20 = next_seed_value$3;
-              var _v21;
-              _v21 = ui_value$4;
-              _r0 = $Dungeon$App$state_helpers$_state(_v17, _v18, _v20, _v21);
+              switch (x.$) {
+                case "move": {
+                  var _m16 = x.dir;
+                  var dir = _m16;
+                  var meta_state$1 = x$1;
+                  var run_value$2 = x$2;
+                  var next_seed_value$3 = x$3;
+                  var ui_value$4 = x$4;
+                  var _v17;
+                  _v17 = meta_state$1;
+                  var _v18;
+                  _v18 = run_value$2;
+                  var _v19;
+                  _v19 = next_seed_value$3;
+                  var _v20;
+                  _v20 = dir;
+                  var _v21;
+                  _v21 = ui_value$4;
+                  _r0 = $Dungeon$App$update_running$_apply_turn(_v17, _v18, _v19, _v20, _v21);
+                  break;
+                }
+                default: {
+                  var _ = x;
+                  var meta_state$1 = x$1;
+                  var run_value$2 = x$2;
+                  var next_seed_value$3 = x$3;
+                  var ui_value$4 = x$4;
+                  var _v22;
+                  _v22 = meta_state$1;
+                  var _v23;
+                  var _v24;
+                  _v24 = run_value$2;
+                  _v23 = ({$: "running", run: _v24});
+                  var _v25;
+                  _v25 = next_seed_value$3;
+                  var _v26;
+                  _v26 = ui_value$4;
+                  _r0 = $Dungeon$App$state_helpers$_state(_v22, _v23, _v25, _v26);
+                  break;
+                }
+              }
               break;
             }
           }
@@ -43141,6 +43818,73 @@ export function $Dungeon$UltimateCutins$duration_ticks_for_hero_ref(hero_ref) {
 
 export const Dungeon$UltimateCutins$duration_ticks_for_hero_ref = () => ((a0) => ($Dungeon$UltimateCutins$duration_ticks_for_hero_ref(a0)));
 
+export function $Dungeon$App$update_paused(x, x$1, x$2, x$3, x$4) {
+  var _r0;
+  switch (x.$) {
+    case "resume_dungeon": {
+      var meta_state = x$1;
+      var run_value$1 = x$2;
+      var next_seed_value$2 = x$3;
+      var ui_value$3 = x$4;
+      var _v1;
+      _v1 = meta_state;
+      var _v2;
+      var _v3;
+      _v3 = run_value$1;
+      _v2 = ({$: "running", run: _v3});
+      var _v4;
+      _v4 = next_seed_value$2;
+      var _v5;
+      _v5 = ui_value$3;
+      _r0 = $Dungeon$App$state_helpers$_state(_v1, _v2, _v4, _v5);
+      break;
+    }
+    default: {
+      switch (x.$) {
+        case "abandon_dungeon": {
+          var meta_state = x$1;
+          var run_value$1 = x$2;
+          var next_seed_value$2 = x$3;
+          var ui_value$3 = x$4;
+          var _v6;
+          _v6 = meta_state;
+          var _v7;
+          _v7 = ({$: "setup"});
+          var _v8;
+          _v8 = next_seed_value$2;
+          var _v9;
+          _v9 = Dungeon$default_ui();
+          _r0 = $Dungeon$App$state_helpers$_state(_v6, _v7, _v8, _v9);
+          break;
+        }
+        default: {
+          var _ = x;
+          var meta_state$1 = x$1;
+          var run_value$2 = x$2;
+          var next_seed_value$3 = x$3;
+          var ui_value$4 = x$4;
+          var _v10;
+          _v10 = meta_state$1;
+          var _v11;
+          var _v12;
+          _v12 = run_value$2;
+          _v11 = ({$: "paused", run: _v12});
+          var _v13;
+          _v13 = next_seed_value$3;
+          var _v14;
+          _v14 = ui_value$4;
+          _r0 = $Dungeon$App$state_helpers$_state(_v10, _v11, _v13, _v14);
+          break;
+        }
+      }
+      break;
+    }
+  }
+  return _r0;
+}
+
+export const Dungeon$App$update_paused = () => ((a0) => ((a1) => ((a2) => ((a3) => ((a4) => ($Dungeon$App$update_paused(a0, a1, a2, a3, a4)))))));
+
 export function $Dungeon$App$update_resume_prompt(x, x$1, x$2, x$3, x$4) {
   var _r0;
   switch (x.$) {
@@ -43446,15 +44190,26 @@ export function $Dungeon$save_to_string$_saved_scene_kind(x) {
         }
         default: {
           switch (x.$) {
-            case "resume_prompt": {
+            case "paused": {
               var _m4 = x.run;
               var run_value = _m4;
               _r0 = "1";
               break;
             }
             default: {
-              var _ = x;
-              _r0 = "0";
+              switch (x.$) {
+                case "resume_prompt": {
+                  var _m5 = x.run;
+                  var run_value = _m5;
+                  _r0 = "1";
+                  break;
+                }
+                default: {
+                  var _ = x;
+                  _r0 = "0";
+                  break;
+                }
+              }
               break;
             }
           }
@@ -43494,7 +44249,7 @@ export function $Dungeon$save_to_string$_saved_run_core(x) {
         }
         default: {
           switch (x.$) {
-            case "resume_prompt": {
+            case "paused": {
               var _m6 = x.run;
               var run_value = _m6;
               var _v7;
@@ -43503,8 +44258,21 @@ export function $Dungeon$save_to_string$_saved_run_core(x) {
               break;
             }
             default: {
-              var _ = x;
-              _r0 = "";
+              switch (x.$) {
+                case "resume_prompt": {
+                  var _m8 = x.run;
+                  var run_value = _m8;
+                  var _v9;
+                  _v9 = run_value;
+                  _r0 = $Dungeon$run_snapshot_to_string$run_core_string(_v9);
+                  break;
+                }
+                default: {
+                  var _ = x;
+                  _r0 = "";
+                  break;
+                }
+              }
               break;
             }
           }
@@ -43544,7 +44312,7 @@ export function $Dungeon$save_to_string$_saved_run_weapon(x) {
         }
         default: {
           switch (x.$) {
-            case "resume_prompt": {
+            case "paused": {
               var _m6 = x.run;
               var run_value = _m6;
               var _v7;
@@ -43553,8 +44321,21 @@ export function $Dungeon$save_to_string$_saved_run_weapon(x) {
               break;
             }
             default: {
-              var _ = x;
-              _r0 = "0";
+              switch (x.$) {
+                case "resume_prompt": {
+                  var _m8 = x.run;
+                  var run_value = _m8;
+                  var _v9;
+                  _v9 = run_value;
+                  _r0 = $Dungeon$run_snapshot_to_string$run_weapon_string(_v9);
+                  break;
+                }
+                default: {
+                  var _ = x;
+                  _r0 = "0";
+                  break;
+                }
+              }
               break;
             }
           }
@@ -43594,7 +44375,7 @@ export function $Dungeon$save_to_string$_saved_run_board(x) {
         }
         default: {
           switch (x.$) {
-            case "resume_prompt": {
+            case "paused": {
               var _m6 = x.run;
               var run_value = _m6;
               var _v7;
@@ -43603,8 +44384,21 @@ export function $Dungeon$save_to_string$_saved_run_board(x) {
               break;
             }
             default: {
-              var _ = x;
-              _r0 = "";
+              switch (x.$) {
+                case "resume_prompt": {
+                  var _m8 = x.run;
+                  var run_value = _m8;
+                  var _v9;
+                  _v9 = run_value;
+                  _r0 = $Dungeon$run_snapshot_to_string$run_board_string(_v9);
+                  break;
+                }
+                default: {
+                  var _ = x;
+                  _r0 = "";
+                  break;
+                }
+              }
               break;
             }
           }
@@ -43644,7 +44438,7 @@ export function $Dungeon$save_to_string$_saved_run_blueprint(x) {
         }
         default: {
           switch (x.$) {
-            case "resume_prompt": {
+            case "paused": {
               var _m6 = x.run;
               var run_value = _m6;
               var _v7;
@@ -43653,8 +44447,21 @@ export function $Dungeon$save_to_string$_saved_run_blueprint(x) {
               break;
             }
             default: {
-              var _ = x;
-              _r0 = "";
+              switch (x.$) {
+                case "resume_prompt": {
+                  var _m8 = x.run;
+                  var run_value = _m8;
+                  var _v9;
+                  _v9 = run_value;
+                  _r0 = $Dungeon$run_snapshot_to_string$run_blueprint_string(_v9);
+                  break;
+                }
+                default: {
+                  var _ = x;
+                  _r0 = "";
+                  break;
+                }
+              }
               break;
             }
           }
@@ -43694,7 +44501,7 @@ export function $Dungeon$save_to_string$_saved_run_counts(x) {
         }
         default: {
           switch (x.$) {
-            case "resume_prompt": {
+            case "paused": {
               var _m6 = x.run;
               var run_value = _m6;
               var _v7;
@@ -43703,8 +44510,21 @@ export function $Dungeon$save_to_string$_saved_run_counts(x) {
               break;
             }
             default: {
-              var _ = x;
-              _r0 = "";
+              switch (x.$) {
+                case "resume_prompt": {
+                  var _m8 = x.run;
+                  var run_value = _m8;
+                  var _v9;
+                  _v9 = run_value;
+                  _r0 = $Dungeon$run_snapshot_to_string$run_counts_string(_v9);
+                  break;
+                }
+                default: {
+                  var _ = x;
+                  _r0 = "";
+                  break;
+                }
+              }
               break;
             }
           }
@@ -46225,20 +47045,16 @@ export function $Dungeon$View$menu$_menu_upgrade_overlay$_0(meta_state, hero_val
     _v2 = ({$: "cons", head: _v3, tail: _v6});
     var _v7;
     var _v8;
+    _v8 = Dungeon$View$menu$_menu_upgrade_button();
     var _v9;
-    _v9 = hero_value$1;
-    var _v10;
-    _v10 = profile$2;
-    _v8 = $Dungeon$View$menu$_menu_upgrade_button(_v9, _v10);
-    var _v11;
-    _v11 = ({$: "nil"});
-    _v7 = ({$: "cons", head: _v8, tail: _v11});
+    _v9 = ({$: "nil"});
+    _v7 = ({$: "cons", head: _v8, tail: _v9});
     _r0 = ({$: "node", tag: _v1, attrs: _v2, kids: _v7});
   } else {
     var _$3 = x$3;
-    var _v12;
-    _v12 = "";
-    _r0 = ({$: "text", value: _v12});
+    var _v10;
+    _v10 = "";
+    _r0 = ({$: "text", value: _v10});
   }
   return _r0;
 }
@@ -46441,163 +47257,195 @@ export function $Dungeon$View$boosters$_booster_actions$_0(meta_state, x$1) {
   var _r0;
   if (((x$1) >>> 0) === 1) {
     var _v1;
-    _v1 = null;
+    _v1 = "section";
     var _v2;
     var _v3;
-    _v3 = null;
     var _v4;
+    _v4 = "class";
     var _v5;
+    _v5 = "boosters-actions";
+    _v3 = ({$: "attr", nam: _v4, val: _v5});
     var _v6;
-    _v6 = null;
+    _v6 = ({$: "nil"});
+    _v2 = ({$: "cons", head: _v3, tail: _v6});
     var _v7;
     var _v8;
-    _v8 = 0;
-    _v7 = ({$: "buy_pack", ref: _v8});
     var _v9;
-    _v9 = ({$: "medium"});
+    _v9 = "div";
     var _v10;
     var _v11;
     var _v12;
-    _v12 = Dungeon$Content$ui_booster_buy_more_prefix();
+    _v12 = "class";
     var _v13;
+    _v13 = "boosters-actions__inner";
+    _v11 = ({$: "attr", nam: _v12, val: _v13});
     var _v14;
-    _v14 = Dungeon$View$selectors$active_pack_price();
-    _v13 = $U32$show(_v14);
-    _v11 = (_v12 + _v13);
+    _v14 = ({$: "nil"});
+    _v10 = ({$: "cons", head: _v11, tail: _v14});
     var _v15;
-    _v15 = Dungeon$Content$ui_booster_currency_suffix();
-    _v10 = (_v11 + _v15);
     var _v16;
     var _v17;
+    _v17 = null;
     var _v18;
-    _v18 = meta_state;
-    _v17 = $Dungeon$View$selectors$booster_buy_enabled(_v18);
-    _v16 = $Dungeon$View$menu$_full_button_overrides(_v17);
-    _v5 = $Midum$Button$secondary(_v6, _v7, _v9, _v10, _v16);
     var _v19;
     var _v20;
+    _v20 = null;
     var _v21;
-    _v21 = null;
     var _v22;
+    _v22 = 0;
+    _v21 = ({$: "buy_pack", ref: _v22});
     var _v23;
-    _v23 = 0;
-    _v22 = ({$: "open_pack", ref: _v23});
+    _v23 = ({$: "medium"});
     var _v24;
-    _v24 = ({$: "large"});
     var _v25;
-    _v25 = Dungeon$Content$ui_booster_open();
     var _v26;
+    _v26 = Dungeon$Content$ui_booster_buy_more_prefix();
     var _v27;
-    _v27 = 1;
-    _v26 = $Dungeon$View$menu$_full_button_overrides(_v27);
-    _v20 = $Midum$Button$primary(_v21, _v22, _v24, _v25, _v26);
     var _v28;
-    _v28 = ({$: "nil"});
-    _v19 = ({$: "cons", head: _v20, tail: _v28});
-    _v4 = ({$: "cons", head: _v5, tail: _v19});
+    _v28 = Dungeon$View$selectors$active_pack_price();
+    _v27 = $U32$show(_v28);
+    _v25 = (_v26 + _v27);
     var _v29;
+    _v29 = Dungeon$Content$ui_booster_currency_suffix();
+    _v24 = (_v25 + _v29);
     var _v30;
-    _v30 = ({$: "direction_column"});
     var _v31;
     var _v32;
-    _v32 = ({$: "gap_sm"});
+    _v32 = meta_state;
+    _v31 = $Dungeon$View$selectors$booster_buy_enabled(_v32);
+    _v30 = $Dungeon$View$menu$_full_button_overrides(_v31);
+    _v19 = $Midum$Button$secondary(_v20, _v21, _v23, _v24, _v30);
     var _v33;
     var _v34;
-    _v34 = ({$: "align_stretch"});
     var _v35;
-    _v35 = ({$: "nil"});
-    _v33 = ({$: "cons", head: _v34, tail: _v35});
-    _v31 = ({$: "cons", head: _v32, tail: _v33});
-    _v29 = ({$: "cons", head: _v30, tail: _v31});
-    _v2 = $Midum$Layout$group(_v3, _v4, _v29);
+    _v35 = null;
     var _v36;
     var _v37;
+    _v37 = 0;
+    _v36 = ({$: "open_pack", ref: _v37});
     var _v38;
-    _v38 = 280;
-    _v37 = ({$: "width_px", value: _v38});
+    _v38 = ({$: "large"});
     var _v39;
+    _v39 = Dungeon$Content$ui_booster_open();
     var _v40;
-    _v40 = ({$: "height_fit"});
     var _v41;
+    _v41 = 1;
+    _v40 = $Dungeon$View$menu$_full_button_overrides(_v41);
+    _v34 = $Midum$Button$primary(_v35, _v36, _v38, _v39, _v40);
     var _v42;
-    _v42 = ({$: "inset_none"});
+    _v42 = ({$: "nil"});
+    _v33 = ({$: "cons", head: _v34, tail: _v42});
+    _v18 = ({$: "cons", head: _v19, tail: _v33});
     var _v43;
-    _v43 = ({$: "nil"});
-    _v41 = ({$: "cons", head: _v42, tail: _v43});
-    _v39 = ({$: "cons", head: _v40, tail: _v41});
-    _v36 = ({$: "cons", head: _v37, tail: _v39});
-    _r0 = $Midum$Layout$frame(_v1, _v2, _v36);
-  } else {
-    var _$1 = x$1;
     var _v44;
-    _v44 = null;
+    _v44 = ({$: "direction_column"});
     var _v45;
     var _v46;
-    _v46 = null;
+    _v46 = ({$: "gap_sm"});
     var _v47;
     var _v48;
+    _v48 = ({$: "align_stretch"});
     var _v49;
-    _v49 = null;
+    _v49 = ({$: "nil"});
+    _v47 = ({$: "cons", head: _v48, tail: _v49});
+    _v45 = ({$: "cons", head: _v46, tail: _v47});
+    _v43 = ({$: "cons", head: _v44, tail: _v45});
+    _v16 = $Midum$Layout$group(_v17, _v18, _v43);
     var _v50;
+    _v50 = ({$: "nil"});
+    _v15 = ({$: "cons", head: _v16, tail: _v50});
+    _v8 = ({$: "node", tag: _v9, attrs: _v10, kids: _v15});
     var _v51;
-    _v51 = 0;
-    _v50 = ({$: "buy_pack", ref: _v51});
+    _v51 = ({$: "nil"});
+    _v7 = ({$: "cons", head: _v8, tail: _v51});
+    _r0 = ({$: "node", tag: _v1, attrs: _v2, kids: _v7});
+  } else {
+    var _$1 = x$1;
     var _v52;
-    _v52 = ({$: "large"});
+    _v52 = "section";
     var _v53;
     var _v54;
     var _v55;
-    _v55 = Dungeon$Content$ui_booster_buy_prefix();
+    _v55 = "class";
     var _v56;
+    _v56 = "boosters-actions";
+    _v54 = ({$: "attr", nam: _v55, val: _v56});
     var _v57;
-    _v57 = Dungeon$View$selectors$active_pack_price();
-    _v56 = $U32$show(_v57);
-    _v54 = (_v55 + _v56);
+    _v57 = ({$: "nil"});
+    _v53 = ({$: "cons", head: _v54, tail: _v57});
     var _v58;
-    _v58 = Dungeon$Content$ui_booster_currency_suffix();
-    _v53 = (_v54 + _v58);
     var _v59;
     var _v60;
+    _v60 = "div";
     var _v61;
-    _v61 = meta_state;
-    _v60 = $Dungeon$View$selectors$booster_buy_enabled(_v61);
-    _v59 = $Dungeon$View$menu$_full_button_overrides(_v60);
-    _v48 = $Midum$Button$primary(_v49, _v50, _v52, _v53, _v59);
     var _v62;
-    _v62 = ({$: "nil"});
-    _v47 = ({$: "cons", head: _v48, tail: _v62});
     var _v63;
+    _v63 = "class";
     var _v64;
-    _v64 = ({$: "direction_column"});
+    _v64 = "boosters-actions__inner";
+    _v62 = ({$: "attr", nam: _v63, val: _v64});
     var _v65;
+    _v65 = ({$: "nil"});
+    _v61 = ({$: "cons", head: _v62, tail: _v65});
     var _v66;
-    _v66 = ({$: "gap_sm"});
     var _v67;
     var _v68;
-    _v68 = ({$: "align_stretch"});
+    _v68 = null;
     var _v69;
-    _v69 = ({$: "nil"});
-    _v67 = ({$: "cons", head: _v68, tail: _v69});
-    _v65 = ({$: "cons", head: _v66, tail: _v67});
-    _v63 = ({$: "cons", head: _v64, tail: _v65});
-    _v45 = $Midum$Layout$group(_v46, _v47, _v63);
     var _v70;
     var _v71;
+    _v71 = null;
     var _v72;
-    _v72 = 280;
-    _v71 = ({$: "width_px", value: _v72});
     var _v73;
+    _v73 = 0;
+    _v72 = ({$: "buy_pack", ref: _v73});
     var _v74;
-    _v74 = ({$: "height_fit"});
+    _v74 = ({$: "large"});
     var _v75;
     var _v76;
-    _v76 = ({$: "inset_none"});
     var _v77;
-    _v77 = ({$: "nil"});
-    _v75 = ({$: "cons", head: _v76, tail: _v77});
-    _v73 = ({$: "cons", head: _v74, tail: _v75});
-    _v70 = ({$: "cons", head: _v71, tail: _v73});
-    _r0 = $Midum$Layout$frame(_v44, _v45, _v70);
+    _v77 = Dungeon$Content$ui_booster_buy_prefix();
+    var _v78;
+    var _v79;
+    _v79 = Dungeon$View$selectors$active_pack_price();
+    _v78 = $U32$show(_v79);
+    _v76 = (_v77 + _v78);
+    var _v80;
+    _v80 = Dungeon$Content$ui_booster_currency_suffix();
+    _v75 = (_v76 + _v80);
+    var _v81;
+    var _v82;
+    var _v83;
+    _v83 = meta_state;
+    _v82 = $Dungeon$View$selectors$booster_buy_enabled(_v83);
+    _v81 = $Dungeon$View$menu$_full_button_overrides(_v82);
+    _v70 = $Midum$Button$primary(_v71, _v72, _v74, _v75, _v81);
+    var _v84;
+    _v84 = ({$: "nil"});
+    _v69 = ({$: "cons", head: _v70, tail: _v84});
+    var _v85;
+    var _v86;
+    _v86 = ({$: "direction_column"});
+    var _v87;
+    var _v88;
+    _v88 = ({$: "gap_sm"});
+    var _v89;
+    var _v90;
+    _v90 = ({$: "align_stretch"});
+    var _v91;
+    _v91 = ({$: "nil"});
+    _v89 = ({$: "cons", head: _v90, tail: _v91});
+    _v87 = ({$: "cons", head: _v88, tail: _v89});
+    _v85 = ({$: "cons", head: _v86, tail: _v87});
+    _v67 = $Midum$Layout$group(_v68, _v69, _v85);
+    var _v92;
+    _v92 = ({$: "nil"});
+    _v66 = ({$: "cons", head: _v67, tail: _v92});
+    _v59 = ({$: "node", tag: _v60, attrs: _v61, kids: _v66});
+    var _v93;
+    _v93 = ({$: "nil"});
+    _v58 = ({$: "cons", head: _v59, tail: _v93});
+    _r0 = ({$: "node", tag: _v52, attrs: _v53, kids: _v58});
   }
   return _r0;
 }

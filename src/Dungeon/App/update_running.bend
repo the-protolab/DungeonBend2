@@ -74,6 +74,8 @@ def update_running(evt: DungeonEvent, meta_state: Meta, run_value: Run, next_see
   match evt:
     case damage_tick{}:
       _state(meta_state, running{run_value}, next_seed_value, _step_ui_fx(ui_value))
+    case pause_dungeon{}:
+      _state(meta_state, paused{run_value}, next_seed_value, ui_value)
     case ultimate{}:
       _update_running_ultimate(meta_state, run_value, next_seed_value, ui_value)
     case move{dir}:

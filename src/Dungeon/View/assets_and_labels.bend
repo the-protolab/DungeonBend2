@@ -36,6 +36,12 @@ def _dungeon_level_value_backdrop() -> String:
 def _dungeon_bg() -> String:
   "assets/ui/dungeon/bg-floor.webp"
 
+def _menu_home_bg() -> String:
+  "assets/ui/menu/home-bg.png"
+
+def _menu_upgrade_icon() -> String:
+  "assets/ui/menu/upgrade-icon.png"
+
 def _monster_name(ref: U32) -> String:
   _monster_name_from_defs(config(), ref)
 

@@ -118,6 +118,9 @@ def ui_character_selected() -> String:
 def ui_dungeon_level() -> String:
   "DUNGEON LEVEL"
 
+def ui_dungeon_pause() -> String:
+  "PAUSE"
+
 def ui_game_over_end_eyebrow() -> String:
   "Run ended"
 
@@ -162,6 +165,18 @@ def ui_menu_characters() -> String:
 
 def ui_menu_start() -> String:
   "Start"
+
+def ui_pause_body() -> String:
+  "Your run is on hold. Resume when you're ready."
+
+def ui_pause_eyebrow() -> String:
+  "Dungeon paused"
+
+def ui_pause_resume() -> String:
+  "RESUME"
+
+def ui_pause_title() -> String:
+  "Pause menu"
 
 def ui_topbar_boosters() -> String:
   "Boosters"

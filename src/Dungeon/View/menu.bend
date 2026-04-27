@@ -23,17 +23,17 @@ import /Dungeon/profile_helpers/profile_for_hero as profile_for_hero
 import /Dungeon/profile_helpers/profile_unlocked as profile_unlocked
 import /Dungeon/View/selectors/meta_gold as meta_gold
 import /Dungeon/View/selectors/meta_pack_total as meta_pack_total
-import /Dungeon/View/selectors/hero_base_hp_text as hero_base_hp_text
 import /Dungeon/View/selectors/hero_level_progress_text as hero_level_progress_text
 import /Dungeon/View/selectors/hero_level_ratio_text as hero_level_ratio_text
 import /Dungeon/View/selectors/hero_menu_level_text as hero_menu_level_text
+import /Dungeon/View/selectors/hero_menu_max_hp_text as hero_menu_max_hp_text
 import /Dungeon/View/selectors/start_enabled as start_enabled
-import /Dungeon/View/selectors/menu_upgrade_label as menu_upgrade_label
 import /Dungeon/View/selectors/menu_upgrade_visible as menu_upgrade_visible
 import /Dungeon/View/selectors/character_upgrade_maxed as character_upgrade_maxed
 import /Dungeon/View/selectors/character_upgrade_enabled as character_upgrade_enabled
 import /Dungeon/View/selectors/character_upgrade_price_text as character_upgrade_price_text
 import /Dungeon/View/assets_and_labels/_gold_icon as _gold_icon
+import /Dungeon/View/assets_and_labels/_menu_upgrade_icon as _menu_upgrade_icon
 import /Dungeon/View/menu_screen/_menu_screen_frame as _menu_screen_frame
 import /Dungeon/Content/ as Content
 import /Dungeon/View/topbar_stats/gold_stat as gold_stat
@@ -65,28 +65,32 @@ def _render_menu(meta_state: Meta) -> HTML(DungeonEvent):
   hero_ref = selected_hero(meta_state);
   hero_value = hero_at(config(), hero_ref);
   profile = active_profile(meta_state);
-  _menu_shell(
-    Layout.frame(
-      DungeonEvent,
-      _menu_screen_frame(
-        _menu_header(meta_state),
-        <section class="menu-stage menu-stage--home">
-          <div class="menu-stage__content menu-stage__content--home">
-            {_menu_home(meta_state, hero_value, profile)}
-          </div>
-        </section>,
-        _menu_actions_layout(meta_state)
-      ),
-      [width_full{} height_full{} inset_none{}]
-    )
-  )
+  <div class="menu-home-page">
+    {_menu_shell(
+      Layout.frame(
+        DungeonEvent,
+        <div class="menu-home-scene">
+          {_menu_screen_frame(
+            _menu_header(meta_state),
+            <section class="menu-stage menu-stage--home">
+              <div class="menu-stage__content menu-stage__content--home">
+                {_menu_home(meta_state, hero_value, profile)}
+              </div>
+            </section>,
+            _menu_actions_layout(meta_state)
+          )}
+        </div>,
+        [width_full{} height_full{} inset_none{}]
+      )
+    )}
+  </div>
 
 def _menu_shell(body: HTML(DungeonEvent)) -> HTML(DungeonEvent):
   Layout.shell(
     DungeonEvent,
     body,
     [
-      max_width_px{value: 560n}
+      max_width_px{value: 1080n}
       height_viewport{}
       overflow_hidden{}
       safe_area{}
@@ -220,7 +224,12 @@ def _character_detail_lore(presentation: HeroPresentation) -> HTML(DungeonEvent)
 def _character_stats_row(hero_value: HeroDef, profile: HeroProfile) -> HTML(DungeonEvent):
   <div class="character-detail__stats">
     <p class="character-detail__stat">{text{hero_level_progress_text(hero_value, profile)}}</p>
-    <p class="character-detail__stat">{text{Content.stat_hp() ++ " " ++ hero_base_hp_text(hero_value)}}</p>
+    <div class="character-detail__stat-heart">
+      <div class="hero-hud__heart">
+        <img class="hero-hud__heart-image" src="assets/icon_heart.png" alt={Content.stat_hp()} />
+        <span class="hero-hud__heart-value">{text{hero_menu_max_hp_text(hero_value, profile)}}</span>
+      </div>
+    </div>
   </div>
 
 def _character_locked_badge(profile: HeroProfile) -> HTML(DungeonEvent):
@@ -408,7 +417,7 @@ def _menu_home_hud(hero_value: HeroDef, profile: HeroProfile) -> HTML(DungeonEve
     <div class="hero-hud__hp">
       <div class="hero-hud__heart">
         <img class="hero-hud__heart-image" src="assets/icon_heart.png" alt="" />
-        <span class="hero-hud__heart-value">{text{U32.show(hero_base_max_hp(hero_value))}}</span>
+        <span class="hero-hud__heart-value">{text{hero_menu_max_hp_text(hero_value, profile)}}</span>
       </div>
     </div>
   </div>
@@ -422,7 +431,7 @@ def _menu_upgrade_overlay(meta_state: Meta, hero_value: HeroDef, profile: HeroPr
   match menu_upgrade_visible(meta_state, hero_value, profile):
     case 1:
       <div class="menu-home__upgrade">
-        {_menu_upgrade_button(hero_value, profile)}
+        {_menu_upgrade_button()}
       </div>
     case _:
       text{""}
@@ -449,17 +458,17 @@ def _menu_deck_button() -> HTML(DungeonEvent):
     DungeonEvent,
     ignore{},
     medium{},
-    "DECK",
+    "DUNGEON DECK",
     _full_button_overrides(0)
   )
 
-def _menu_upgrade_button(hero_value: HeroDef, profile: HeroProfile) -> HTML(DungeonEvent):
+def _menu_upgrade_button() -> HTML(DungeonEvent):
   Button.secondary(
     DungeonEvent,
     open_character_select{},
     medium{},
-    menu_upgrade_label(hero_value, profile),
-    _fit_button_overrides(1)
+    "",
+    _menu_upgrade_button_overrides()
   )
 
 def _character_upgrade_button(meta_state: Meta, hero_value: HeroDef, profile: HeroProfile) -> HTML(DungeonEvent):
@@ -511,6 +520,9 @@ def _fit_button_overrides(enabled: U32) -> List(Midum/Button/Override):
       [state_disabled{}]
     case _:
       []
+
+def _menu_upgrade_button_overrides() -> List(Midum/Button/Override):
+  [icon_left{src: _menu_upgrade_icon()} shape_square{}]
 
 def _action_button_overrides(enabled: U32) -> List(Midum/Button/Override):
   match enabled:

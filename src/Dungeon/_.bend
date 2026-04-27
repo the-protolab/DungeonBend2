@@ -211,6 +211,7 @@ type Scene {
   ultimate_preview{fx: UltimatePreviewFx}
   ultimate_cinematic{run: Run, ticks_remaining: U32}
   running{run: Run}
+  paused{run: Run}
   resume_prompt{run: Run}
   game_over{run: Run}
 }
@@ -312,6 +313,7 @@ type DungeonEvent {
   move{dir: Direction}
   damage_tick{}
   ok{}
+  pause_dungeon{}
   resume_dungeon{}
   abandon_dungeon{}
   ignore{}

@@ -24,6 +24,7 @@ import /Dungeon/generated_content/ui_character_preview as generated_ui_character
 import /Dungeon/generated_content/ui_character_select as generated_ui_character_select
 import /Dungeon/generated_content/ui_character_selected as generated_ui_character_selected
 import /Dungeon/generated_content/ui_dungeon_level as generated_ui_dungeon_level
+import /Dungeon/generated_content/ui_dungeon_pause as generated_ui_dungeon_pause
 import /Dungeon/generated_content/ui_game_over_end_eyebrow as generated_ui_game_over_end_eyebrow
 import /Dungeon/generated_content/ui_game_over_main_menu as generated_ui_game_over_main_menu
 import /Dungeon/generated_content/ui_game_over_ok as generated_ui_game_over_ok
@@ -39,6 +40,10 @@ import /Dungeon/generated_content/ui_menu_back as generated_ui_menu_back
 import /Dungeon/generated_content/ui_menu_boosters as generated_ui_menu_boosters
 import /Dungeon/generated_content/ui_menu_characters as generated_ui_menu_characters
 import /Dungeon/generated_content/ui_menu_start as generated_ui_menu_start
+import /Dungeon/generated_content/ui_pause_body as generated_ui_pause_body
+import /Dungeon/generated_content/ui_pause_eyebrow as generated_ui_pause_eyebrow
+import /Dungeon/generated_content/ui_pause_resume as generated_ui_pause_resume
+import /Dungeon/generated_content/ui_pause_title as generated_ui_pause_title
 import /Dungeon/generated_content/ui_topbar_boosters as generated_ui_topbar_boosters
 import /Dungeon/generated_content/ui_topbar_cards as generated_ui_topbar_cards
 import /Dungeon/generated_content/ui_topbar_gold as generated_ui_topbar_gold
@@ -127,6 +132,9 @@ def ui_character_selected() -> String:
 def ui_dungeon_level() -> String:
   generated_ui_dungeon_level()
 
+def ui_dungeon_pause() -> String:
+  generated_ui_dungeon_pause()
+
 def ui_game_over_end_eyebrow() -> String:
   generated_ui_game_over_end_eyebrow()
 
@@ -171,6 +179,18 @@ def ui_menu_characters() -> String:
 
 def ui_menu_start() -> String:
   generated_ui_menu_start()
+
+def ui_pause_body() -> String:
+  generated_ui_pause_body()
+
+def ui_pause_eyebrow() -> String:
+  generated_ui_pause_eyebrow()
+
+def ui_pause_resume() -> String:
+  generated_ui_pause_resume()
+
+def ui_pause_title() -> String:
+  generated_ui_pause_title()
 
 def ui_topbar_boosters() -> String:
   generated_ui_topbar_boosters()

@@ -136,6 +136,8 @@ def dungeon_level_value(scene_value: Scene) -> String:
       _run_dungeon_level_text(run_value)
     case running{run_value}:
       _run_dungeon_level_text(run_value)
+    case paused{run_value}:
+      _run_dungeon_level_text(run_value)
     case resume_prompt{run_value}:
       _run_dungeon_level_text(run_value)
     case game_over{run_value}:
@@ -154,6 +156,8 @@ def remaining_value(scene_value: Scene) -> String:
     case ultimate_cinematic{run_value, ticks_remaining}:
       _run_remaining_text(run_value)
     case running{run_value}:
+      _run_remaining_text(run_value)
+    case paused{run_value}:
       _run_remaining_text(run_value)
     case resume_prompt{run_value}:
       _run_remaining_text(run_value)
@@ -174,6 +178,8 @@ def weapon_value(scene_value: Scene) -> String:
       _run_weapon_text(run_value)
     case running{run_value}:
       _run_weapon_text(run_value)
+    case paused{run_value}:
+      _run_weapon_text(run_value)
     case resume_prompt{run_value}:
       _run_weapon_text(run_value)
     case game_over{run_value}:
@@ -192,6 +198,8 @@ def ultimate_label(scene_value: Scene) -> String:
     case ultimate_cinematic{run_value, ticks_remaining}:
       _run_ult_label(run_value)
     case running{run_value}:
+      _run_ult_label(run_value)
+    case paused{run_value}:
       _run_ult_label(run_value)
     case resume_prompt{run_value}:
       _run_ult_label(run_value)
@@ -374,6 +382,8 @@ def _character_select_enabled(is_selected: U32) -> U32:
 
 def game_over_modal_class(scene_value: Scene) -> String:
   match scene_value:
+    case paused{run_value}:
+      "game-over-modal game-over-modal--visible"
     case resume_prompt{run_value}:
       "game-over-modal game-over-modal--visible"
     case game_over{run_value}:

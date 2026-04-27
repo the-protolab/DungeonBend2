@@ -55,6 +55,9 @@ def _render_dungeon(meta_state: Meta, scene_value: Scene, run_value: Run, ui_val
                 [width_full{} height_fit{} inset_none{}]
               )
             )
+            Layout.top_right(DungeonEvent,
+              _pause_action(scene_value)
+            )
             Layout.center(DungeonEvent,
               _board_grid(scene_value, run_value, ui_value, hero_value)
             )
@@ -74,7 +77,7 @@ def _dungeon_shell(body: HTML(DungeonEvent)) -> HTML(DungeonEvent):
     DungeonEvent,
     body,
     [
-      max_width_px{value: 760n}
+      max_width_px{value: 1080n}
       height_viewport{}
       overflow_hidden{}
       safe_area{}
@@ -149,8 +152,19 @@ def _ultimate_action(scene_value: Scene) -> HTML(DungeonEvent):
     {_ultimate_button(scene_value)}
   </div>
 
+def _pause_action(scene_value: Scene) -> HTML(DungeonEvent):
+  match scene_value:
+    case running{run_value}:
+      <div class="dungeon-pause-action">
+        {_pause_button()}
+      </div>
+    case _:
+      text{""}
+
 def _board_class(scene_value: Scene) -> String:
   match scene_value:
+    case paused{run_value}:
+      "board board--over"
     case resume_prompt{run_value}:
       "board board--over"
     case game_over{run_value}:
@@ -172,10 +186,33 @@ def _board_modal_layer(scene_value: Scene) -> HTML(DungeonEvent):
       text{""}
     case running{run_value}:
       text{""}
+    case paused{run_value}:
+      Layout.center(DungeonEvent, _pause_modal(scene_value))
     case resume_prompt{run_value}:
       Layout.center(DungeonEvent, _resume_prompt_modal(scene_value))
     case game_over{run_value}:
       Layout.center(DungeonEvent, _game_over_modal(scene_value))
+
+def _pause_modal(scene_value: Scene) -> HTML(DungeonEvent):
+  <div class={game_over_modal_class(scene_value)}>
+    {Card.neutral(
+      DungeonEvent,
+      <div class="game-over-card">
+        <p class="game-over-card__eyebrow">{text{Content.ui_pause_eyebrow()}}</p>
+        <h2 class="game-over-card__title">{text{Content.ui_pause_title()}}</h2>
+        <p class="game-over-card__body">{text{Content.ui_pause_body()}}</p>
+        <section class="game-over-card__actions">
+          <div class="menu-secondary-action game-over-card__secondary">
+            {_resume_menu_button()}
+          </div>
+          <div class="menu-start-action game-over-card__primary">
+            {_pause_resume_button()}
+          </div>
+        </section>
+      </div>,
+      [padding_md{}]
+    )}
+  </div>
 
 def _resume_prompt_modal(scene_value: Scene) -> HTML(DungeonEvent):
   <div class={game_over_modal_class(scene_value)}>
@@ -277,6 +314,12 @@ def _ultimate_button(scene_value: Scene) -> HTML(DungeonEvent):
 
 def _game_over_ok_button() -> HTML(DungeonEvent):
   Button.primary(DungeonEvent, ok{}, medium{}, Content.ui_game_over_ok(), [width_full{}])
+
+def _pause_button() -> HTML(DungeonEvent):
+  Button.secondary(DungeonEvent, pause_dungeon{}, small{}, Content.ui_dungeon_pause(), [])
+
+def _pause_resume_button() -> HTML(DungeonEvent):
+  Button.primary(DungeonEvent, resume_dungeon{}, large{}, Content.ui_pause_resume(), [width_full{}])
 
 def _resume_dungeon_button() -> HTML(DungeonEvent):
   Button.primary(DungeonEvent, resume_dungeon{}, large{}, Content.ui_game_over_resume_dungeon(), [width_full{}])

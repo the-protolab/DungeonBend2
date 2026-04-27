@@ -48,6 +48,8 @@ def _screen_root(meta_state: Meta, scene_value: Scene, ui_value: UiState) -> HTM
       _render_ultimate_cinematic_scene(meta_state, run_value, ticks_remaining, ui_value)
     case running{run_value}:
       _render_dungeon(meta_state, running{run_value}, run_value, ui_value)
+    case paused{run_value}:
+      _render_dungeon(meta_state, paused{run_value}, run_value, ui_value)
     case resume_prompt{run_value}:
       _render_dungeon(meta_state, resume_prompt{run_value}, run_value, ui_value)
     case game_over{run_value}:

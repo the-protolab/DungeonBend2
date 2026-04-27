@@ -1,0 +1,43 @@
+<svg width="1920" height="1080" viewBox="0 0 1920 1080" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <linearGradient id="bg" x1="960" y1="0" x2="960" y2="1080" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#6AA9F2"/>
+      <stop offset="1" stop-color="#67B8F4"/>
+    </linearGradient>
+    <radialGradient id="glow" cx="0" cy="0" r="1" gradientUnits="userSpaceOnUse" gradientTransform="translate(960 742) rotate(90) scale(516 663.721)">
+      <stop stop-color="#84E2F7" stop-opacity="0.88"/>
+      <stop offset="1" stop-color="#84E2F7" stop-opacity="0"/>
+    </radialGradient>
+    <linearGradient id="mist" x1="960" y1="612" x2="960" y2="1080" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#D9F9FF" stop-opacity="0.12"/>
+      <stop offset="1" stop-color="#D9F9FF" stop-opacity="0.42"/>
+    </linearGradient>
+    <filter id="softBlur" x="-160" y="-160" width="2240" height="1400" filterUnits="userSpaceOnUse" color-interpolation-filters="sRGB">
+      <feGaussianBlur stdDeviation="10"/>
+    </filter>
+  </defs>
+
+  <rect width="1920" height="1080" fill="url(#bg)"/>
+  <rect width="1920" height="1080" fill="url(#glow)"/>
+
+  <g filter="url(#softBlur)" stroke="#84E2F7" stroke-linecap="round" fill="none">
+    <path d="M118 -30C-72 168 -38 342 -76 598C-104 790 -36 964 94 1138" stroke-opacity="0.18" stroke-width="112"/>
+    <path d="M236 -52C138 84 112 206 94 346C80 456 148 590 172 742C194 890 164 1000 246 1132" stroke-opacity="0.12" stroke-width="86"/>
+    <path d="M362 -26C210 78 188 208 174 368C164 480 242 664 236 822C232 918 248 996 322 1118" stroke-opacity="0.1" stroke-width="52"/>
+
+    <path d="M1082 -44C948 54 884 150 828 240C780 316 742 390 720 504C690 658 694 820 720 1120" stroke-opacity="0.18" stroke-width="150"/>
+    <path d="M1116 112C972 114 882 146 814 212C742 280 676 372 638 498C600 626 598 810 630 1096" stroke-opacity="0.14" stroke-width="92"/>
+    <path d="M1216 86C1304 122 1366 176 1404 252C1436 318 1450 404 1440 510C1428 634 1398 740 1328 818C1266 886 1192 908 1162 990" stroke-opacity="0.16" stroke-width="90"/>
+    <path d="M1262 164C1112 126 994 152 902 232C824 300 756 396 716 526C670 672 660 856 690 1138" stroke-opacity="0.1" stroke-width="40"/>
+
+    <path d="M1674 -34C1808 130 1774 338 1804 532C1826 676 1770 856 1710 974C1686 1022 1678 1068 1684 1132" stroke-opacity="0.16" stroke-width="98"/>
+    <path d="M1860 -28C1912 152 1868 250 1836 360C1802 478 1754 610 1712 688C1660 784 1660 918 1594 1128" stroke-opacity="0.14" stroke-width="132"/>
+
+    <path d="M546 208C604 154 666 122 730 116" stroke-opacity="0.16" stroke-width="24"/>
+    <path d="M710 226C806 184 882 134 932 88" stroke-opacity="0.16" stroke-width="18"/>
+    <path d="M960 194C1020 174 1080 158 1142 164" stroke-opacity="0.14" stroke-width="18"/>
+    <path d="M1298 18C1332 52 1366 74 1392 102" stroke-opacity="0.12" stroke-width="20"/>
+  </g>
+
+  <rect y="612" width="1920" height="468" fill="url(#mist)"/>
+</svg>
