@@ -108,13 +108,13 @@ def _dungeon_deck_counter(scene_value: Scene, ui_value: UiState) -> HTML(Dungeon
 def _dungeon_header(meta_state: Meta, scene_value: Scene, ui_value: UiState) -> HTML(DungeonEvent):
   <header class="topbar topbar--dungeon">
     <div class="dungeon-topbar__left">
-      {_dungeon_resource(_gold_icon(), Content.ui_topbar_gold(), meta_gold(meta_state), "dungeon-resource--gold")}
+      {_dungeon_deck_counter(scene_value, ui_value)}
     </div>
     <div class="dungeon-topbar__center">
       {_dungeon_level(scene_value)}
     </div>
     <div class="dungeon-topbar__right">
-      {_dungeon_deck_counter(scene_value, ui_value)}
+      {_dungeon_resource(_gold_icon(), Content.ui_topbar_gold(), meta_gold(meta_state), "dungeon-resource--gold")}
     </div>
   </header>
 

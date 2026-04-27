@@ -34,6 +34,7 @@ import /Dungeon/View/selectors/character_upgrade_maxed as character_upgrade_maxe
 import /Dungeon/View/selectors/character_upgrade_enabled as character_upgrade_enabled
 import /Dungeon/View/selectors/character_upgrade_price_text as character_upgrade_price_text
 import /Dungeon/View/assets_and_labels/_gold_icon as _gold_icon
+import /Dungeon/View/menu_screen/_menu_screen_frame as _menu_screen_frame
 import /Dungeon/Content/ as Content
 import /Dungeon/View/topbar_stats/gold_stat as gold_stat
 import /Midum/Button/ as Button
@@ -46,13 +47,17 @@ import /Midum/Text/Align
 def _menu_header(meta_state: Meta) -> HTML(DungeonEvent):
   <div class="menu-home-headers">
     <header class="topbar topbar--menu-home topbar--menu-home-desktop">
-      {gold_stat(meta_gold(meta_state))}
+      <div class="topbar__stats">
+        {gold_stat(meta_gold(meta_state))}
+      </div>
     </header>
     <header class="topbar topbar--menu-home topbar--menu-home-mobile">
-      <div class="topbar__back">
+      <div class="topbar__slot topbar__slot--leading">
         {_header_characters_action()}
       </div>
-      {gold_stat(meta_gold(meta_state))}
+      <div class="topbar__stats">
+        {gold_stat(meta_gold(meta_state))}
+      </div>
     </header>
   </div>
 
@@ -63,27 +68,15 @@ def _render_menu(meta_state: Meta) -> HTML(DungeonEvent):
   _menu_shell(
     Layout.frame(
       DungeonEvent,
-      Layout.overlay(DungeonEvent, [
-        Layout.top(DungeonEvent,
-          Layout.frame(
-            DungeonEvent,
-            _menu_header(meta_state),
-            [width_full{} height_fit{} inset_none{}]
-          )
-        )
-        Layout.center(DungeonEvent,
-          Layout.frame(
-            DungeonEvent,
-            <section class="menu-stage menu-stage--home">
-              <div class="menu-stage__content menu-stage__content--home">
-                {_menu_home(meta_state, hero_value, profile)}
-              </div>
-            </section>,
-            [width_full{} height_fit{} inset_none{}]
-          )
-        )
-        Layout.bottom(DungeonEvent, _menu_actions_layout(meta_state))
-      ]),
+      _menu_screen_frame(
+        _menu_header(meta_state),
+        <section class="menu-stage menu-stage--home">
+          <div class="menu-stage__content menu-stage__content--home">
+            {_menu_home(meta_state, hero_value, profile)}
+          </div>
+        </section>,
+        _menu_actions_layout(meta_state)
+      ),
       [width_full{} height_full{} inset_none{}]
     )
   )
@@ -128,27 +121,15 @@ def _render_character_select(meta_state: Meta, preview_hero: U32) -> HTML(Dungeo
   _character_select_shell(
     Layout.frame(
       DungeonEvent,
-      Layout.overlay(DungeonEvent, [
-        Layout.top(DungeonEvent,
-          Layout.frame(
-            DungeonEvent,
-            _character_select_header(meta_state),
-            [width_full{} height_fit{} inset_none{}]
-          )
-        )
-        Layout.center(DungeonEvent,
-          Layout.frame(
-            DungeonEvent,
-            <section class="character-select-stage">
-              <div class="character-select-stage__content">
-                {_character_select_content(meta_state, preview_hero, hero_value, profile, presentation)}
-              </div>
-            </section>,
-            [width_full{} height_fit{} inset_none{}]
-          )
-        )
-        Layout.bottom(DungeonEvent, _character_mobile_footer())
-      ]),
+      _menu_screen_frame(
+        _character_select_header(meta_state),
+        <section class="character-select-stage">
+          <div class="character-select-stage__content">
+            {_character_select_content(meta_state, preview_hero, hero_value, profile, presentation)}
+          </div>
+        </section>,
+        _character_mobile_footer()
+      ),
       [width_full{} height_full{} inset_none{}]
     )
   )
@@ -170,13 +151,18 @@ def _character_select_shell(body: HTML(DungeonEvent)) -> HTML(DungeonEvent):
 def _character_select_header(meta_state: Meta) -> HTML(DungeonEvent):
   <div class="character-select-headers">
     <header class="topbar topbar--character-select topbar--character-select-desktop">
-      <div class="topbar__back">
+      <div class="topbar__slot topbar__slot--leading">
         {_character_back_button()}
       </div>
-      {gold_stat(meta_gold(meta_state))}
+      <div class="topbar__stats">
+        {gold_stat(meta_gold(meta_state))}
+      </div>
     </header>
     <header class="topbar topbar--character-select topbar--character-select-mobile">
-      {gold_stat(meta_gold(meta_state))}
+      <div class="topbar__slot topbar__slot--leading topbar__slot--placeholder" aria-hidden="true"></div>
+      <div class="topbar__stats">
+        {gold_stat(meta_gold(meta_state))}
+      </div>
     </header>
   </div>
 

@@ -12,6 +12,7 @@ import /Dungeon/View/selectors/booster_open_enabled as booster_open_enabled
 import /Dungeon/View/selectors/booster_is_last_card as booster_is_last_card
 import /Dungeon/View/selectors/card_copies as card_copies
 import /Dungeon/View/menu/_full_button_overrides as _full_button_overrides
+import /Dungeon/View/menu_screen/_menu_screen_frame as _menu_screen_frame
 import /Dungeon/View/assets_and_labels/_card_name as _card_name
 import /Dungeon/View/assets_and_labels/_card_sprite as _card_sprite
 import /Dungeon/View/assets_and_labels/_card_stat_range as _card_stat_range
@@ -48,17 +49,15 @@ def _render_boosters_idle(meta_state: Meta) -> HTML(DungeonEvent):
   _boosters_shell(
     Layout.frame(
       DungeonEvent,
-      Layout.overlay(DungeonEvent, [
-        Layout.top(DungeonEvent,
-          Layout.frame(
-            DungeonEvent,
-            _boosters_header(meta_state),
-            [width_full{} height_fit{} inset_none{}]
-          )
-        )
-        Layout.center(DungeonEvent, _booster_pack_visual())
-        Layout.bottom(DungeonEvent, _booster_actions(meta_state))
-      ]),
+      _menu_screen_frame(
+        _boosters_header(meta_state),
+        <section class="boosters-stage">
+          <div class="boosters-stage__content">
+            {_booster_pack_visual()}
+          </div>
+        </section>,
+        _booster_actions(meta_state)
+      ),
       [width_full{} height_full{} inset_none{}]
     )
   )
@@ -172,12 +171,12 @@ def _card_at(cards: List(CardRef), idx: U32) -> CardRef:
 
 def _boosters_header(meta_state: Meta) -> HTML(DungeonEvent):
   <header class="topbar topbar--boosters">
-    <div class="topbar__back">
+    <div class="topbar__slot topbar__slot--leading">
       {_back_button()}
     </div>
     <div class="topbar__stats">
-      {gold_stat(meta_gold(meta_state))}
       {topbar_stat(Content.ui_topbar_boosters(), meta_pack_total(meta_state))}
+      {gold_stat(meta_gold(meta_state))}
     </div>
   </header>
 
